@@ -1,4 +1,4 @@
-function isInstalled(){
+function isInstalled {
   if [ "$(which $1)" != "" ]; then
     return 0;
   fi

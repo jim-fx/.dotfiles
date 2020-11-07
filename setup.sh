@@ -1,14 +1,14 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-function isInstalled(){
+function isInstalled {
   if [ "$(which $1)" != "" ]; then
     return 0;
   fi
   return 1;
 }
 
-function installOptional(){
+function installOptional {
   echo "install optional '$*'"
 
   # Check if any of the listed programs are installed
