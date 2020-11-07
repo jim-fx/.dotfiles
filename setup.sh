@@ -52,6 +52,7 @@ function linkFile {
 echo "-- Installing prerequisites --"
 install git
 install curl
+install neovim
 
 echo "-- Linking .dotfiles --"
 linkFile .bashrc
@@ -70,7 +71,17 @@ zsh $(pwd)/install/p10k.sh
 
 install direnv
 
+echo "-- Configuring Optixal's Neovim (https://github.com/Optixal/neovim-init.vim) --"
+sh $(pwd)/nvim/install-config.sh
+
 echo "-- Applying .zshrc --"
-chsh -s $(which zsh)
-export SHELL=$(which zsh)
+
+if [ $SHELL != $(which zsh) ]; then
+  echo "- changing default shell"
+  chsh -s $(which zsh)
+  export SHELL=$(which zsh)
+fi
+
 zsh
+
+cd

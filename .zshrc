@@ -37,7 +37,7 @@ export PATH="$PATH:$HOME/go/bin"
 
 eval "$(direnv hook zsh)"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#Java version manager 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/jim/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
@@ -46,3 +46,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Go version manager
 [[ -s "/$HOME/.gvm/scripts/gvm" ]] && source "/$HOME/.gvm/scripts/gvm"
+
+# Node Version manager
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
