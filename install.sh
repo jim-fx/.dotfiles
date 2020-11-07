@@ -2,7 +2,6 @@
 
 #Prerequesits
 echo "-- Installing git --"
-install git
 if [ "$(which $1)" != "" ]; then
     apt-get install $1 -y > /dev/null
 fi
