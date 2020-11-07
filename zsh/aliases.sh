@@ -6,19 +6,12 @@ alias yoink="curl"
 
 alias pls='sudo -E env "PATH=$PATH"'
 
-alias lc='colorls -lA --s'
-
 alias zshc="vim ~/.zshrc"
 alias zshu="source ~/.zshrc"
 
 alias nano="nvim"
 
 alias ww="webpack -w"
-
-alias ys="yarn start"
-alias yd="yarn dev"
-alias yi="yarn install"
-alias ya="yarn add"
 
 alias gs="git status"
 alias gaa="git add ."

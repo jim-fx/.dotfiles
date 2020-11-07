@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 function isInstalled(){
   if [ "$(which $1)" != "" ]; then
@@ -27,22 +28,49 @@ function installOptional(){
 function install {
     # Check if program is already installed
     if isInstalled $1; then
-      echo "$1 is already installed"
+      echo " - $1 is already installed"
     else
-      echo "installing $1"
-      apt-get install $1
+      echo " - installing $1 ..."
+      apt-get install $1 -y > /dev/null
+      echo " - finished"
     fi
 }
 
+function linkFile {
+  #Move old file
+  if [ -f "$HOME/$1" ]; then
+    echo " - moving old file to $1_bak"
+    mv "$HOME/$1" "$HOME/$1_bak"
+  fi
+
+  #Link $1
+  echo " - linking $(pwd)/$1 --> $HOME/$1"
+  ln -s "$(pwd)/$1" "$HOME/$1"
+}
 
 #Prerequesits
 echo "-- Installing prerequisites --"
 install git
 install curl
 
+echo "-- Linking .dotfiles --"
+linkFile .bashrc
+linkFile .zshrc
+linkFile .p10k.zsh
+linkFile .gitconfig
+linkFile .dircolors
+linkFile .gitconfig-coco
+
 echo "-- Installing Oh-My-Zsh --"
 install zsh
-./install/oh-my-szh.sh
-./install/p10k.sh
 
-install nope
+sh $(pwd)/install/oh-my-zsh.sh
+sh $(pwd)/install/zsh-autosuggestions.sh
+zsh $(pwd)/install/p10k.sh
+
+install direnv
+
+echo "-- Applying .zshrc --"
+chsh -s $(which zsh)
+export SHELL=$(which zsh)
+zsh
