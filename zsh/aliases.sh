@@ -15,7 +15,7 @@ alias ww="webpack -w"
 
 alias gs="git status"
 alias gaa="git add ."
-alias gpm="git push origin master"
+alias gpm="git push origin main"
 alias gcm="git commit -m "
 alias czi="commitizen init cz-conventional-changelog --yarn --dev --exact"
 alias cz="git-cz"
