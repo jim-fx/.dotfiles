@@ -2,7 +2,7 @@
 
 # - Prerequesits -
 echo "-- Installing git --"
-if [ "$(which git)" != "" ]; then
+if [ "$(which git)" = "" ]; then
     apt-get install git -y > /dev/null
 fi
 
