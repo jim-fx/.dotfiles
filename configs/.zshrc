@@ -19,27 +19,21 @@ export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 ## FUNCTIONS ##
-source $HOME/.dotfiles/zsh/functions.zsh
+source $HOME/.dotfiles/configs/zsh/functions.zsh
 
 ## ALIASES ##
-source $HOME/.dotfiles/zsh/aliases.sh
+source $HOME/.dotfiles/configs/zsh/aliases.sh
 
 ## LOADING PROGRAMS
-export PATH="$PATH:/usr/local/sbin"
-export PATH="$PATH:/opt/local/bin"
-export PATH="$PATH:/usr/local"
-export PATH="$PATH:/usr/local/vcpkg"
-export PATH="$PATH:/usr/local/arduino"
-export PATH="$PATH:/usr/local/processing"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/go/bin"
 
-eval "$(direnv hook zsh)"
+[[ -s $(which direnv) ]] && eval "$(direnv hook zsh)"
 
 #Java version manager 
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/jim/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -50,3 +44,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Node Version manager
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/configs/.p10k.zsh.
+[[ ! -f ~/.dotfiles/configs/.p10k.zsh ]] || source ~/.dotfiles/configs/.p10k.zsh

@@ -1,87 +1,98 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-function isInstalled {
-  if [ "$(which $1)" != "" ]; then
-    return 0;
-  fi
-  return 1;
-}
+. ./helpers/installer.sh --source-only
+. ./helpers/prompt.sh --source-only
+. ./helpers/linker.sh --source-only
+. ./helpers/multiselect.sh --source-only
 
-function installOptional {
-  echo "install optional '$*'"
+echo "-- welcome to my setup script --"
+echo "-- installing prerequesits (git, curl) --"
 
-  # Check if any of the listed programs are installed
-  # if not install the first one;
-  for prog in "$@"
-  do
-      if isInstalled $prog; then
-        echo "$prog is installed";
-        break
-      fi
-  done
-
-  install $1;
-
-}
-
-function install {
-    # Check if program is already installed
-    if isInstalled $1; then
-      echo " - $1 is already installed"
-    else
-      echo " - installing $1 ..."
-      apt-get install $1 -y > /dev/null
-      echo " - finished"
-    fi
-}
-
-function linkFile {
-  #Move old file
-  if [ -f "$HOME/$1" ]; then
-    echo " - moving old file to $1_bak"
-    mv "$HOME/$1" "$HOME/$1_bak"
-  fi
-
-  #Link $1
-  echo " - linking $(pwd)/$1 --> $HOME/$1"
-  ln -s "$(pwd)/$1" "$HOME/$1"
-}
-
-#Prerequesits
-echo "-- Installing prerequisites --"
-install git
-install curl
-install neovim
-
-echo "-- Linking .dotfiles --"
-linkFile .bashrc
-linkFile .zshrc
-linkFile .p10k.zsh
-linkFile .gitconfig
-linkFile .dircolors
-linkFile .gitconfig-coco
-
-echo "-- Installing Oh-My-Zsh --"
-install zsh
-
-sh $(pwd)/install/oh-my-zsh.sh
-sh $(pwd)/install/zsh-autosuggestions.sh
-zsh $(pwd)/install/p10k.sh
-
-install direnv
-
-echo "-- Configuring Optixal's Neovim (https://github.com/Optixal/neovim-init.vim) --"
-sh $(pwd)/nvim/install-config.sh
-
-echo "-- Applying .zshrc --"
-
-if [ $SHELL != $(which zsh) ]; then
-  echo "- changing default shell"
-  chsh -s $(which zsh)
-  export SHELL=$(which zsh)
+if [ "$(prompt " - do you want to continue")" != "yes" ]; then
+  echo "   alllrighty then, byyye"
+  exit
 fi
 
-zsh
+echo ""
 
-cd
+#Prerequesits
+echo "-- installing prerequisites --"
+
+install git
+install curl
+
+echo "-----------------------------------"
+
+#Make the selection
+echo "-- what do you want to install? --"
+
+OPTIONS_VALUES=("ZSH" "NVIM" "DRNV" "GVM" "NVM" "SDKM")
+OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim" "Direnv" "Go Version Manager" "Node Version Manager" "Java Version Manager")
+for i in "${!OPTIONS_VALUES[@]}"; do
+  OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
+done
+multiselect SELECTED "$OPTIONS_STRING"
+
+# Variables
+INST_ZSH=${SELECTED[0]}
+INST_NVIM=${SELECTED[1]}
+INST_DRNV=${SELECTED[2]}
+INST_GVM=${SELECTED[3]}
+INST_NVM=${SELECTED[4]}
+INST_SDKM=${SELECTED[5]}
+
+echo "-----------------------------------"
+
+echo -e "-- installing programs --"
+[[ "$INST_DRNV" = true ]] && install direnv
+[[ "$INST_GVM" = true ]] && echo " - installing GVM"
+[[ "$INST_NVM" = true ]] && echo " - installing NVM"
+[[ "$INST_SDKM" = true ]] && echo " - installing SDKM"
+
+echo "-- linking .dotfiles --"
+
+linkFile .bashrc
+linkFile .p10k.zsh
+linkFile .dircolors
+
+echo "-----------------------------------"
+
+if [ "$INST_ZSH" = true ]; then
+  echo "-- installing oh-my-zsh --"
+  linkFile .zshrc
+  install zsh
+
+  zsh $(pwd)/install/oh-my-zsh.sh
+  zsh $(pwd)/install/zsh-autosuggestions.sh
+  zsh $(pwd)/install/p10k.sh
+
+  echo "-----------------------------------"
+fi
+
+if [ "$INST_NVIM" = true ]; then
+  install neovim
+
+  echo "-- Configuring Optixal's Neovim (https://github.com/Optixal/neovim-init.vim) --"
+
+  sh $(pwd)/install/install-config.sh
+  echo "-----------------------------------"
+fi
+
+if [ "$INST_ZSH" = true ]; then
+
+  # Change default shell
+  if [ $SHELL != $(which zsh) ]; then
+    echo " - changing default shell"
+    chsh -s $(which zsh)
+    export SHELL=$(which zsh)
+  fi
+
+fi
+
+# Change to home dir
+cd ~
+
+echo "-- ALL DONE --"
+
+zsh
