@@ -125,3 +125,5 @@ alias vim='nvim'
 alias vim='nvim'
 alias vim='nvim'
 alias vim='nvim'
+
+[[ -s "/home/jim/.gvm/scripts/gvm" ]] && source "/home/jim/.gvm/scripts/gvm"
