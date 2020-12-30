@@ -12,6 +12,10 @@ function y(){
       yarn add
     elif [ $char = "u" ]; then
       yarn upgrade
+    elif [ $char = "t" ]; then
+      yarn test
+    elif [ $char = "c" ]; then
+      yarn coverage
     fi
   done
 }
