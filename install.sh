@@ -3,10 +3,10 @@
 # - Prerequesits -
 echo "-- Installing git --"
 if [ "$(which git)" = "" ]; then
-    apt-get install git -y > /dev/null
+    apt-get install git -y >/dev/null
 fi
 
-# - Cloning Repo - 
+# - Cloning Repo -
 echo "-- Cloning repo --"
 git clone https://github.com/jim-fx/.dotfiles.git ~/.dotfiles
 

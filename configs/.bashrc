@@ -121,7 +121,16 @@ alias vim='nvim'
 alias vim='nvim'
 alias vim='nvim'
 alias vim='nvim'
+<<<<<<< HEAD:.bashrc
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/jim/.sdkman"
 [[ -s "/home/jim/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jim/.sdkman/bin/sdkman-init.sh"
+=======
+alias vim='nvim'
+alias vim='nvim'
+alias vim='nvim'
+alias vim='nvim'
+
+[[ -s "/home/jim/.gvm/scripts/gvm" ]] && source "/home/jim/.gvm/scripts/gvm"
+>>>>>>> 63919a2fee0f7a41a5f3dd6b89def7847aa42cae:configs/.bashrc
