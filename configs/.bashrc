@@ -111,26 +111,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias vim='nvim'
-alias vim='nvim'
-alias vim='nvim'
-alias vim='nvim'
-alias vim='nvim'
-alias vim='nvim'
-<<<<<<< HEAD:.bashrc
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/jim/.sdkman"
-[[ -s "/home/jim/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jim/.sdkman/bin/sdkman-init.sh"
-=======
-alias vim='nvim'
-alias vim='nvim'
-alias vim='nvim'
-alias vim='nvim'
-
-[[ -s "/home/jim/.gvm/scripts/gvm" ]] && source "/home/jim/.gvm/scripts/gvm"
->>>>>>> 63919a2fee0f7a41a5f3dd6b89def7847aa42cae:configs/.bashrc

@@ -27,17 +27,6 @@ source $HOME/.dotfiles/configs/zsh/aliases.sh
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
-<<<<<<< HEAD:.zshrc
-export GOROOT="$HOME/go"
-export GOPATH="$HOME/SYNC"
-export PATH="$PATH:$GOROOT/bin"
-
-eval "$(direnv hook zsh)"
-
-#Java version manager 
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-=======
 ## GO STUFF
 export GOROOT="/usr/local/bin/go"
 export GOPATH="$HOME/go"
@@ -55,7 +44,6 @@ fi
 #Java version manager 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
->>>>>>> 63919a2fee0f7a41a5f3dd6b89def7847aa42cae:configs/.zshrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -66,9 +54,3 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Node Version manager
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-<<<<<<< HEAD:.zshrc
-=======
-
-# To customize prompt, run `p10k configure` or edit ~/.dotfiles/configs/.p10k.zsh.
-[[ ! -f ~/.dotfiles/configs/.p10k.zsh ]] || source ~/.dotfiles/configs/.p10k.zsh
->>>>>>> 63919a2fee0f7a41a5f3dd6b89def7847aa42cae:configs/.zshrc
