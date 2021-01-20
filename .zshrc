@@ -35,11 +35,15 @@ export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/go/bin"
 
+export GOROOT="$HOME/go"
+export GOPATH="$HOME/SYNC"
+export PATH="$PATH:$GOROOT/bin"
+
 eval "$(direnv hook zsh)"
 
 #Java version manager 
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/jim/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

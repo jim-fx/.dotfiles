@@ -120,3 +120,8 @@ alias vim='nvim'
 alias vim='nvim'
 alias vim='nvim'
 alias vim='nvim'
+alias vim='nvim'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/jim/.sdkman"
+[[ -s "/home/jim/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jim/.sdkman/bin/sdkman-init.sh"
