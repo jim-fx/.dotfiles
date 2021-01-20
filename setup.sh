@@ -50,7 +50,7 @@ INST_NVM=${SELECTED[4]}
 INST_SDKM=${SELECTED[5]}
 
 if [ $INTERACTIVE = "false" ]; then
-  INST_ZSH = true
+  INST_ZSH=true
 fi
 
 echo "-----------------------------------"
