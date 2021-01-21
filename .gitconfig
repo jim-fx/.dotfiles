@@ -1,5 +1,0 @@
-[user]
-email = jim-x@web.de
-name = Max Richter
-[includeIf "gitdir:~/COCO"]
-path = .gitconfig-coco
