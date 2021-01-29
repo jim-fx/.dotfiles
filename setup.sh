@@ -9,9 +9,13 @@ cd "$(dirname "$0")"
 echo "-- welcome to my setup script --"
 echo "-- installing prerequesits (git, curl) --"
 
-if [ "$(prompt " - do you want to continue")" != "yes" ]; then
-  echo "   alllrighty then, byyye"
-  exit
+INTERACTIVE=$(tty -s && echo "true" || echo "false")
+
+if [ $INTERACTIVE = "true" ]; then
+  if [ "$(prompt " - do you want to continue")" != "yes" ]; then
+    echo "   alllrighty then, byyye"
+    exit
+  fi
 fi
 
 echo ""
@@ -32,7 +36,10 @@ OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim" "Direnv" "Go Version Manager" "Node V
 for i in "${!OPTIONS_VALUES[@]}"; do
   OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
 done
-multiselect SELECTED "$OPTIONS_STRING"
+
+if [ $INTERACTIVE = "true" ]; then
+  multiselect SELECTED "$OPTIONS_STRING"
+fi
 
 # Variables
 INST_ZSH=${SELECTED[0]}
@@ -41,6 +48,10 @@ INST_DRNV=${SELECTED[2]}
 INST_GVM=${SELECTED[3]}
 INST_NVM=${SELECTED[4]}
 INST_SDKM=${SELECTED[5]}
+
+if [ $INTERACTIVE = "false" ]; then
+  INST_ZSH=true
+fi
 
 echo "-----------------------------------"
 
