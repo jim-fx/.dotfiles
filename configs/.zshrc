@@ -27,11 +27,10 @@ source $HOME/.dotfiles/configs/zsh/aliases.sh
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 ## GO STUFF
-export GOROOT="/usr/local/bin/go"
-export GOPATH="$HOME/go"
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+export PATH=$PATH:/usr/local/go/bin
 
 [[ -s $(which direnv) ]] && eval "$(direnv hook zsh)"
 
@@ -54,6 +53,11 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Node Version manager
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+if [ -d $HOME/.dotnet ]; then
+  export DOTNET_ROOT=$HOME/.dotnet;
+  export PATH=$PATH:$HOME/.dotnet;
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/coder/downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/coder/downloads/google-cloud-sdk/path.zsh.inc'; fi
