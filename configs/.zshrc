@@ -27,11 +27,10 @@ source $HOME/.dotfiles/configs/zsh/aliases.sh
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 ## GO STUFF
-export GOROOT="/usr/local/bin/go"
-export GOPATH="$HOME/go"
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+export PATH=$PATH:/usr/local/go/bin
 
 [[ -s $(which direnv) ]] && eval "$(direnv hook zsh)"
 
