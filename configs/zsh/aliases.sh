@@ -10,6 +10,8 @@ alias zshc="vim ~/.zshrc"
 alias zshu="source ~/.zshrc"
 
 alias nano="nvim"
+alias vim="nvim"
+alias v="nvim"
 
 alias ww="webpack -w"
 
