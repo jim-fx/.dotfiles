@@ -29,16 +29,14 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
 
+## Setup VIM
+export EDITOR="nvim"
+export VIMRUNTIME="~/bin/neovim/runtime"
+
 ## GO STUFF
 export PATH=$PATH:/usr/local/go/bin
 
 [[ -s $(which direnv) ]] && eval "$(direnv hook zsh)"
-
-if [ -s "$HOME/.pyenv" ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
 
 #Java version manager 
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -59,8 +57,17 @@ if [ -d $HOME/.dotnet ]; then
   export PATH=$PATH:$HOME/.dotnet;
 fi
 
+#Load pyenv if found
+if [ -s "$HOME/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/coder/downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/coder/downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/coder/downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/coder/downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
