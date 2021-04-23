@@ -3,19 +3,19 @@ function y(){
   for char in $(echo $word)
   do
     if [ $char = "i" ]; then
-      yarn install
+      pnpm i -r
     elif [ $char = "d" ]; then
-      yarn dev
+      pnpm dev
     elif [ $char = "b" ]; then
-      yarn build
+      pnpm build
     elif [ $char = "a" ]; then
-      yarn add
+      pnpm add
     elif [ $char = "u" ]; then
-      yarn upgrade
+      pnpm upgrade
     elif [ $char = "t" ]; then
-      yarn test
+      pnpm test
     elif [ $char = "c" ]; then
-      yarn coverage
+      pnpm coverage
     fi
   done
 }
