@@ -1,5 +1,3 @@
-# INITILIZATION ##
-
 # p10k
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -28,6 +26,9 @@ export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
+
+export DENO_INSTALL="/home/jim/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 ## Setup VIM
 export EDITOR="nvim"
