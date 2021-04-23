@@ -1,8 +1,10 @@
 ## ALIASIES ##
 alias -s {yml,yaml,ts,json,js,vim,rc}=nvim
 
-alias ci="code-insiders"
-alias cia="ci . -a"
+alias ci="code-insiders ."
+alias ca="ci -a"
+alias cr="cr -r"
+
 alias yoink="curl"
 
 alias pls='sudo -E env "PATH=$PATH"'
@@ -13,8 +15,6 @@ alias zshu="source ~/.zshrc"
 alias nano="nvim"
 alias vim="nvim"
 alias v="nvim"
-
-alias ww="webpack -w"
 
 alias gs="git status"
 alias gaa="git add ."
