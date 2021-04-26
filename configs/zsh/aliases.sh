@@ -1,9 +1,9 @@
 ## ALIASIES ##
 alias -s {yml,yaml,ts,json,js,vim,rc}=nvim
 
-alias ci="code-insiders ."
-alias ca="ci -a"
-alias cr="cr -r"
+alias c="code-insiders ."
+alias ca="c -a"
+alias cr="c -r"
 
 alias yoink="curl"
 
