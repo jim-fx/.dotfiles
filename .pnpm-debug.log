@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+    "err": {
+      "name": "Error",
+      "message": "No package.json (or package.yaml, or package.json5) was found in \"/home/jim/.dotfiles\".",
+      "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+      "stack": "Error: No package.json (or package.yaml, or package.json5) was found in \"/home/jim/.dotfiles\".\n    at readProjectManifest (/home/jim/.nvm/versions/node/v16.0.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.2.3/node_modules/pnpm/dist/pnpm.cjs:45754:11)\n    at async Object.readProjectManifestOnly (/home/jim/.nvm/versions/node/v16.0.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.2.3/node_modules/pnpm/dist/pnpm.cjs:45758:24)\n    at async Object.readProjectManifestOnly (/home/jim/.nvm/versions/node/v16.0.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.2.3/node_modules/pnpm/dist/pnpm.cjs:45973:22)\n    at async Object.handler (/home/jim/.nvm/versions/node/v16.0.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.2.3/node_modules/pnpm/dist/pnpm.cjs:119476:22)\n    at async Timeout._onTimeout (/home/jim/.nvm/versions/node/v16.0.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.2.3/node_modules/pnpm/dist/pnpm.cjs:123364:22)"
+    }
+  }
+}
