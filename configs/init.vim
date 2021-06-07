@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
-Plug 'mhartington/oceanic-next'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 
@@ -22,7 +22,8 @@ endif
 
 " Theme
 syntax enable
-colorscheme OceanicNext
+let g:material_theme_style = 'ocean-community'
+colorscheme material
 
 let mapleader = ","
 
