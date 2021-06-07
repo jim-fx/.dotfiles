@@ -36,7 +36,6 @@ export PATH="$PATH:$DENO_INSTALL/bin"
 
 ## Setup VIM
 export EDITOR="nvim"
-export VIMRUNTIME="~/bin/neovim/runtime"
 
 ## GO STUFF
 export PATH=$PATH:/usr/local/go/bin
