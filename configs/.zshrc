@@ -68,6 +68,8 @@ fi
 # For wsl stay in the current dir when splitting panes?
 export PROMPT_COMMAND='printf "\e]9;9;%s\e\\" "$(wslpath -m "$PWD")"'
 
+source $HOME/.dotfiles/configs/zsh/update-repo.zsh
+
 # The next line updates PATH for the Google Cloud SDK.
 #if [ -f '/home/coder/downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/coder/downloads/google-cloud-sdk/path.zsh.inc'; fi
 
