@@ -23,9 +23,17 @@ Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+" Svelte support
+Plug 'leafOfTree/vim-svelte-plugin'
+
+" Multi Cursor select
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -50,6 +58,8 @@ let g:lightline = {
 let mapleader = ","
 nmap <leader>rn <Plug>(coc-rename)
 
+" 
+nmap <C-p> :FZF<CR>
 
 " COC Configs
 set updatetime=300
@@ -77,4 +87,4 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-let g:python3_host_prog = expand('~/.pyenv/shims/python3.9')
+" let g:python3_host_prog = expand('~/.pyenv/shims/python3.9')
