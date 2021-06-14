@@ -9,7 +9,7 @@ alias yoink="curl"
 
 alias pls='sudo -E env "PATH=$PATH"'
 
-alias zshc="vim ~/.dotfiles/configs/.zshrc"
+alias zshc="cd ~/.dotfiles && vim configs/.zshrc"
 alias zshu="source ~/.zshrc"
 
 alias nano="nvim"
