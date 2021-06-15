@@ -26,6 +26,9 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
+" Display IMages in Vim
+Plug 'ashisha/image.vim'
+
 " Svelte support
 Plug 'leafOfTree/vim-svelte-plugin'
 
@@ -72,6 +75,10 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
+nnoremap H gT
+nnoremap L gt
+
 
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
