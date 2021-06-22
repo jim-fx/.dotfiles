@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # - Prerequesits -
-echo "-- Installing git --"
 if [ "$(which git)" = "" ]; then
+    echo "-- Installing git --"
     apt-get install git -y >/dev/null
 fi
 
