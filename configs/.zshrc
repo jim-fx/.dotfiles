@@ -12,6 +12,8 @@ plugins=(
 
 eval `dircolors ~/.dircolors`
 
+export FPATH=$FPATH:~/.dotfiles/completions
+
 # Load oh my zsh
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
