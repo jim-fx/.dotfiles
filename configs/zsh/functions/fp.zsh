@@ -2,28 +2,33 @@
 
 function fp(){
 
-    PORT=$1;
+    for p in "$@"
+    do
 
-    if [ "$(which lsof)" = "lsof not found" ]; then
-        echo "lsof not installed"
-    else
-        PIDS="$(lsof -t -i:$PORT)"
+        PORT=$var;
 
-        AMOUNT=$(wc -w<<<$PIDS);
-
-        if [ $AMOUNT = 0 ]; then
-
-            echo "No processes use port $PORT";
-
+        if [ "$(which lsof)" = "lsof not found" ]; then
+            echo "lsof not installed"
         else
+            PIDS="$(lsof -t -i:$PORT)"
 
-            echo "Killing $AMOUNT process(es) using port $PORT";
+            AMOUNT=$(wc -w<<<$PIDS);
 
-            echo "$PIDS" | while IFS= read -r pid ; do 
-                kill -9 $pid;
-            done
+            if [ $AMOUNT = 0 ]; then
 
+                echo "No processes use port $PORT";
+
+            else
+
+                echo "Killing $AMOUNT process(es) using port $PORT";
+
+                echo "$PIDS" | while IFS= read -r pid ; do 
+                    kill -9 $pid;
+                done
+
+            fi
         fi
-    fi
+
+    done
 
 }

@@ -68,9 +68,9 @@ function multiselect() {
     # print options by overwriting the last lines
     local idx=0
     for option in "${options[@]}"; do
-      local prefix="   [ ]"
+      local prefix=" [ ]"
       if [[ ${selected[idx]} == true ]]; then
-        prefix="   [x]"
+        prefix=" [x]"
       fi
 
       cursor_to $(($startrow + $idx))

@@ -1,6 +1,6 @@
 FROM debian:latest
 
-ADD . ~/.dotfiles
+ADD . /root/.dotfiles
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install curl git zsh -y

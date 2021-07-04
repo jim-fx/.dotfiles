@@ -1,10 +1,12 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+#Loading all the helper scripts
 . ./helpers/installer.sh --source-only
 . ./helpers/prompt.sh --source-only
 . ./helpers/linker.sh --source-only
 . ./helpers/multiselect.sh --source-only
+. ./helpers/asdf-install.sh --source-only
 
 echo "-- welcome to my setup script --"
 echo "-- installing prerequesits (git, curl) --"
@@ -31,35 +33,66 @@ echo "-----------------------------------"
 #Make the selection
 echo "-- what do you want to install? --"
 
-OPTIONS_VALUES=("ZSH" "NVIM" "DRNV" "GVM" "NVM" "SDKM")
-OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim" "Direnv" "Go Version Manager" "Node Version Manager" "Java Version Manager")
+
+# 0 - ZSH
+# 1 - NVIM
+# 2 - DRNV
+# 3 - NODE
+# 4 - GO
+# 5 - ZSH
+# 6 - ZSH
+# 7 - ZSH
+
+OPTIONS_VALUES=("ZSH"             "NVIM"   "ASDF" "DRNV"   "NODE"   "GO"     "PYTH"   "DENO" "HUGO" "RUST")
+OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim" "Asdf" "Direnv" "NodeJS" "Golang" "Python" "Deno" "Hugo" "Rust")
 for i in "${!OPTIONS_VALUES[@]}"; do
   OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
 done
 
 if [ $INTERACTIVE = "true" ]; then
-  multiselect SELECTED "$OPTIONS_STRING"
+  multiselect SELECTED "$OPTIONS_STRING":
 fi
 
 # Variables
 INST_ZSH=${SELECTED[0]}
 INST_NVIM=${SELECTED[1]}
-INST_DRNV=${SELECTED[2]}
-INST_GVM=${SELECTED[3]}
-INST_NVM=${SELECTED[4]}
-INST_SDKM=${SELECTED[5]}
+INST_ASDF=${SELECTED[2]}
+INST_DRNV=${SELECTED[3]}
+INST_NODE=${SELECTED[4]}
+INST_GO=${SELECTED[5]}
+INST_PYTH=${SELECTED[6]}
+INST_DENO=${SELECTED[7]}
+INST_HUGO=${SELECTED[8]}
+INST_RUST=${SELECTED[9]}
 
 if [ $INTERACTIVE = "false" ]; then
   INST_ZSH=true
+  INST_NVIM=true
 fi
 
 echo "-----------------------------------"
 
 echo -e "-- installing programs --"
 [[ "$INST_DRNV" = true ]] && install direnv
-[[ "$INST_GVM" = true ]] && echo " - installing GVM"
-[[ "$INST_NVM" = true ]] && echo " - installing NVM"
-[[ "$INST_SDKM" = true ]] && echo " - installing SDKM"
+if [ "$INST_ASDF" = true ]; then
+
+    # Requirements for ASDF
+    install gnupg2
+    install unzip
+    ./install/install-asdf.sh
+
+    if [ "$INST_NVIM" = true ]; then
+      asdfInstall neovim
+      ./install/install-nvim.sh
+    fi
+
+    [[ "$INST_NODE" = true ]] && asdfInstall nodejs
+    [[ "$INST_GO" = true ]] && asdfInstall golang
+    [[ "$INST_PYTH" = true ]] && asdfInstall python
+    [[ "$INST_DENO" = true ]] && asdfInstall deno
+    [[ "$INST_HUGO" = true ]] && asdfInstall hugo
+    [[ "$INST_RUST" = true ]] && asdfInstall rust
+fi
 
 echo "-- linking .dotfiles --"
 
@@ -81,15 +114,6 @@ if [ "$INST_ZSH" = true ]; then
   echo "-----------------------------------"
 fi
 
-if [ "$INST_NVIM" = true ]; then
-  install neovim
-
-  echo "-- Configuring Optixal's Neovim (https://github.com/Optixal/neovim-init.vim) --"
-
-  sh $(pwd)/install/install-config.sh
-  echo "-----------------------------------"
-fi
-
 if [ "$INST_ZSH" = true ]; then
 
   # Change default shell
@@ -106,4 +130,6 @@ cd ~
 
 echo "-- ALL DONE --"
 
-zsh
+if [ "$INST_ZSH" = true ]; then
+    zsh
+fi
