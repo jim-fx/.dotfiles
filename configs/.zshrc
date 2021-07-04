@@ -78,9 +78,10 @@ source $HOME/.dotfiles/configs/zsh/update-repo.zsh
 # The next line enables shell command completion for gcloud.
 #if [ -f '/home/coder/downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/coder/downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-
+if [ -s "$HOME/.asdf" ]; then
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

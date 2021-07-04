@@ -24,11 +24,11 @@ installOptional() {
 install() {
   # Check if program is already installed
   if isInstalled $1; then
-    echo " - $1 is already installed"
+    echo " ✓ $1 is already installed"
   else
     echo " - installing $1 ..."
     apt-get install $1 -y >/dev/null
-    echo " - finished"
+    echo " ✓ finished"
   fi
 }
 
