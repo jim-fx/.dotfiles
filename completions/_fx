@@ -1,0 +1,19 @@
+#compdef fx
+
+_fx(){
+
+    local state
+
+    _arguments \
+        '1: :->action'\
+        '*: :->folder_name'
+
+    case $state in 
+        (action) _arguments '1:profiles:(s i o)' ;;
+                (*) compadd "$@" $(echo $(ls ~/SYNC) | tr \\n ' ')
+
+    esac
+
+}
+
+_fx "$@"
