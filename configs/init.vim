@@ -19,24 +19,33 @@ Plug 'tpope/vim-sensible'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
+
 " A status line to the bottom
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+
+" Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
+
+" Autocompletion engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-" Display IMages in Vim
+" Display Images in Vim
 Plug 'ashisha/image.vim'
 
 " Svelte support
 Plug 'leafOfTree/vim-svelte-plugin'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " Multi Cursor select
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -80,7 +89,6 @@ nmap <C-l> <C-w>l
 nnoremap H gT
 nnoremap L gt
 
-
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 " Close all open buffers on entering a window if the only
@@ -94,5 +102,3 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
-
-" let g:python3_host_prog = expand('~/.pyenv/shims/python3.9')
