@@ -1,13 +1,13 @@
 set number
 
-set tabstop=4       " The width of a TAB is set to 4.
+set tabstop=2       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
                     " Vim will interpret it to be having
                     " a width of 4.
 
-set shiftwidth=4    " Indents will have a width of 4
+set shiftwidth=2    " Indents will have a width of 4
 
-set softtabstop=4   " Sets the number of columns for a TAB
+set softtabstop=2   " Sets the number of columns for a TAB
 
 set expandtab       " Expand TABs to spaces
 
@@ -16,9 +16,14 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
+" For searching through file contents
+Plug 'dyng/ctrlsf.vim'
 
 " A status line to the bottom
 " Plug 'itchyny/lightline.vim'
@@ -33,7 +38,7 @@ Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Display Images in Vim
-Plug 'ashisha/image.vim'
+" Plug 'ashisha/image.vim'
 
 " Svelte support
 Plug 'leafOfTree/vim-svelte-plugin'
@@ -46,6 +51,10 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'kristijanhusak/vim-dadbod-ui'
+
+Plug 'liuchengxu/vim-clap'
+
+Plug 'glepnir/dashboard-nvim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -61,6 +70,10 @@ let g:svelte_preprocessors = ['typescript']
 syntax enable
 let g:material_theme_style = 'ocean-community'
 colorscheme material
+
+" Remove background color
+highlight Normal guibg=none
+highlight NonText guibg=none
 
 let g:lightline = {
       \ 'colorscheme': 'one',
@@ -88,6 +101,7 @@ nmap <C-l> <C-w>l
 
 nnoremap H gT
 nnoremap L gt
+:tnoremap <Esc> <C-\><C-n>
 
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 

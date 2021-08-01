@@ -57,6 +57,32 @@ if [ -s "$HOME/.asdf" ]; then
     . $HOME/.asdf/completions/asdf.bash
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+#If fdfind is installed force fzf to use it
+if [ -s $(which fdfind) ]; then
+    
+    # Symlink fdfind to fd if not already symlinked
+    [[ ! -s $(which fd) ]] && ln -s $(which fdfind) ~/.local/bin/fd
+
+    # Feed the output of fd into fzf
+    # fd --type f | fzf
+
+    # Setting fd as the default source for fzf
+    export FZF_DEFAULT_COMMAND='fd --type f'
+
+    # To apply the command to CTRL-T as well
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
