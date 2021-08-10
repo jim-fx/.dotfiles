@@ -89,3 +89,8 @@ fi
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+export PNPM_HOME="/home/jim/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+alias luamake=/home/jim/bin/lua-language-server/3rd/luamake/luamake
