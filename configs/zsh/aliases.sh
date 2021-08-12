@@ -9,10 +9,10 @@ alias yoink="curl"
 
 alias pls='sudo -E env "PATH=$PATH"'
 
+alias zshi="cd ~/.dotfiles && vim configs/init.lua && cd -"
 alias zshc="cd ~/.dotfiles && vim configs/.zshrc && cd -"
 alias zshu="source ~/.zshrc"
 
-alias nano="nvim"
 alias vim="nvim"
 alias v="nvim"
 
@@ -23,6 +23,9 @@ alias gcm="git commit -m "
 alias czi="commitizen init cz-conventional-changelog --yarn --dev --exact"
 alias cz="git-cz"
 
+alias D="pnpm dev"
+alias B="pnpm build"
+alias T="pnpm test"
 
 alias lt="tree -L 2 --filelimit 150 --dirsfirst"
 
