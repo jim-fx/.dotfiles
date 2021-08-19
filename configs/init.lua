@@ -69,7 +69,7 @@ g.mapleader = " "
 require "keymappings"
 
 -- Treesitter config
-require "nvim-treesitter.configs".setup {ensure_installed = "maintained", highlight = {enable = true}}
+require "nvim-treesitter.configs".setup {ensure_installed = {"bash", "svelte", "css", "svelte", "typescript", "javascript", "xml", "go", "lua", "yaml"} highlight = {enable = true}}
 -- Toggleterm / Lazygit setup
 require "lazy-git"
 -- Autocommands
