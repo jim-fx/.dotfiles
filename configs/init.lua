@@ -1,10 +1,9 @@
+local u = require("utils")
+
 local o = vim.o
 local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd;
-
-cmd [[highlight Normal guibg=none]]
-cmd [[highlight NonText guibg=none]]
 
 require("install-paq")
 
@@ -37,9 +36,6 @@ if not(status) then
   paq.install();
 end
 
-local u = require("utils")
-
-
 -- Global options
 o.number = true
 o.tabstop = 2
@@ -58,8 +54,9 @@ g.NERDTreeMinimalUI = true
 g.NERDTreeDirArrows = true
 g.hidden = true
 g.material_theme_style = "ocean_community"
-
-cmd [[colorscheme material]]
+if u.has_plugin("material") then
+c md [[colorscheme material]]
+end
 -- Remove background color
 cmd [[highlight Normal guibg=none]]
 cmd [[highlight NonText guibg=none]]
