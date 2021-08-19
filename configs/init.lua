@@ -1,11 +1,36 @@
-local u = require("utils")
-
 local o = vim.o
 local opt = vim.opt
 local wo = vim.wo
 local bo = vim.bo
 local g = vim.g
 local fn = vim.fn
+
+require("install-paq")
+require("paq"):setup({verbose=true}) {
+  "savq/paq-nvim", -- Let Paq manage itself
+  -- Theming Plugins
+  {url="git@github.com:kaicataldo/material.vim", branch = "main"},
+  {url="git@github.com:ryanoasis/vim-devicons"},
+  -- Layout Plugins
+  {url="git@github.com:preservim/nerdtree"},
+  {url="git@github.com:hoob3rt/lualine.nvim"},
+  -- Code Navigation
+  {url="git@github.com:nvim-lua/popup.nvim"},
+  {url="git@github.com:nvim-lua/plenary.nvim"},
+  {url="git@github.com:nvim-telescope/telescope.nvim"},
+  -- Syntax / Autocomplete
+  {url="git@github.com:neovim/nvim-lspconfig"},
+  {url="git@github.com:nvim-lua/lsp-status.nvim"},
+  {url="git@github.com:hrsh7th/nvim-compe"},
+  {url="git@github.com:nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
+  -- Formatting
+  {url="git@github.com:mhartington/formatter.nvim"},
+  -- Git Interface
+  {url="git@github.com:akinsho/nvim-toggleterm.lua"}
+}
+
+local u = require("utils")
+
 
 -- Global options
 o.number = true
@@ -25,55 +50,40 @@ g.NERDTreeMinimalUI = true
 g.NERDTreeDirArrows = true
 g.hidden = true
 g.material_theme_style = "ocean_community"
-vim.cmd [[colorscheme material]]
+if u.has_plugin("material")
+  vim.cmd [[colorscheme material]]
+end
+-- Remove background color
+vim.cmd [[highlight Normal guibg=none]]
+vim.cmd [[highlight NonText guibg=none]]
 
 -- KeyBindings
 g.mapleader = " "
 require "keymappings"
 
--- Remove background color
-vim.cmd [[highlight Normal guibg=none]]
-vim.cmd [[highlight NonText guibg=none]]
-
-require "paq" {
-  "savq/paq-nvim", -- Let Paq manage itself
-  -- Theming Plugins
-  {"kaicataldo/material.vim", branch = "main"},
-  "ryanoasis/vim-devicons",
-  -- Layout Plugins
-  "preservim/nerdtree",
-  "hoob3rt/lualine.nvim",
-  -- Code Navigation
-  "nvim-lua/popup.nvim",
-  "nvim-lua/plenary.nvim",
-  "nvim-telescope/telescope.nvim",
-  -- Syntax / Autocomplete
-  "neovim/nvim-lspconfig",
-  "nvim-lua/lsp-status.nvim",
-  "hrsh7th/nvim-compe",
-  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
-  -- Formatting
-  "mhartington/formatter.nvim",
-  -- Git Interface
-  "akinsho/nvim-toggleterm.lua"
-}
-
-require "nvim-treesitter.configs".setup {ensure_installed = "maintained", highlight = {enable = true}}
-
+-- Treesitter config
+if u.has_plugin("nvim-treesitter")
+  require "nvim-treesitter.configs".setup {ensure_installed = "maintained", highlight = {enable = true}}
+end
 -- Toggleterm / Lazygit setup
-require "lazy-git"
-
+if u.has_plugin("toggleterm")
+  require "lazy-git"
+end
 -- Autocommands
-u.create_augroup(
-  {
-    {"VimEnter", "*", "if (@% == '') | NERDTree | endif"},
-    {"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'}
-  },
-  "Nerdtree"
-)
+if u.has_plugin("NERDTree")
+  u.create_augroup(
+    {
+      {"VimEnter", "*", "if (@% == '') | NERDTree | endif"},
+      {"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'}
+    },
+    "Nerdtree"
+  )
+end
 
 -- Autocompletion Setup
-require "autocomplete"
+if u.has_plugin("compe")
+  require "autocomplete"
+end
 
 -- LSP Config
 local lsp_utils = require "lsp-utils"
