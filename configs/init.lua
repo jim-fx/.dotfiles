@@ -87,10 +87,14 @@ if u.has_plugin("compe") then
 end
 
 -- LSP Config
-local lsp_utils = require "lsp-utils"
+if u.has_plugin("lspconfig") then
+
+require "lsp-utils"
 
 opt.completeopt = {"menuone", "noinsert", "noselect"}
 opt.shortmess:append({c = true})
 
 -- Autoformat
 require "autoformatter"
+
+end
