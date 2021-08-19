@@ -24,8 +24,8 @@ local function dump(o)
  end
 
 function M.has_plugin(pluginName)
-    local rtp = vim.api.nvim_eval('&rtp')
-    return rtp:match(pluginName)
+    local status = pcall(require, pluginName);
+    return status
 end
 
 return M
