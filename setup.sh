@@ -43,8 +43,20 @@ echo "-- what do you want to install? --"
 # 6 - ZSH
 # 7 - ZSH
 
-OPTIONS_VALUES=("ZSH"             "NVIM"   "ASDF" "DRNV"   "NODE"   "GO"     "PYTH"   "DENO" "HUGO" "RUST")
-OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim" "Asdf" "Direnv" "NodeJS" "Golang" "Python" "Deno" "Hugo" "Rust")
+OPTIONS_VALUES=(
+  "ZSH" 
+  "NVIM" 
+  "ASDF" 
+  "DRNV" 
+  "NODE"   
+  "GO"     
+  "PYTH"   
+  "DENO" 
+  "HUGO" 
+  "RUST"
+  )
+  
+OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim (Requires asdf)" "asdf" "Direnv" "NodeJS" "Golang" "Python" "Deno" "Hugo" "Rust")
 for i in "${!OPTIONS_VALUES[@]}"; do
   OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
 done
