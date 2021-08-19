@@ -27,7 +27,7 @@ install() {
     echo " ✓ $1 is already installed"
   else
     echo " - installing $1 ..."
-    apt-get install $1 -y >/dev/null
+    sudo apt-get install $1 -y >/dev/null
     echo " ✓ finished"
   fi
 }
