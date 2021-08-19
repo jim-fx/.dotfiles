@@ -9,26 +9,31 @@ cd "$(dirname "$0")"
 . ./helpers/asdf-install.sh --source-only
 
 echo "-- welcome to my setup script --"
-echo "-- installing prerequesits (git, curl) --"
 
-INTERACTIVE=$(tty -s && echo "true" || echo "false")
+if [ "$(which git)" = "" ] && ["$(which curl)" = ""]; then
 
-if [ $INTERACTIVE = "true" ]; then
-  if [ "$(prompt " - do you want to continue")" != "yes" ]; then
-    echo "   alllrighty then, byyye"
-    exit
+  echo "-- installing prerequesits (git, curl) --"
+
+  INTERACTIVE=$(tty -s && echo "true" || echo "false")
+
+  if [ $INTERACTIVE = "true" ]; then
+    if [ "$(prompt " - do you want to continue")" != "yes" ]; then
+      echo "   alllrighty then, byyye"
+      exit
+    fi
   fi
+
+  echo ""
+
+  #Prerequesits
+  echo "-- installing prerequisites --"
+
+  install git
+  install curl
+
+  echo "-----------------------------------"
+
 fi
-
-echo ""
-
-#Prerequesits
-echo "-- installing prerequisites --"
-
-install git
-install curl
-
-echo "-----------------------------------"
 
 #Make the selection
 echo "-- what do you want to install? --"
