@@ -50,7 +50,8 @@ g.NERDTreeMinimalUI = true
 g.NERDTreeDirArrows = true
 g.hidden = true
 g.material_theme_style = "ocean_community"
-if u.has_plugin("material")
+
+if u.has_plugin("material") then
   vim.cmd [[colorscheme material]]
 end
 -- Remove background color
@@ -62,15 +63,15 @@ g.mapleader = " "
 require "keymappings"
 
 -- Treesitter config
-if u.has_plugin("nvim-treesitter")
+if u.has_plugin("nvim-treesitter") then
   require "nvim-treesitter.configs".setup {ensure_installed = "maintained", highlight = {enable = true}}
 end
 -- Toggleterm / Lazygit setup
-if u.has_plugin("toggleterm")
+if u.has_plugin("toggleterm") then
   require "lazy-git"
 end
 -- Autocommands
-if u.has_plugin("NERDTree")
+if u.has_plugin("NERDTree") then
   u.create_augroup(
     {
       {"VimEnter", "*", "if (@% == '') | NERDTree | endif"},
@@ -81,7 +82,7 @@ if u.has_plugin("NERDTree")
 end
 
 -- Autocompletion Setup
-if u.has_plugin("compe")
+if u.has_plugin("compe") then
   require "autocomplete"
 end
 
