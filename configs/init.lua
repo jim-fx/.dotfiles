@@ -11,8 +11,9 @@ local paq = require("paq");
 paq:setup({verbose=true}) {
   {url="git@github.com:savq/paq-nvim"}, -- Let Paq manage itself
   -- Theming Plugins
-  {url="git@github.com:kaicataldo/material.vim", branch = "main"},
+  {url="git@github.com:marko-cerovac/material.nvim"},
   {url="git@github.com:ryanoasis/vim-devicons"},
+  {url="git@github.com:xiyaowong/nvim-transparent"},
   -- Layout Plugins
   {url="git@github.com:preservim/nerdtree"},
   {url="git@github.com:hoob3rt/lualine.nvim"},
@@ -31,9 +32,9 @@ paq:setup({verbose=true}) {
   {url="git@github.com:akinsho/nvim-toggleterm.lua"}
 }
 
-if u.has_plugin("nvim-treesiter") then
-  paq.install();
-else
+if u.has_plugin("material") then
+
+  print("Load config")
 
   -- Global options
   o.number = true
@@ -52,13 +53,12 @@ else
   g.NERDTreeMinimalUI = true
   g.NERDTreeDirArrows = true
   g.hidden = true
-  g.material_theme_style = "ocean_community"
-  if u.has_plugin("material") then
-    cmd [[colorscheme material]]
-  end
+  g.material_style = "deep ocean"
+  require('material').set()
+  require("transparent").setup({enable = true})
   -- Remove background color
-  cmd [[highlight Normal guibg=none]]
-  cmd [[highlight NonText guibg=none]]
+  cmd("highlight Normal guibg=none")
+  cmd("highlight NonText guibg=none")
 
   -- KeyBindings
   g.mapleader = " "
@@ -90,4 +90,7 @@ else
   -- Autoformat
   require "autoformatter"
 
+
+else
+  paq.install();
 end
