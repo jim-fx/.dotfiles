@@ -55,7 +55,7 @@ g.NERDTreeDirArrows = true
 g.hidden = true
 g.material_theme_style = "ocean_community"
 if u.has_plugin("material") then
-c md [[colorscheme material]]
+  cmd [[colorscheme material]]
 end
 -- Remove background color
 cmd [[highlight Normal guibg=none]]
