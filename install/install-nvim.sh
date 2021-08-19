@@ -7,6 +7,3 @@ echo " - linking init.vim --> init.vim"
 mkdir -p $HOME/.config/nvim
 ln -s "$HOME/.dotfiles/configs/init.lua" "$HOME/.config/nvim/init.lua"
 ln -s "$HOME/.dotfiles/configs/lua" "$HOME/.config/nvim/lua"
-
-echo " - installing vim plugins"
-nvim --headless +PaqSync +qa
