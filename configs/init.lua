@@ -2,8 +2,10 @@ local o = vim.o
 local opt = vim.opt
 local g = vim.g
 
+local paq = require("paq");
+
 require("install-paq")
-require("paq"):setup({verbose=true}) {
+paq:setup({verbose=true}) {
   {url="git@github.com:savq/paq-nvim"}, -- Let Paq manage itself
   -- Theming Plugins
   {url="git@github.com:kaicataldo/material.vim", branch = "main"},
@@ -25,6 +27,12 @@ require("paq"):setup({verbose=true}) {
   -- Git Interface
   {url="git@github.com:akinsho/nvim-toggleterm.lua"}
 }
+
+local status = pcall(require, "material");
+print(status);
+if not(status) then
+  paq.sync();
+end
 
 local u = require("utils")
 
