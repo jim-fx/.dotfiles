@@ -1,13 +1,10 @@
 local o = vim.o
 local opt = vim.opt
-local wo = vim.wo
-local bo = vim.bo
 local g = vim.g
-local fn = vim.fn
 
 require("install-paq")
 require("paq"):setup({verbose=true}) {
-  "savq/paq-nvim", -- Let Paq manage itself
+  {url="git@github.com:savq/paq-nvim"}, -- Let Paq manage itself
   -- Theming Plugins
   {url="git@github.com:kaicataldo/material.vim", branch = "main"},
   {url="git@github.com:ryanoasis/vim-devicons"},
