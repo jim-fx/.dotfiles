@@ -1,6 +1,8 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+INTERACTIVE=$(tty -s && echo "true" || echo "false")
+
 #Loading all the helper scripts
 . ./helpers/installer.sh --source-only
 . ./helpers/prompt.sh --source-only
@@ -13,8 +15,6 @@ echo "-- welcome to my setup script --"
 if [ "$(which git)" = "" ] && ["$(which curl)" = ""]; then
 
   echo "-- installing prerequesits (git, curl) --"
-
-  INTERACTIVE=$(tty -s && echo "true" || echo "false")
 
   if [ $INTERACTIVE = "true" ]; then
     if [ "$(prompt " - do you want to continue")" != "yes" ]; then
