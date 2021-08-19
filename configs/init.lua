@@ -1,6 +1,10 @@
 local o = vim.o
 local opt = vim.opt
 local g = vim.g
+local cmd = vim.cmd;
+
+cmd [[highlight Normal guibg=none]]
+cmd [[highlight NonText guibg=none]]
 
 require("install-paq")
 
@@ -29,9 +33,8 @@ paq:setup({verbose=true}) {
 }
 
 local status = pcall(require, "material");
-print(status);
 if not(status) then
-  paq.sync();
+  paq.install();
 end
 
 local u = require("utils")
@@ -43,8 +46,8 @@ o.tabstop = 2
 o.shiftwidth = 2 -- Indents will have a width of 4
 o.softtabstop = 2 -- Sets the number of columns for a TAB
 o.expandtab = false -- Expand TABs to spaces
-vim.cmd [[set mouse=a]]
-vim.cmd [[set undofile]]
+cmd [[set mouse=a]]
+cmd [[set undofile]]
 
 -- Apply Theme
 o.syntax = "enable"
@@ -56,43 +59,32 @@ g.NERDTreeDirArrows = true
 g.hidden = true
 g.material_theme_style = "ocean_community"
 
-if u.has_plugin("material") then
-  vim.cmd [[colorscheme material]]
-end
+cmd [[colorscheme material]]
 -- Remove background color
-vim.cmd [[highlight Normal guibg=none]]
-vim.cmd [[highlight NonText guibg=none]]
+cmd [[highlight Normal guibg=none]]
+cmd [[highlight NonText guibg=none]]
 
 -- KeyBindings
 g.mapleader = " "
 require "keymappings"
 
 -- Treesitter config
-if u.has_plugin("nvim-treesitter") then
-  require "nvim-treesitter.configs".setup {ensure_installed = "maintained", highlight = {enable = true}}
-end
+require "nvim-treesitter.configs".setup {ensure_installed = "maintained", highlight = {enable = true}}
 -- Toggleterm / Lazygit setup
-if u.has_plugin("toggleterm") then
-  require "lazy-git"
-end
+require "lazy-git"
 -- Autocommands
-if u.has_plugin("NERDTree") then
-  u.create_augroup(
-    {
-      {"VimEnter", "*", "if (@% == '') | NERDTree | endif"},
-      {"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'}
-    },
-    "Nerdtree"
-  )
-end
+u.create_augroup(
+  {
+    {"VimEnter", "*", "if (@% == '') | NERDTree | endif"},
+    {"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'}
+  },
+  "Nerdtree"
+)
 
 -- Autocompletion Setup
-if u.has_plugin("compe") then
-  require "autocomplete"
-end
+require "autocomplete"
 
 -- LSP Config
-if u.has_plugin("lspconfig") then
 
 require "lsp-utils"
 
@@ -102,4 +94,3 @@ opt.shortmess:append({c = true})
 -- Autoformat
 require "autoformatter"
 
-end
