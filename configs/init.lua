@@ -2,9 +2,9 @@ local o = vim.o
 local opt = vim.opt
 local g = vim.g
 
-local paq = require("paq");
-
 require("install-paq")
+
+local paq = require("paq");
 paq:setup({verbose=true}) {
   {url="git@github.com:savq/paq-nvim"}, -- Let Paq manage itself
   -- Theming Plugins
