@@ -5,13 +5,16 @@ source $HOME/.dotfiles/configs/zsh/update-repo.zsh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_TMUX_AUTOSTART=true
 
 plugins=(
   git
   asdf
   docker
-  zsh-autosuggestions
+  tmux
+	zsh-autosuggestions
 )
 
 eval `dircolors ~/.dircolors`
@@ -69,15 +72,12 @@ fi
 
 #If fdfind is installed force fzf to use it
 if [ -s $(which fdfind) ]; then
-    
-    # Symlink fdfind to fd if not already symlinked
-    [[ ! -s $(which fd) ]] && ln -s $(which fdfind) ~/.local/bin/fd
 
     # Feed the output of fd into fzf
-    # fd --type f | fzf
+    # fdfind --type f | fzf
 
     # Setting fd as the default source for fzf
-    export FZF_DEFAULT_COMMAND='fd --type f'
+    export FZF_DEFAULT_COMMAND='fdfind --type f'
 
     # To apply the command to CTRL-T as well
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -90,7 +90,5 @@ fi
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-export PNPM_HOME="/home/jim/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-
-alias luamake=/home/jim/bin/lua-language-server/3rd/luamake/luamake
