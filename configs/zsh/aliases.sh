@@ -26,6 +26,7 @@ alias cz="git-cz"
 alias D="pnpm dev"
 alias B="pnpm build"
 alias T="pnpm test"
+alias P="git push"
 
 alias lt="tree -L 2 --filelimit 150 --dirsfirst"
 
