@@ -8,6 +8,7 @@ fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
 
 plugins=(
   git
@@ -71,7 +72,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 #If fdfind is installed force fzf to use it
-if [ -s $(which fdfind) ]; then
+if type fdfind > /dev/null ; then
 
     # Feed the output of fd into fzf
     # fdfind --type f | fzf
