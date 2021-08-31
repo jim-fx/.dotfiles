@@ -13,6 +13,7 @@ paq:setup({verbose=true}) {
   -- Theming Plugins
   {url="git@github.com:marko-cerovac/material.nvim"},
   {url="git@github.com:ryanoasis/vim-devicons"},
+  {url="git@github.com:junegunn/fzf"},
   {url="git@github.com:xiyaowong/nvim-transparent"},
   -- Layout Plugins
   {url="git@github.com:preservim/nerdtree"},
