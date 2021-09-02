@@ -9,28 +9,29 @@ require("install-paq")
 
 local paq = require("paq");
 paq:setup({verbose=true}) {
-  {url="git@github.com:savq/paq-nvim"}, -- Let Paq manage itself
+  "savq/paq-nvim", -- Let Paq manage itself
   -- Theming Plugins
-  {url="git@github.com:marko-cerovac/material.nvim"},
-  {url="git@github.com:ryanoasis/vim-devicons"},
-  {url="git@github.com:junegunn/fzf"},
-  {url="git@github.com:xiyaowong/nvim-transparent"},
+  "kaicataldo/material.vim",
+  "ryanoasis/vim-devicons",
+  "junegunn/fzf",
+  "xiyaowong/nvim-transparent",
   -- Layout Plugins
-  {url="git@github.com:preservim/nerdtree"},
-  {url="git@github.com:hoob3rt/lualine.nvim"},
+  "preservim/nerdtree",
+	"preservim/nerdtree",
+  "jistr/vim-nerdtree-tabs",
   -- Code Navigation
-  {url="git@github.com:nvim-lua/popup.nvim"},
-  {url="git@github.com:nvim-lua/plenary.nvim"},
-  {url="git@github.com:nvim-telescope/telescope.nvim"},
+  "nvim-lua/popup.nvim",
+  "nvim-lua/plenary.nvim",
+  "nvim-telescope/telescope.nvim",
   -- Syntax / Autocomplete
-  {url="git@github.com:neovim/nvim-lspconfig"},
-  {url="git@github.com:nvim-lua/lsp-status.nvim"},
-  {url="git@github.com:hrsh7th/nvim-compe"},
-  {url="git@github.com:nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
+  "neovim/nvim-lspconfig",
+  "nvim-lua/lsp-status.nvim",
+  "hrsh7th/nvim-compe",
+  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
   -- Formatting
-  {url="git@github.com:mhartington/formatter.nvim"},
+  "mhartington/formatter.nvim",
   -- Git Interface
-  {url="git@github.com:akinsho/nvim-toggleterm.lua"}
+  "akinsho/nvim-toggleterm.lua"
 }
 
 if u.has_plugin("material") then
@@ -53,9 +54,9 @@ if u.has_plugin("material") then
   g.NERDTreeAutoDeleteBuffer = true
   g.NERDTreeMinimalUI = true
   g.NERDTreeDirArrows = true
-  g.hidden = true
+	g.NERDTreeCustomOpenArgs={file = {where = 't'}}
+	g.hidden = true
   g.material_style = "deep ocean"
-  require('material').set()
   require("transparent").setup({enable = true})
   -- Remove background color
   cmd("highlight Normal guibg=none")
