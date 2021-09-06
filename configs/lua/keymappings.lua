@@ -9,7 +9,8 @@ map("n", " ", "<Nop>", remap)
 g.mapleader = " "
 
 map("n", "<C-p>", ":Telescope find_files<CR>", options)
-
+map("n", "<C-f>", ":Telescope grep_string<CR>", options);
+map("n", "<Leader><C-f>", ":Telescope live_grep<CR>", options);
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
@@ -21,6 +22,9 @@ map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", options)
 map("n", "<Right>", ":echo 'No Right for you'<CR><dw>", options)
 map("n", "<Up>", ":echo 'No Up for you'<CR><dw>", options)
 map("n", "<Down>", ":echo 'No Down for you'<CR><dw>", options)
+
+-- Run Requests
+map("n", "<Leader>r", "<cmd>lua require('rest-nvim').run()<CR>", options)
 
 -- Close on q
 map("n", "<Leader>q", "<Esc>:q<CR>", options)
