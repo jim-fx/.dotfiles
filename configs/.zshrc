@@ -72,16 +72,15 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 #If fdfind is installed force fzf to use it
-if type fdfind > /dev/null ; then
-
-    # Feed the output of fd into fzf
-    # fdfind --type f | fzf
-
-    # Setting fd as the default source for fzf
+if type fdfind &> /dev/null ; then
     export FZF_DEFAULT_COMMAND='fdfind --type f'
-
-    # To apply the command to CTRL-T as well
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+#If ripgrep is installed prefer it over fdfind
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -93,3 +92,5 @@ fi
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+alias luamake=/home/jim/.local/share/lua-language-server/3rd/luamake/luamake
