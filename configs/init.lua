@@ -24,8 +24,11 @@ paq:setup({verbose = true}) {
   "nvim-telescope/telescope.nvim",
   -- Postman like featuresi
   "NTBBloodbath/rest.nvim",
+  -- Obsidian / Roam features
+  "lervag/wiki.vim",
   -- Syntax / Autocomplete
   "neovim/nvim-lspconfig",
+  "kabouzeid/nvim-lspinstall",
   "nvim-lua/lsp-status.nvim",
   "hrsh7th/nvim-cmp", -- Autocompletion plugin
   "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
@@ -62,9 +65,10 @@ if u.has_plugin("cmp") then
   g.hidden = true
   g.material_terminal_italics = 1
   g.material_theme_style = "darker"
-
+  g.wiki_root = "~/Notes"
+  g.wiki_filetypes = {"md"}
+  g.wiki_link_extension = ".md"
   cmd("colorscheme material")
-
   -- Remove background color
   require("transparent").setup({enable = true})
   cmd("highlight Normal guibg=none")
@@ -84,7 +88,19 @@ if u.has_plugin("cmp") then
     }
   }
   require "nvim-treesitter.configs".setup {
-    ensure_installed = {"bash", "http", "svelte", "css", "svelte", "typescript", "javascript", "go", "lua", "yaml"},
+    ensure_installed = {
+      "bash",
+      "yaml",
+      "http",
+      "svelte",
+      "css",
+      "svelte",
+      "typescript",
+      "javascript",
+      "go",
+      "lua",
+      "yaml"
+    },
     highlight = {enable = true}
   }
   -- Toggleterm / Lazygit setup
@@ -123,6 +139,7 @@ if u.has_plugin("cmp") then
   require "autocomplete"
 
   -- LSP Config
+  require "lspinstall".setup()
   require "lsp-utils"
 
   -- Autoformat
