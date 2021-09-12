@@ -52,7 +52,7 @@ OPTIONS_VALUES=(
   )
   
 OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim (Requires asdf)" "asdf" "Direnv" "NodeJS" "Golang" "Python" "Deno" "Hugo" "Rust")
-for i in "${(@i)OPTIONS_VALUES}"; do
+for i in "${!OPTIONS_VALUES[@]"; do
   OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
 done
 
