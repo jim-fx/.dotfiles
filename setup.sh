@@ -1,10 +1,9 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-INTERACTIVE=false
-
-if [[ $- == *i* ]] then
-	INTERACTIVE=true
+INTERACTIVE="false"
+if [ $- == *i* ]; then
+	INTERACTIVE="true"
 fi
 
 
