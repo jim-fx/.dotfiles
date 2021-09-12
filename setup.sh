@@ -1,9 +1,12 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-INTERACTIVE=$(tty -s && echo "true" || echo "false")
+INTERACTIVE=false
 
-echo "Interactive: $INTERACTIVE"
+if [[ $- == *i* ]] then
+	INTERACTIVE=true
+fi
+
 
 #Loading all the helper scripts
 . ./helpers/installer.sh --source-only
