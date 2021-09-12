@@ -19,8 +19,9 @@ local function on_attach(client)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+  buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  buf_set_keymap("n", "<C-.>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 
@@ -48,6 +49,7 @@ local function on_attach(client)
   end
 end
 
+local system_name = ""
 -- Lua Language Server
 if vim.fn.has("mac") == 1 then
   system_name = "macOS"
@@ -99,6 +101,13 @@ nvim_lsp.sumneko_lua.setup {
 nvim_lsp.gopls.setup {
   on_attach = on_attach,
   capabilities = lsp_status.capabilities
+}
+
+-- Html Setup
+nvim_lsp.html.setup {
+  on_attach = on_attach,
+  capabilities = lsp_status.capabilities,
+  filetypes = {"html"}
 }
 
 -- Svelte Language Server
