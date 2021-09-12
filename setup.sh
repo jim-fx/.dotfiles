@@ -38,16 +38,6 @@ fi
 #Make the selection
 echo "-- what do you want to install? --"
 
-
-# 0 - ZSH
-# 1 - NVIM
-# 2 - DRNV
-# 3 - NODE
-# 4 - GO
-# 5 - ZSH
-# 6 - ZSH
-# 7 - ZSH
-
 OPTIONS_VALUES=(
   "ZSH" 
   "NVIM" 
@@ -62,7 +52,7 @@ OPTIONS_VALUES=(
   )
   
 OPTIONS_LABELS=("zsh + oh-my-zsh" "Neovim (Requires asdf)" "asdf" "Direnv" "NodeJS" "Golang" "Python" "Deno" "Hugo" "Rust")
-for i in "${!OPTIONS_VALUES[@]}"; do
+for i in "${(@i)OPTIONS_VALUES}"; do
   OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
 done
 
@@ -84,6 +74,7 @@ INST_RUST=${SELECTED[9]}
 
 if [ $INTERACTIVE = "false" ]; then
   INST_ZSH=true
+  INST_ASDF=true
   INST_NVIM=true
 fi
 
