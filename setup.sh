@@ -3,6 +3,8 @@ cd "$(dirname "$0")"
 
 INTERACTIVE=$(tty -s && echo "true" || echo "false")
 
+echo "Interactive: $INTERACTIVE"
+
 #Loading all the helper scripts
 . ./helpers/installer.sh --source-only
 . ./helpers/prompt.sh --source-only
