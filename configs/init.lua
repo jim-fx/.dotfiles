@@ -13,11 +13,13 @@ paq:setup({verbose = true}) {
   "nvim-lua/plenary.nvim",
   -- Theming Plugins
   "kaicataldo/material.vim",
-  "ryanoasis/vim-devicons",
   "xiyaowong/nvim-transparent",
   -- Layout Plugins
-  "preservim/nerdtree",
-  "jistr/vim-nerdtree-tabs",
+  --"preservim/nerdtree",
+  --"unkiwii/vim-nerdtree-sync",
+  "kyazdani42/nvim-web-devicons",
+  "kyazdani42/nvim-tree.lua",
+  "karb94/neoscroll.nvim",
   -- Code Navigation
   "junegunn/fzf",
   "nvim-lua/popup.nvim",
@@ -27,6 +29,7 @@ paq:setup({verbose = true}) {
   -- Obsidian / Roam features
   "lervag/wiki.vim",
   -- Syntax / Autocomplete
+  "preservim/nerdcommenter",
   "neovim/nvim-lspconfig",
   "kabouzeid/nvim-lspinstall",
   "nvim-lua/lsp-status.nvim",
@@ -57,12 +60,15 @@ if u.has_plugin("cmp") then
   -- Apply Theme
   o.syntax = "enable"
   o.termguicolors = true
-  g.NERDTreeShowHidden = true
-  g.NERDTreeAutoDeleteBuffer = true
-  g.NERDTreeMinimalUI = true
-  g.NERDTreeDirArrows = true
+  --g.NERDTreeShowHidden = true
+  --g.NERDTreeAutoDeleteBuffer = true
+  --g.NERDTreeMinimalUI = true
+  --g.NERDTreeDirArrows = true
   -- g.NERDTreeCustomOpenArgs = {file = {where = "t"}}
+
+  g.nvim_tree_auto_open = 1
   g.hidden = true
+  g.filetype = true
   g.material_terminal_italics = 1
   g.material_theme_style = "darker"
   g.wiki_root = "~/Notes"
@@ -106,17 +112,18 @@ if u.has_plugin("cmp") then
   -- Toggleterm / Lazygit setup
   require "lazy-git"
 
-  -- Autocommands
-  u.create_augroup(
-    {
-      {"VimEnter", "*", "if (@% == '') | NERDTree | endif"},
-      {"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'},
-      {"BufWinEnter", "*", "NERDTreeMirrorOpen"}
-      --{"BufEnter", "*", "if &modifiable | NERDTreeFind | wincmd p | endif"}
-    },
-    "Nerdtree"
-  )
+  require("nvim-tree.view").View.winopts.signcolumn = "no"
 
+  -- Autocommands
+  --[[ u.create_augroup(]]
+  --[[{]]
+  --[[{"StdinReadPre", "*", "let s:std_in=1"},]]
+  --[[{"VimEnter", "*", "if argc() == 0 && !exists('s:std_in') | NERDTree | endif"},]]
+  --[[{"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'},]]
+  --[[{"BufWinEnter", "*", "if getcmdwintype() == '' | silent NERDTreeMirror | endif"}]]
+  --[[},]]
+  --[["Nerdtree"]]
+  --[[)]]
   -- Setup rest.vim
   require("rest-nvim").setup(
     {
@@ -133,6 +140,9 @@ if u.has_plugin("cmp") then
       jump_to_request = false
     }
   )
+
+  -- Smooth Scrolling
+  require("neoscroll").setup()
 
   -- Autocompletion Setup
   o.completeopt = "menuone,noselect"
