@@ -9,13 +9,16 @@ map("n", " ", "<Nop>", remap)
 g.mapleader = " "
 
 map("n", "<C-p>", ":Telescope find_files<CR>", options)
-map("n", "<C-f>", ":Telescope grep_string<CR>", options);
-map("n", "<Leader><C-f>", ":Telescope live_grep<CR>", options);
+map("n", "<C-f>", ":Telescope grep_string<CR>", options)
+map("n", "<Leader><C-f>", ":Telescope live_grep<CR>", options)
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
 map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
+
+-- Find file in NvimTree
+map("n", "<C-f>", ":NvimTreeFindFile<CR><c-w>", options)
 
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", options)
@@ -30,7 +33,7 @@ map("n", "<Leader>r", "<cmd>lua require('rest-nvim').run()<CR>", options)
 map("n", "<Leader>q", "<Esc>:q<CR>", options)
 
 -- Open Nerdtree
-map("n", "<F6>", ":NERDTreeToggle<CR>", options)
+map("n", "<C-n>", ":NvimTreeToggle<CR>", options)
 
 -- Make ctrl+s work
 map("n", "<C-s>", "<Esc>:w<CR>", options)
