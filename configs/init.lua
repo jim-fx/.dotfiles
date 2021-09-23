@@ -20,10 +20,13 @@ paq:setup({verbose = true}) {
   "kyazdani42/nvim-web-devicons",
   "kyazdani42/nvim-tree.lua",
   "karb94/neoscroll.nvim",
+  "alexghergh/nvim-tmux-navigation",
   -- Code Navigation
   "junegunn/fzf",
   "nvim-lua/popup.nvim",
   "nvim-telescope/telescope.nvim",
+  -- For better git support
+  "tpope/vim-fugitive",
   -- Postman like featuresi
   "NTBBloodbath/rest.nvim",
   -- Obsidian / Roam features
@@ -66,7 +69,41 @@ if u.has_plugin("cmp") then
   --g.NERDTreeDirArrows = true
   -- g.NERDTreeCustomOpenArgs = {file = {where = "t"}}
 
+  g.nvim_tree_gitignore = 1
   g.nvim_tree_auto_open = 1
+  g.nvim_tree_group_empty = 1
+  g.nvim_tree_lsp_diagnostics = 1
+  g.nvim_tree_special_files = {}
+  g.nvim_tree_icons = {
+    default = "",
+    symlink = "",
+    git = {
+      unstaged = "*",
+      staged = "✓",
+      unmerged = "",
+      renamed = "➜",
+      untracked = "★",
+      deleted = "",
+      ignored = "◌"
+    },
+    folder = {
+      arrow_open = "",
+      arrow_closed = "",
+      default = "",
+      open = "",
+      empty = "",
+      empty_open = "",
+      symlink = "",
+      symlink_open = ""
+    },
+    lsp = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = ""
+    }
+  }
+
   g.hidden = true
   g.filetype = true
   g.material_terminal_italics = 1
@@ -83,6 +120,17 @@ if u.has_plugin("cmp") then
   -- KeyBindings
   g.mapleader = " "
   require "keymappings"
+
+  require "nvim-tmux-navigation".setup {
+    keybindings = {
+      left = "<C-h>",
+      down = "<C-j>",
+      up = "<C-k>",
+      right = "<C-l>",
+      last_active = "<C-\\>",
+      next = "<C-Space>"
+    }
+  }
 
   -- Treesitter config
   local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
