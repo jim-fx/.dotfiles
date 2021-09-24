@@ -59,6 +59,12 @@ if u.has_plugin("cmp") then
   o.expandtab = false -- Expand TABs to spaces
   cmd [[set mouse=a]]
   cmd [[set undofile]]
+  cmd [[set fcs=eob:\ ]]
+
+  cmd [[set noshowmode]] --to get rid of thing like --INSERT--
+  cmd [[set noshowcmd]] --to get rid of display of last command
+  cmd [[set shortmess+=F]] --to get rid of the file name displayed in the command line bar
+  cmd [[set noruler]]
 
   -- Apply Theme
   o.syntax = "enable"
@@ -72,6 +78,8 @@ if u.has_plugin("cmp") then
   g.nvim_tree_gitignore = 1
   g.nvim_tree_auto_open = 1
   g.nvim_tree_group_empty = 1
+  g.nvim_tree_hide_root_folder = 1
+  g.nvim_tree_root_folder_modifier = ":~:."
   g.nvim_tree_lsp_diagnostics = 1
   g.nvim_tree_special_files = {}
   g.nvim_tree_icons = {
@@ -87,8 +95,8 @@ if u.has_plugin("cmp") then
       ignored = "◌"
     },
     folder = {
-      arrow_open = "",
-      arrow_closed = "",
+      arrow_open = "",
+      arrow_closed = "",
       default = "",
       open = "",
       empty = "",
@@ -204,4 +212,5 @@ if u.has_plugin("cmp") then
   require "autoformatter"
 else
   paq.install()
+  cmd [[source $MYVIMRC]]
 end
