@@ -3,6 +3,7 @@ local u = require "utils"
 -- Config Formatter
 u.create_augroup(
   {
+    --{"BufWritePost", "*.js,*.jsx,*.ts,*.tsx,*.rs,*.svelte", "OrganizeImports"},
     {"BufWritePost", "*.js,*.jsx,*.ts,*.tsx,*.rs,*.lua", "FormatWrite"}
   },
   "FormatAutogroup"
