@@ -7,7 +7,7 @@ local cmd = vim.cmd
 require("install-paq")
 
 local paq = require("paq")
-paq:setup({verbose = true}) {
+paq:setup {
   "savq/paq-nvim", -- Let Paq manage itself
   -- General Helper Function
   "nvim-lua/plenary.nvim",
@@ -38,7 +38,7 @@ paq:setup({verbose = true}) {
   "nvim-lua/lsp-status.nvim",
   "hrsh7th/nvim-cmp", -- Autocompletion plugin
   "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-  --"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+  "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
   "L3MON4D3/LuaSnip", -- Snippets plugin
   {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
   -- Formatting
@@ -76,11 +76,11 @@ if u.has_plugin("cmp") then
   -- g.NERDTreeCustomOpenArgs = {file = {where = "t"}}
 
   g.nvim_tree_gitignore = 1
-  g.nvim_tree_auto_open = 1
+  --g.nvim_tree_auto_open = 1
   g.nvim_tree_group_empty = 1
   g.nvim_tree_hide_root_folder = 1
-  g.nvim_tree_root_folder_modifier = ":~:."
-  g.nvim_tree_lsp_diagnostics = 1
+  --g.nvim_tree_root_folder_modifier = ":~:."
+  --g.nvim_tree_lsp_diagnostics = 1
   g.nvim_tree_special_files = {}
   g.nvim_tree_icons = {
     default = "",
@@ -128,6 +128,8 @@ if u.has_plugin("cmp") then
   -- KeyBindings
   g.mapleader = " "
   require "keymappings"
+
+	require'nvim-tree'.setup {}
 
   require "nvim-tmux-navigation".setup {
     keybindings = {
