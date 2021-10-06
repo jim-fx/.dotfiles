@@ -22,6 +22,8 @@ paq:setup {
   "karb94/neoscroll.nvim",
   "alexghergh/nvim-tmux-navigation",
   -- Code Navigation
+  "dense-analysis/ale",
+  "nathanmsmith/nvim-ale-diagnostic",
   "junegunn/fzf",
   "nvim-lua/popup.nvim",
   "nvim-telescope/telescope.nvim",
@@ -38,7 +40,8 @@ paq:setup {
   "nvim-lua/lsp-status.nvim",
   "hrsh7th/nvim-cmp", -- Autocompletion plugin
   "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-  "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+  "weilbith/nvim-code-action-menu",
+  --"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
   "L3MON4D3/LuaSnip", -- Snippets plugin
   {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
   -- Formatting
@@ -75,12 +78,7 @@ if u.has_plugin("cmp") then
   --g.NERDTreeDirArrows = true
   -- g.NERDTreeCustomOpenArgs = {file = {where = "t"}}
 
-  g.nvim_tree_gitignore = 1
-  --g.nvim_tree_auto_open = 1
-  g.nvim_tree_group_empty = 1
-  g.nvim_tree_hide_root_folder = 1
-  --g.nvim_tree_root_folder_modifier = ":~:."
-  --g.nvim_tree_lsp_diagnostics = 1
+  g.nvim_tree_root_folder_modifier = ":~:."
   g.nvim_tree_special_files = {}
   g.nvim_tree_icons = {
     default = "",
@@ -170,7 +168,18 @@ if u.has_plugin("cmp") then
   -- Toggleterm / Lazygit setup
   require "lazy-git"
 
-  require("nvim-tree.view").View.winopts.signcolumn = "no"
+  require("nvim-tree").setup {
+    auto_open = 1,
+    gitignore = 1,
+    lsp_diagnostics = 1,
+    group_empty = 1,
+    hide_root_folder = true,
+    view = {
+      winopts = {
+        signcolumn = "no"
+      }
+    }
+  }
 
   -- Autocommands
   --[[ u.create_augroup(]]

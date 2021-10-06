@@ -1,16 +1,19 @@
 local map = vim.api.nvim_set_keymap
 local g = vim.g
 
-options = {noremap = true}
-remap = {noremap = false}
+local options = {noremap = true}
+local remap = {noremap = false}
 
 map("n", "<Space>", "<Nop>", remap)
 map("n", " ", "<Nop>", remap)
 g.mapleader = " "
 
 map("n", "<C-p>", ":Telescope find_files<CR>", options)
-map("n", "<C-f>", ":Telescope grep_string<CR>", options)
+--map("n", "<C-f>", ":Telescope grep_string<CR>", options)
 map("n", "<C-S-f>", ":Telescope live_grep<CR>", options)
+
+map("n", "<Leader>c", ":CodeActionMenu<CR>", remap)
+
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
