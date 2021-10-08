@@ -41,9 +41,8 @@ local function on_attach(client)
             autocmd! * <buffer>
             autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
             autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-            " autocmd CursorHold *.* :lua vim.lsp.diagnostic.show_line_diagnostics()
-            autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 300)
-           augroup END
+            autocmd CursorHold *.* :lua vim.lsp.diagnostic.show_line_diagnostics()
+            augroup END
         ]],
       false
     )

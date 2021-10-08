@@ -1,4 +1,5 @@
 local Terminal = require("toggleterm.terminal").Terminal
+local u = require("utils")
 local lazygit =
   Terminal:new(
   {
@@ -51,7 +52,7 @@ local nvimConfig =
     direction = "float",
     on_close = function(term)
       Terminal:close()
-      vim.api.nvim_command(":source $MYVIMRC")
+      u.ReloadConfig()
     end
   }
 )
