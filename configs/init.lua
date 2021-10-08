@@ -19,7 +19,6 @@ paq:setup({verbose = true}) {
   --"unkiwii/vim-nerdtree-sync",
   "kyazdani42/nvim-web-devicons",
   "kyazdani42/nvim-tree.lua",
-  "karb94/neoscroll.nvim",
   "alexghergh/nvim-tmux-navigation",
   -- Code Navigation
   "dense-analysis/ale",
@@ -45,7 +44,7 @@ paq:setup({verbose = true}) {
   "L3MON4D3/LuaSnip", -- Snippets plugin
   {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
   -- Formatting
-  "mhartington/formatter.nvim",
+  --"mhartington/formatter.nvim",
   -- Git Interface
   "akinsho/nvim-toggleterm.lua",
   -- Database Interface
@@ -56,10 +55,11 @@ paq:setup({verbose = true}) {
 if u.has_plugin("cmp") then
   -- Global options
   o.number = true
-  o.tabstop = 2
+  o.tabstop = 8
   o.shiftwidth = 2 -- Indents will have a width of 4
   o.softtabstop = 2 -- Sets the number of columns for a TAB
-  o.expandtab = false -- Expand TABs to spaces
+  o.expandtab = false -- Dont expand TABs to spaces
+  o.autoindent = true
   cmd [[set mouse=a]]
   cmd [[set undofile]]
   cmd [[set fcs=eob:\ ]]
@@ -206,9 +206,6 @@ if u.has_plugin("cmp") then
     }
   )
 
-  -- Smooth Scrolling
-  require("neoscroll").setup()
-
   -- Autocompletion Setup
   o.completeopt = "menuone,noselect"
   require "autocomplete"
@@ -217,9 +214,7 @@ if u.has_plugin("cmp") then
   require "lspinstall".setup()
   require "lsp-utils"
 
-  -- Autoformat
-  require "autoformatter"
 else
   paq.install()
-  cmd [[source $MYVIMRC]]
+  u.ReloadConfig()
 end
