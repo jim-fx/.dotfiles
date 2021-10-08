@@ -7,7 +7,7 @@ local cmd = vim.cmd
 require("install-paq")
 
 local paq = require("paq")
-paq:setup({verbose = true}) {
+paq:setup {
   "savq/paq-nvim", -- Let Paq manage itself
   -- General Helper Function
   "nvim-lua/plenary.nvim",
@@ -126,6 +126,8 @@ if u.has_plugin("cmp") then
   -- KeyBindings
   g.mapleader = " "
   require "keymappings"
+
+	require'nvim-tree'.setup {}
 
   require "nvim-tmux-navigation".setup {
     keybindings = {

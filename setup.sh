@@ -12,7 +12,6 @@ fi
 . ./helpers/prompt.sh --source-only
 . ./helpers/linker.sh --source-only
 . ./helpers/multiselect.sh --source-only
-. ./helpers/asdf-install.sh --source-only
 
 echo "-- welcome to my setup script --"
 
@@ -105,15 +104,6 @@ if [ "$INST_ASDF" = true ]; then
     [[ "$INST_HUGO" = true ]] && asdfInstall hugo
     [[ "$INST_RUST" = true ]] && asdfInstall rust
 fi
-
-echo "-- linking .dotfiles --"
-
-linkFile .bashrc
-linkFile .p10k.zsh
-linkFile .dircolors
-linkFile .tmux.conf
-
-echo "-----------------------------------"
 
 if [ "$INST_ZSH" = true ]; then
   echo "-- installing oh-my-zsh --"
