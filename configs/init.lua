@@ -1,13 +1,13 @@
+require("install-paq")
+
 local u = require("utils")
 
 local o = vim.o
 local g = vim.g
 local cmd = vim.cmd
 
-require("install-paq")
-
 local paq = require("paq")
-paq:setup ({verbose = true}) {
+paq:setup {
   "savq/paq-nvim", -- Let Paq manage itself
   -- General Helper Function
   "nvim-lua/plenary.nvim",
