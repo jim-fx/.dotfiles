@@ -105,6 +105,13 @@ if [ "$INST_ASDF" = true ]; then
     [[ "$INST_RUST" = true ]] && asdfInstall rust
 fi
 
+echo "-- linking .dotfiles --"
+
+linkFile .bashrc
+linkFile .p10k.zsh
+linkFile .dircolors
+linkFile .tmux.conf
+
 if [ "$INST_ZSH" = true ]; then
   echo "-- installing oh-my-zsh --"
   linkFile .zshrc

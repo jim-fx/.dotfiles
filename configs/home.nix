@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
+
 
 {
 
@@ -8,7 +9,6 @@
   programs.zsh.enable = true;
 
 	home.packages = [
-		pkgs.neovim
 		pkgs.zsh
 		pkgs.direnv
 
@@ -27,17 +27,36 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+  programs.neovim = {
+    enable = true;
+    package = pkgs.neovim-nightly;
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "jim";
   home.homeDirectory = "/home/jim";
 
-	xdg.configFile."nvim/init.lua".source = ./init.lua;
-	home.file.".zshrc".source = ./.zshrc;
-	home.file.".bashrc".source = ./.bashrc;
-	home.file.".p10k.zsh".source = ./.p10k.zsh;
-	home.file.".tmux.conf".source = ./.tmux.conf;
-	home.file.".dircolors".source = ./.dircolors;
+  home.file = {
+    ".zshrc".source = ./.zshrc;
+    ".bashrc".source = ./.bashrc;
+    ".p10k.zsh".source = ./.p10k.zsh;
+    ".tmux.conf".source = ./.tmux.conf;
+    ".dircolors".source = ./.dircolors;
+    # ".local/share/nvim/site/pack/paqs/start/paq-nvim".source = pkgs.fetchzip {
+    #   url = "https://github.com/savq/paq-nvim/archive/refs/heads/master.zip";
+    # };
+  };
+
+  xdg.configFile = {
+    "nvim/init.lua".source = ./init.lua;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
