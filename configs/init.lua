@@ -7,7 +7,7 @@ local cmd = vim.cmd
 require("install-paq")
 
 local paq = require("paq")
-paq:setup {
+paq:setup ({verbose = true}) {
   "savq/paq-nvim", -- Let Paq manage itself
   -- General Helper Function
   "nvim-lua/plenary.nvim",
@@ -26,6 +26,7 @@ paq:setup {
   "junegunn/fzf",
   "nvim-lua/popup.nvim",
   "nvim-telescope/telescope.nvim",
+  "windwp/nvim-autopairs",
   -- For better git support
   "tpope/vim-fugitive",
   -- Postman like featuresi
@@ -55,7 +56,7 @@ paq:setup {
 if u.has_plugin("cmp") then
   -- Global options
   o.number = true
-  o.tabstop = 8
+  o.tabstop = 2
   o.shiftwidth = 2 -- Indents will have a width of 4
   o.softtabstop = 2 -- Sets the number of columns for a TAB
   o.expandtab = false -- Dont expand TABs to spaces
@@ -140,6 +141,8 @@ if u.has_plugin("cmp") then
     }
   }
 
+  require'nvim-autopairs'.setup()
+
   -- Treesitter config
   local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
   parser_configs.http = {
@@ -218,5 +221,7 @@ if u.has_plugin("cmp") then
 
 else
   paq.install()
-  u.ReloadConfig()
+  paq.list()
+  print "Installed Packages"
+  -- u.ReloadConfig()
 end

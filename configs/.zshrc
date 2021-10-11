@@ -14,7 +14,8 @@ plugins=(
   git
   docker
   tmux
-	zsh-autosuggestions
+  asdf
+  zsh-autosuggestions
 )
 
 eval `dircolors ~/.dircolors`
@@ -50,6 +51,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.asdf" ] ; then
+   . "$HOME/.asdf/asdf.sh"
+fi
+
 #If fdfind is installed force fzf to use it
 if type fdfind &> /dev/null ; then
     export FZF_DEFAULT_COMMAND='fdfind --type f'
@@ -67,3 +72,4 @@ fi
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+if [ -e /home/jim/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jim/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
