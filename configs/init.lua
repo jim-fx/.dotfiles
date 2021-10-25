@@ -1,4 +1,4 @@
-require("install-paq")
+require("install-packer")
 
 local u = require("utils")
 
@@ -6,52 +6,7 @@ local o = vim.o
 local g = vim.g
 local cmd = vim.cmd
 
-local paq = require("paq")
-paq:setup {
-  "savq/paq-nvim", -- Let Paq manage itself
-  -- General Helper Function
-  "nvim-lua/plenary.nvim",
-  -- Theming Plugins
-  "kaicataldo/material.vim",
-  "xiyaowong/nvim-transparent",
-  -- Layout Plugins
-  --"preservim/nerdtree",
-  --"unkiwii/vim-nerdtree-sync",
-  "kyazdani42/nvim-web-devicons",
-  "kyazdani42/nvim-tree.lua",
-  "alexghergh/nvim-tmux-navigation",
-  -- Code Navigation
-  "dense-analysis/ale",
-  "nathanmsmith/nvim-ale-diagnostic",
-  "junegunn/fzf",
-  "nvim-lua/popup.nvim",
-  "nvim-telescope/telescope.nvim",
-  "windwp/nvim-autopairs",
-  -- For better git support
-  "tpope/vim-fugitive",
-  -- Postman like featuresi
-  "NTBBloodbath/rest.nvim",
-  -- Obsidian / Roam features
-  "lervag/wiki.vim",
-  -- Syntax / Autocomplete
-  "preservim/nerdcommenter",
-  "neovim/nvim-lspconfig",
-  "kabouzeid/nvim-lspinstall",
-  "nvim-lua/lsp-status.nvim",
-  "hrsh7th/nvim-cmp", -- Autocompletion plugin
-  "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-  "weilbith/nvim-code-action-menu",
-  --"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-  "L3MON4D3/LuaSnip", -- Snippets plugin
-  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
-  -- Formatting
-  --"mhartington/formatter.nvim",
-  -- Git Interface
-  "akinsho/nvim-toggleterm.lua",
-  -- Database Interface
-  "tpope/vim-dadbod",
-  "kristijanhusak/vim-dadbod-ui"
-}
+require ("plugins")
 
 if u.has_plugin("cmp") then
   -- Global options
@@ -128,8 +83,6 @@ if u.has_plugin("cmp") then
   g.mapleader = " "
   require "keymappings"
 
-	require'nvim-tree'.setup {}
-
   require "nvim-tmux-navigation".setup {
     keybindings = {
       left = "<C-h>",
@@ -174,10 +127,12 @@ if u.has_plugin("cmp") then
   require("nvim-tree").setup {
     auto_open = 1,
     gitignore = 1,
-    lsp_diagnostics = 1,
     group_empty = 1,
-    hide_root_folder = true,
-    view = {
+    diagnostics = {
+			enable = true
+		},
+		view = {
+			hide_root_folder = true,
       winopts = {
         signcolumn = "no"
       }
@@ -220,8 +175,5 @@ if u.has_plugin("cmp") then
   require "lsp-utils"
 
 else
-  paq.install()
-  paq.list()
-  print "Installed Packages"
-  -- u.ReloadConfig()
+	vim.cmd[[PackerSync]]
 end
