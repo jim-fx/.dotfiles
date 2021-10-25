@@ -3,7 +3,7 @@
 ## Features
 - [ZSH](https://www.zsh.org/) + [oh-my-zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
 - [asdf version manager](https://asdf-vm.com/#/)
-- [pre-configured](./configs/init.vim) [neovim](https://neovim.io/)
+- [pre-configured](./configs/init.lua) [neovim](https://neovim.io/)
 - 1 line installation
 
 ## Installation
