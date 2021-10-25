@@ -34,6 +34,7 @@ source $HOME/.dotfiles/configs/zsh/aliases.sh
 
 ## LOADING PROGRAMS
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/usr/sbin"
 
 ## Setup VIM
 export EDITOR="nvim"
