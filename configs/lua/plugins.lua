@@ -16,6 +16,7 @@ return require("packer").startup(function()
 	use "kyazdani42/nvim-web-devicons"
 	use "kyazdani42/nvim-tree.lua"
 	use "nvim-lua/popup.nvim"
+	use "mhinz/vim-startify"
 
 	-- Code Navigation
 	use "dense-analysis/ale"
@@ -32,7 +33,7 @@ return require("packer").startup(function()
 	-- Syntax / Autocomplete
 	use "preservim/nerdcommenter"
 	use "neovim/nvim-lspconfig"
-	use "kabouzeid/nvim-lspinstall"
+	use "williamboman/nvim-lsp-installer"
 	use "nvim-lua/lsp-status.nvim"
 	use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"

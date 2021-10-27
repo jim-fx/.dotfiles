@@ -4,15 +4,29 @@ local g = vim.g
 local options = {noremap = true}
 local remap = {noremap = false}
 
-map("n", "<Space>", "<Nop>", remap)
-map("n", " ", "<Nop>", remap)
+--map("n", "<Space>", "<Nop>", remap)
+--map("n", " ", "<Nop>", remap)
 g.mapleader = " "
 
 map("n", "<C-p>", ":Telescope find_files<CR>", options)
 --map("n", "<C-f>", ":Telescope grep_string<CR>", options)
-map("n", "<C-S-f>", ":Telescope live_grep<CR>", options)
+map("n", "<C-f>", ":Telescope live_grep<CR>", options)
 
 map("n", "<Leader>c", ":CodeActionMenu<CR>", remap)
+
+-- LSP Functionality
+  map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)
+  map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
+  map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
+  map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
+  map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
+  map("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", options)
+  map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
+  map("n", "<Leader><C-f>", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
+  map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
+  map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
+
+
 
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
@@ -21,7 +35,7 @@ map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
 
 -- Find file in NvimTree
-map("n", "<C-f>", ":NvimTreeFindFile<CR><c-w>", options)
+map("n", "<Leader>f", ":NvimTreeFindFile<CR><c-w>", options)
 
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", options)
