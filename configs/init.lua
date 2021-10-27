@@ -10,32 +10,40 @@ require ("plugins")
 
 if u.has_plugin("cmp") then
   -- Global options
-  o.number = true
+  o.number = true -- show line number
   o.tabstop = 2
   o.shiftwidth = 2 -- Indents will have a width of 4
   o.softtabstop = 2 -- Sets the number of columns for a TAB
   o.expandtab = false -- Dont expand TABs to spaces
   o.autoindent = true
-  cmd [[set mouse=a]]
-  cmd [[set undofile]]
-  cmd [[set fcs=eob:\ ]]
+	o.showmatch = true -- show matching brackets
+	o.swapfile = false
 
+  g.hidden = true --unload buffers when hidden
+  g.filetype = true -- execute autocommands based on filetype
+
+	cmd [[set mouse=a]] -- enable mouse interaction
+  cmd [[set undofile]]
+  cmd [[set fcs=eob:\ ]] --disable showing ~ in empty lines
+	
   cmd [[set noshowmode]] --to get rid of thing like --INSERT--
   cmd [[set noshowcmd]] --to get rid of display of last command
   cmd [[set shortmess+=F]] --to get rid of the file name displayed in the command line bar
   cmd [[set noruler]]
 
-  -- Apply Theme
+	-- Enable Theming / Syntax
   o.syntax = "enable"
   o.termguicolors = true
-  --g.NERDTreeShowHidden = true
-  --g.NERDTreeAutoDeleteBuffer = true
-  --g.NERDTreeMinimalUI = true
-  --g.NERDTreeDirArrows = true
-  -- g.NERDTreeCustomOpenArgs = {file = {where = "t"}}
+	cmd("colorscheme material")
+	g.material_terminal_italics = 1
+	g.material_theme_style = "darker"
+  -- Remove background color
+  require("transparent").setup({enable = true})
+  cmd("highlight Normal guibg=none")
+  cmd("highlight NonText guibg=none")
 
-  g.nvim_tree_root_folder_modifier = ":~:."
-  g.nvim_tree_special_files = {}
+	-- Configure nvim-tree
+	g.nvim_tree_special_files = {}
   g.nvim_tree_icons = {
     default = "",
     symlink = "",
@@ -49,8 +57,8 @@ if u.has_plugin("cmp") then
       ignored = "◌"
     },
     folder = {
-      arrow_open = "",
-      arrow_closed = "",
+      arrow_open = " ",
+      arrow_closed = " ",
       default = "",
       open = "",
       empty = "",
@@ -66,20 +74,33 @@ if u.has_plugin("cmp") then
     }
   }
 
-  g.hidden = true
-  g.filetype = true
-  g.material_terminal_italics = 1
-  g.material_theme_style = "darker"
+  require("nvim-tree").setup {
+    auto_open = 1,
+    gitignore = 1,
+    group_empty = 1,
+		hijack_cursor = 1,
+		update_focused_file = {
+			enable = false,
+		},
+    diagnostics = {
+			enable = true
+		},
+		view = {
+			auto_resize = true,
+			hide_root_folder = true,
+      winopts = {
+        signcolumn = "no"
+      }
+    }
+  }
+	require('nvim-tree.view').View.winopts.signcolumn = 'no'
+
+	-- Configure Wiki
   g.wiki_root = "~/Notes"
   g.wiki_filetypes = {"md"}
   g.wiki_link_extension = ".md"
-  cmd("colorscheme material")
-  -- Remove background color
-  require("transparent").setup({enable = true})
-  cmd("highlight Normal guibg=none")
-  cmd("highlight NonText guibg=none")
-
-  -- KeyBindings
+  
+	  -- KeyBindings
   g.mapleader = " "
   require "keymappings"
 
@@ -97,58 +118,12 @@ if u.has_plugin("cmp") then
   require'nvim-autopairs'.setup()
 
   -- Treesitter config
-  local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_configs.http = {
-    install_info = {
-      url = "https://github.com/NTBBloodbath/tree-sitter-http",
-      files = {"src/parser.c"},
-      branch = "main"
-    }
-  }
-  require "nvim-treesitter.configs".setup {
-    ensure_installed = {
-      "bash",
-      "yaml",
-      "http",
-      "svelte",
-      "css",
-      "svelte",
-      "typescript",
-      "javascript",
-      "go",
-      "lua",
-      "yaml"
-    },
-    highlight = {enable = true}
-  }
-  -- Toggleterm / Lazygit setup
+  require "treesitter-conf"
+
+	-- Toggleterm / Lazygit setup
   require "lazy-git"
 
-  require("nvim-tree").setup {
-    auto_open = 1,
-    gitignore = 1,
-    group_empty = 1,
-    diagnostics = {
-			enable = true
-		},
-		view = {
-			hide_root_folder = true,
-      winopts = {
-        signcolumn = "no"
-      }
-    }
-  }
 
-  -- Autocommands
-  --[[ u.create_augroup(]]
-  --[[{]]
-  --[[{"StdinReadPre", "*", "let s:std_in=1"},]]
-  --[[{"VimEnter", "*", "if argc() == 0 && !exists('s:std_in') | NERDTree | endif"},]]
-  --[[{"BufEnter", "*", 'if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif'},]]
-  --[[{"BufWinEnter", "*", "if getcmdwintype() == '' | silent NERDTreeMirror | endif"}]]
-  --[[},]]
-  --[["Nerdtree"]]
-  --[[)]]
   -- Setup rest.vim
   require("rest-nvim").setup(
     {
@@ -167,12 +142,12 @@ if u.has_plugin("cmp") then
   )
 
   -- Autocompletion Setup
-  o.completeopt = "menuone,noselect"
+  o.completeopt = "menuone,noselect,noinsert"
   require "autocomplete"
 
   -- LSP Config
-  require "lspinstall".setup()
-  require "lsp-utils"
+  require "lspinstaller-conf"
+	require "lsp-utils"
 
 else
 	vim.cmd[[PackerSync]]
