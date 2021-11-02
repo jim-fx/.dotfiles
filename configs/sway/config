@@ -18,16 +18,19 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -m $(expr $(swaymsg -t get_tree | jq '.nodes | map([recurse(.nodes[]?, .floating_nodes[]?) | .focused] | any) | index(true)') - 1) -show drun -run-command 'swaymsg exec -- {cmd}'
-set $menu rofi -m $(swaymsg -t get_outputs | jq 'map(select(.active) | .focused) | index(true)') -show drun -run-command 'swaymsg exec -- {cmd}'
+set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
 
 # Input configuration
 input * {
     xkb_layout de
     xkb_variant nodeadkeys
-    xkb_options caps:swapescape
 }
+
+smart_gaps off
+gaps inner 0
+gaps outer 10
+
+default_border none
 
 ### Output configuration
 #
@@ -119,6 +122,7 @@ input * {
 #
 # Workspaces:
 #
+		
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2

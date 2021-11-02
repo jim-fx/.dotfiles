@@ -28,7 +28,7 @@ return require("packer").startup(function()
 	use "NTBBloodbath/rest.nvim"
 
 	-- Obsidian / Roam like features
-	use "lervag/wiki.vim"
+	-- use "lervag/wiki.vim"
 
 	-- Syntax / Autocomplete
 	use "preservim/nerdcommenter"

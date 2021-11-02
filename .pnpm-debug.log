@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+    "err": {
+      "name": "pnpm",
+      "message": "No package.json (or package.yaml, or package.json5) was found in \"/home/jim/.dotfiles\".",
+      "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+      "stack": "pnpm: No package.json (or package.yaml, or package.json5) was found in \"/home/jim/.dotfiles\".\n    at readProjectManifest (/home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:40641:13)\n    at async Object.readProjectManifestOnly (/home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:40645:28)\n    at async Object.readProjectManifestOnly (/home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:40864:24)\n    at async Object.handler (/home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:129763:24)\n    at async /home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:133951:20\n    at async run (/home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:133926:34)\n    at async runPnpm (/home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:134137:5)\n    at async /home/jim/.asdf/installs/nodejs/16.11.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.17.2/node_modules/pnpm/dist/pnpm.cjs:134129:7"
+    }
+  }
+}
