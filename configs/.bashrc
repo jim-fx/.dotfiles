@@ -113,3 +113,4 @@ if ! shopt -oq posix; then
 fi
 
 [ -z $DISPLAY ] && export DISPLAY=127.0.0.1:0.0
+. "$HOME/.cargo/env"
