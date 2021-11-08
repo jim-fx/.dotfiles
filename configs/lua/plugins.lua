@@ -18,7 +18,8 @@ return require("packer").startup(function()
 	use "nvim-lua/popup.nvim"
 	use "mhinz/vim-startify"
 	use "lukas-reineke/indent-blankline.nvim"
-	
+	use "karb94/neoscroll.nvim"
+
 	-- Code Navigation
 	use "dense-analysis/ale"
 	use "nathanmsmith/nvim-ale-diagnostic"
@@ -38,6 +39,7 @@ return require("packer").startup(function()
 	use "nvim-lua/lsp-status.nvim"
 	use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/cmp-path"
 	use "weilbith/nvim-code-action-menu" -- Need to find better alternative
 	use "L3MON4D3/LuaSnip"
 	use "windwp/nvim-autopairs"
@@ -47,7 +49,10 @@ return require("packer").startup(function()
         	run = ':TSUpdate'
 	}
 
-
+	-- Preview Markdown
+	use "ellisonleao/glow.nvim"
+	
+	-- Autoformat
 	use "sbdchd/neoformat"
 
 	-- General Popup Window
