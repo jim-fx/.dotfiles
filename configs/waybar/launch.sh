@@ -2,6 +2,8 @@
 
 CONFIG_FILES="$HOME/.config/waybar/config $HOME/.config/waybar/style.css"
 
+killall waybar;
+
 trap "killall waybar" EXIT
 
 while true; do

@@ -139,6 +139,7 @@ nvim_lsp.diagnosticls.setup {
     "sh",
     "markdown",
     "json",
+		"jsonc",
     "yaml",
     "toml"
   },

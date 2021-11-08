@@ -1,51 +1,41 @@
 * {
-        border:        none;
-        border-radius: 5px;
-        font-family:   Font Awesome, Hack Nerd Font;
-        font-size:     13px;
-        transition-duration: 0s;
-        /*color:					#c0c5ce;*/
+		border:        none;
+		font-family:   Font Awesome, Hack Nerd Font;
+		font-size:     13px;
+		opacity: 0.95;
 }
 
 window#waybar {
-    background: transparent;
+		background: transparent;
 }
 
 window > box {
 		margin: 10px;
 		margin-bottom: 0px;
     background: #2b303b;
-		padding: 3px;
+		background:			black;
+		padding: 5px;
 		/*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
 }
 
-window {
-        background:			#2b303b;
-				margin: 0px;
-}
-
-#workspaces {
-        margin: 0 0px;
-}
-
 #workspaces button {
-        padding:    0px 8px;
+        padding:    0px 9px;
 				color: white;
+				background: transparent;
+				border-radius: 0px;
 }
 
 #workspaces button:hover{
-	opacity: 0.9;
+		background: rgba(255, 255, 255, 0.1);
 }
 
 #workspaces button.focused {
-        background-color: white;
+				background-color: white;
 				color:  #2b303b;
 }
 
 #battery, #network, #pulseaudio, #clock, #custom-power, #custom-qbitstats {
-        margin:     0px 3px 0px 1px;
-        min-width:  10px;
-    
+        /*margin:     0px 3px 0px 1px;*/
 }
 
 #clock {
@@ -54,8 +44,8 @@ window {
 }
 
 .custom-spotify {
-    padding: 0 10px;
-    margin: 0 4px;
+    /*padding: 0 10px;*/
+    /*margin: 0 4px;*/
 		opacity: 0.5;
 }
 
@@ -67,7 +57,7 @@ window {
 }
 
 #battery {
-        color:       #689d6a;
+				color:       #689d6a;
 }
 
 #battery.critical {
@@ -91,6 +81,6 @@ window {
 }
 
 #waybar > box:nth-child(2) > box:nth-child(3) > * > label {
-        padding: 0 3px;
+				padding: 0 3px;
 }
 

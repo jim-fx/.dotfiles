@@ -1,15 +1,17 @@
-* {
-  background-color: #2b303b;
+* {	
+	background-color: #2b303b;
+	background-color: black;
   border-color: #2e343f;
   text-color: #8ca0aa;
 	border-radius: 5px;
-  spacing: 0;
-  width: 512px;
+	border-radius: 0px;
+  spacing: 0px;
+	width: 20%;
 }
 
 inputbar {
   border: 0 0 1px 0;
-  children: [prompt,entry];
+  children: [entry];
 }
 
 prompt {
@@ -17,15 +19,8 @@ prompt {
   border: 0 1px 0 0;
 }
 
-textbox {
-  background-color: #2e343f;
-  border: 0 0 1px 0;
-  border-color: #282C33;
-  padding: 8px 16px;
-}
-
 entry {
-  padding: 16px;
+  padding: 8px;
 }
 
 listview {
@@ -37,6 +32,8 @@ listview {
 element {
   border: 0 0 1px 0;
   padding: 16px;
+	padding-left: 0px;
+	margin-left: 0px;
 }
 
 element selected {

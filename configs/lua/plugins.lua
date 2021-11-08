@@ -17,7 +17,8 @@ return require("packer").startup(function()
 	use "kyazdani42/nvim-tree.lua"
 	use "nvim-lua/popup.nvim"
 	use "mhinz/vim-startify"
-
+	use "lukas-reineke/indent-blankline.nvim"
+	
 	-- Code Navigation
 	use "dense-analysis/ale"
 	use "nathanmsmith/nvim-ale-diagnostic"
@@ -40,13 +41,14 @@ return require("packer").startup(function()
 	use "weilbith/nvim-code-action-menu" -- Need to find better alternative
 	use "L3MON4D3/LuaSnip"
 	use "windwp/nvim-autopairs"
+	use "neoclide/jsonc.vim"
 	use {
         	'nvim-treesitter/nvim-treesitter',
         	run = ':TSUpdate'
 	}
 
-	-- Formatting
-	use "mhartington/formatter.nvim"
+
+	use "sbdchd/neoformat"
 
 	-- General Popup Window
 	use "akinsho/nvim-toggleterm.lua"

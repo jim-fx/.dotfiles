@@ -19,6 +19,12 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
+set $powermenu "rofi -show p -modi p:~/.dotfiles/configs/rofi/rofi-power-menu -lines 6"
+set $screenclip slurp | grim -g - ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | $screenclip
+set $toggle_layout ~/.config/sway/toggle_layout.sh
+
 
 # Input configuration
 input * {
@@ -35,7 +41,7 @@ default_border none
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-#output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 #
 # Example configuration:
 #
@@ -74,27 +80,29 @@ default_border none
 #
 # Basics:
 #
-    # Start a terminal
+		bindsym $mod+q exec $powermenu
     bindsym $mod+Return exec $term
-
-    # Kill focused window
     bindsym $mod+Shift+q kill
-
-    # Start your launcher
     bindsym $mod+d exec $menu
-
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+		bindsym $mod+e exec nautilus
+    
+		# Drag and resize floating windows with mouse right/left drag
+		floating_modifier $mod normal
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+		# Multimedia Audio Keys
+		bindsym XF86AudioMute exec "pactl list sinks | grep -q Mute:.no && pactl set-sink-mute 0 1 || pactl set-sink-mute 0 0"
+		bindsym XF86AudioLowerVolume exec "pactl -- set-sink-volume 0 -10%"
+		bindsym XF86AudioRaiseVolume exec "pactl -- set-sink-volume 0 +10%"
+
+		#Increase brightness
+		bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +10
+		bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 10-
+
+		# Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit your Wayland session?' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -123,11 +131,16 @@ default_border none
 # Workspaces:
 #
 		
+		set $ws1 "  Code"
+		set $ws2 "  Browser"
+		set $ws3 "  Music"
+		set $ws4 "  Chat"
+
     # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
     bindsym $mod+5 workspace number 5
     bindsym $mod+6 workspace number 6
     bindsym $mod+7 workspace number 7
@@ -147,6 +160,11 @@ default_border none
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+		assign [class="Firefox"] $ws2
+		assign [class="Chromium"] $ws2
+		assign [class="Google-chrome-beta"] $ws2
+		assign [class="google-chrome"] ""
 #
 # Layout stuff:
 #
@@ -157,9 +175,7 @@ default_border none
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+w exec $toggle_layout
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -172,6 +188,17 @@ default_border none
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+		# Screenshots
+		# -- Area Screenshot
+		bindsym $mod+Shift+s exec $screenclip
+		# -- Select Window
+		bindsym $mod+Control+s exec $windowshot
+		# -- Entire Screen
+		bindsym $mod+s exec $screenshot
+
+
+		bindsym Alt+Tab exec rofi -show window -modi window
 #
 # Scratchpad:
 #
