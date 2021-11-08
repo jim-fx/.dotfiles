@@ -46,6 +46,8 @@ if u.has_plugin("cmp") then
   cmd("highlight Normal guibg=none")
   cmd("highlight NonText guibg=none")
 
+	require('neoscroll').setup()
+	
 	-- Configure nvim-tree
 	g.nvim_tree_special_files = {}
   g.nvim_tree_icons = {
