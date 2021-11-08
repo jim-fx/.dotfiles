@@ -25,11 +25,15 @@ if u.has_plugin("cmp") then
 	cmd [[set mouse=a]] -- enable mouse interaction
   cmd [[set undofile]]
   cmd [[set fcs=eob:\ ]] --disable showing ~ in empty lines
+
+	cmd [[command Format :lua vim.lsp.buf.formatting()]]
 	
   cmd [[set noshowmode]] --to get rid of thing like --INSERT--
   cmd [[set noshowcmd]] --to get rid of display of last command
   cmd [[set shortmess+=F]] --to get rid of the file name displayed in the command line bar
-  cmd [[set noruler]]
+	cmd [[set noruler]]
+
+	g.ale_fixers = {"prettier", "eslint"}
 
 	-- Enable Theming / Syntax
   o.syntax = "enable"
