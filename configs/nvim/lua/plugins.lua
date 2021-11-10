@@ -20,6 +20,8 @@ return require("packer").startup(function()
 	use "lukas-reineke/indent-blankline.nvim"
 	use "karb94/neoscroll.nvim"
 
+	use "tpope/vim-fugitive"
+
 	-- Code Navigation
 	use "dense-analysis/ale"
 	use "nathanmsmith/nvim-ale-diagnostic"
@@ -53,7 +55,7 @@ return require("packer").startup(function()
 	use "ellisonleao/glow.nvim"
 	
 	-- Autoformat
-	use "sbdchd/neoformat"
+	--use "sbdchd/neoformat"
 
 	-- General Popup Window
 	use "akinsho/nvim-toggleterm.lua"

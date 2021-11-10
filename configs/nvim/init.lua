@@ -5,6 +5,7 @@ local u = require("utils")
 local o = vim.o
 local g = vim.g
 local cmd = vim.cmd
+local opt = vim.opt
 
 require ("plugins")
 
@@ -19,18 +20,41 @@ if u.has_plugin("cmp") then
 	o.showmatch = true -- show matching brackets
 	o.swapfile = false
 
+	o.autoread = true
+
+	o.lazyredraw = true
+
   g.hidden = true --unload buffers when hidden
   g.filetype = true -- execute autocommands based on filetype
+
+	-- Search
+	o.inccommand = 'nosplit' -- show substitutions incrementally
+	o.ignorecase = true
+	o.smartcase = true
+	opt.wildignore:append('.git/*', 'node_modules/*')
+	o.wildignorecase = true
+	o.lazyredraw = true
+
+	opt.listchars:append({
+		extends = "#",
+		eol = '↴',
+		space = '⋅',
+		tab = '▸ ',
+	})
+
+	-- Shortmess
+	cmd [[set shortmess+=F]]
+	g.loaded_netrw = 1
+	g.loaded_netrwPlugin = 1
+	g.loaded_zipPlugin = 1
+	g.loaded_zip = 1
 
 	cmd [[set mouse=a]] -- enable mouse interaction
   cmd [[set undofile]]
   cmd [[set fcs=eob:\ ]] --disable showing ~ in empty lines
 
-	cmd [[command Format :lua vim.lsp.buf.formatting()]]
-	
   cmd [[set noshowmode]] --to get rid of thing like --INSERT--
   cmd [[set noshowcmd]] --to get rid of display of last command
-  cmd [[set shortmess+=F]] --to get rid of the file name displayed in the command line bar
 	cmd [[set noruler]]
 
 	g.ale_fixers = {"prettier", "eslint"}
@@ -129,6 +153,7 @@ if u.has_plugin("cmp") then
 	-- Toggleterm / Lazygit setup
   require "lazy-git"
 
+	require "autocommands"
 
   -- Setup rest.vim
   require("rest-nvim").setup(
