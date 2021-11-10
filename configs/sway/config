@@ -33,8 +33,8 @@ input * {
 }
 
 smart_gaps off
-gaps inner 0
-gaps outer 10
+gaps inner 5
+gaps outer 5
 
 default_border none
 
@@ -130,17 +130,17 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 #
 # Workspaces:
 #
-		set $ws1 "  Code"
+		set $ws1 "1:   Code"
 			assign [class="Alacritty"] $ws1
-		set $ws2 "  Browser"
+		set $ws2 "2:   Browser"
 			assign [class="Firefox"] $ws2
 			assign [class="Chromium"] $ws2
 			assign [class="Google-chrome-beta"] $ws2
 			assign [class="Google-chrome"] $ws2
-		set $ws3 "  Music"
+		set $ws3 "3:   Music"
 			assign [class="Spotify"] $ws3
 			assign [class="spotify"] $ws3
-		set $ws4 "  Chat"
+		set $ws4 "4:   Chat"
 
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
