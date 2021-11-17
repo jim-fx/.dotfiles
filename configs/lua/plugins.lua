@@ -17,7 +17,7 @@ return require("packer").startup(function()
 	use "kyazdani42/nvim-tree.lua"
 	use "nvim-lua/popup.nvim"
 	use "mhinz/vim-startify"
-	use "lukas-reineke/indent-blankline.nvim"
+	--use "lukas-reineke/indent-blankline.nvim"
 	use "karb94/neoscroll.nvim"
 
 	-- Code Navigation
@@ -45,15 +45,16 @@ return require("packer").startup(function()
 	use "windwp/nvim-autopairs"
 	use "neoclide/jsonc.vim"
 	use {
-        	'nvim-treesitter/nvim-treesitter',
-        	run = ':TSUpdate'
+					'nvim-treesitter/nvim-treesitter',
+					run = ':TSUpdate'
 	}
 
 	-- Preview Markdown
 	use "ellisonleao/glow.nvim"
 	
 	-- Autoformat
-	use "sbdchd/neoformat"
+	--use "sbdchd/neoformat"
+	use "lukas-reineke/format.nvim"
 
 	-- General Popup Window
 	use "akinsho/nvim-toggleterm.lua"
