@@ -5,7 +5,10 @@ return require("packer").startup(function()
 
 	-- General Helper Functions
 	use "nvim-lua/plenary.nvim"
-	
+
+  -- Faster Filetype Detection
+  use "nathom/filetype.nvim"
+
 	use "alexghergh/nvim-tmux-navigation"
 
 	-- Theming Section
@@ -21,6 +24,8 @@ return require("packer").startup(function()
 	use "karb94/neoscroll.nvim"
 
 	use "tpope/vim-fugitive"
+  use "tpope/vim-surround"
+  use "editorconfig/editorconfig-vim"
 
 	-- Code Navigation
 	use "dense-analysis/ale"
@@ -35,14 +40,20 @@ return require("packer").startup(function()
 	-- use "lervag/wiki.vim"
 
 	-- Syntax / Autocomplete
-	use "preservim/nerdcommenter"
 	use "neovim/nvim-lspconfig"
-	use "williamboman/nvim-lsp-installer"
-	use "nvim-lua/lsp-status.nvim"
-	use "hrsh7th/nvim-cmp"
+  use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-path"
-	use "weilbith/nvim-code-action-menu" -- Need to find better alternative
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-cmdline"
+  use "L3MON4D3/LuaSnip"
+  use "saadparwaiz1/cmp_luasnip"
+  use "rafamadriz/friendly-snippets"
+
+  use "tpope/vim-commentary"
+
+	use "williamboman/nvim-lsp-installer"
+	use "nvim-lua/lsp-status.nvim"
 	use "L3MON4D3/LuaSnip"
 	use "windwp/nvim-autopairs"
 	use "neoclide/jsonc.vim"
