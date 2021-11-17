@@ -15,7 +15,7 @@ if u.has_plugin("cmp") then
   o.tabstop = 2
   o.shiftwidth = 2 -- Indents will have a width of 4
   o.softtabstop = 2 -- Sets the number of columns for a TAB
-  o.expandtab = false -- Dont expand TABs to spaces
+  o.expandtab = true -- Dont expand TABs to spaces
   o.autoindent = true
 	o.showmatch = true -- show matching brackets
 	o.swapfile = false
