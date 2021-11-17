@@ -10,22 +10,36 @@ local opt = vim.opt
 require ("plugins")
 
 if u.has_plugin("cmp") then
-  -- Global options
-  o.number = true -- show line number
-  o.tabstop = 2
-  o.shiftwidth = 2 -- Indents will have a width of 4
-  o.softtabstop = 2 -- Sets the number of columns for a TAB
-  o.expandtab = true -- Dont expand TABs to spaces
-  o.autoindent = true
+
+  vim.g.did_load_filetypes = 1
+
+	-- Global options
+	o.number = true -- show line number
 	o.showmatch = true -- show matching brackets
 	o.swapfile = false
 
+	-- Indentation options
+	vim.cmd [[
+		set autoindent
+		set expandtab
+		set shiftwidth=2
+		set softtabstop=2
+		set tabstop=2
+	]]
+
+	-- Debug indentations
+	if false then
+		vim.cmd [[
+			set list
+			set listchars=eol:⏎,tab:->,trail:_,nbsp:⎵
+		]]
+	end
+
+	g.hidden = true --unload buffers when hidden
+	g.filetype = true -- execute autocommands based on filetype
 	o.autoread = true
 
 	o.lazyredraw = true
-
-  g.hidden = true --unload buffers when hidden
-  g.filetype = true -- execute autocommands based on filetype
 
 	-- Search
 	o.inccommand = 'nosplit' -- show substitutions incrementally
@@ -50,107 +64,119 @@ if u.has_plugin("cmp") then
 	g.loaded_zip = 1
 
 	cmd [[set mouse=a]] -- enable mouse interaction
-  cmd [[set undofile]]
-  cmd [[set fcs=eob:\ ]] --disable showing ~ in empty lines
+	cmd [[set undofile]]
+	cmd [[set fcs=eob:\ ]] --disable showing ~ in empty lines
 
-  cmd [[set noshowmode]] --to get rid of thing like --INSERT--
-  cmd [[set noshowcmd]] --to get rid of display of last command
+	cmd [[command Format :lua vim.lsp.buf.formatting()]]
+	cmd [[command FormatSync :lua vim.lsp.buf.formatting_sync()]]
+	
+	cmd [[set noshowmode]] --to get rid of thing like --INSERT--
+	cmd [[set noshowcmd]] --to get rid of display of last command
+	cmd [[set shortmess+=F]] --to get rid of the file name displayed in the command line bar
+
 	cmd [[set noruler]]
 
 	g.ale_fixers = {"prettier", "eslint"}
 
 	-- Enable Theming / Syntax
-  o.syntax = "enable"
-  o.termguicolors = true
+	o.syntax = "enable"
+	o.termguicolors = true
 	cmd("colorscheme material")
 	g.material_terminal_italics = 1
 	g.material_theme_style = "darker"
-  -- Remove background color
-  require("transparent").setup({enable = true})
-  cmd("highlight Normal guibg=none")
-  cmd("highlight NonText guibg=none")
+
+	-- Remove background color
+	require("transparent").setup({enable = true})
+	cmd("highlight Normal guibg=none")
+	cmd("highlight NonText guibg=none")
 
 	require('neoscroll').setup()
-	
+
 	-- Configure nvim-tree
 	g.nvim_tree_special_files = {}
-  g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-      unstaged = "*",
-      staged = "✓",
-      unmerged = "",
-      renamed = "➜",
-      untracked = "★",
-      deleted = "",
-      ignored = "◌"
-    },
-    folder = {
-      arrow_open = " ",
-      arrow_closed = " ",
-      default = "",
-      open = "",
-      empty = "",
-      empty_open = "",
-      symlink = "",
-      symlink_open = ""
-    },
-    lsp = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = ""
-    }
-  }
+	g.nvim_tree_icons = {
+		default = "",
+		symlink = "",
+		git = {
+			unstaged = "*",
+			staged = "✓",
+			unmerged = "",
+			renamed = "➜",
+			untracked = "★",
+			deleted = "",
+			ignored = "◌"
+		},
+		folder = {
+			arrow_open = " ",
+			arrow_closed = " ",
+			default = "",
+			open = "",
+			empty = "",
+			empty_open = "",
+			symlink = "",
+			symlink_open = ""
+		},
+		lsp = {
+			hint = "",
+			info = "",
+			warning = "",
+			error = ""
+		}
+	}
 
-  require("nvim-tree").setup {
-    auto_open = 1,
-    gitignore = 1,
-    group_empty = 1,
+	require("nvim-tree").setup {
+		auto_open = 1,
+		gitignore = 1,
+		group_empty = 1,
 		hijack_cursor = 1,
 		update_focused_file = {
 			enable = false,
 		},
-    diagnostics = {
+		diagnostics = {
 			enable = true
 		},
 		view = {
 			auto_resize = true,
 			hide_root_folder = true,
-      winopts = {
-        signcolumn = "no"
-      }
-    }
-  }
+			winopts = {
+				signcolumn = "no"
+			}
+		}
+	}
 	require('nvim-tree.view').View.winopts.signcolumn = 'no'
 
 	-- Configure Wiki
-  g.wiki_root = "~/Notes"
-  g.wiki_filetypes = {"md"}
-  g.wiki_link_extension = ".md"
-  
-	  -- KeyBindings
-  g.mapleader = " "
-  require "keymappings"
+	g.wiki_root = "~/Notes"
+	g.wiki_filetypes = {"md"}
+	g.wiki_link_extension = ".md"
 
-  require "nvim-tmux-navigation".setup {
-    keybindings = {
-      left = "<C-h>",
-      down = "<C-j>",
-      up = "<C-k>",
-      right = "<C-l>",
-      last_active = "<C-\\>",
-      next = "<C-Space>"
-    }
-  }
+		-- KeyBindings
+	g.mapleader = " "
+	require "keymappings"
 
-  require'nvim-autopairs'.setup()
+	require "nvim-tmux-navigation".setup {
+		keybindings = {
+			left = "<C-h>",
+			down = "<C-j>",
+			up = "<C-k>",
+			right = "<C-l>",
+			last_active = "<C-\\>",
+			next = "<C-Space>"
+		}
+	}
 
-  -- Treesitter config
-  require "treesitter-conf"
+	require'nvim-autopairs'.setup()
 
-	-- Toggleterm / Lazygit setup
+	-- Treesitter config
+	require "treesitter-conf"
+
+	-- Autocompletion Setup
+	o.completeopt = "menuone,noselect,noinsert"
+	require "autocomplete"
+  require "snippets"
+
+	-- LSP Config
+	require "lspinstaller-conf"
   require "lazy-git"
 
 	require "autocommands"
