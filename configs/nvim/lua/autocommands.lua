@@ -3,7 +3,7 @@ local cmd = vim.cmd;
 cmd [[
     augroup auto_format
       au!
-      au BufWritePre * silent! FormatSync<CR>
+      au BufWritePre * FormatSync
     augroup END
 
     augroup highlight_yank
