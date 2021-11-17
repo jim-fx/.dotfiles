@@ -1,0 +1,249 @@
+{
+  "location": {
+    "altitude": 300.0,
+    "latitude": 45.0,
+    "longitude": 2.0
+  },
+  "matches": [
+    {
+      "channel": "0",
+      "frequencyskew": 0.00008058548,
+      "id": "341270538",
+      "offset": 148.84515625,
+      "timeskew": -0.0023667216
+    }
+  ],
+  "tagid": "68982327-bef9-4ff3-a426-7fea39f7997f",
+  "timestamp": 95912955,
+  "timezone": "Europe/Paris",
+  "track": {
+    "albumadamid": "1477092467",
+    "artists": [
+      {
+        "adamid": "827504058",
+        "id": "44445618"
+      }
+    ],
+    "genres": {
+      "primary": "Alternative"
+    },
+    "highlightsurls": {
+      "artisthighlightsurl": "https://cdn.shazam.com/video/v3/en/US/android/827504058/highlights?affiliate=mttnagencyid%3D769459046716559743%26mttnsiteid%3D125115%26mttn3pid%3Da_custom_779816081798873874%26mttnsub1%3DShazam_android_am%26mttnsub2%3D5348615A-616D-3235-3830-44754D6D5973%26itscg%3D30201%26app%3Dmusic%26itsct%3DShazam_android_am",
+      "relatedhighlightsurl": "https://cdn.shazam.com/video/v3/en/US/android/44445618/artist-similarities-id-44445618/relatedhighlights?max_artists=5&affiliate=mttnagencyid%3D769459046716559743%26mttnsiteid%3D125115%26mttn3pid%3Da_custom_779816081798873874%26mttnsub1%3DShazam_android_am%26mttnsub2%3D5348615A-616D-3235-3830-44754D6D5973%26itscg%3D30201%26app%3Dmusic%26itsct%3DShazam_android_am"
+    },
+    "hub": {
+      "actions": [
+        {
+          "id": "1477092472",
+          "name": "apple",
+          "type": "applemusicplay"
+        },
+        {
+          "name": "apple",
+          "type": "uri",
+          "uri": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/17/c4/ff/17c4ff80-8823-5ce9-fa5a-0c1892129e3b/mzaf_15603304596709002890.plus.aac.ep.m4a"
+        }
+      ],
+      "displayname": "APPLE MUSIC",
+      "explicit": false,
+      "image": "https://images.shazam.com/static/icons/hub/android/v5/applemusic_{scalefactor}.png",
+      "options": [
+        {
+          "actions": [
+            {
+              "name": "hub:applemusic:deeplink",
+              "type": "intent",
+              "uri": "intent://music.apple.com/us/album/nothings-older-than-yesterday/1477092467?i=1477092472&mttnagencyid=769459046716559743&mttnsiteid=125115&mttn3pid=a_custom_779816081798873874&mttnsub1=Shazam_android_am&mttnsub2=5348615A-616D-3235-3830-44754D6D5973&itscg=30201&app=music&itsct=Shazam_android_am#Intent;scheme=http;package=com.apple.android.music;action=android.intent.action.VIEW;end"
+            },
+            {
+              "id": "1477092472",
+              "name": "hub:applemusic:connect",
+              "type": "applemusicconnect",
+              "uri": "https://unsupported.shazam.com"
+            },
+            {
+              "name": "hub:applemusic:androidstore",
+              "type": "uri",
+              "uri": "https://play.google.com/store/apps/details?id=com.apple.android.music&referrer=utm_source=https%3A%2F%2Fmusic.apple.com%2Fsubscribe%3Fmttnagencyid%3D769459046716559743%26mttnsiteid%3D125115%26mttn3pid%3Da_custom_779816081798873874%26mttnsub1%3DShazam_android_am%26mttnsub2%3D5348615A-616D-3235-3830-44754D6D5973%26itscg%3D30201%26app%3Dmusic%26itsct%3DShazam_android_am"
+            }
+          ],
+          "beacondata": {
+            "providername": "applemusic",
+            "type": "open"
+          },
+          "caption": "OPEN",
+          "colouroverflowimage": false,
+          "image": "https://images.shazam.com/static/icons/hub/android/v5/overflow-open-option_{scalefactor}.png",
+          "listcaption": "Open in Apple Music",
+          "overflowimage": "https://images.shazam.com/static/icons/hub/android/v5/applemusic-overflow_{scalefactor}.png",
+          "providername": "applemusic",
+          "type": "open"
+        }
+      ],
+      "providers": [
+        {
+          "actions": [
+            {
+              "name": "hub:spotify:searchdeeplink",
+              "type": "uri",
+              "uri": "spotify:search:Nothing%27s%20Older%20Than%20Yesterday%20Cari%20Cari"
+            }
+          ],
+          "caption": "Open in Spotify",
+          "images": {
+            "default": "https://images.shazam.com/static/icons/hub/android/v5/spotify_{scalefactor}.png",
+            "overflow": "https://images.shazam.com/static/icons/hub/android/v5/spotify-overflow_{scalefactor}.png"
+          },
+          "type": "SPOTIFY"
+        },
+        {
+          "actions": [
+            {
+              "name": "hub:youtubemusic:androiddeeplink",
+              "type": "uri",
+              "uri": "https://music.youtube.com/search?q=Nothings+Older+Than+Yesterday+Cari+Cari&feature=shazam"
+            }
+          ],
+          "caption": "Open in YouTube Music",
+          "images": {
+            "default": "https://images.shazam.com/static/icons/hub/android/v5/youtubemusic_{scalefactor}.png",
+            "overflow": "https://images.shazam.com/static/icons/hub/android/v5/youtubemusic-overflow_{scalefactor}.png"
+          },
+          "type": "YOUTUBEMUSIC"
+        },
+        {
+          "actions": [
+            {
+              "name": "hub:deezer:searchdeeplink",
+              "type": "uri",
+              "uri": "deezer-query://www.deezer.com/play?query=%7Btrack%3A%27Nothing%5C%27s+Older+Than+Yesterday%27%20artist%3A%27Cari+Cari%27%7D"
+            }
+          ],
+          "caption": "Open in Deezer",
+          "images": {
+            "default": "https://images.shazam.com/static/icons/hub/android/v5/deezer_{scalefactor}.png",
+            "overflow": "https://images.shazam.com/static/icons/hub/android/v5/deezer-overflow_{scalefactor}.png"
+          },
+          "type": "DEEZER"
+        }
+      ],
+      "type": "APPLEMUSIC"
+    },
+    "images": {
+      "background": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/62/5c/d7/625cd78a-6d55-3128-1a55-894d244800c9/pr_source.png/800x800cc.jpg",
+      "coverart": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b8/c5/3c/b8c53c9c-489f-3bec-1b25-c232368a1fac/rls00069784.jpg/400x400cc.jpg",
+      "coverarthq": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b8/c5/3c/b8c53c9c-489f-3bec-1b25-c232368a1fac/rls00069784.jpg/400x400cc.jpg",
+      "joecolor": "b:031827p:fdf0dfs:f7831et:cbc5baq:c66e1f"
+    },
+    "isrc": "ATT801713001",
+    "key": "341270538",
+    "layout": "5",
+    "relatedtracksurl": "https://cdn.shazam.com/shazam/v3/en/US/android/-/tracks/track-similarities-id-341270538?startFrom=0&pageSize=20&connected=",
+    "sections": [
+      {
+        "metadata": [
+          {
+            "text": "Anaana",
+            "title": "Album"
+          },
+          {
+            "text": "recordJet",
+            "title": "Label"
+          },
+          {
+            "text": "2017",
+            "title": "Released"
+          }
+        ],
+        "metapages": [
+          {
+            "caption": "Cari Cari",
+            "image": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/62/5c/d7/625cd78a-6d55-3128-1a55-894d244800c9/pr_source.png/800x800cc.jpg"
+          },
+          {
+            "caption": "Nothing's Older Than Yesterday",
+            "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b8/c5/3c/b8c53c9c-489f-3bec-1b25-c232368a1fac/rls00069784.jpg/400x400cc.jpg"
+          }
+        ],
+        "tabname": "Song",
+        "type": "SONG"
+      },
+      {
+        "beacondata": {
+          "commontrackid": "70387093",
+          "lyricsid": "19307144",
+          "providername": "musixmatch"
+        },
+        "footer": "Writer(s): Stephanie Widmer, Alexander Koeck
+Lyrics powered by www.musixmatch.com",
+        "tabname": "Lyrics",
+        "text": [
+          "Waves are rolling on the beach",
+          "Sunlight is striking through the trees",
+          "Heads up, don't look back",
+          "On the coast of Jamaica, there ain't no looking back",
+          "",
+          "Move, nothing's older than yesterday",
+          "'Cause we're riding, it's just the streets and you and me",
+          "Heads up, don't look back!",
+          "On the streets of Tokyo, no looking back",
+          "C'mon baby, we can stay up all night",
+          "I stay here till sunrise",
+          "Come on, don't miss this ride"
+        ],
+        "type": "LYRICS",
+        "url": "https://cdn.shazam.com/lyrics/v1/en/US/android/musixmatch/subtitles/70387093/202/1?token=d3fe124c5cfcec867f24caddbb4fb700"
+      },
+      {
+        "tabname": "Video",
+        "type": "VIDEO",
+        "youtubeurl": "https://cdn.shazam.com/video/v3/-/US/android/341270538/youtube/video?q=Cari+Cari+%22Nothing's+Older+Than+Yesterday%22&c=UCiL526VL2ZWT9pUuUQP52uw"
+      },
+      {
+        "actions": [
+          {
+            "id": "44445618",
+            "type": "artistposts"
+          },
+          {
+            "id": "44445618",
+            "type": "artist"
+          }
+        ],
+        "avatar": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/62/5c/d7/625cd78a-6d55-3128-1a55-894d244800c9/pr_source.png/800x800cc.jpg",
+        "id": "44445618",
+        "name": "Cari Cari",
+        "tabname": "Artist",
+        "toptracks": {
+          "url": "https://cdn.shazam.com/shazam/v3/en/US/android/-/tracks/artisttoptracks_44445618?startFrom=0&pageSize=20&connected="
+        },
+        "type": "ARTIST",
+        "url": "https://cdn.shazam.com/digest/v1/en/US/android/artist/44445618/recentpost",
+        "verified": false
+      },
+      {
+        "tabname": "Related",
+        "type": "RELATED",
+        "url": "https://cdn.shazam.com/shazam/v3/en/US/android/-/tracks/track-similarities-id-341270538?startFrom=0&pageSize=20&connected="
+      }
+    ],
+    "share": {
+      "avatar": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/62/5c/d7/625cd78a-6d55-3128-1a55-894d244800c9/pr_source.png/800x800cc.jpg",
+      "href": "https://www.shazam.com/track/341270538/nothings-older-than-yesterday",
+      "html": "https://www.shazam.com/snippets/email-share/341270538?lang=en&country=US",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b8/c5/3c/b8c53c9c-489f-3bec-1b25-c232368a1fac/rls00069784.jpg/400x400cc.jpg",
+      "snapchat": "https://www.shazam.com/partner/sc/track/341270538",
+      "subject": "Nothing's Older Than Yesterday - Cari Cari",
+      "text": "I used Shazam to discover Nothing's Older Than Yesterday by Cari Cari.",
+      "twitter": "I used @Shazam to discover Nothing's Older Than Yesterday by Cari Cari."
+    },
+    "subtitle": "Cari Cari",
+    "title": "Nothing's Older Than Yesterday",
+    "type": "MUSIC",
+    "url": "https://www.shazam.com/track/341270538/nothings-older-than-yesterday",
+    "urlparams": {
+      "{trackartist}": "Cari+Cari",
+      "{tracktitle}": "Nothing%27s+Older+Than+Yesterday"
+    }
+  }
+}
