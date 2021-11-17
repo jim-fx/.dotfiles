@@ -10,6 +10,9 @@ local opt = vim.opt
 require ("plugins")
 
 if u.has_plugin("cmp") then
+
+  vim.g.did_load_filetypes = 1
+
 	-- Global options
 	o.number = true -- show line number
 	o.showmatch = true -- show matching brackets
@@ -20,7 +23,6 @@ if u.has_plugin("cmp") then
 		set autoindent
 		set expandtab
 		set shiftwidth=2
-		set smartindent
 		set softtabstop=2
 		set tabstop=2
 	]]
@@ -171,6 +173,7 @@ if u.has_plugin("cmp") then
 	-- Autocompletion Setup
 	o.completeopt = "menuone,noselect,noinsert"
 	require "autocomplete"
+  require "snippets"
 
 	-- LSP Config
 	require "lspinstaller-conf"
