@@ -1,4 +1,5 @@
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
 	parser_configs.http = {
 		install_info = {
 			url = "https://github.com/NTBBloodbath/tree-sitter-http",
@@ -6,7 +7,16 @@ local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
 			branch = "main"
 		}
 	}
+
+  parser_configs.glsl = {
+    filetype = "vert",
+    filetypes = {"vert","frag"}
+  }
+
 	require "nvim-treesitter.configs".setup {
+      indent = {
+    enable = true
+    },
 		ensure_installed = {
 			"bash",
 			"yaml",

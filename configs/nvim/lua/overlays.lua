@@ -50,7 +50,7 @@ local nvimConfig =
 	{
 		cmd = "cd $HOME/.dotfiles && nvim configs/init.lua && cd -",
 		direction = "float",
-		on_close = function(term)
+		on_close = function()
 			Terminal:close()
 			u.ReloadConfig()
 		end
