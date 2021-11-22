@@ -1,8 +1,8 @@
 {
 	"height": 20,
 	"spacing": 4,
-	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-	"modules-center": ["custom/spotify"],
+	"modules-left": ["sway/workspaces", "sway/mode"],
+	"modules-center": ["custom/media"],
 	"modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "custom/clock" ],
 	"sway/workspaces": {
 		"disable-scroll": true,
