@@ -2,7 +2,7 @@
 
 WORKSPACE=$(swaymsg -t get_workspaces --raw | jq '.[] | select(.focused == true)')
 
-WORKSPACE_ID=$(echo $WORKSPACE | jq ".name")
+WORKSPACE_ID=$(echo $WORKSPACE | jq ".name" | tr -d '"')
 WORKSPACE_MODE=$(echo $WORKSPACE | jq ".layout");
 
 MODE_SPLITH='"splith"'
@@ -10,17 +10,16 @@ MODE_SPLITV='"splitv"'
 MODE_TABBED='"tabbed"'
 MODE_STACKED='"stacked"'
 
-echo $WORKSPACE_MODE
+function set_layout(){
+  swaymsg "workspace $(swaymsg -t get_workspaces --raw | jq '.[] | select(.focused == true) .name'); layout $1"
+}
 
 if [ $WORKSPACE_MODE = $MODE_SPLITH ]; then
-	swaymsg "workspace $WORKSPACE_ID; layout splitv"
+	set_layout splitv
 elif [ $WORKSPACE_MODE = $MODE_SPLITV ]; then
-	swaymsg "workspace $WORKSPACE_ID; layout tabbed"
+	set_layout tabbed
 elif [ $WORKSPACE_MODE = $MODE_TABBED ]; then
-	swaymsg "workspace $WORKSPACE_ID; layout stacking"
+	set_layout stacking
 elif [ $WORKSPACE_MODE = $MODE_STACKED ]; then
-	swaymsg "workspace $WORKSPACE_ID; layout splith"
+	set_layout splith
 fi
-
-echo $WORKSPACE_ID;
-

@@ -3,21 +3,25 @@ import argparse
 import logging
 import sys
 import signal
+import time
 import gi
 import json
-from os.path import expanduser
 gi.require_version('Playerctl', '2.0')
 from gi.repository import Playerctl, GLib
+import subprocess
+from os.path import expanduser
+home = expanduser("~")
 
 logger = logging.getLogger(__name__)
 
+playerVisible = False
 
-def write_output(text, player):
+def write_output(text, player_name):
     logger.info('Writing output')
 
-    output = {'text': text.replace("\n", " ").strip(),
-              'class': 'custom-' + player.props.player_name,
-              'alt': player.props.player_name}
+    output = {'text': text.replace("&", "&amp;"),
+              'class': 'custom-' + player_name,
+              'alt': player_name}
 
     sys.stdout.write(json.dumps(output) + '\n')
     sys.stdout.flush()
@@ -26,7 +30,6 @@ def write_output(text, player):
 def on_play(player, status, manager):
     logger.info('Received new playback status')
     on_metadata(player, player.props.metadata, manager)
-
 
 def on_metadata(player, metadata, manager):
     logger.info('Received new metadata')
@@ -44,18 +47,32 @@ def on_metadata(player, metadata, manager):
 
     if player.props.status != 'Playing' and track_info:
         track_info = ' ' + track_info
-    write_output(track_info, player)
+    write_output(track_info, player.props.player_name)
 
+
+def update_song():
+    global playerVisible
+    while not playerVisible:
+        result = subprocess.run("./capture_mp3.sh",stdout=subprocess.PIPE)
+        resultString = result.stdout.decode("utf-8")
+        logger.debug(resultString);
+        write_output(resultString, "Spotify")
+        time.sleep(6)
 
 def on_player_appeared(manager, player, selected_player=None):
+    global playerVisible
     if player is not None and (selected_player is None or player.name == selected_player):
+        playerVisible = True
         init_player(manager, player)
     else:
         logger.debug("New player appeared, but it's not the selected player, skipping")
 
 
 def on_player_vanished(manager, player):
+    global playerVisible
     logger.info('Player has vanished')
+    playerVisible = False
+    update_song()
     sys.stdout.write('\n')
     sys.stdout.flush()
 
@@ -65,6 +82,7 @@ def init_player(manager, name):
     player = Playerctl.Player.new_from_name(name)
     player.connect('playback-status', on_play, manager)
     player.connect('metadata', on_metadata, manager)
+    update_song()
     manager.manage_player(player)
     on_metadata(player, player.props.metadata, manager)
 
@@ -73,7 +91,7 @@ def signal_handler(sig, frame):
     logger.debug('Received signal to stop, exiting')
     sys.stdout.write('\n')
     sys.stdout.flush()
-    # loop.quit()
+    loop.quit()
     sys.exit(0)
 
 
@@ -90,16 +108,14 @@ def parse_arguments():
 
 
 def main():
+
     arguments = parse_arguments()
 
     # Initialize logging
-    LOG=expanduser("~")+"/.dotfiles/configs/waybar/media.log"
-    logging.basicConfig(level=logging.DEBUG, filename=LOG,
+    LOG = home+"/.dotfiles/configs/waybar/media.log"                                    logger.setLevel(max((3 - arguments.verbose) * 10, 0))
+    logging.basicConfig(stream=sys.stderr, filename=LOG, level=logging.DEBUG,
                         format='%(name)s %(levelname)s %(message)s')
 
-    # Logging is set by default to WARN and higher.
-    # With every occurrence of -v it's lowered by one
-    logger.setLevel(max((3 - arguments.verbose) * 10, 0))
     logger.setLevel(0)
 
     # Log the sent command line arguments
@@ -123,8 +139,8 @@ def main():
 
         init_player(manager, player)
 
+    update_song()
     loop.run()
-
 
 if __name__ == '__main__':
     main()
