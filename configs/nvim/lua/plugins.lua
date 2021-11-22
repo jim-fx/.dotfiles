@@ -12,7 +12,7 @@ return require("packer").startup(function()
 	use "alexghergh/nvim-tmux-navigation"
 
 	-- Theming Section
-	use "kaicataldo/material.vim"
+  use 'folke/tokyonight.nvim'
 	use "xiyaowong/nvim-transparent"
 
 	-- Layout Plugins
@@ -39,22 +39,39 @@ return require("packer").startup(function()
 	-- Obsidian / Roam like features
 	-- use "lervag/wiki.vim"
 
+  -- Lsp Errors
+  use "folke/lsp-colors.nvim"
+  use "onsails/lspkind-nvim"
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
 	-- Syntax / Autocomplete
 	use "neovim/nvim-lspconfig"
   use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-calc"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-cmdline"
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
   use "rafamadriz/friendly-snippets"
 
+  use "beyondmarc/glsl.vim"
+
   use "tpope/vim-commentary"
 
 	use "williamboman/nvim-lsp-installer"
 	use "nvim-lua/lsp-status.nvim"
-	use "L3MON4D3/LuaSnip"
 	use "windwp/nvim-autopairs"
 	use "neoclide/jsonc.vim"
 	use {
@@ -64,8 +81,8 @@ return require("packer").startup(function()
 
 	-- Preview Markdown
 	use "ellisonleao/glow.nvim"
-	
-	-- Autoformat
+
+  -- Autoformat
 	--use "sbdchd/neoformat"
 	-- use "lukas-reineke/format.nvim"
 

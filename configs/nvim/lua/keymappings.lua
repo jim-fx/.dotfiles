@@ -22,6 +22,7 @@ map("n", "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
 map("n", "<Leader><C-f>", ":Format<CR>", options)
 map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
 map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
+map("n", "<leader>t", ":TroubleToggle<CR>", remap)
 
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
@@ -33,8 +34,10 @@ map("n", "Y", "yy", options)
 map("n", "<Leader>k", "{",options)
 map("n", "<Leader>j", "}",options)
 
-map("n", "<Leader><C-j>", "<cmd>move +1<CR>", options)
-map("n", "<Leader><C-k>", "<cmd>move -2<CR>", options)
+map("n", "<A-j>", "<cmd>move +1<CR>", options)
+map("n", "<A-k>", "<cmd>move -2<CR>", options)
+map("i", "<A-j>", "<cmd>move +1<CR>", options)
+map("i", "<A-k>", "<cmd>move -2<CR>", options)
 
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", options)

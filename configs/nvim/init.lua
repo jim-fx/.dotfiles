@@ -27,19 +27,9 @@ if u.has_plugin("cmp") then
 		set tabstop=2
 	]]
 
-	-- Debug indentations
-	if false then
-		vim.cmd [[
-			set list
-			set listchars=eol:⏎,tab:->,trail:_,nbsp:⎵
-		]]
-	end
-
 	g.hidden = true --unload buffers when hidden
 	g.filetype = true -- execute autocommands based on filetype
 	o.autoread = true
-
-	o.lazyredraw = true
 
 	-- Search
 	o.inccommand = 'nosplit' -- show substitutions incrementally
@@ -69,7 +59,7 @@ if u.has_plugin("cmp") then
 
 	cmd [[command Format :lua vim.lsp.buf.formatting()]]
 	cmd [[command FormatSync :lua vim.lsp.buf.formatting_sync()]]
-	
+
 	cmd [[set noshowmode]] --to get rid of thing like --INSERT--
 	cmd [[set noshowcmd]] --to get rid of display of last command
 	cmd [[set shortmess+=F]] --to get rid of the file name displayed in the command line bar
@@ -81,9 +71,11 @@ if u.has_plugin("cmp") then
 	-- Enable Theming / Syntax
 	o.syntax = "enable"
 	o.termguicolors = true
-	cmd("colorscheme material")
+	cmd("colorscheme tokyonight")
 	g.material_terminal_italics = 1
 	g.material_theme_style = "darker"
+  g.tokyonight_style = "night"
+  g.tokyonight_transparent_sidebar = true;
 
 	-- Remove background color
 	require("transparent").setup({enable = true})
@@ -151,7 +143,6 @@ if u.has_plugin("cmp") then
 	g.wiki_link_extension = ".md"
 
 		-- KeyBindings
-	g.mapleader = " "
 	require "keymappings"
 
 	require "nvim-tmux-navigation".setup {
@@ -171,9 +162,8 @@ if u.has_plugin("cmp") then
 	require "treesitter-conf"
 
 	-- Autocompletion Setup
-	o.completeopt = "menuone,noselect,noinsert"
-	require "autocomplete"
   require "snippets"
+	require "cmp-conf"
 
 	-- LSP Config
 	require "lspinstaller-conf"
@@ -198,13 +188,9 @@ if u.has_plugin("cmp") then
     }
   )
 
-  -- Autocompletion Setup
-  o.completeopt = "menuone,noselect,noinsert"
-  require "autocomplete"
-
   -- LSP Config
   require "lspinstaller-conf"
-	require "lsp-utils"
+	require "lsp-conf"
 
 else
 	vim.cmd[[PackerSync]]

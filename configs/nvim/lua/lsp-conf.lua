@@ -1,42 +1,9 @@
-local nvim_lsp = require "lspconfig"
+local lsp = require "lspconfig"
 local lsp_status = require("lsp-status")
-local utils = require("utils")
 
 -- function to attach completion when setting up lsp
-local function on_attach(client)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
-
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- Mappings.
-	local opts = {noremap = true, silent = true}
-
-	-- Set some keybinds conditional on server capabilities
-	if client.resolved_capabilities.document_formatting then
-		buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-	elseif client.resolved_capabilities.document_range_formatting then
-		buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-	end
-
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
-						augroup lsp_document_highlight
-						autocmd! * <buffer>
-						autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-						autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-						autocmd CursorHold *.* :lua vim.lsp.diagnostic.show_line_diagnostics()
-						augroup END
-				]],
-			false
-		)
-	end
+local function on_attach()
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 local system_name = ""
@@ -58,7 +25,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-nvim_lsp.sumneko_lua.setup {
+lsp.sumneko_lua.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities,
 	cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
@@ -72,7 +39,7 @@ nvim_lsp.sumneko_lua.setup {
 			},
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
-				globals = {"vim"}
+				globals = {"vim", "bufnr", "use"}
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -88,37 +55,36 @@ nvim_lsp.sumneko_lua.setup {
 
 -- Go Language Server
 
-nvim_lsp.gopls.setup {
+lsp.gopls.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities
 }
 
 -- Html Setup
-nvim_lsp.html.setup {
+lsp.html.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities,
 	filetypes = {"html"}
 }
 
 -- Svelte Language Server
-
-nvim_lsp.svelte.setup {
+lsp.svelte.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities
 }
 
 -- Typescript Language Server
-
 local function organize_imports()
-	local params = {
-		command = "_typescript.organizeImports",
-		arguments = {vim.api.nvim_buf_get_name(0)},
-		title = ""
-	}
-	vim.lsp.buf.execute_command(params)
+    local params = {
+        command = "_typescript.organizeImports",
+        arguments = {vim.api.nvim_buf_get_name(bufnr)},
+        title = ""
+    }
+
+    vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 500)
 end
 
-nvim_lsp.tsserver.setup {
+lsp.tsserver.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities,
 	commands = {
@@ -129,17 +95,20 @@ nvim_lsp.tsserver.setup {
 	}
 }
 
+-- JSON ls setup
+lsp.jsonls.setup {
+	on_attach = on_attach,
+	capabilities = lsp_status.capabilities
+}
+
 -- Setup diagnostics formaters and linters for non LSP provided files
-nvim_lsp.diagnosticls.setup {
+lsp.diagnosticls.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities,
 	cmd = {"diagnostic-languageserver", "--stdio"},
 	filetypes = {
-		"lua",
 		"sh",
 		"markdown",
-		"json",
-		"jsonc",
 		"yaml",
 		"toml"
 	},
