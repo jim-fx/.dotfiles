@@ -15,14 +15,13 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term alacritty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
+
 set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
 set $powermenu "rofi -show p -modi p:~/.dotfiles/configs/rofi/rofi-power-menu -lines 6"
 set $screenclip slurp | grim -g - ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | $screenclip
+set $settings gnome-control-center
 set $toggle_layout ~/.config/sway/toggle_layout.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
 
@@ -182,6 +181,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
     # Switch the current container between different layout styles
     bindsym $mod+w exec $toggle_layout
     bindsym $mod+g exec $toggle_gaps
+    bindsym $mod+Comma exec $settings
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -241,6 +241,8 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+exec_always nm-applet --indicator
 
 #
 # Status Bar:
