@@ -22,7 +22,6 @@ return require("packer").startup(function()
 	use "kyazdani42/nvim-tree.lua"
 	use "nvim-lua/popup.nvim"
 	use "mhinz/vim-startify"
-	--use "lukas-reineke/indent-blankline.nvim"
 	use "karb94/neoscroll.nvim"
 
 	use "tpope/vim-fugitive"
@@ -40,6 +39,8 @@ return require("packer").startup(function()
 
 	-- Obsidian / Roam like features
 	-- use "lervag/wiki.vim"
+
+  use "rhysd/vim-grammarous"
 
   -- Lsp Errors
   use "folke/lsp-colors.nvim"
