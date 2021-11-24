@@ -8,8 +8,10 @@ return require("packer").startup(function()
 
   -- Faster Filetype Detection
   use "nathom/filetype.nvim"
-
 	use "alexghergh/nvim-tmux-navigation"
+
+  use 'lervag/vimtex'
+  use 'xuhdev/vim-latex-live-preview'
 
 	-- Theming Section
   use 'folke/tokyonight.nvim'

@@ -24,6 +24,7 @@ set $screenclip slurp | grim -g - ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-
 set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | $screenclip
 set $toggle_layout ~/.config/sway/toggle_layout.sh
+set $toggle_gaps ~/.config/sway/toggle_gaps.sh
 
 
 # Input configuration
@@ -180,6 +181,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 
     # Switch the current container between different layout styles
     bindsym $mod+w exec $toggle_layout
+    bindsym $mod+g exec $toggle_gaps
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen

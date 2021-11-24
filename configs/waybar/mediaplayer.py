@@ -23,12 +23,12 @@ def write_output(text, player):
     sys.stdout.flush()
 
 
-def on_play(player, status, manager):
+def on_play(player, _, manager):
     logger.info('Received new playback status')
     on_metadata(player, player.props.metadata, manager)
 
 
-def on_metadata(player, metadata, manager):
+def on_metadata(player, metadata, _):
     logger.info('Received new metadata')
     track_info = ''
 
