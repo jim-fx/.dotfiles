@@ -53,8 +53,10 @@ lsp.sumneko_lua.setup {
 	}
 }
 
--- Go Language Server
+-- Ltex Language Server
+lsp.ltex.setup {}
 
+-- Go Language Server
 lsp.gopls.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities
