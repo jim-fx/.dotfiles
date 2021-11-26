@@ -53,6 +53,9 @@ if u.has_plugin("cmp") then
 	g.loaded_zipPlugin = 1
 	g.loaded_zip = 1
 
+  g.languagetool_server_jar = "~/build/languagetool/languagetool-server.jar"
+  g.languagetool_lang= "de"
+
 	cmd [[set mouse=a]] -- enable mouse interaction
 	cmd [[set undofile]]
 	cmd [[set fcs=eob:\ ]] --disable showing ~ in empty lines
