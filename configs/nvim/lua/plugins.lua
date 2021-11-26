@@ -11,7 +11,6 @@ return require("packer").startup(function()
 	use "alexghergh/nvim-tmux-navigation"
 
   use 'lervag/vimtex'
-  use 'xuhdev/vim-latex-live-preview'
 
 	-- Theming Section
   use 'folke/tokyonight.nvim'
@@ -39,8 +38,6 @@ return require("packer").startup(function()
 
 	-- Obsidian / Roam like features
 	-- use "lervag/wiki.vim"
-
-  use "rhysd/vim-grammarous"
 
   -- Lsp Errors
   use "folke/lsp-colors.nvim"

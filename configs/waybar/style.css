@@ -10,7 +10,7 @@ window#waybar {
 }
 
 window > box {
-		margin: 10px;
+		margin: 6px;
 		margin-bottom: 0px;
     background: #2b303b;
 		background:			black;
