@@ -102,8 +102,8 @@ if u.has_plugin("cmp") then
 			ignored = "◌"
 		},
 		folder = {
-			arrow_open = " ",
-			arrow_closed = " ",
+			arrow_open = ">",
+			arrow_closed = "<",
 			default = "",
 			open = "",
 			empty = "",
@@ -119,7 +119,16 @@ if u.has_plugin("cmp") then
 		}
 	}
 
-	require("nvim-tree").setup {
+  g.nvim_tree_highlight_opened_files = 1;
+  g.nvim_tree_group_empty = 1;
+	g.nvim_tree_indent_markers = 0;
+  g.nvim_tree_show_icons ={
+    folder_arrows = 0,
+    folders = 1,
+    files = 1,
+    git = 1
+  }
+  require("nvim-tree").setup {
 		auto_open = 1,
 		gitignore = 1,
 		group_empty = 1,
@@ -127,9 +136,15 @@ if u.has_plugin("cmp") then
 		update_focused_file = {
 			enable = false,
 		},
-		diagnostics = {
-			enable = true
-		},
+    diagnostics = {
+      enable = true,
+      icons = {
+        hint = "",
+        info = "",
+        warning = "",
+        error = "",
+      },
+    },
 		view = {
 			auto_resize = true,
 			hide_root_folder = true,

@@ -2,7 +2,7 @@
 		border:        none;
 		font-family:   Font Awesome, Hack Nerd Font;
 		font-size:     13px;
-		opacity: 0.95;
+		/* opacity: 0.95; */
 }
 
 window#waybar {
