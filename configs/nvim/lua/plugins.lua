@@ -56,6 +56,7 @@ return require("packer").startup(function()
 
 	-- Syntax / Autocomplete
 	use "neovim/nvim-lspconfig"
+  use "github/copilot.vim"
   use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-path"
