@@ -77,7 +77,8 @@
 	},
 	"custom/clock": {
 		"exec": "date +'%H:%M'",
-		"interval": 10
+		"interval": 10,
+    "on-click": "nm-applet"
 	},
 	"cpu": {
 		"format": "{usage}% ",

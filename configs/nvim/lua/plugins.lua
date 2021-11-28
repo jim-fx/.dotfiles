@@ -25,6 +25,7 @@ return require("packer").startup(function()
 
 	use "tpope/vim-fugitive"
   use "tpope/vim-surround"
+  use "lambdalisue/suda.vim"
   use "editorconfig/editorconfig-vim"
 
 	-- Code Navigation
@@ -55,7 +56,8 @@ return require("packer").startup(function()
   }
 
 	-- Syntax / Autocomplete
-	use "neovim/nvim-lspconfig"
+  use "terminalnode/sway-vim-syntax"
+  use "neovim/nvim-lspconfig"
   use "github/copilot.vim"
   use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"

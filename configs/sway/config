@@ -1,3 +1,5 @@
+# vi: ft=conf
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -8,19 +10,27 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
 
-set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
-set $powermenu "rofi -show p -modi p:~/.dotfiles/configs/rofi/rofi-power-menu -lines 6"
+# Some menus
+set $wofi_scripts ~/.config/wofi
+set $quickmenu wofi --show drun
+
+# Screenshot section
 set $screenclip slurp | grim -g - ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | $screenclip
+
+# Default Programs
+set $term alacritty
+set $explorer nautilus
+set $config_editor ~/.config/sway/config_editor.sh
 set $settings gnome-control-center
 set $toggle_layout ~/.config/sway/toggle_layout.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
@@ -80,13 +90,15 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 #
 # Basics:
 #
-		bindsym $mod+q exec $powermenu
+    bindsym $mod+d exec $quickmenu
+    bindsym $mod+q kill
+		bindsym $mod+Shift+q exec $wofi_scripts/wofi-power-menu.sh
     bindsym $mod+Return exec $term
-    bindsym $mod+Shift+q kill
-    bindsym $mod+d exec $menu
-		bindsym $mod+e exec nautilus
-    
-		# Drag and resize floating windows with mouse right/left drag
+		bindsym $mod+e exec $explorer
+    bindsym $mod+Comma exec $settings
+    bindsym $mod+Shift+Comma exec $config_editor
+   
+    # Drag and resize floating windows with mouse right/left drag
 		floating_modifier $mod normal
 
     # Reload the configuration file
@@ -181,7 +193,6 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
     # Switch the current container between different layout styles
     bindsym $mod+w exec $toggle_layout
     bindsym $mod+g exec $toggle_gaps
-    bindsym $mod+Comma exec $settings
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -204,7 +215,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 		bindsym $mod+s exec $screenshot
 
 
-		bindsym Alt+Tab exec rofi -show window -modi window
+		bindsym $mod+Tab exec $wofi_scripts/sway-select-window.sh 
 #
 # Scratchpad:
 #
