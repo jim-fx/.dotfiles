@@ -25,11 +25,10 @@
 # obtain command to execute with swaymsg for selected window
 if [ -z "$1" ]
 then 
-		command_=focus
+    command_=focus
 else
     command_=$1
 fi
-
 
 # Obtain the avaliable windows' workspaces, names and IDs as strings
 mapfile -t windows < <(
@@ -39,26 +38,12 @@ swaymsg -t get_tree | jq -r '[
     |select(.type=="workspace")
     | . as $workspace | recurse(.nodes[]?)
     |select(.type=="con" and .name!=null)
-    |{workspace: $workspace.name, name: .name, id: .id, focused: .focused, app_id: .app_id, class: .window_properties.class}]
+    |{workspace: $workspace.name, name: .name, id: .id, focused: .focused, app_id: .app_id}]
     |sort_by(.workspace, .name)[]
-    |.workspace + if .focused then "* " else "  " end + if .app_id then .app_id else .class end + " - " +  .name + "  " + (.id|tostring)'
+    |.workspace + if .focused then "* " else "  " end + .app_id + " - " +  .name + "  " + (.id|tostring)'
 )
+rm $HOME/.cache/wofi-dmenu
 
-# Obtain window list index of last active window
-# todo
-index_window_last_active=0
-for index_window in "${!windows[@]}"
-do 
-    window="${windows[$index_window]}"
-    # obtain index of the active window
-    if [ "${window:1:1}" == "*" ]
-    then 
-        index_window_last_active=$(($index_window))
-        break
-    fi
-done
-
-# get window list to display
 windows_separators=()
 colors=(blue green orange red magenta)
 workspace_previous=''
@@ -96,36 +81,11 @@ do
     workspace_previous=$workspace
 done
 
-# TODO: this breaks when using i3. Comment out for now. Should only execute if running sway.
+HEIGHT=$(( $(printf '%s\n' "${windows_separators[@]}" | wc -l) * 30 ))
+
+echo $HEIGHT
 # Select window with rofi, obtaining ID of selected window
-#screen_pos=$(swaymsg -t get_outputs \
-#	| jq -r \
-#	'.[] | select(.focused).rect | "\(.width)x\(.height)\\+\(.x)\\+\(.y)"')
-
-# ripgrep
-#xwayland_output=$(xrandr | rg -oP "[A-Z]+[0-9]+(?= [a-z]+ $screen_pos)")
-
-#monitor_id=$(rofi --help | rg $xwayland_output -B1 \
-#	| sed -sr '/ID/!d;s/[^:]*:\s([0-9])/\1/')
-
-
-# Select window with rofi, obtaining ID of selected window
-# TODO: Use multiple columns while inserting appropriate empty lines
-#	and adjusting line number accordingly in order to visually
-#	separate the list by workspace
-
-if [ -z "$monitor_id" ]
-then 
-	idx_selected=$printf '%s\n' "${windows_separators[@]}" | rofi -dmenu -i -p "$command_" -a "$index_workspace_active" -format i -selected-row "$index_window_last_active" -no-custom -s -width 80 -lines 30 -markup-rows)
-else	
-	idx_selected=$(printf '%s\n' "${windows_separators[@]}" | rofi  -monitor $monitor_id -dmenu -i -p "$command_" -a "$index_workspace_active" -format i -selected-row "$index_window_last_active" -no-custom -s -width 80 -lines 30 -markup-rows)
-fi
-
-# if no entry selected (e.g. user exitted with escape), end
-if [ -z "$idx_selected" ]
-then
-    exit 1
-fi
+idx_selected=$(printf '%s\n' "${windows_separators[@]}" | wofi -d -p "$command_" -m -H $HEIGHT )
 selected=${windows[$idx_selected]}
 id_selected=$(echo $selected | awk '{print $NF}')
 workspace_selected=${selected:0:1}
@@ -155,7 +115,8 @@ do
 done
 
 # Tell sway to focus said window
+# todo: do not execute if selected is the separator
 if [ ! -z "$id_selected" ]
 then
     swaymsg "[con_id=$id_selected] $command_"
-fi(
+fi

@@ -1133,3 +1133,552 @@ __main__ DEBUG Arguments received {'verbose': 0, 'player': None}
 __main__ DEBUG Received signal to stop, exiting
 __main__ DEBUG Received signal to stop, exiting
 __main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Writing output
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Initialize player: chromium
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Received new playback status
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new playback status
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ INFO Received new metadata
+__main__ INFO Writing output
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ INFO Player has vanished
+__main__ INFO Player has vanished
+__main__ INFO Player has vanished
+__main__ INFO Player has vanished
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Received signal to stop, exiting
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
+__main__ DEBUG Arguments received {'verbose': 0, 'player': None}
