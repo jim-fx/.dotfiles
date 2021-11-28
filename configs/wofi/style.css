@@ -5,6 +5,7 @@ window {
 }
 
 #input {
+    height: 0;
     border: none;
     border-radius: 0px;
     background-color: white;

@@ -2,7 +2,7 @@
 
 swaymsg -t get_tree | jq -r '
         # descend to workspace or scratchpad
-        .nodes[].nodes[]
+        .nodes[].nodes[].nodes[]
         # save workspace name as .w
         | {"w": .name} + (
                 if .nodes then # workspace
@@ -19,7 +19,7 @@ swaymsg -t get_tree | jq -r '
         # remove markup and index from workspace name, replace scratch with "[S]"
         + (.w | gsub("^[^:]*:|<[^>]*>"; "") | sub("__i3_scratch"; "[S]"))
         + "\t " +  .name)
-        ' | wofi --show dmenu -Ddynamic-lines=true --prompt=0 | {
+        ' | wofi --show dmenu| {
     read -r id name
     swaymsg "[con_id=$id]" focus
 }
