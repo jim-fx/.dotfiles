@@ -34,6 +34,7 @@ set $config_editor ~/.config/sway/config_editor.sh
 set $settings gnome-control-center
 set $toggle_layout ~/.config/sway/toggle_layout.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
+set $web_search $wofi_scripts/web-search.sh
 
 
 # Input configuration
@@ -97,6 +98,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 		bindsym $mod+e exec $explorer
     bindsym $mod+Comma exec $settings
     bindsym $mod+Shift+Comma exec $config_editor
+    bindsym $mod+a exec $web_search
    
     # Drag and resize floating windows with mouse right/left drag
 		floating_modifier $mod normal
@@ -204,7 +206,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    # bindsym $mod+a focus parent
 
 		# Screenshots
 		# -- Area Screenshot
