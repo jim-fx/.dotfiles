@@ -13,7 +13,8 @@ return require("packer").startup(function()
   use 'lervag/vimtex'
 
 	-- Theming Section
-  use 'folke/tokyonight.nvim'
+  -- use 'folke/tokyonight.nvim'
+  use 'EdenEast/nightfox.nvim'
 	use "xiyaowong/nvim-transparent"
 
 	-- Layout Plugins
@@ -47,20 +48,16 @@ return require("packer").startup(function()
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("trouble").setup()
     end
   }
 
 	-- Syntax / Autocomplete
-  use "terminalnode/sway-vim-syntax"
   use "neovim/nvim-lspconfig"
-  use "github/copilot.vim"
+  -- use "github/copilot.vim"
   use "hrsh7th/nvim-cmp"
 	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/cmp-nvim-lua"
 	use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-calc"
   use "hrsh7th/cmp-buffer"
@@ -86,7 +83,7 @@ return require("packer").startup(function()
 	use "ellisonleao/glow.nvim"
 
   -- Autoformat
-	--use "sbdchd/neoformat"
+	use "sbdchd/neoformat"
 	-- use "lukas-reineke/format.nvim"
 
 	-- General Popup Window
