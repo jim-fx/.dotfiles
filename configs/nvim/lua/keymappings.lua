@@ -34,13 +34,15 @@ map("n", "Y", "yy", options)
 map("n", "<Leader>k", "{",options)
 map("n", "<Leader>j", "}",options)
 
+-- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", options)
 map("n", "<A-k>", "<cmd>move -2<CR>", options)
 map("i", "<A-j>", "<cmd>move +1<CR>", options)
 map("i", "<A-k>", "<cmd>move -2<CR>", options)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", options)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", options)
-
+map("n", "<A-S-k>", "YP", options);
+map("n", "<A-S-j>", "Yp", options);
 
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", options)
