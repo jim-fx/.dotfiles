@@ -56,7 +56,7 @@ if [ -d "$HOME/.asdf" ] ; then
    . "$HOME/.asdf/asdf.sh"
 fi
 
-if [ "$(which go)" != "" ] ; then
+if type go &> /dev/null ; then
   export PATH="$PATH:$(go env GOPATH)/bin"
 fi
 
