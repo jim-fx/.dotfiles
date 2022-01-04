@@ -56,6 +56,10 @@ if [ -d "$HOME/.asdf" ] ; then
    . "$HOME/.asdf/asdf.sh"
 fi
 
+if [ "$(which go)" != "" ] ; then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+
 #If fdfind is installed force fzf to use it
 if type fdfind &> /dev/null ; then
     export FZF_DEFAULT_COMMAND='fdfind --type f'

@@ -1,8 +1,8 @@
-local cmd = vim.cmd;
+local cmd = vim.cmd
 
 cmd [[
     augroup auto_format
       au!
-      au BufWritePre * FormatSync
+      au BufWritePre * Neoformat
     augroup END
 ]]
