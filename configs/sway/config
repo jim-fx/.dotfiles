@@ -35,7 +35,7 @@ set $settings gnome-control-center
 set $toggle_layout ~/.config/sway/toggle_layout.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
 set $web_search $wofi_scripts/web-search.sh
-
+set $select_window ~/.config/sway/select_window.sh
 
 # Input configuration
 input * {
@@ -217,7 +217,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 		bindsym $mod+s exec $screenshot
 
 
-		bindsym $mod+Tab exec $wofi_scripts/sway-select-window.sh 
+		bindsym $mod+Tab exec $select_window 
 #
 # Scratchpad:
 #
