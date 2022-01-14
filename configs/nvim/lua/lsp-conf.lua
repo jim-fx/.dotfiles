@@ -1,9 +1,21 @@
 local lsp = require "lspconfig"
 local lsp_status = require("lsp-status")
 
+_G.lsp_organize_imports = function()
+    local params = {
+        command = "_typescript.organizeImports",
+        arguments = {vim.api.nvim_buf_get_name(0)},
+        title = ""
+    }
+    vim.lsp.buf.execute_command(params)
+end
+
 -- function to attach completion when setting up lsp
 local function on_attach()
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+ vim.cmd("command! LspOrganize lua lsp_organize_imports()")
+ vim.api.nvim_buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
 end
 
 local system_name = ""
@@ -76,25 +88,9 @@ lsp.svelte.setup {
 }
 
 -- Typescript Language Server
-local function organize_imports()
-    local params = {
-        command = "_typescript.organizeImports",
-        arguments = {vim.api.nvim_buf_get_name(bufnr)},
-        title = ""
-    }
-
-    vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 500)
-end
-
 lsp.tsserver.setup {
 	on_attach = on_attach,
 	capabilities = lsp_status.capabilities,
-	commands = {
-		OrganizeImports = {
-			organize_imports,
-			description = "Organize Imports"
-		}
-	}
 }
 
 -- JSON ls setup

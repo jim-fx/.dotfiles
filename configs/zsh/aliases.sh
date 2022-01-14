@@ -13,6 +13,8 @@ alias zshi="cd ~/.dotfiles && vim configs/init.lua && cd -"
 alias zshc="cd ~/.dotfiles && vim configs/.zshrc && cd -"
 alias zshu="source ~/.zshrc"
 
+alias online="ping 1.1.1.1"
+
 alias vim="nvim"
 alias v="nvim"
 

@@ -36,6 +36,7 @@ set $toggle_layout ~/.config/sway/toggle_layout.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
 set $web_search $wofi_scripts/web-search.sh
 set $select_window ~/.config/sway/select_window.sh
+set $select_emoji $wofi_scripts/wofi-emoji
 
 # Input configuration
 input * {
@@ -216,7 +217,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 		# -- Entire Screen
 		bindsym $mod+s exec $screenshot
 
-
+		bindsym $mod+i exec $select_emoji 
 		bindsym $mod+Tab exec $select_window 
 #
 # Scratchpad:
