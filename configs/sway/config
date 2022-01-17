@@ -257,6 +257,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 exec_always nm-applet --indicator
+exec_always mako
 
 #
 # Status Bar:

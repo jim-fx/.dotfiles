@@ -2,8 +2,8 @@
 	"height": 20,
 	"spacing": 4,
 	"modules-left": ["sway/workspaces", "sway/mode"],
-	"modules-center": ["custom/media"],
-	"modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "custom/clock" ],
+	"modules-center": ["custom/media", "custom/clock"],
+	"modules-right": ["pulseaudio", "network", "custom/cpu_speed", "memory", "battery", "custom/clock" ],
 	"sway/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": true,
@@ -145,6 +145,15 @@
 		},
 		"on-click": "pavucontrol"
 	},
+ "custom/cpu_speed": {
+    "interval": 10,
+    "return-type": "json",
+    "exec": "~/.config/waybar/cpu_speed.sh",
+    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {}",
+    "format-icons": [""],
+    "escape": true,
+    "on-click": "terminator -e htop"
+},
 	"custom/media": {
 		"format": "{icon} {}",
 		"return-type": "json",

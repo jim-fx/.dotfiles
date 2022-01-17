@@ -93,9 +93,9 @@ def main():
     arguments = parse_arguments()
 
     # Initialize logging
-    LOG=expanduser("~")+"/.dotfiles/configs/waybar/media.log"
-    logging.basicConfig(level=logging.DEBUG, filename=LOG,
-                        format='%(name)s %(levelname)s %(message)s')
+    # LOG=expanduser("~")+"/.dotfiles/configs/waybar/media.log"
+    # logging.basicConfig(level=logging.DEBUG, filename=LOG,
+    #                     format='%(name)s %(levelname)s %(message)s')
 
     # Logging is set by default to WARN and higher.
     # With every occurrence of -v it's lowered by one
