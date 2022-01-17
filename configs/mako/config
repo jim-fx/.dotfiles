@@ -1,0 +1,27 @@
+sort=-time
+layer=overlay
+background-color=#ffffff
+width=300
+height=110
+border-color=#000000
+border-radius=0
+icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+font=monospace 14
+text-color=#000000
+
+[urgency=low]
+border-color=#000000
+
+[urgency=normal]
+border-color=#d08770
+
+[urgency=high]
+border-color=#ff0000
+default-timeout=0
+
+[category=mpd]
+default-timeout=2000
+group-by=category
