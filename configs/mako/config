@@ -2,20 +2,27 @@ sort=-time
 layer=overlay
 background-color=#ffffff
 width=300
-height=110
+height=300
 border-color=#000000
-border-radius=0
+border-radius=2
 icons=0
 max-icon-size=64
 default-timeout=5000
 ignore-timeout=1
-font=monospace 14
+font=FiraMono Nerd Font 14
 text-color=#000000
+margin=5
+padding=0,20,20,10
+border-size=5
 
 [urgency=low]
+border-size=0
 border-color=#000000
+background-color=#ffffff99
 
 [urgency=normal]
+border-size=0
+progress-color=over #ff0000
 border-color=#d08770
 
 [urgency=high]
