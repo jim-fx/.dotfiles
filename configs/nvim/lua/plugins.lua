@@ -32,8 +32,6 @@ return require("packer").startup(
         use "junegunn/fzf"
         use "nvim-telescope/telescope.nvim"
 
-        use "sakhnik/nvim-gdb"
-
         -- Postman like features
         use "NTBBloodbath/rest.nvim"
 
