@@ -35,6 +35,8 @@ local function dump(o)
     end
 end
 
+M.dump = dump
+
 function M.has_plugin(pluginName)
     local status = pcall(require, pluginName)
     return status

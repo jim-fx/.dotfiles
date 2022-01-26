@@ -1,6 +1,6 @@
 local map = vim.api.nvim_set_keymap
 local g = vim.g
-local cmd = vim.cmd;
+local cmd = vim.cmd
 
 local options = {noremap = true}
 local remap = {noremap = false}
@@ -19,7 +19,7 @@ map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
 map("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map("n", "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
-map("n", "<Leader><C-f>", ":Format<CR>", options)
+map("n", "<Leader><C-f>", ":Neoformat<CR>", options)
 map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
 map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
@@ -31,8 +31,8 @@ map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
 
 map("n", "Y", "yy", options)
-map("n", "<Leader>k", "{",options)
-map("n", "<Leader>j", "}",options)
+map("n", "<Leader>k", "{", options)
+map("n", "<Leader>j", "}", options)
 
 -- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", options)
@@ -41,8 +41,8 @@ map("i", "<A-j>", "<cmd>move +1<CR>", options)
 map("i", "<A-k>", "<cmd>move -2<CR>", options)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", options)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", options)
-map("n", "<A-S-k>", "YP", options);
-map("n", "<A-S-j>", "Yp", options);
+map("n", "<A-S-k>", "YP", options)
+map("n", "<A-S-j>", "Yp", options)
 
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", options)

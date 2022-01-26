@@ -10,8 +10,6 @@ return require("packer").startup(
         use "nathom/filetype.nvim"
         use "alexghergh/nvim-tmux-navigation"
 
-        use "lervag/vimtex"
-
         -- Theming Section
         -- use 'folke/tokyonight.nvim'
         use "EdenEast/nightfox.nvim"
@@ -22,12 +20,11 @@ return require("packer").startup(
         use "kyazdani42/nvim-tree.lua"
         use "nvim-lua/popup.nvim"
         use "mhinz/vim-startify"
-        use "karb94/neoscroll.nvim"
-
         use "tpope/vim-fugitive"
+        use "tpope/vim-commentary"
         use "tpope/vim-surround"
         use "lambdalisue/suda.vim"
-        use "editorconfig/editorconfig-vim"
+        use "windwp/nvim-autopairs"
 
         -- Code Navigation
         use "dense-analysis/ale"
@@ -35,13 +32,13 @@ return require("packer").startup(
         use "junegunn/fzf"
         use "nvim-telescope/telescope.nvim"
 
-        use "sakhnik/nvim-gdb"
-
         -- Postman like features
         use "NTBBloodbath/rest.nvim"
 
         -- Obsidian / Roam like features
         -- use "lervag/wiki.vim"
+
+        use "rcarriga/nvim-notify"
 
         -- Lsp Errors
         use "folke/lsp-colors.nvim"
@@ -56,7 +53,6 @@ return require("packer").startup(
 
         -- Syntax / Autocomplete
         use "neovim/nvim-lspconfig"
-        -- use "github/copilot.vim"
         use "hrsh7th/nvim-cmp"
         use "hrsh7th/cmp-nvim-lsp"
         use "hrsh7th/cmp-nvim-lua"
@@ -67,22 +63,17 @@ return require("packer").startup(
         use "L3MON4D3/LuaSnip"
         use "saadparwaiz1/cmp_luasnip"
         use "rafamadriz/friendly-snippets"
-
-        use "beyondmarc/glsl.vim"
-
-        use "tpope/vim-commentary"
-
         use "williamboman/nvim-lsp-installer"
         use "nvim-lua/lsp-status.nvim"
-        use "windwp/nvim-autopairs"
         use "neoclide/jsonc.vim"
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate"
         }
 
-        -- Preview Markdown
-        use "ellisonleao/glow.nvim"
+        -- Language Supports
+        use "beyondmarc/glsl.vim" -- GLSL
+        use "ellisonleao/glow.nvim" -- MARKDOWN
 
         -- Autoformat
         use "sbdchd/neoformat"
