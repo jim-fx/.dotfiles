@@ -10,8 +10,6 @@ local opt = vim.opt
 require("plugins")
 
 if u.has_plugin("cmp") then
-    vim.g.did_load_filetypes = 150
-
     -- Global options
     o.number = true -- show line number
     o.showmatch = true -- show matching brackets
@@ -28,6 +26,7 @@ if u.has_plugin("cmp") then
     g.hidden = true -- unload buffers when hidden
     g.filetype = true -- execute autocommands based on filetype
     o.autoread = true
+    opt.termguicolors = true
 
     -- Search
     o.inccommand = "nosplit" -- show substitutions incrementally
@@ -68,6 +67,31 @@ if u.has_plugin("cmp") then
 
     g.ale_fixers = {"prettier", "eslint"}
 
+    vim.notify = require("notify")
+
+    require("notify").setup(
+        {
+            stages = "fade_in_slide_out",
+            render = "minimal",
+            background_colour = "#000000",
+            icons = {
+                ERROR = "",
+                WARN = "",
+                INFO = "",
+                DEBUG = "",
+                TRACE = "✎"
+            }
+        }
+    )
+
+    require("telescope").setup {
+        pickers = {
+            find_files = {
+                hidden = true
+            }
+        }
+    }
+
     -- Enable Theming / Syntax
     o.syntax = "enable"
     o.termguicolors = true
@@ -82,10 +106,12 @@ if u.has_plugin("cmp") then
         }
     )
 
-    require("transparent").setup({
-      enable = true,
-      extra_groups = "All"
-    })
+    require("transparent").setup(
+        {
+            enable = true,
+            extra_groups = "All"
+        }
+    )
 
     -- Remove background color
     cmd("highlight Normal guibg=none")
@@ -168,6 +194,8 @@ if u.has_plugin("cmp") then
 
     -- KeyBindings
     require "keymappings"
+
+    require "overlays"
 
     require "nvim-tmux-navigation".setup {
         keybindings = {
