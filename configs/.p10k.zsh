@@ -38,6 +38,7 @@
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
   # Prompt colors.
+  local main='242'
   local grey='242'
   local red='1'
   local yellow='3'
@@ -76,7 +77,7 @@
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
 
   # Magenta prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$grey
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$main
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$red
   # Default prompt symbol.
