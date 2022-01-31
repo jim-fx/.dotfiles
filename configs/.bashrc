@@ -112,5 +112,16 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if ! command -v tmux &> /dev/null
+then
+    echo "<the_command> could not be found"
+    exit
+else
+  # Auto connect to tmux session of ssh
+  if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+  fi
+fi
+
 [ -z $DISPLAY ] && export DISPLAY=127.0.0.1:0.0
 . "$HOME/.cargo/env"
