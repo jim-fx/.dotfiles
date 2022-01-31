@@ -1,10 +1,13 @@
 # vi: ft=conf
+# /go
 
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 ### Variables
 #
@@ -30,6 +33,8 @@ set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) |
 # Default Programs
 set $term alacritty
 set $explorer nautilus
+set $browser google-chrome
+
 set $config_editor ~/.config/sway/config_editor.sh
 set $settings gnome-control-center
 set $toggle_layout ~/.config/sway/toggle_layout.sh
@@ -98,6 +103,7 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
     bindsym $mod+Return exec $term
 		bindsym $mod+e exec $explorer
     bindsym $mod+Comma exec $settings
+    bindsym $mod+b exec $browser
     bindsym $mod+Shift+Comma exec $config_editor
     bindsym $mod+a exec $web_search
    
@@ -190,8 +196,8 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+w exec $toggle_layout
