@@ -79,11 +79,8 @@ fi
 
 
 # Auto connect to tmux session of ssh
-if command -v tmux &> /dev/null
-then
-  if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-  fi
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+    tmux attach-session -t $USER || tmux new-session -s $USER
 fi
 
 export PNPM_HOME="$HOME/.local/share/pnpm"

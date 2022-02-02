@@ -33,7 +33,7 @@ set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) |
 # Default Programs
 set $term alacritty
 set $explorer nautilus
-set $browser google-chrome
+set $browser google-chrome --enable-features=UseOzonePlatform --ozone-platform=wayland 
 
 set $config_editor ~/.config/sway/config_editor.sh
 set $settings gnome-control-center
