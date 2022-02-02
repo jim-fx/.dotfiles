@@ -12,9 +12,9 @@ end
 
 -- function to attach completion when setting up lsp
 local function on_attach()
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
- vim.cmd("command! LspOrganize lua lsp_organize_imports()")
- vim.api.nvim_buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.cmd("command! LspOrganize lua lsp_organize_imports()")
+    vim.api.nvim_buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
 end
 
 local system_name = ""
@@ -65,7 +65,11 @@ lsp.sumneko_lua.setup {
 }
 
 -- Ltex Language Server
-lsp.ltex.setup {}
+lsp.ltex.setup {
+    ltex = {
+        language = {"de", "en", "es"}
+    }
+}
 
 -- Go Language Server
 lsp.gopls.setup {
@@ -85,6 +89,15 @@ lsp.svelte.setup {
     on_attach = on_attach,
     capabilities = lsp_status.capabilities
 }
+
+local function organize_imports()
+    local params = {
+        command = "_typescript.organizeImports",
+        arguments = {vim.api.nvim_buf_get_name(0)},
+        title = ""
+    }
+    vim.lsp.buf.execute_command(params)
+end
 
 -- Typescript Language Server
 lsp.tsserver.setup {

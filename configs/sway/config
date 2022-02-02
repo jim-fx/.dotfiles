@@ -33,6 +33,7 @@ set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) |
 # Default Programs
 set $term alacritty
 set $explorer nautilus
+set $mail geary
 set $browser google-chrome --enable-features=UseOzonePlatform --ozone-platform=wayland 
 
 set $config_editor ~/.config/sway/config_editor.sh
@@ -41,6 +42,7 @@ set $toggle_layout ~/.config/sway/toggle_layout.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
 set $web_search $wofi_scripts/web-search.sh
 set $select_window ~/.config/sway/select_window.sh
+set $lock_screen ~/.config/sway/lock_screen.sh
 set $select_emoji $wofi_scripts/wofi-emoji
 
 # Input configuration
@@ -70,10 +72,11 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+  timeout 300 '~/.config/sway/lock_screen.sh' \
+  timeout 600 'swaymsg "output \* dpms off"' \
+  timeout 660 'systemctl suspend' \
+  resume 'swaymsg "output \* dpms on"'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -97,21 +100,21 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 #
 # Basics:
 #
-    bindsym $mod+d exec $quickmenu
-    bindsym $mod+q kill
-		bindsym $mod+Shift+q exec $wofi_scripts/wofi-power-menu.sh
-    bindsym $mod+Return exec $term
-		bindsym $mod+e exec $explorer
-    bindsym $mod+Comma exec $settings
-    bindsym $mod+b exec $browser
-    bindsym $mod+Shift+Comma exec $config_editor
-    bindsym $mod+a exec $web_search
-   
-    # Drag and resize floating windows with mouse right/left drag
-		floating_modifier $mod normal
+  bindsym $mod+d exec $quickmenu
+  bindsym $mod+q kill
+  bindsym $mod+Shift+q exec $wofi_scripts/wofi-power-menu.sh
+  bindsym $mod+Return exec $term
+  bindsym $mod+e exec $explorer
+  bindsym $mod+Comma exec $settings
+  bindsym $mod+b exec $browser
+  bindsym $mod+Shift+Comma exec $config_editor
+  bindsym $mod+a exec $web_search
+ 
+  # Drag and resize floating windows with mouse right/left drag
+  floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
+  # Reload the configuration file
+  bindsym $mod+Shift+c reload
 
 		# Multimedia Audio Keys
 		bindsym XF86AudioMute exec "pactl list sinks | grep -q Mute:.no && pactl set-sink-mute 0 1 || pactl set-sink-mute 0 0"
@@ -127,34 +130,35 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+  # Move your focus around
+  bindsym $mod+$left focus left
+  bindsym $mod+$down focus down
+  bindsym $mod+$up focus up
+  # bindsym $mod+$right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+  # Or use $mod+[up|down|left|right]
+  bindsym $mod+Left focus left
+  bindsym $mod+Down focus down
+  bindsym $mod+Up focus up
+  bindsym $mod+Right focus right
+
+  # Move the focused window with the same, but add Shift
+  bindsym $mod+Shift+$left move left
+  bindsym $mod+Shift+$down move down
+  bindsym $mod+Shift+$up move up
+  bindsym $mod+Shift+$right move right
+  # Ditto, with arrow keys
+  bindsym $mod+Shift+Left move left
+  bindsym $mod+Shift+Down move down
+  bindsym $mod+Shift+Up move up
+  bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
-		set $ws1 "1:   Code"
-			assign [class="Alacritty"] $ws1
-		set $ws2 "2:   Browser"
-			assign [class="Firefox"] $ws2
+  set $ws1 "1:   Code"
+    assign [class="Alacritty"] $ws1
+  set $ws2 "2:   Browser"
+    assign [class="Firefox"] $ws2
 			assign [class="Chromium"] $ws2
 			assign [class="Google-chrome-beta"] $ws2
 			assign [class="Google-chrome"] $ws2
@@ -224,7 +228,9 @@ output * bg `find ~/.customization/background -type f | shuf -n 1` fill
 		bindsym $mod+s exec $screenshot
 
 		bindsym $mod+i exec $select_emoji 
+		bindsym $mod+l exec $lock_screen 
 		bindsym $mod+Tab exec $select_window 
+		bindsym $mod+m exec $mail 
 #
 # Scratchpad:
 #
@@ -262,7 +268,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Do we need that?
 exec_always nm-applet --indicator
+
+# Handles notifications
 exec_always mako
 
 #
