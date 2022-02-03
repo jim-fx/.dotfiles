@@ -17,29 +17,13 @@ local function on_attach()
     vim.api.nvim_buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
 end
 
-local system_name = ""
--- Lua Language Server
-if vim.fn.has("mac") == 1 then
-    system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-    system_name = "Linux"
-elseif vim.fn.has("win32") == 1 then
-    system_name = "Windows"
-else
-    print("Unsupported system for sumneko")
-end
-
-local sumneko_root_path = "/home/jim/.local/share/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
-
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-lsp.sumneko_lua.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+print(runtime_path)
+
+require "lspconfig".sumneko_lua.setup {
     settings = {
         Lua = {
             runtime = {
@@ -50,7 +34,7 @@ lsp.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {"vim", "bufnr", "use"}
+                globals = {"vim"}
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
@@ -67,7 +51,14 @@ lsp.sumneko_lua.setup {
 -- Ltex Language Server
 lsp.ltex.setup {
     ltex = {
-        language = {"de", "en", "es"}
+        completionEnabled = true,
+        language = {"de", "en", "es"},
+        configurationTarget = {},
+        statusBarItem = true,
+        dictionary = {
+            ["de"] = {"~/test.txt"},
+            ["en"] = {"~/test.txt"}
+        }
     }
 }
 

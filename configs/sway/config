@@ -19,7 +19,6 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
 
 # Some menus
 set $wofi_scripts ~/.config/wofi
@@ -192,7 +191,9 @@ exec swayidle -w \
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
-	
+for_window [class="zoom"] floating enable
+for_window [title="Zoom Meeting.*"] floating disable
+for_window [title="Zoom Meeting.*"] inhibit_idle visible
 
 #
 # Layout stuff:
