@@ -11,3 +11,11 @@ cmd [[
   au ColorScheme * hi Normal ctermbg=none guibg=none
   au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
 ]]
+
+cmd [[
+augroup SaveManualFolds
+    autocmd!
+    au BufWinLeave, BufLeave ?* silent! mkview
+    au BufWinEnter           ?* silent! loadview
+augroup END
+]]

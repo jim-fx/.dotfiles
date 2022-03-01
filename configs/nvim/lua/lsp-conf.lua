@@ -49,18 +49,27 @@ require "lspconfig".sumneko_lua.setup {
 }
 
 -- Ltex Language Server
-lsp.ltex.setup {
-    ltex = {
-        completionEnabled = true,
-        language = {"de", "en", "es"},
-        configurationTarget = {},
-        statusBarItem = true,
-        dictionary = {
-            ["de"] = {"~/test.txt"},
-            ["en"] = {"~/test.txt"}
+require("grammar-guard").init()
+-- setup LSP config
+require("lspconfig").grammar_guard.setup(
+    {
+        cmd = {vim.fn.expand("~/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls")},
+        settings = {
+            ltex = {
+                enabled = {"latex", "tex", "bib", "markdown"},
+                language = "de",
+                diagnosticSeverity = "information",
+                additionalRules = {
+                    enablePickyRules = true,
+                    motherTongue = "de"
+                },
+                dictionary = {},
+                disabledRules = {},
+                hiddenFalsePositives = {}
+            }
         }
     }
-}
+)
 
 -- Go Language Server
 lsp.gopls.setup {

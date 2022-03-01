@@ -8,3 +8,5 @@ source $(dirname "$0")/functions/sum.zsh;
 source $(dirname "$0")/functions/mke.zsh;
 source $(dirname "$0")/functions/myip.zsh;
 source $(dirname "$0")/functions/cht.zsh;
+source $(dirname "$0")/functions/dv.zsh;
+source $(dirname "$0")/functions/run.zsh;

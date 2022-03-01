@@ -60,12 +60,13 @@ return require("packer").startup(
         use "hrsh7th/cmp-calc"
         use "hrsh7th/cmp-buffer"
         use "hrsh7th/cmp-cmdline"
+        use "rafamadriz/friendly-snippets"
         use "L3MON4D3/LuaSnip"
         use "saadparwaiz1/cmp_luasnip"
-        use "rafamadriz/friendly-snippets"
         use "williamboman/nvim-lsp-installer"
         use "nvim-lua/lsp-status.nvim"
         use "neoclide/jsonc.vim"
+        use "brymer-meneses/grammar-guard.nvim"
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate"
