@@ -9,6 +9,7 @@ g.mapleader = " "
 
 map("n", "<C-p>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":Telescope live_grep<CR>", options)
+map("n", "<Shift>", "za", options)
 
 -- LSP Functionality
 map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)

@@ -1,5 +1,4 @@
 -- luasnip setup
-local cmd = vim.cmd
 local luasnip = require "luasnip"
 local lspkind = require "lspkind"
 local cmp = require "cmp"

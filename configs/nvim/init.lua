@@ -85,6 +85,12 @@ if u.has_plugin("cmp") then
         }
     )
 
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.cmd [[
+      set foldlevel=99
+    ]]
+
     require("telescope").setup {
         defaults = {
             vimgrep_arguments = {
@@ -153,6 +159,8 @@ if u.has_plugin("cmp") then
             extra_groups = "All"
         }
     )
+
+    g.markdown_fenced_languages = {"html", "python", "bash=sh"}
 
     -- Remove background color
     cmd("highlight Normal guibg=none")

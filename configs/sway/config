@@ -1,4 +1,4 @@
-# vi: ft=conf
+# vi: ft=confj
 # /go
 
 # Default config for sway
@@ -7,7 +7,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec export $(dbus-launch --exit-with-session);
 
 ### Variables
 #
@@ -43,11 +43,13 @@ set $web_search $wofi_scripts/web-search.sh
 set $select_window ~/.config/sway/select_window.sh
 set $lock_screen ~/.config/sway/lock_screen.sh
 set $select_emoji $wofi_scripts/wofi-emoji
+set $password_mngr rofi-rbw --selector wofi
 
 # Input configuration
 input * {
     xkb_layout de
-    xkb_variant nodeadkeys
+    xkb_capslock disabled
+    tap enabled
 }
 
 smart_gaps off
@@ -108,7 +110,8 @@ exec swayidle -w \
   bindsym $mod+b exec $browser
   bindsym $mod+Shift+Comma exec $config_editor
   bindsym $mod+a exec $web_search
- 
+  bindsym $mod+p exec $password_mngr
+
   # Drag and resize floating windows with mouse right/left drag
   floating_modifier $mod normal
 
@@ -116,9 +119,9 @@ exec swayidle -w \
   bindsym $mod+Shift+c reload
 
 		# Multimedia Audio Keys
-		bindsym XF86AudioMute exec "pactl list sinks | grep -q Mute:.no && pactl set-sink-mute 0 1 || pactl set-sink-mute 0 0"
-		bindsym XF86AudioLowerVolume exec "pactl -- set-sink-volume 0 -10%"
-		bindsym XF86AudioRaiseVolume exec "pactl -- set-sink-volume 0 +10%"
+  bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+		bindsym --locked XF86AudioLowerVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ -10%"
+		bindsym --locked XF86AudioRaiseVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ +10%"
 
 		#Increase brightness
 		bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +10
@@ -269,11 +272,16 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 # Do we need that?
 exec_always nm-applet --indicator
 
 # Handles notifications
 exec_always mako
+
+exec_always wlsunset -l 39.47 -L -0.3821346
+
 
 #
 # Status Bar:
@@ -284,3 +292,4 @@ bar {
 }
 
 include @sysconfdir@/sway/config.d/*
+exec systemctl --user import-environment

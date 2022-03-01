@@ -21,6 +21,7 @@ plugins=(
 eval `dircolors ~/.dircolors`
 
 export FPATH=$FPATH:~/.dotfiles/completions
+export NVIM_HOME=$HOME/.config/nvim
 
 # Load oh my zsh
 export ZSH=~/.oh-my-zsh

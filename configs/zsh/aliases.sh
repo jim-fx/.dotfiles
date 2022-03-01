@@ -25,9 +25,10 @@ alias gcm="git commit -m "
 alias czi="commitizen init cz-conventional-changelog --yarn --dev --exact"
 alias cz="git-cz"
 
-alias D="pnpm dev"
-alias B="pnpm build"
-alias T="pnpm test"
+alias D="run dev"
+alias B="run build"
+alias T="run test"
+
 alias P="git push"
 alias p="git pull"
 
