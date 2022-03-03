@@ -25,9 +25,11 @@ set $wofi_scripts ~/.config/wofi
 set $quickmenu wofi --show drun
 
 # Screenshot section
-set $screenclip slurp | grim -g - ~/Pictures/Screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
-set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
-set $windowshot  swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | $screenclip
+set $screenshot_dir ~/Pictures/Screenshots/
+set $grimshot ~/.config/sway/grimshot.sh
+set $screenclip wl-copy < "$($grimshot --notify save area $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
+set $screenshot wl-copy < "$($grimshot --notify save screen $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
+set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 
 # Default Programs
 set $term alacritty
