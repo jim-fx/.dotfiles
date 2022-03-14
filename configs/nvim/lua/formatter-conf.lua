@@ -1,8 +1,7 @@
 local cmd = vim.cmd
-local util = require "vim.lsp.util"
-local utils = require("utils")
+local g = vim.g
 
-function tablelength(T)
+local function tablelength(T)
     local count = 0
     for _ in pairs(T) do
         count = count + 1
@@ -30,16 +29,15 @@ local function select_client(method)
     return supported_client
 end
 
+g.neoformat_enabled_glsl = {}
+
 function FormattingSync()
     vim.cmd("Neoformat")
-
     --     local client = select_client("textDocument/formatting")
     --     if client == nil then
     --         vim.notify("No LSP Client with formatting connected")
     --     end
-
     --     vim.notify("Formatting with LSP")
-
     --     local params = util.make_formatting_params({})
     --     local result, err = client.request_sync("textDocument/formatting", params, 500, vim.api.nvim_get_current_buf())
     --     if result and result.result then

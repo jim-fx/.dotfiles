@@ -13,6 +13,13 @@ cmd [[
 ]]
 
 cmd [[
+augroup filetypedetect
+  au BufNewFile,BufRead *.frag setl ft=glsl
+  au BufNewFile,BufRead *.vert setl ft=glsl
+augroup END
+]]
+
+cmd [[
 augroup SaveManualFolds
     autocmd!
     au BufWinLeave, BufLeave ?* silent! mkview

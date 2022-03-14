@@ -9,21 +9,12 @@ alias yoink="curl"
 
 alias pls='sudo -E env "PATH=$PATH"'
 
-alias zshi="cd ~/.dotfiles && vim configs/init.lua && cd -"
-alias zshc="cd ~/.dotfiles && vim configs/.zshrc && cd -"
-alias zshu="source ~/.zshrc"
-
 alias online="ping 1.1.1.1"
 
 alias vim="nvim"
 alias v="nvim"
 
-alias gs="git status"
-alias gaa="git add ."
-alias gpm="git push origin main"
 alias gcm="git commit -m "
-alias czi="commitizen init cz-conventional-changelog --yarn --dev --exact"
-alias cz="git-cz"
 
 alias D="run dev"
 alias B="run build"

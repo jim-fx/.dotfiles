@@ -1,0 +1,27 @@
+function conf(){
+
+  if [ "$1" = "u" ]; then
+    source ~/.zshrc
+  else
+    cd ~/.dotfiles/
+
+    if [ "$1" != "" ]; then
+      cd configs
+      cd $1
+    fi
+
+    if [[ -f "init.lua" ]]; then
+      nvim init.lua
+    elif [[ -f ".zshrc" ]]; then
+      nvim .zshrc
+      source ~/.zshrc
+    elif [[ -f "config" ]]; then
+      nvim config
+    else
+      nvim .
+    fi
+
+
+  fi
+
+}

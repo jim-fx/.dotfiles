@@ -66,7 +66,7 @@ map("n", "<Leader>r", "<cmd>lua require('rest-nvim').run()<CR>", options)
 map("n", "<Leader>q", "<Esc>:q<CR>", options)
 
 -- Open Nerdtree
-map("n", "<C-n>", ":NvimTreeToggle<CR>", options)
+map("n", "<C-n>", ":NvimTreeToggle<CR>:TransparentEnable<CR>", options)
 
 -- Make ctrl+s work
 map("n", "<C-s>", "<Esc>:w<CR>", options)

@@ -153,13 +153,6 @@ if u.has_plugin("cmp") then
         }
     )
 
-    require("transparent").setup(
-        {
-            enable = true,
-            extra_groups = "All"
-        }
-    )
-
     g.markdown_fenced_languages = {"html", "python", "bash=sh"}
 
     -- Remove background color

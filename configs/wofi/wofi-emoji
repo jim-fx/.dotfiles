@@ -1,7 +1,306 @@
 #!/bin/bash
-sed '1,/^### DATA ###$/d' $0 | wofi --show dmenu -i | cut -d ' ' -f 1 | tr -d '\n' | wl-copy
+EMOJI=$(sed '1,/^### DATA ###$/d' $0 | wofi --show dmenu -i | cut -d ' ' -f 1 | tr -d '\n')
+wtype $EMOJI
+wl-copy $EMOJI
 exit
 ### DATA ###
+Ω  Ohm
+←  Left Arrow
+↑  Up Arrow
+→  Right Arrow
+↓  Down Arrow
+↔  Left Right Arrow
+↕  Up Down Arrow
+↖  North West Arrow
+↗  North East Arrow
+↘  South East Arrow
+↙  South West Arrow
+↚  Left Arrow with Stroke
+↛  Right Arrow with Stroke
+↜  Left Wave Arrow
+↝  Right Wave Arrow
+↞  Left Two Headed Arrow
+↟  Up Two Headed Arrow
+↠  Right Two Headed Arrow
+↡  Down Two Headed Arrow
+↢  Left Arrow with Tail
+↣  Right Arrow with Tail
+↤  Left Arrow from Bar
+↥  Up Arrow from Bar
+↦  Right Arrow from Bar
+↧  Down Arrow from Bar
+↨  Up Down Arrow with Base
+↩  Left Arrow with Hook
+↪  Right Arrow with Hook
+↫  Left Arrow with Loop
+↬  Right Arrow with Loop
+↭  Left Right Wave Arrow
+↮  Left Right Arrow with Stroke
+↯  Down Zigzag Arrow
+↰  Up Arrow with Tip Left
+↱  Up Arrow with Tip Right
+↲  Down Arrow with Tip Left
+↳  Down Arrow with Tip Right
+↴  Right Arrow with Corner Down
+↵  Down Arrow with Corner Left
+↶  Anticlockwise Top Semicircle Arrow
+↷  Clockwise Top Semicircle Arrow
+↸  North West Arrow to Long Bar
+↹  Left Arrow to Bar over Right Arrow to bar
+↺  Anticlockwise Open Circle Arrow
+↻  Clockwise Open Circle Arrow
+↼  Left Harpoon with Barb Up
+↽  Left Harpoon with Barb Down
+↾  Up Harpoon with Barb Right
+↿  Up Harpoon with Barb Left
+⇀  Right Harpoon with Barb Up
+⇁  Right Harpoon with Barb Down
+⇂  Down Harpoon with Barb Right
+⇃  Down Harpoon with Barb Left
+⇄  Right Arrow over Left Arrow
+⇅  Up Arrow Left of Down Arrow
+⇆  Left Arrow over Right Arrow
+⇇  Left Paired Arrows
+⇈  Up Paired Arrows
+⇉  Right Paired Arrows
+⇊  Downards Paired Arrows
+⇋  Left Harpoon over Right Harpoon
+⇌  Right Harpoon over Left Harpoon
+⇍  Left Double Arrow with Stroke
+⇎  Left Right Double Arrow with Stroke
+⇏  Right Double Arrow with Stroke
+⇐  Left Double Arrow
+⇑  Up Double Arrow
+⇒  Right Double Arrow
+⇓  Down Double Arrow
+⇔  Left Right Double Arrow
+⇕  Up Down Double Arrow
+⇖  North West Double Arrow
+⇗  North East Double Arrow
+⇘  South East Double Arrow
+⇙  South West Double Arrow
+⇚  Left Triple Arrow
+⇛  Right Triple Arrow
+⇜  Left Squiggle Arrow
+⇝  Right Squiggle Arrow
+⇞  Up Arrow with Double Stroke
+⇟  Down Arrow with Double Stroke
+⇠  Left Dashed Arrow
+⇡  Up Dashed Arrow
+⇢  Right Dashed Arrow
+⇣  Down Dashed Arrow
+⇤  Left Arrow to Bar
+⇥  Right Arrow to Bar
+⇥  Right Arrow to Bar
+⇦  Left White Arrow
+⇧  Up White Arrow
+⇨  Right White Arrow
+⇩  Down White Arrow
+⇪  Up White Arrow from Bar
+⇫  Up White Arrow on Pedestal
+⇬  Up White Arrow on Pedestal with Horizontal Bar
+⇭  Up White Arrow on Pedestal with Vertical Bar
+⇮  Up White Double Arrow
+⇯  Up White Double Arrow on Pedestal
+⇰  Right White Arrow from Wall
+⇱  North West Arrow to Corner
+⇲  South East Arrow to Corner
+⇳  Up Down White Arrow
+⇴  Right Arrow with Small Circle
+⇵  Down Arrow Left of Up Arrow
+⇶  Three Right Arrows
+⇷  Left Arrow with Vertical Stroke
+⇸  Right Arrow with Vertical Stroke
+⇹  Left Right Arrow with Vertical Stroke
+⇺  Left Arrow with Double Vertical Stroke
+⇻  Right Arrow with Double Vertical Stroke
+⇼  Left Right Arrow with Double Vertical Stroke
+⇽  Left Open-headed Arrow
+⇾  Right Open-headed Arrow
+⇿  Left Right Open-headed Arrow
+⟰  Up Quadruple Arrow
+⟱  Down Quadruple Arrow
+⟲  Anticlockwise Gapped Circle Arrow
+⟳  Clockwise Gapped Circle Arrow
+⟴  Right Arrow With Circled Plus
+⟵  Long Left Arrow
+⟶  Long Right Arrow
+⟷  Long Left Right Arrow
+⟸  Long Left Double Arrow
+⟹  Long Right Double Arrow
+⟺  Long Left Right Double Arrow
+⟻  Long Left Arrow From Bar
+⟼  Long Right Arrow From Bar
+⟽  Long Left Double Arrow From Bar
+⟾  Long Right Double Arrow From Bar
+⟿  Long Right Squiggle Arrow
+⤀  Right Two-Headed Arrow With Vertical Stroke
+⤁  Right Two-Headed Arrow With Double Vertical Stroke
+⤂  Left Double Arrow With Vertical Stroke
+⤃  Right Double Arrow With Vertical Stroke
+⤄  Left Right Double Arrow With Vertical Stroke
+⤅  Right Two-Headed Arrow From Bar
+⤆  Left Double Arrow From Bar
+⤇  Right Double Arrow From Bar
+⤈  Down Arrow With Horizontal Stroke
+⤉  Up Arrow With Horizontal Stroke
+⤊  Up Triple Arrow
+⤋  Down Triple Arrow
+⤌  Left Double Dash Arrow
+⤍  Right Double Dash Arrow
+⤎  Left Triple Dash Arrow
+⤏  Right Triple Dash Arrow
+⤐  Right Two-Headed Triple Dash Arrow
+⤑  Right Arrow With Dotted Stem
+⤒  Up Arrow to Bar
+⤓  Down Arrow to Bar
+⤔  Right Arrow With Tail With Vertical Stroke
+⤕  Right Arrow With Tail With Double Vertical Stroke
+⤖  Right Two-Headed Arrow With Tail
+⤗  Right Two-Headed Arrow With Tail With Vertical Stroke
+⤘  Right Two-Headed Arrow With Tail With Double Vertical Stroke
+⤙  Left Arrow-Tail
+⤚  Right Arrow-Tail
+⤛  Left Double Arrow-Tail
+⤜  Right Double Arrow-Tail
+⤝  Left Arrow to Black Diamond
+⤞  Right Arrow to Black Diamond
+⤟  Left Arrow From Bar to Black Diamond
+⤠  Right Arrow From Bar to Black Diamond
+⤡  North West and South East Arrow
+⤢  North East and South West Arrow
+⤣  North West Arrow With Hook
+⤤  North East Arrow With Hook
+⤥  South East Arrow With Hook
+⤦  South West Arrow With Hook
+⤧  North West Arrow and North East Arrow
+⤨  North East Arrow and South East Arrow
+⤩  South East Arrow and South West Arrow
+⤪  South West Arrow and North West Arrow
+⤫  Rising Diagonal Crossing Falling Diagonal
+⤬  Falling Diagonal Crossing Rising Diagonal
+⤭  South East Arrow Crossing North East Arrow
+⤮  North East Arrow Crossing South East Arrow
+⤯  Falling Diagonal Crossing North East Arrow
+⤰  Rising Diagonal Crossing South East Arrow
+⤱  North East Arrow Crossing North West Arrow
+⤲  North West Arrow Crossing North East Arrow
+⤳  Wave Arrow Pointing Directly Right
+⤴  Arrow Pointing Right Then Curving Up
+⤵  Arrow Pointing Right Then Curving Down
+⤶  Arrow Pointing Down Then Curving Left
+⤷  Arrow Pointing Down Then Curving Right
+⤸  Right-Side Arc Clockwise Arrow
+⤹  Left-Side Arc Anticlockwise Arrow
+⤺  Top Arc Anticlockwise Arrow
+⤻  Bottom Arc Anticlockwise Arrow
+⤼  Top Arc Clockwise Arrow With Minus
+⤽  Top Arc Anticlockwise Arrow With Plus
+⤾  Lower Right Semicircular Clockwise Arrow
+⤿  Lower Left Semicircular Anticlockwise Arrow
+⥀  Anticlockwise Closed Circle Arrow
+⥁  Clockwise Closed Circle Arrow
+⥂  Right Arrow Above Short Left Arrow
+⥃  Left Arrow Above Short Right Arrow
+⥄  Short Right Arrow Above Left Arrow
+⥅  Right Arrow With Plus Below
+⥆  Left Arrow With Plus Below
+⥇  Right Arrow Through X
+⥈  Left Right Arrow Through Small Circle
+⥉  Up Two-Headed Arrow From Small Circle
+⥊  Left Barb Up Right Barb Down Harpoon
+⥋  Left Barb Down Right Barb Up Harpoon
+⥌  Up Barb Right Down Barb Left Harpoon
+⥍  Up Barb Left Down Barb Right Harpoon
+⥎  Left Barb Up Right Barb Up Harpoon
+⥏  Up Barb Right Down Barb Right Harpoon
+⥐  Left Barb Down Right Barb Down Harpoon
+⥑  Up Barb Left Down Barb Left Harpoon
+⥒  Left Harpoon With Barb Up to Bar
+⥓  Right Harpoon With Barb Up to Bar
+⥔  Up Harpoon With Barb Right to Bar
+⥕  Down Harpoon With Barb Right to Bar
+⥖  Left Harpoon With Barb Down to Bar
+⥗  Right Harpoon With Barb Down to Bar
+⥘  Up Harpoon With Barb Left to Bar
+⥙  Down Harpoon With Barb Left to Bar
+⥚  Left Harpoon With Barb Up From Bar
+⥛  Right Harpoon With Barb Up From Bar
+⥜  Up Harpoon With Barb Right From Bar
+⥝  Down Harpoon With Barb Right From Bar
+⥞  Left Harpoon With Barb Down From Bar
+⥟  Right Harpoon With Barb Down From Bar
+⥠  Up Harpoon With Barb Left From Bar
+⥡  Down Harpoon With Barb Left From Bar
+⥢  Left Harpoon With Barb Up Above Left Harpoon With Barb Down
+⥣  Up Harpoon With Barb Left Beside Up Harpoon With Barb Right
+⥤  Right Harpoon With Barb Up Above Right Harpoon With Barb Down
+⥥  Down Harpoon With Barb Left Beside Down Harpoon With Barb Right
+⥦  Left Harpoon With Barb Up Above Right Harpoon With Barb Up
+⥧  Left Harpoon With Barb Down Above Right Harpoon With Barb Down
+⥨  Right Harpoon With Barb Up Above Left Harpoon With Barb Up
+⥩  Right Harpoon With Barb Down Above Left Harpoon With Barb Down
+⥪  Left Harpoon With Barb Up Above Long Dash
+⥫  Left Harpoon With Barb Down Below Long Dash
+⥬  Right Harpoon With Barb Up Above Long Dash
+⥭  Right Harpoon With Barb Down Below Long Dash
+⥮  Up Harpoon With Barb Left Beside Down Harpoon With Barb Right
+⥯  Down Harpoon With Barb Left Beside Up Harpoon With Barb Right
+⥰  Right Double Arrow With Rounded Head
+⥱  Equals Sign Above Right Arrow
+⥲  Tilde Operator Above Right Arrow
+⥳  Left Arrow Above Tilde Operator
+⥴  Right Arrow Above Tilde Operator
+⥵  Right Arrow Above Almost Equal To
+⥶  Less-Than Above Left Arrow
+⥷  Left Arrow Through Less-Than
+⥸  Greater-Than Above Right Arrow
+⥹  Subset Above Right Arrow
+⥺  Left Arrow Through Subset
+⥻  Superset Above Left Arrow
+⥼  Left Fish Tail
+⥽  Right Fish Tail
+⥾  Up Fish Tail
+⥿  Down Fish Tail
+➔  Heavy Wide-Headed Right Arrow
+➘  Heavy South East Arrow
+➙  Heavy Right Arrow
+➚  Heavy North East Arrow
+➛  Drafting Point Right Arrow
+➜  Heavy Round-Tipped Right Arrow
+➝  Triangle-Headed Right Arrow
+➞  Heavy Triangle-Headed Right Arrow
+➟  Dashed Triangle-Headed Right Arrow
+➠  Heavy Dashed Triangle-Headed Right Arrow
+➡  Black Right Arrow
+➢  Three-D Top-Lighted Right Arrowhead
+➣  Three-D Bottom-Lighted Right Arrowhead
+➤  Black Right Arrowhead
+➥  Heavy Black Curved Down and Right Arrow
+➦  Heavy Black Curved Up and Right Arrow
+➧  Squat Black Right Arrow
+➨  Heavy Concave-Pointed Black Right Arrow
+➩  Right-Shaded White Right Arrow
+➪  Left-Shaded White Right Arrow
+➫  Back-Tilted Shadowed White Right Arrow
+➬  Front-Tilted Shadowed White Right Arrow
+➭  Heavy Lower Right-Shadowed White Right Arrow
+➮  Heavy Upper Right-Shadowed White Right Arrow
+➯  Notched Lower Right-Shadowed White Right Arrow
+➱  Notched Upper Right-Shadowed White Right Arrow
+➲  Circled Heavy White Right Arrow
+➳  White-Feathered Right Arrow
+➴  Black-Feathered South East Arrow
+➵  Black-Feathered Right Arrow
+➶  Black-Feathered North East Arrow
+➷  Heavy Black-Feathered South East Arrow
+➸  Heavy Black-Feathered Right Arrow
+➹  Heavy Black-Feathered North East Arrow
+➺  Teardrop-Barbed Right Arrow
+➻  Heavy Teardrop-Shanked Right Arrow
+➼  Wedge-Tailed Right Arrow
+➽  Heavy Wedge-Tailed Right Arrow
+➾  Open-Outlined Right Arrow
 😀 grinning face
 😃 grinning face with big eyes
 😄 grinning face with smiling eyes
