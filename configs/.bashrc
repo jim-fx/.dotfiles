@@ -113,5 +113,7 @@ if ! shopt -oq posix; then
 fi
 
 
+export MAX_TEST_VAR="working"
+
 [ -z $DISPLAY ] && export DISPLAY=127.0.0.1:0.0
 . "$HOME/.cargo/env"

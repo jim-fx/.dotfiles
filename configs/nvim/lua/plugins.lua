@@ -6,9 +6,8 @@ return require("packer").startup(
         -- General Helper Functions
         use "nvim-lua/plenary.nvim"
 
-        -- Faster Filetype Detection
+        -- Filetype Detection
         use "nathom/filetype.nvim"
-        use "alexghergh/nvim-tmux-navigation"
 
         -- Theming Section
         -- use 'folke/tokyonight.nvim'
@@ -27,6 +26,7 @@ return require("packer").startup(
         use "windwp/nvim-autopairs"
 
         -- Code Navigation
+        use "alexghergh/nvim-tmux-navigation"
         use "dense-analysis/ale"
         use "nathanmsmith/nvim-ale-diagnostic"
         use "junegunn/fzf"
@@ -52,6 +52,7 @@ return require("packer").startup(
         }
 
         -- Syntax / Autocomplete
+        use "terminalnode/sway-vim-syntax" --sway config syntax
         use "neovim/nvim-lspconfig"
         use "hrsh7th/nvim-cmp"
         use "hrsh7th/cmp-nvim-lsp"
@@ -65,16 +66,13 @@ return require("packer").startup(
         use "saadparwaiz1/cmp_luasnip"
         use "williamboman/nvim-lsp-installer"
         use "nvim-lua/lsp-status.nvim"
+        use "jose-elias-alvarez/nvim-lsp-ts-utils"
         use "neoclide/jsonc.vim"
         use "brymer-meneses/grammar-guard.nvim"
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate"
         }
-
-        -- Language Supports
-        use "beyondmarc/glsl.vim" -- GLSL
-        use "ellisonleao/glow.nvim" -- MARKDOWN
 
         -- Autoformat
         use "sbdchd/neoformat"

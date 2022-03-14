@@ -1,11 +1,7 @@
 function run(){
-  HAS_MAKE="$(ls | grep Makefile)"
-  HAS_PACKAGE="$(ls | grep package.json)"
-
-  if [ "$HAS_PACKAGE" != "" ]; then
+  if [[ -f "package.json" ]]; then
     pnpm $1
-  elif [ "$HAS_MAKE" != "" ]; then
+  elif [[ -f "Makefile" ]]; then
     make $1
   fi
-
 }

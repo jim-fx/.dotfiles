@@ -1,29 +1,17 @@
 local lsp = require "lspconfig"
 local lsp_status = require("lsp-status")
-
-_G.lsp_organize_imports = function()
-    local params = {
-        command = "_typescript.organizeImports",
-        arguments = {vim.api.nvim_buf_get_name(0)},
-        title = ""
-    }
-    vim.lsp.buf.execute_command(params)
-end
+local ts_utils = require("nvim-lsp-ts-utils")
 
 -- function to attach completion when setting up lsp
-local function on_attach()
+local function on_attach(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    vim.cmd("command! LspOrganize lua lsp_organize_imports()")
-    vim.api.nvim_buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
 end
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-print(runtime_path)
-
-require "lspconfig".sumneko_lua.setup {
+lsp.sumneko_lua.setup {
     settings = {
         Lua = {
             runtime = {
@@ -50,8 +38,9 @@ require "lspconfig".sumneko_lua.setup {
 
 -- Ltex Language Server
 require("grammar-guard").init()
+
 -- setup LSP config
-require("lspconfig").grammar_guard.setup(
+lsp.grammar_guard.setup(
     {
         cmd = {vim.fn.expand("~/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls")},
         settings = {
@@ -90,29 +79,83 @@ lsp.svelte.setup {
     capabilities = lsp_status.capabilities
 }
 
-local function organize_imports()
-    local params = {
-        command = "_typescript.organizeImports",
-        arguments = {vim.api.nvim_buf_get_name(0)},
-        title = ""
-    }
-    vim.lsp.buf.execute_command(params)
-end
-
 -- Typescript Language Server
-lsp.tsserver.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities,
-    commands = {
-        OrganizeImports = {
-            organize_imports,
-            description = "Organize Imports"
-        }
+lsp.tsserver.setup(
+    {
+        -- Needed for inlayHints. Merge this table with your settings or copy
+        -- it from the source if you want to add your own init_options.
+        init_options = require("nvim-lsp-ts-utils").init_options,
+        --
+        on_attach = function(client, bufnr)
+            vim.notify("Eyyyy")
+
+            -- defaults
+            ts_utils.setup(
+                {
+                    debug = true,
+                    disable_commands = false,
+                    enable_import_on_completion = false,
+                    -- import all
+                    import_all_timeout = 5000, -- ms
+                    -- lower numbers = higher priority
+                    import_all_priorities = {
+                        same_file = 1, -- add to existing import statement
+                        local_files = 2, -- git files or files with relative path markers
+                        buffer_content = 3, -- loaded buffer content
+                        buffers = 4 -- loaded buffer names
+                    },
+                    import_all_scan_buffers = 100,
+                    import_all_select_source = false,
+                    -- if false will avoid organizing imports
+                    always_organize_imports = true,
+                    -- filter diagnostics
+                    filter_out_diagnostics_by_severity = {},
+                    filter_out_diagnostics_by_code = {},
+                    -- inlay hints
+                    auto_inlay_hints = true,
+                    inlay_hints_highlight = "Comment",
+                    inlay_hints_priority = 200, -- priority of the hint extmarks
+                    inlay_hints_throttle = 150, -- throttle the inlay hint request
+                    inlay_hints_format = {
+                        -- format options for individual hint kind
+                        Type = {},
+                        Parameter = {},
+                        Enum = {}
+                        -- Example format customization for `Type` kind:
+                        -- Type = {
+                        --     highlight = "Comment",
+                        --     text = function(text)
+                        --         return "->" .. text:sub(2)
+                        --     end,
+                        -- },
+                    },
+                    -- update imports on file move
+                    update_imports_on_move = false,
+                    require_confirmation_on_move = false,
+                    watch_dir = nil
+                }
+            )
+
+            -- required to fix code action ranges and filter diagnostics
+            ts_utils.setup_client(client)
+
+            -- no default maps, so you may want to define some here
+            local opts = {silent = true}
+            vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
+            vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
+            vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
+        end
     }
-}
+)
 
 -- JSON ls setup
 lsp.jsonls.setup {
+    on_attach = on_attach,
+    capabilities = lsp_status.capabilities
+}
+
+-- JSON ls setup
+lsp.cssls.setup {
     on_attach = on_attach,
     capabilities = lsp_status.capabilities
 }
