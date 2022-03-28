@@ -149,7 +149,14 @@ if u.has_plugin("cmp") then
     g.tokyonight_transparent_sidebar = true
     require("nightfox").setup(
         {
-            transparent = true
+            options = {
+                styles = {
+                    comments = "italic",
+                    keywords = "bold",
+                    types = "italic,bold"
+                },
+                transparent = true
+            }
         }
     )
 
@@ -261,6 +268,8 @@ if u.has_plugin("cmp") then
 
     -- LSP Config
     require "lspinstaller-conf"
+
+    -- Setup Command OVerlays
     require "lazy-git"
 
     require "autocommands"

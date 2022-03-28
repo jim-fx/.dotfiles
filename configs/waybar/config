@@ -1,12 +1,12 @@
 {
 	"height": 20,
 	"spacing": 4,
-	"modules-left": ["sway/workspaces", "sway/mode"],
-	"modules-center": ["custom/media", "custom/clock"],
+	"modules-left": ["custom/clock", "custom/waybar-mpris"],
+	"modules-center": ["sway/workspaces", "sway/mode"],
 	"modules-right": ["pulseaudio", "network", "custom/cpu_speed", "memory", "battery", "custom/clock" ],
 	"sway/workspaces": {
 		"disable-scroll": true,
-		"all-outputs": true,
+		"all-outputs": false,
 		"format": "{name}",
 		"format-icons": {
 			"urgent": "",
@@ -78,7 +78,7 @@
 	"custom/clock": {
 		"exec": "date +'%H:%M'",
 		"interval": 10,
-    "on-click": "nm-applet"
+  "on-click": "nm-applet"
 	},
 	"cpu": {
 		"format": "{usage}% ",
@@ -88,7 +88,7 @@
 		"format": "{}% "
 	},
 	"temperature": {
-		// "thermal-zone": 2,
+		// "thermal-zone": 2,media
 		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 		"critical-threshold": 80,
 		// "format-critical": "{temperatureC}°C {icon}",
@@ -102,7 +102,7 @@
 	},
 	"battery": {
 		"states": {
-			// "good": 95,
+			"good": 95
 			"warning": 30,
 			"critical": 15
 		},
@@ -110,7 +110,7 @@
 		"format-charging": "{capacity}% ",
 		"format-plugged": "{capacity}% ",
 		"format-alt": "{time} {icon}",
-		// "format-good": "", // An empty format will hide the module
+		"format-good": "", // An empty format will hide the module
 		// "format-full": "",
 		"format-icons": ["", "", "", "", ""]
 	},
@@ -152,7 +152,21 @@
     "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {}",
     "format-icons": [""],
     "escape": true,
-    "on-click": "terminator -e htop"
+    "on-click": "kitty -e htop"
+},
+"custom/waybar-mpris": {
+    "return-type": "json",
+    "exec": "waybar-mpris --position --autofocus",
+    "on-click": "waybar-mpris --send toggle",
+    // This option will switch between players on right click.
+        "on-click-right": "waybar-mpris --send player-next",
+    // The options below will switch the selected player on scroll
+        // "on-scroll-up": "waybar-mpris --send player-next",
+        // "on-scroll-down": "waybar-mpris --send player-prev",
+    // The options below will go to next/previous track on scroll
+        // "on-scroll-up": "waybar-mpris --send next",
+        // "on-scroll-down": "waybar-mpris --send prev",
+    "escape": true,
 },
 	"custom/media": {
 		"format": "{icon} {}",
@@ -164,7 +178,6 @@
 		},
 		"escape": true,
 		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-		// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
 	}
 }
 

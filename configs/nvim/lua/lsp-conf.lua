@@ -87,8 +87,6 @@ lsp.tsserver.setup(
         init_options = require("nvim-lsp-ts-utils").init_options,
         --
         on_attach = function(client, bufnr)
-            vim.notify("Eyyyy")
-
             -- defaults
             ts_utils.setup(
                 {
