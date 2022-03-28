@@ -12,7 +12,7 @@ return require("packer").startup(
         -- Theming Section
         -- use 'folke/tokyonight.nvim'
         use "EdenEast/nightfox.nvim"
-        use "xiyaowong/nvim-transparent"
+        -- use "xiyaowong/nvim-transparent"
 
         -- Layout Plugins
         use "kyazdani42/nvim-web-devicons"

@@ -17,6 +17,14 @@ function fx(){
     cd $2
   fi
 
+  if [ "$1" = "d" ]; then
+    dv
+  fi
+
+  if [ "$1" = "v" ]; then
+    nvim .
+  fi
+
   if [ "$1" = "o" ]; then
     code-insiders .
   fi

@@ -1,3 +1,4 @@
+source $(dirname "$0")/functions/dv.zsh;
 source $(dirname "$0")/functions/co.zsh;
 source $(dirname "$0")/functions/fx.zsh;
 source $(dirname "$0")/functions/start.zsh;
@@ -7,7 +8,6 @@ source $(dirname "$0")/functions/rn.zsh;
 source $(dirname "$0")/functions/sum.zsh;
 source $(dirname "$0")/functions/myip.zsh;
 source $(dirname "$0")/functions/cht.zsh;
-source $(dirname "$0")/functions/dv.zsh;
 source $(dirname "$0")/functions/run.zsh;
 source $(dirname "$0")/functions/conf.zsh;
 source $(dirname "$0")/functions/note.zsh;

@@ -84,3 +84,6 @@ window > box {
 				padding: 0 3px;
 }
 
+#custom-waybar-mpris{
+  margin-left: 5px;
+}

@@ -1,5 +1,7 @@
 function conf(){
 
+  OLD_PWD=$PWD;
+
   if [ "$1" = "u" ]; then
     source ~/.zshrc
   else
@@ -21,7 +23,8 @@ function conf(){
       nvim .
     fi
 
-
   fi
+
+  cd $OLD_PWD
 
 }
