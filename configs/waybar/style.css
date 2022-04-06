@@ -14,15 +14,17 @@ window > box {
 		margin-bottom: 0px;
     background: #2b303b;
 		background:			black;
-		padding: 5px;
+		padding: 5px 8px;
+  border-radius: 4px;
 		/*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
 }
 
 #workspaces button {
-        padding:    0px 9px;
+        padding:    0px 7px;
+  padding-left: 4px;
 				color: white;
 				background: transparent;
-				border-radius: 0px;
+  border-radius: 2px;
 }
 
 #workspaces button:hover{
@@ -85,5 +87,5 @@ window > box {
 }
 
 #custom-waybar-mpris{
-  margin-left: 5px;
+  margin-left: 20px;
 }

@@ -214,6 +214,7 @@ if u.has_plugin("cmp") then
         gitignore = 1,
         group_empty = 1,
         hijack_cursor = 1,
+        update_cwd = true,
         update_focused_file = {
             enable = false
         },
@@ -229,12 +230,9 @@ if u.has_plugin("cmp") then
         view = {
             auto_resize = true,
             hide_root_folder = true,
-            winopts = {
-                signcolumn = "no"
-            }
+            signcolumn = "no"
         }
     }
-    require("nvim-tree.view").View.winopts.signcolumn = "no"
 
     -- Configure Wiki
     g.wiki_root = "~/Notes"

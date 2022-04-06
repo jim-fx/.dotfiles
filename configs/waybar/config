@@ -3,7 +3,7 @@
 	"spacing": 4,
 	"modules-left": ["custom/clock", "custom/waybar-mpris"],
 	"modules-center": ["sway/workspaces", "sway/mode"],
-	"modules-right": ["pulseaudio", "network", "custom/cpu_speed", "memory", "battery", "custom/clock" ],
+	"modules-right": ["pulseaudio", "network", "custom/cpu_speed", "memory", "battery"],
 	"sway/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": false,
@@ -102,7 +102,6 @@
 	},
 	"battery": {
 		"states": {
-			"good": 95
 			"warning": 30,
 			"critical": 15
 		},
@@ -110,7 +109,7 @@
 		"format-charging": "{capacity}% ",
 		"format-plugged": "{capacity}% ",
 		"format-alt": "{time} {icon}",
-		"format-good": "", // An empty format will hide the module
+		// "format-good": "", // An empty format will hide the module
 		// "format-full": "",
 		"format-icons": ["", "", "", "", ""]
 	},
@@ -166,7 +165,7 @@
     // The options below will go to next/previous track on scroll
         // "on-scroll-up": "waybar-mpris --send next",
         // "on-scroll-down": "waybar-mpris --send prev",
-    "escape": true,
+    "escape": true
 },
 	"custom/media": {
 		"format": "{icon} {}",
