@@ -304,6 +304,8 @@ bindsym $mod+r mode "resize"
 # Handles notifications
 exec_always mako
 exec_always pulseaudio --start
+# Handle Authentiction requests
+exec_always lxpolkit
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346
 
