@@ -1,7 +1,7 @@
 # Helps navigating Sync directory
 function fx(){
 
-  cd $HOME/SYNC/
+  cd $HOME/Projects/
 
   if [ ! -d $2 ]; then
       echo "dir $2 does not exists"

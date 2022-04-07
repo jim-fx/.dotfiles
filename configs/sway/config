@@ -31,10 +31,11 @@ set $screenshot wl-copy < "$($grimshot --notify save screen $screenshot_dir/scrn
 set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 
 # Default Programs
-set $term kitty
+set $term kitty -e "tmux"
 set $explorer nautilus
 set $mail geary
 set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
+set $browser firefox-developer-edition
 set $password_mngr rofi-rbw --selector wofi --typer wtype --clipboarder wl-copy
 set $bluetooth_mngr blueman-manager
 set $calculator flatpak run io.github.Qalculate
@@ -68,7 +69,8 @@ default_border none
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg `find ~/.customization/background -type f | shuf -n 1` fill
+set $wallpapers_path $HOME/.customization/background
+output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 #
 # Example configuration:
 #
@@ -129,6 +131,9 @@ input "1739:24385:Synaptics_TM2438-005" {
 
 		# Multimedia Audio Keys
   bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+  bindsym --locked XF86AudioNext exec playerctl next
+  bindsym --locked XF86AudioPrev exec playerctl previous
+  bindsym --locked XF86AudioPlay exec playerctl play-pause
 		bindsym --locked XF86AudioLowerVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ -10%"
 		bindsym --locked XF86AudioRaiseVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ +10%"
 
@@ -303,12 +308,13 @@ bindsym $mod+r mode "resize"
 
 # Handles notifications
 exec_always mako
-exec_always pulseaudio --start
+# Start Audio
+# exec_always pulseaudio --start
 # Handle Authentiction requests
 exec_always lxpolkit
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346
-
+exec wl-paste -t text --watch clipman store --no-persist
 
 #
 # Status Bar:
