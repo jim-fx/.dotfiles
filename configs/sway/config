@@ -40,6 +40,7 @@ set $password_mngr rofi-rbw --selector wofi --typer wtype --clipboarder wl-copy
 set $bluetooth_mngr blueman-manager
 set $calculator flatpak run io.github.Qalculate
 set $photo_editor gtk-launch ~/.local/share/applications/photopea.desktop
+set $translator com.github.gi_lom.dialect
 
 # Scripts
 set $config_editor ~/.config/sway/config_editor.sh
@@ -112,6 +113,7 @@ input "1739:24385:Synaptics_TM2438-005" {
 # Basics:
 #
   bindsym $mod+d exec $quickmenu
+  bindsym $mod+t exec $translator
   bindsym $mod+q kill
   bindsym $mod+Shift+q exec $wofi_scripts/wofi-power-menu.sh
   bindsym $mod+Return exec $term
@@ -175,6 +177,7 @@ input "1739:24385:Synaptics_TM2438-005" {
 # Workspaces:
 #
   for_window [class="zoom"] floating enable
+  for_window [app_id="com.github.gi_lom.dialect"] floating enable, resize set 800 400, sticky enable
   for_window [app_id="gnome-calculator"] floating enable
   for_window [app_id="qalculate-gtk"] floating enable
   for_window [title="Zoom Meeting.*"] floating disable

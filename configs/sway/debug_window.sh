@@ -6,7 +6,7 @@ ID_PREFIX='"\(.pid):"'
 WINDOW_PROTOCOL='(if .shell == "xwayland" then "X11" else "wayland" end)'
 WINDOW_GEOMETRY='(.rect | "\(.x),\(.y) \(.width)x\(.height) ")'
 WINDOW_PID='(.id | tostring)'
-CLEAR_OBJ="del(.focus, .border, .current_border_width, .window_rect, .orientation, .layout, .percent, .deco_rect, .geometry, .window, .urgent, .marks, .sticky, .fullscreen_mode, .nodes, .floating_nodes, .shell, .max_render_time, .visible, .idle_inhibitors, .inhibit_idle)"
+CLEAR_OBJ="del(.focus, .pid, .border, .current_border_width, .window_rect, .orientation, .layout, .percent, .deco_rect, .geometry, .window, .urgent, .marks, .sticky, .fullscreen_mode, .nodes, .floating_nodes, .shell, .max_render_time, .visible, .idle_inhibitors, .inhibit_idle)"
 
 # Output format, e.g. "1234 - 12:firefox (wayland)" or "5678 - 17:discord (X11)"
 FILT="$ALL_NODES | $WINDOW_GEOMETRY + $WINDOW_PID"

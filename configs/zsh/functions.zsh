@@ -11,3 +11,4 @@ source $(dirname "$0")/functions/cht.zsh;
 source $(dirname "$0")/functions/run.zsh;
 source $(dirname "$0")/functions/conf.zsh;
 source $(dirname "$0")/functions/note.zsh;
+source $(dirname "$0")/functions/mv-safe.zsh;

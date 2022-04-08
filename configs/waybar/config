@@ -158,6 +158,7 @@
     "on-click": "kitty -e htop"
 },
 "custom/waybar-mpris": {
+    "max-length": 30,
     "return-type": "json",
     "exec": "waybar-mpris --position --autofocus",
     "on-click": "waybar-mpris --send toggle",
