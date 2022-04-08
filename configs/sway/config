@@ -34,8 +34,8 @@ set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn
 set $term kitty -e "tmux"
 set $explorer nautilus
 set $mail geary
-set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
 set $browser firefox-developer-edition
+set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
 set $password_mngr rofi-rbw --selector wofi --typer wtype --clipboarder wl-copy
 set $bluetooth_mngr blueman-manager
 set $calculator flatpak run io.github.Qalculate
@@ -46,6 +46,7 @@ set $config_editor ~/.config/sway/config_editor.sh
 set $debug_window ~/.config/sway/debug_window.sh
 set $settings gnome-control-center
 set $toggle_layout ~/.config/sway/toggle_layout.sh
+set $create_floating ~/.config/sway/create_floating.sh
 set $toggle_gaps ~/.config/sway/toggle_gaps.sh
 set $toggle_bar ~/.config/sway/toggle_bar.sh
 set $web_search $wofi_scripts/web-search.sh
@@ -114,6 +115,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+q kill
   bindsym $mod+Shift+q exec $wofi_scripts/wofi-power-menu.sh
   bindsym $mod+Return exec $term
+  bindsym $mod+Shift+Return exec $create_floating $term
   bindsym $mod+e exec $explorer
   bindsym $mod+Comma exec $settings
   bindsym $mod+b exec $browser
@@ -138,8 +140,8 @@ input "1739:24385:Synaptics_TM2438-005" {
 		bindsym --locked XF86AudioRaiseVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ +10%"
 
 		#Increase brightness
-		bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +10
-		bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 10-
+		bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +20
+		bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 20-
 
 		# Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit your Wayland session?' -B 'Yes, exit sway' 'swaymsg exit'
@@ -177,11 +179,14 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [app_id="qalculate-gtk"] floating enable
   for_window [title="Zoom Meeting.*"] floating disable
   for_window [title="Zoom Meeting.*"] inhibit_idle visible
+  for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 1300 600, sticky enable, resize set 600 450
+
 
   set $ws1 "1:   Code"
     assign [app_id="Alacritty"] $ws1
+    assign [app_id="Kitty"] $ws1
   set $ws2 "2:   Browser"
-    assign [class="Firefox"] $ws2
+    assign [class="^Firefox"] $ws2
     assign [class="Chromium"] $ws2
     assign [class="Google-chrome-beta"] $ws2
     assign [app_id="google-chrome-beta"] $ws2
@@ -312,6 +317,7 @@ exec_always mako
 # exec_always pulseaudio --start
 # Handle Authentiction requests
 exec_always lxpolkit
+exec_always clipman
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346
 exec wl-paste -t text --watch clipman store --no-persist
@@ -322,7 +328,10 @@ exec wl-paste -t text --watch clipman store --no-persist
 # Read `man 5 sway-bar` for more information about this section.
 bar {
 	swaybar_command waybar
+ mode dock
+ position top
 }
+
 
 include @sysconfdir@/sway/config.d/*
 exec "systemctl --user import-environment SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY";
