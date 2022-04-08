@@ -1,6 +1,10 @@
 {
 	"height": 20,
 	"spacing": 4,
+ "bar_id":"bar-0",
+ "ipc": true,
+     "mode": "hide",
+    "hidden_state": "show",
 	"modules-left": ["custom/clock", "custom/waybar-mpris"],
 	"modules-center": ["sway/workspaces", "sway/mode"],
 	"modules-right": ["pulseaudio", "network", "custom/cpu_speed", "memory", "battery"],
