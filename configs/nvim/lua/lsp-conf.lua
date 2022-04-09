@@ -2,11 +2,6 @@ local lsp = require "lspconfig"
 local lsp_status = require("lsp-status")
 local ts_utils = require("nvim-lsp-ts-utils")
 
--- function to attach completion when setting up lsp
-local function on_attach(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-end
-
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -60,24 +55,6 @@ lsp.grammar_guard.setup(
     }
 )
 
--- Go Language Server
-lsp.gopls.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities
-}
-
--- Html Setup
-lsp.html.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities,
-    filetypes = {"html"}
-}
-
--- Svelte Language Server
-lsp.svelte.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities
-}
 
 -- Typescript Language Server
 lsp.tsserver.setup(
@@ -146,21 +123,8 @@ lsp.tsserver.setup(
     }
 )
 
--- JSON ls setup
-lsp.jsonls.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities
-}
-
--- JSON ls setup
-lsp.cssls.setup {
-    on_attach = on_attach,
-    capabilities = lsp_status.capabilities
-}
-
 -- Setup diagnostics formaters and linters for non LSP provided files
 lsp.diagnosticls.setup {
-    on_attach = on_attach,
     capabilities = lsp_status.capabilities,
     cmd = {"diagnostic-languageserver", "--stdio"},
     filetypes = {
@@ -234,15 +198,3 @@ lsp.diagnosticls.setup {
         }
     }
 }
-
--- Enable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        underline = true,
-        virtual_text = false,
-        signs = true,
-        update_in_insert = true
-    }
-)

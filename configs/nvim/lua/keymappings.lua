@@ -7,7 +7,7 @@ local remap = {noremap = false}
 
 g.mapleader = " "
 
-map("n", "<C-p>", ":Telescope find_files<CR>", options)
+map("n", "<C-o>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":Telescope live_grep<CR>", options)
 map("n", "<Shift>", "za", options)
 
@@ -30,6 +30,9 @@ map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
 map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
+-- Browser like next/previous
+map("n", "<A-Left>", ":bprevious<CR>",options);
+map("n", "<A-Right>", ":bnext<CR>",options);
 
 map("n", "Y", "yy", options)
 map("n", "<Leader>k", "{", options)
@@ -52,6 +55,9 @@ map("n", "<Leader>gdh", ":diffget //2<CR>", options)
 
 -- Find file in NvimTree
 map("n", "<Leader>f", ":NvimTreeFindFile<CR><c-w>", options)
+
+map("n", "<C-->",":vsplit<CR>",options);
+map("n", "<C-|>",":split<CR>",options);
 
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", options)
