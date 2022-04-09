@@ -75,7 +75,8 @@ return require("packer").startup(
         }
 
         -- Autoformat
-        use "sbdchd/neoformat"
+        -- use "sbdchd/neoformat"
+        use "lukas-reineke/lsp-format.nvim"
         -- use "lukas-reineke/format.nvim"
 
         -- General Popup Window

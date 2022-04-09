@@ -166,7 +166,7 @@ if u.has_plugin("cmp") then
     cmd("highlight Normal guibg=none")
     cmd("highlight NonText guibg=none")
 
-    require("formatter-conf")
+
 
     -- Configure nvim-tree
     g.nvim_tree_special_files = {}
@@ -291,7 +291,7 @@ if u.has_plugin("cmp") then
 
     -- LSP Config
     require "lspinstaller-conf"
-    require "lsp-conf"
+    -- require "lsp-conf"
 else
     vim.cmd [[PackerSync]]
 end
