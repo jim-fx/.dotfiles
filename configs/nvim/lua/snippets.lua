@@ -11,7 +11,7 @@ local d = ls.dynamic_node
 
 local types = require("luasnip.util.types")
 
-require("luasnip.loaders.from_vscode").load({include = {"typescript", "javascript", "html"}}) -- Load only python snippets
+require("luasnip.loaders.from_vscode").load({include = {"typescript", "javascript", "html"}})
 
 -- Every unspecified option will be set to the default.
 ls.config.set_config(
@@ -34,16 +34,32 @@ ls.config.set_config(
     }
 )
 
-ls.snippets = {
-    all = {},
-    svelte = {
-        s(
-            "slt",
-            {
-                t('<script lang="ts">'),
-                i(0),
-                t("</script>")
-            }
-        )
-    }
-}
+ls.add_snippets("all", {
+s({trig = "b(%d)", regTrig = true, wordTrig = true}, {
+			f(function(args) return {"Captured Text: " .. args[1].captures[1] .. "."} end, {}),
+			i(0)
+		})
+})
+
+ls.add_snippets("svelte",{
+        s("slt",{
+          t('<script lang="ts">','\t'),
+          i(0),
+          t("</script>")
+        }),
+        s("sc",{
+          t('<script context="module" lang="ts">','\t'),
+          i(0),
+          t("</script>")
+        })
+})
+
+ls.add_snippets("typescript",{
+     s("sget",{
+          t('export async function get({'),
+          i(1,"params"),
+          t("}) {"),
+          i(2),
+          t("}"),
+      })
+})

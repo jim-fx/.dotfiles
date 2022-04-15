@@ -18,13 +18,13 @@
 # Script:
 
 
-searx="https://searx.tiekoetter.com/search?language=en&time_range=None&safesearch=0&categories=general&q="
+searx="https://xzx.ro/search?q="
 startpage="https://www.startpage.com/sp/search?q="
 
 query=$( wofi -d -p "Search: " -W 600 -H 100 -k ~/.cache/wofi-web)
 
 if [[ -n "$query" ]]; then
-  url="$startpage$query"
+  url="$searx$query"
   xdg-open "$url"
 else
   exit

@@ -7,4 +7,3 @@ fi
 compdef _fx fx;
 autoload -U compinit
 compinit
-

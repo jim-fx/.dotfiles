@@ -1,8 +1,4 @@
-local present, telescope = pcall(require, "telescope")
-
-if not present then
-    return
-end
+local telescope = require("telescope")
 
 local default = {
     defaults = {
@@ -56,16 +52,8 @@ local default = {
 local M = {}
 M.setup = function()
     telescope.setup(default)
-
-    local extensions = {"themes", "terms"}
-
-    pcall(
-        function()
-            for _, ext in ipairs(extensions) do
-                -- telescope.load_extension(ext)
-            end
-        end
-    )
+    -- telescope.load_extension("themes");
+    telescope.load_extension("command_center");
 end
 
 return M

@@ -43,6 +43,11 @@ export EDITOR="nvim"
 # Automatically load direnv if found 
 [[ -s $(which direnv) ]] && eval "$(direnv hook zsh)"
 
+if [ type open &> /dev/null ]; then
+else
+  alias open=xdg-open
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
