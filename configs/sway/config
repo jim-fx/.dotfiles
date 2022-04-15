@@ -26,16 +26,16 @@ set $quickmenu wofi --show drun
 # Screenshot section
 set $screenshot_dir ~/Pictures/Screenshots/
 set $grimshot ~/.config/sway/grimshot.sh
-set $screenclip wl-copy < "$($grimshot --notify save area $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
+set $screenclip wl-copy < "$($grimshot --notify save area   $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 set $screenshot wl-copy < "$($grimshot --notify save screen $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 
 # Default Programs
 set $term kitty -e "tmux"
 set $explorer nautilus
-set $mail geary
-set $browser firefox-developer-edition
+set $mail org.gnome.Geary
 set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
+set $browser firefox-developer-edition
 set $password_mngr rofi-rbw --selector wofi --typer wtype --clipboarder wl-copy
 set $bluetooth_mngr blueman-manager
 set $calculator flatpak run io.github.Qalculate

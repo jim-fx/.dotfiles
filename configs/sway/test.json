@@ -1,0 +1,114 @@
+{
+  "id": 65,
+  "type": "con",
+  "orientation": "none",
+  "percent": 0.3422431865828092,
+  "urgent": false,
+  "marks": [],
+  "focused": false,
+  "layout": "none",
+  "border": "none",
+  "current_border_width": 2,
+  "rect": {
+    "x": 6,
+    "y": 46,
+    "width": 653,
+    "height": 1028
+  },
+  "deco_rect": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "window_rect": {
+    "x": 0,
+    "y": 0,
+    "width": 653,
+    "height": 1028
+  },
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 960,
+    "height": 810
+  },
+  "name": "Notes - Obsidian v0.14.5",
+  "window": 4194307,
+  "nodes": [],
+  "floating_nodes": [],
+  "focus": [],
+  "fullscreen_mode": 0,
+  "sticky": false,
+  "pid": 602930,
+  "app_id": null,
+  "visible": true,
+  "max_render_time": 0,
+  "shell": "xwayland",
+  "inhibit_idle": false,
+  "idle_inhibitors": {
+    "user": "none",
+    "application": "none"
+  },
+  "window_properties": {
+    "class": "obsidian",
+    "instance": "obsidian",
+    "title": "Notes - Obsidian v0.14.5",
+    "transient_for": null,
+    "window_role": "browser-window",
+    "window_type": "normal"
+  }
+}
+{
+  "id": 67,
+  "type": "con",
+  "orientation": "none",
+  "percent": 0.6561844863731656,
+  "urgent": false,
+  "marks": [],
+  "focused": true,
+  "layout": "none",
+  "border": "none",
+  "current_border_width": 2,
+  "rect": {
+    "x": 662,
+    "y": 46,
+    "width": 1252,
+    "height": 1028
+  },
+  "deco_rect": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "window_rect": {
+    "x": 0,
+    "y": 0,
+    "width": 1252,
+    "height": 1028
+  },
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 612,
+    "height": 439
+  },
+  "name": "tmux",
+  "window": null,
+  "nodes": [],
+  "floating_nodes": [],
+  "focus": [],
+  "fullscreen_mode": 0,
+  "sticky": false,
+  "pid": 603417,
+  "app_id": "kitty",
+  "visible": true,
+  "max_render_time": 0,
+  "shell": "xdg_shell",
+  "inhibit_idle": false,
+  "idle_inhibitors": {
+    "user": "none",
+    "application": "none"
+  }
+}

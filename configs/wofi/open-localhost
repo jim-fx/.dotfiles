@@ -1,5 +1,5 @@
 #!/bin/bash
-open "http://localhost:$(sed '1,/^### DATA ###$/d' $0 | wofi --show dmenu -i | cut -d ' ' -f 1 | tr -d '\n')"
+xdg-open "http://localhost:$(sed '1,/^### DATA ###$/d' $0 | wofi --show dmenu -i | cut -d ' ' -f 1 | tr -d '\n')"
 exit
 ### DATA ###
 8000

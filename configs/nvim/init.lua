@@ -68,11 +68,15 @@ if u.has_plugin("cmp") then
 
     g.ale_fixers = {"prettier", "eslint"}
 
-    vim.notify = require("notify")
+    require("command-center-conf")
 
-    require("notify").setup(
+    local notify = require("notify")
+    vim.notify = notify;
+
+    notify.setup(
         {
             stages = "fade_in_slide_out",
+            max_width = 50,
             render = "minimal",
             background_colour = "#000000",
             icons = {
@@ -91,53 +95,7 @@ if u.has_plugin("cmp") then
       set foldlevel=99
     ]]
 
-    require("telescope").setup {
-        defaults = {
-            vimgrep_arguments = {
-                "rg",
-                "--color=never",
-                "--no-heading",
-                "--with-filename",
-                "--line-number",
-                "--column",
-                "--smart-case"
-            },
-            prompt_prefix = "   ",
-            selection_caret = "  ",
-            entry_prefix = "  ",
-            initial_mode = "insert",
-            selection_strategy = "reset",
-            sorting_strategy = "ascending",
-            layout_strategy = "horizontal",
-            layout_config = {
-                horizontal = {
-                    prompt_position = "top",
-                    preview_width = 0.55,
-                    results_width = 0.8
-                },
-                vertical = {
-                    mirror = false
-                },
-                width = 0.87,
-                height = 0.80,
-                preview_cutoff = 120
-            },
-            file_sorter = require("telescope.sorters").get_fuzzy_file,
-            file_ignore_patterns = {"node_modules"},
-            generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-            path_display = {"truncate"},
-            winblend = 0,
-            border = {},
-            borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
-            color_devicons = true,
-            use_less = true,
-            set_env = {["COLORTERM"] = "truecolor"}, -- default = nil,
-            file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-            grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-            qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new
-            -- Developer configurations: Not meant for general override
-        }
-    }
+    require("telescope-conf").setup()
 
     -- Enable Theming / Syntax
     o.syntax = "enable"
@@ -169,40 +127,8 @@ if u.has_plugin("cmp") then
 
 
     -- Configure nvim-tree
-    g.nvim_tree_special_files = {}
-    g.nvim_tree_icons = {
-        default = "",
-        symlink = "",
-        git = {
-            unstaged = "*",
-            staged = "✓",
-            unmerged = "",
-            renamed = "➜",
-            untracked = "★",
-            deleted = "",
-            ignored = "◌"
-        },
-        folder = {
-            arrow_open = ">",
-            arrow_closed = "<",
-            default = "",
-            open = "",
-            empty = "",
-            empty_open = "",
-            symlink = "",
-            symlink_open = ""
-        },
-        lsp = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = ""
-        }
-    }
-
     g.nvim_tree_highlight_opened_files = 1
     g.nvim_tree_group_empty = 1
-    g.nvim_tree_indent_markers = 0
     g.nvim_tree_show_icons = {
         folder_arrows = 0,
         folders = 1,
@@ -217,6 +143,11 @@ if u.has_plugin("cmp") then
         update_cwd = true,
         update_focused_file = {
             enable = false
+        },
+        renderer = {
+          indent_markers = {
+            enable = 0
+          }
         },
         diagnostics = {
             enable = true,

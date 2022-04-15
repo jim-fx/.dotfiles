@@ -1,5 +1,5 @@
 return require("packer").startup(
-    function()
+    function(use)
         -- Let packer manage itself
         use "wbthomason/packer.nvim"
 
@@ -31,6 +31,7 @@ return require("packer").startup(
         use "nathanmsmith/nvim-ale-diagnostic"
         use "junegunn/fzf"
         use "nvim-telescope/telescope.nvim"
+        use "gfeiyou/command-center.nvim"
 
         -- Postman like features
         use "NTBBloodbath/rest.nvim"
@@ -42,6 +43,7 @@ return require("packer").startup(
 
         -- Lsp Errors
         use "folke/lsp-colors.nvim"
+        use "kosayoda/nvim-lightbulb"
         use "onsails/lspkind-nvim"
         use {
             "folke/trouble.nvim",

@@ -9,6 +9,7 @@ g.mapleader = " "
 
 map("n", "<C-o>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":Telescope live_grep<CR>", options)
+map("n","<C-p>",":Telescope command_center<CR>",options)
 map("n", "<Shift>", "za", options)
 
 -- LSP Functionality
@@ -30,6 +31,7 @@ map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
 map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
+
 -- Browser like next/previous
 map("n", "<A-Left>", ":bprevious<CR>",options);
 map("n", "<A-Right>", ":bnext<CR>",options);
