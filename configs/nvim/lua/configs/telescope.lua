@@ -49,11 +49,7 @@ local default = {
     }
 }
 
-local M = {}
-M.setup = function()
-    telescope.setup(default)
-    -- telescope.load_extension("themes");
-    telescope.load_extension("command_center");
-end
-
-return M
+telescope.setup(default)
+-- telescope.load_extension("themes");
+telescope.load_extension("command_center");
+telescope.load_extension("notify");

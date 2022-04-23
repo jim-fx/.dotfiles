@@ -1,24 +1,24 @@
 -- luasnip setup
 local luasnip = require "luasnip"
-local lspkind = require "lspkind"
+-- local lspkind = require "lspkind"
 local cmp = require "cmp"
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 cmp.setup {
-    formatting = {
-        format = lspkind.cmp_format(
-            {
-                with_text = true,
-                menu = ({
-                    buffer = "[Buffer]",
-                    nvim_lsp = "[LSP]",
-                    luasnip = "[LuaSnip]",
-                    nvim_lua = "[Lua]",
-                    latex_symbols = "[Latex]"
-                })
-            }
-        )
-    },
+    -- formatting = {
+    --     format = lspkind.cmp_format(
+    --         {
+    --             with_text = true,
+    --             menu = ({
+    --                 buffer = "[Buffer]",
+    --                 nvim_lsp = "[LSP]",
+    --                 luasnip = "[LuaSnip]",
+    --                 nvim_lua = "[Lua]",
+    --                 latex_symbols = "[Latex]"
+    --             })
+    --         }
+    --     )
+    -- },
     experimental = {
         ghost_text = true
     },

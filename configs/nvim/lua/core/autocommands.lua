@@ -8,11 +8,6 @@ cmd [[
 ]]
 
 cmd [[
-  au ColorScheme * hi Normal ctermbg=none guibg=none
-  au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
-]]
-
-cmd [[
 augroup filetypedetect
   au BufNewFile,BufRead *.frag setl ft=glsl
   au BufNewFile,BufRead *.vert setl ft=glsl
@@ -26,6 +21,9 @@ augroup SaveManualFolds
     au BufWinEnter           ?* silent! loadview
 augroup END
 ]]
+
+
+
 
 vim.api.nvim_create_autocmd("BufWritePre",{
   callback = function()

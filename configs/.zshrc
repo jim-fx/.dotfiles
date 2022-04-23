@@ -22,6 +22,8 @@ eval `dircolors ~/.dircolors`
 
 export FPATH=$FPATH:~/.dotfiles/completions
 export NVIM_HOME=$HOME/.config/nvim
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+export NVR_CMD=""
 
 # Load oh my zsh
 export ZSH=~/.oh-my-zsh
@@ -76,6 +78,10 @@ fi
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    export MOZ_ENABLE_WAYLAND=1
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

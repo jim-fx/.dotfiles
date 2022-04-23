@@ -1,6 +1,5 @@
 local map = vim.api.nvim_set_keymap
 local g = vim.g
-local cmd = vim.cmd
 
 local options = {noremap = true}
 local remap = {noremap = false}
@@ -21,7 +20,7 @@ map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
 map("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map("n", "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
-map("n", "<Leader><C-f>", ":Neoformat<CR>", options)
+-- map("n", "<Leader><C-f>", ":Neoformat<CR>", options)
 map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
 map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
@@ -35,6 +34,9 @@ map("n", "<C-l>", "<C-w>l", options)
 -- Browser like next/previous
 map("n", "<A-Left>", ":bprevious<CR>",options);
 map("n", "<A-Right>", ":bnext<CR>",options);
+
+-- Backspace Delete like Browser
+map('i', '<C-H>', '<Esc>caw', options)
 
 map("n", "Y", "yy", options)
 map("n", "<Leader>k", "{", options)
