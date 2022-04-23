@@ -7,7 +7,7 @@
     "hidden_state": "show",
 	"modules-left": ["custom/clock", "custom/waybar-mpris"],
 	"modules-center": ["sway/workspaces", "sway/mode"],
-	"modules-right": ["pulseaudio", "network", "custom/cpu_speed", "memory", "battery"],
+	"modules-right": ["custom/theme","pulseaudio", "network", "battery"],
 	"sway/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": false,
@@ -27,6 +27,11 @@
 			"unlocked": ""
 		}
 	},
+ "custom/theme":{
+  "exec": "~/.config/waybar/theme.sh",
+  "on-click": "~/.config/waybar/theme.sh --toggle",
+  "restart-interval": 1,
+ },
 	"custom/spotify": {
 		"exec": "/usr/bin/python3 /home/jim/.config/waybar/mediaplayer.py --player spotify",
 		"format": "{}  ",

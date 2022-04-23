@@ -1,6 +1,6 @@
 local lsp = require "lspconfig"
 local lsp_status = require("lsp-status")
-local ts_utils = require("nvim-lsp-ts-utils")
+-- local ts_utils = require("nvim-lsp-ts-utils")
 
 require'nvim-lightbulb'.setup {
     -- LSP client names to ignore
