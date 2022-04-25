@@ -1,14 +1,14 @@
 local map = vim.api.nvim_set_keymap
 local g = vim.g
 
-local options = {noremap = true}
-local remap = {noremap = false}
+local options = { noremap = true }
+local remap = { noremap = false }
 
 g.mapleader = " "
 
 map("n", "<C-o>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":Telescope live_grep<CR>", options)
-map("n","<C-p>",":Telescope command_center<CR>",options)
+map("n", "<C-p>", ":Telescope command_center<CR>", options)
 map("n", "<Shift>", "za", options)
 
 -- LSP Functionality
@@ -32,15 +32,20 @@ map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
 
 -- Browser like next/previous
-map("n", "<A-Left>", ":bprevious<CR>",options);
-map("n", "<A-Right>", ":bnext<CR>",options);
+map("n", "<A-Left>", ":bprevious<CR>", options);
+map("n", "<A-Right>", ":bnext<CR>", options);
 
 -- Backspace Delete like Browser
 map('i', '<C-H>', '<Esc>caw', options)
 
-map("n", "Y", "yy", options)
+-- Copy visual selection to keyboard
+map("v", "Y", '"+y', options)
 map("n", "<Leader>k", "{", options)
 map("n", "<Leader>j", "}", options)
+
+-- Don't accidently create macros when trying to quit
+map('n', 'Q', 'q', {})
+map('n', 'q', '<nop>', {})
 
 -- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", options)
@@ -60,8 +65,8 @@ map("n", "<Leader>gdh", ":diffget //2<CR>", options)
 -- Find file in NvimTree
 map("n", "<Leader>f", ":NvimTreeFindFile<CR><c-w>", options)
 
-map("n", "<C-->",":vsplit<CR>",options);
-map("n", "<C-|>",":split<CR>",options);
+map("n", "<C-->", ":vsplit<CR>", options);
+map("n", "<C-|>", ":split<CR>", options);
 
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", options)
