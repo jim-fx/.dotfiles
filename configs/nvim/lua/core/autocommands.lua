@@ -22,10 +22,9 @@ augroup SaveManualFolds
 augroup END
 ]]
 
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 
-
-
-vim.api.nvim_create_autocmd("BufWritePre",{
+vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     vim.lsp.buf.formatting_sync();
   end
