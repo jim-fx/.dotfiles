@@ -1,58 +1,17 @@
-local lsp = require "lspconfig"
-local lsp_status = require("lsp-status")
--- local ts_utils = require("nvim-lsp-ts-utils")
-
-require 'nvim-lightbulb'.setup {
-  -- LSP client names to ignore
-  -- Example: {"sumneko_lua", "null-ls"}
-  ignore = {},
-  sign = {
-    enabled = true,
-    -- Priority of the gutter sign
-    priority = 10,
-  },
-  float = {
-    enabled = false,
-    -- Text to show in the popup float
-    text = "💡",
-    -- Available keys for window options:
-    -- - height     of floating window
-    -- - width      of floating window
-    -- - wrap_at    character to wrap at for computing height
-    -- - max_width  maximal width of floating window
-    -- - max_height maximal height of floating window
-    -- - pad_left   number of columns to pad contents at left
-    -- - pad_right  number of columns to pad contents at right
-    -- - pad_top    number of lines to pad contents at top
-    -- - pad_bottom number of lines to pad contents at bottom
-    -- - offset_x   x-axis offset of the floating window
-    -- - offset_y   y-axis offset of the floating window
-    -- - anchor     corner of float to place at the cursor (NW, NE, SW, SE)
-    -- - winblend   transparency of the window (0-100)
-    win_opts = {},
-  },
-  virtual_text = {
-    enabled = false,
-    -- Text to show at virtual text
-    text = "💡",
-    -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
-    hl_mode = "replace",
-  },
-  status_text = {
-    enabled = false,
-    -- Text to provide when code actions are available
-    text = "💡",
-    -- Text to provide when no actions are available
-    text_unavailable = ""
-  }
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.setup {
+  ensure_installed = { "sumneko_lua", "jsonls", "tsserver", "svelte", "cssls" }
 }
-
+local lsp = require "lspconfig"
+local lsp_format = require("lsp-format");
+lsp_format.setup {}
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 lsp.sumneko_lua.setup {
+  on_attach = lsp_format.on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -75,6 +34,44 @@ lsp.sumneko_lua.setup {
       }
     }
   }
+}
+
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lsp.jsonls.setup {
+  capabilities = capabilities,
+  on_attach = lsp_format.on_attach,
+  settings = {
+    json = {
+      schemas = {
+        {
+          description = 'TypeScript compiler configuration file',
+          fileMatch = { 'tsconfig.json', 'tsconfig.*.json' },
+          url = 'http://json.schemastore.org/tsconfig'
+        },
+        {
+          description = 'ESLint config',
+          fileMatch = { '.eslintrc.json', '.eslintrc' },
+          url = 'http://json.schemastore.org/eslintrc'
+        },
+        {
+          description = 'Prettier config',
+          fileMatch = { '.prettierrc', '.prettierrc.json', 'prettier.config.json' },
+          url = 'http://json.schemastore.org/prettierrc'
+        },
+      }
+    },
+  }
+}
+
+lsp.svelte.setup {
+  on_attach = lsp_format.on_attach
+}
+
+lsp.tsserver.setup {
+  on_attach = lsp_format.on_attach
 }
 
 -- Ltex Language Server

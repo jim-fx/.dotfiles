@@ -23,7 +23,6 @@ if u.has_plugin("packer") then
   require "configs.command-center"
   require "configs.notify"
   require "configs.lsp"
-  require "configs.lspinstaller"
   require "configs.telescope"
   require "configs.tree"
   require "configs.treesitter"
