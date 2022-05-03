@@ -12,7 +12,7 @@ set.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 set.smarttab = true -- Makes tabbing smarter will realize you have 2 vs 4
 set.expandtab = true -- Converts tabs to spaces
 set.autoindent = true -- Good auto indent
-set.autochdir = true -- Your working directory will always be the same as your working directory
+set.autochdir = false -- Your working directory will always be the same as your working directory
 set.incsearch = true -- sets incremental search
 set.shell = "/bin/zsh" -- Set your shell to bash or zsh
 set.shortmess:append "sI" -- Disable nvim intro

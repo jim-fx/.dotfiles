@@ -8,10 +8,13 @@ return require("packer").startup(
   use "nvim-lua/plenary.nvim"
 
   -- Theming Section
+  use "rktjmp/fwatch.nvim" -- Used to check dark/light theme
   use "EdenEast/nightfox.nvim"
   use "nvim-lualine/lualine.nvim"
 
   -- Layout Plugins
+  use "dstein64/nvim-scrollview" -- ScrollBars
+  use "akinsho/nvim-toggleterm.lua"
   use { "folke/zen-mode.nvim", config = function() require("zen-mode").setup {} end }
   use "rcarriga/nvim-notify"
   use "kyazdani42/nvim-web-devicons"
@@ -43,7 +46,6 @@ return require("packer").startup(
   use "neovim/nvim-lspconfig"
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-calc"
   use "hrsh7th/cmp-buffer"
@@ -52,20 +54,18 @@ return require("packer").startup(
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
   use "williamboman/nvim-lsp-installer"
-  use "brymer-meneses/grammar-guard.nvim"
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate"
   }
 
-  -- Autoformat
-  use "lukas-reineke/lsp-format.nvim"
-
-  -- General Popup Window
-  use "akinsho/nvim-toggleterm.lua"
-
-  use "rktjmp/fwatch.nvim"
-
+  use {
+    'rmagatti/session-lens',
+    requires = { 'rmagatti/auto-session', 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('session-lens').setup({ path_display = { 'shorten' } })
+    end
+  }
   -- Database Feature
   use "tpope/vim-dadbod"
   use "kristijanhusak/vim-dadbod-ui"
