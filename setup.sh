@@ -107,7 +107,6 @@ fi
 
 echo "-- linking .dotfiles --"
 
-linkFile .bashrc
 linkFile .p10k.zsh
 linkFile .dircolors
 linkFile .tmux.conf
