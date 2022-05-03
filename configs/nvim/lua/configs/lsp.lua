@@ -3,15 +3,12 @@ lsp_installer.setup {
   ensure_installed = { "sumneko_lua", "jsonls", "tsserver", "svelte", "cssls" }
 }
 local lsp = require "lspconfig"
-local lsp_format = require("lsp-format");
-lsp_format.setup {}
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 lsp.sumneko_lua.setup {
-  on_attach = lsp_format.on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -42,7 +39,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lsp.jsonls.setup {
   capabilities = capabilities,
-  on_attach = lsp_format.on_attach,
   settings = {
     json = {
       schemas = {
@@ -66,13 +62,14 @@ lsp.jsonls.setup {
   }
 }
 
-lsp.svelte.setup {
-  on_attach = lsp_format.on_attach
+lsp.ltex.setup {
+  cmd = { os.getenv("HOME") .. '/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls' },
+  settings = {
+    ltex = {
+      disabledRules = { ['en-US'] = { 'PROFANITY' } },
+      dictionary = {
+        ['en-US'] = { 'perf', 'ci' },
+      },
+    },
+  },
 }
-
-lsp.tsserver.setup {
-  on_attach = lsp_format.on_attach
-}
-
--- Ltex Language Server
-require("grammar-guard").init()
