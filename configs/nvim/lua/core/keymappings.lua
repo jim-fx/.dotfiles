@@ -1,16 +1,16 @@
 local map = vim.api.nvim_set_keymap
 local g = vim.g
 
-local options = { noremap = true }
+local options = { noremap = true, silent = true }
 local remap = { noremap = false }
 
 g.mapleader = " "
 
-map("n", "<C-o>", ":Telescope find_files<CR>", options)
-map("n", "<C-f>", ":Telescope live_grep<CR>", options)
+map("n", "<C-o>", ":Telescope git_files<CR>", options)
+map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
 map("n", "<C-p>", ":Telescope command_center<CR>", options)
 map("n", "<Shift>", "za", options)
-
+vim.notify("keys")
 -- LSP Functionality
 map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)
 map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
@@ -36,7 +36,7 @@ map("n", "<A-Left>", ":bprevious<CR>", options);
 map("n", "<A-Right>", ":bnext<CR>", options);
 
 -- Backspace Delete like Browser
-map('i', '<C-H>', '<Esc>caw', options)
+map('i', '<C-H>', '<Esc>dbxi', options)
 
 -- Copy visual selection to keyboard
 map("v", "Y", '"+y', options)

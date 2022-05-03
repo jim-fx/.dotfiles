@@ -3,6 +3,11 @@ local noremap = { noremap = true }
 
 command_center.add({
   {
+    description = "Show Sessions",
+    cmd = ":lua require('session-lens').search_session()",
+    keybindings = { "n", "<leader><C-o>", noremap }
+  },
+  {
     description = "Search inside current buffer",
     cmd = "<CMD>Telescope current_buffer_fuzzy_find<CR>",
     keybindings = { "n", "<leader>fl", noremap },
@@ -24,10 +29,12 @@ command_center.add({
   {
     description = "Show function signaure (hover)",
     cmd = "<CMD>lua vim.lsp.buf.hover()<CR>",
-  }, {
+  },
+  {
     description = "(TS) Organize Imports",
     cmd = "<CMD>OrganizeImports<CR>"
-  }, {
+  },
+  {
     description = "ZenMode",
     cmd = "<CMD>ZenMode<CR>",
     keybindings = { "n", "z", noremap }

@@ -1,11 +1,12 @@
 local cmd = vim.cmd
 
-cmd [[
-    augroup highlight_yank
-      au!
-      au TextYankPost * silent! lua vim.highlight.on_yank { timeout = 150 }
-    augroup END
-]]
+local config_group = vim.api.nvim_create_augroup('Config', {})
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  group = config_group,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 cmd [[
 augroup filetypedetect

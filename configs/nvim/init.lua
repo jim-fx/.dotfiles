@@ -11,13 +11,13 @@ if u.has_plugin("packer") then
     },
   }
 
-  require "core.plugins"
   require "impatient"
+  require "core.plugins"
 
   require "core.options"
   require "core.autocommands"
-  require "core.keymappings"
   require "core.theme"
+  require "core.keymappings"
 
   require "configs.dashboard"
   require "configs.command-center"
