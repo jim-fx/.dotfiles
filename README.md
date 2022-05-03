@@ -3,9 +3,9 @@
 ## Features
 - [ZSH](https://www.zsh.org/) + [oh-my-zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
 - [asdf version manager](https://asdf-vm.com/#/)
-- [pre-configured](./configs/init.lua) [neovim](https://neovim.io/)
+- [pre-configured](./configs/nvim/init.lua) [neovim](https://neovim.io/)
 - [tmux](https://github.com/tmux/tmux)
-- [i3](https://i3wm.org)
+- [sway](https://i3wm.org)
 - 1 line installation
 
 ## Installation
@@ -25,7 +25,7 @@ chmod +x ~/.dotfiles/setup.sh
 ```
 
 ## Testing
-If you want to test the script before you can run the provided docker image.
+If you want to test this setup, you can use the provided docker image.
 
 ```bash
 docker build . -t jim-fx/dotfiles
@@ -34,20 +34,20 @@ docker run -it jim-fx/dotfiles
 
 ## Opinionated Stuff
 
-Because this is mainly my personal configs there are some stuff which you should be aware of.
+Because this is mainly my personal configs there is some stuff which you should be aware of.
 
 ### Directories
 
-- Personal projects are under ~/SYNC
+- Personal projects are under ~/Projects
 - Uni projects are under ~/COCO
 - Binaries are under ~/bin
 
 ### Custom commands
 
 ```bash
-fx [s/i/o] (directory)
+fx [s/i/o/d] (directory)
 ```
-Used to navigate and edit folders in the ~/SYNC folder
+Used to navigate and edit folders in the ~/Projects folder
 
 
 ```bash
