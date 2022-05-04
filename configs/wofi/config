@@ -4,3 +4,4 @@ width=500
 dynamic_lines=true
 term=kitty
 insensitive=true
+layer=overlay

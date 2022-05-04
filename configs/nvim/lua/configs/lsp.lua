@@ -62,6 +62,10 @@ lsp.jsonls.setup {
   }
 }
 
+lsp.svelte.setup {}
+
+lsp.tsserver.setup {}
+
 lsp.ltex.setup {
   cmd = { os.getenv("HOME") .. '/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls' },
   settings = {

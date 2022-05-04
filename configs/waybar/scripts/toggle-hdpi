@@ -1,0 +1,22 @@
+#!/bin/sh
+CURRENT=$(swaymsg -t get_outputs --raw | jq '.[] | [.current_mode.width, .current_mode.height] | join("x")')
+
+HIGH="ﳍ"
+STANDARD="ﳭ"
+
+if [ "$CURRENT" = '"3840x2160"' ]; then
+  if [ "$1" = "--toggle" ]; then
+    swaymsg "output eDP-1 mode --custom 1920x1080@60Hz"
+    killall waybar
+    nohup waybar
+  fi
+  echo $HIGH
+elif [ "$CURRENT" = '"1920x1080"' ]; then
+  if [ "$1" = "--toggle" ]; then
+    swaymsg "output eDP-1 mode --custom 3840x2160@60Hz"
+    killall waybar
+    nohup waybar
+  fi
+  echo $STANDARD
+fi
+
