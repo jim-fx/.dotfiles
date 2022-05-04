@@ -1,192 +1,109 @@
 {
-	"height": 20,
-	"spacing": 4,
- "bar_id":"bar-0",
- "ipc": true,
-     "mode": "hide",
-    "hidden_state": "show",
-	"modules-left": ["custom/clock", "custom/waybar-mpris"],
-	"modules-center": ["sway/workspaces", "sway/mode"],
-	"modules-right": ["custom/theme","pulseaudio", "network", "battery"],
-	"sway/workspaces": {
-		"disable-scroll": true,
-		"all-outputs": false,
-		"format": "{name}",
-		"format-icons": {
-			"urgent": "",
-			"focused": "",
-			"default": ""
-		 }
-	 },
-	"keyboard-state": {
-		"numlock": true,
-		"capslock": true,
-		"format": "{name} {icon}",
-		"format-icons": {
-			"locked": "",
-			"unlocked": ""
-		}
-	},
- "custom/theme":{
-  "exec": "~/.config/waybar/theme.sh",
-  "on-click": "~/.config/waybar/theme.sh --toggle",
-  "restart-interval": 1,
- },
-	"custom/spotify": {
-		"exec": "/usr/bin/python3 /home/jim/.config/waybar/mediaplayer.py --player spotify",
-		"format": "{}  ",
-		"return-type": "json",
-		"on-click": "playerctl play-pause",
-		"on-scroll-up": "playerctl next",
-		"on-scroll-down": "playerctl previous"
-	},
-	"sway/mode": {
-		"format": "<span style=\"italic\">{}</span>"
-	},
-	"mpd": {
-		"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-		"format-disconnected": "",
-		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-		"unknown-tag": "N/A",
-		"interval": 2,
-		"consume-icons": {
-			"on": " "
-		},
-		"random-icons": {
-			"off": "<span color=\"#f53c3c\"></span> ",
-			"on": " "
-		},
-		"repeat-icons": {
-			"on": " "
-		},
-		"single-icons": {
-			"on": "1 "
-		},
-		"state-icons": {
-			"paused": "",
-			"playing": ""
-		},
-		"tooltip-format": "MPD (connected)",
-		"tooltip-format-disconnected": "MPD (disconnected)"
-	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		}
-	},
-	"tray": {
-		"spacing": 10
-	},
-	"clock": {
-		"interval": 60,
-		"format": "{:%H:%M}",
-		"max-length": 25
-	},
-	"custom/clock": {
-		"exec": "date +'%H:%M'",
-		"interval": 10,
-  "on-click": "nm-applet"
-	},
-	"cpu": {
-		"format": "{usage}% ",
-		"tooltip": false
-	},
-	"memory": {
-		"format": "{}% "
-	},
-	"temperature": {
-		// "thermal-zone": 2,media
-		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-		"critical-threshold": 80,
-		// "format-critical": "{temperatureC}°C {icon}",
-		"format": "{temperatureC}°C {icon}",
-		"format-icons": ["", "", ""]
-	},
-	"backlight": {
-		// "device": "acpi_video1",
-		"format": "{percent}% {icon}",
-		"format-icons": ["", ""]
-	},
-	"battery": {
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "{capacity}% {icon}",
-		"format-charging": "{capacity}% ",
-		"format-plugged": "{capacity}% ",
-		"format-alt": "{time} {icon}",
-		// "format-good": "", // An empty format will hide the module
-		// "format-full": "",
-		"format-icons": ["", "", "", "", ""]
-	},
-	"battery#bat2": {
-		"bat": "BAT2"
-	},
-	"network": {
-		// "interface": "wlp2*", // (Optional) To force the use of this interface
-		"format-wifi": "{essid} ({signalStrength}%) ",
-		"format-ethernet": "{ipaddr}/{cidr} ",
-		"tooltip-format": "{ifname} via {gwaddr} ",
-		"format-linked": "{ifname} (No IP) ",
-		"format-disconnected": "Disconnected ⚠",
-		"format-alt": "{ifname}: {ipaddr}/{cidr}"
-	},
-	"pulseaudio": {
-		// "scroll-step": 1, // %, can be a float
-		"format": "{volume}% {icon} {format_source}",
-		"format-bluetooth": "{volume}% {icon} {format_source}",
-		"format-bluetooth-muted": " {icon} {format_source}",
-		"format-muted": " {format_source}",
-		"format-source": "{volume}% ",
-		"format-source-muted": "",
-		"format-icons": {
-			"headphone": "",
-			"hands-free": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
-			"default": ["", "", ""]
-		},
-		"on-click": "pavucontrol"
-	},
- "custom/cpu_speed": {
-    "interval": 10,
-    "return-type": "json",
-    "exec": "~/.config/waybar/cpu_speed.sh",
-    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {}",
-    "format-icons": [""],
-    "escape": true,
-    "on-click": "kitty -e htop"
-},
-"custom/waybar-mpris": {
+  "height": 20,
+  "spacing": 4,
+  "bar_id": "bar-0",
+  "ipc": true,
+  "mode": "hide",
+  "hidden_state": "show",
+  "modules-left": [
+    "clock",
+    "custom/waybar-mpris"
+  ],
+  "modules-center": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-right": [
+    "custom/dpi",
+    "custom/theme",
+    "pulseaudio",
+    "network",
+    "battery"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "format": "{name}"
+  },
+  "custom/theme": {
+    "exec": "~/.config/waybar/scripts/toggle-theme",
+    "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
+    "restart-interval": 1
+  },
+  "custom/dpi": {
+    "exec": "~/.config/waybar/scripts/toggle-hdpi",
+    "on-click": "~/.config/waybar/scripts/toggle-hdpi --toggle",
+    "restart-interval": 1
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "clock": {
+    "interval": 60,
+    "format": "{:%H:%M}",
+    "max-length": 25
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "custom/waybar-mpris": {
     "max-length": 30,
     "return-type": "json",
     "exec": "waybar-mpris --position --autofocus",
     "on-click": "waybar-mpris --send toggle",
     // This option will switch between players on right click.
-        "on-click-right": "waybar-mpris --send player-next",
+    "on-click-right": "waybar-mpris --send player-next",
     // The options below will switch the selected player on scroll
-        // "on-scroll-up": "waybar-mpris --send player-next",
-        // "on-scroll-down": "waybar-mpris --send player-prev",
+    // "on-scroll-up": "waybar-mpris --send player-next",
+    // "on-scroll-down": "waybar-mpris --send player-prev",
     // The options below will go to next/previous track on scroll
-        // "on-scroll-up": "waybar-mpris --send next",
-        // "on-scroll-down": "waybar-mpris --send prev",
+    // "on-scroll-up": "waybar-mpris --send next",
+    // "on-scroll-down": "waybar-mpris --send prev",
     "escape": true
-},
-	"custom/media": {
-		"format": "{icon} {}",
-		"return-type": "json",
-		"max-length": 40,
-		"format-icons": {
-			"spotify": "",
-			"default": "🎜"
-		},
-		"escape": true,
-		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-	}
+  }
 }
-

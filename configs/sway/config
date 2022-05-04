@@ -20,12 +20,11 @@ set $up k
 set $right l
 
 # Some menus
-set $wofi_scripts ~/.config/wofi
 set $quickmenu wofi --show drun
 
 # Screenshot section
 set $screenshot_dir ~/Pictures/Screenshots/
-set $grimshot ~/.config/sway/grimshot.sh
+set $grimshot $sway_scripts/grimshot
 set $screenclip wl-copy < "$($grimshot --notify save area   $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 set $screenshot wl-copy < "$($grimshot --notify save screen $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
@@ -41,20 +40,23 @@ set $bluetooth_mngr blueman-manager
 set $calculator flatpak run io.github.Qalculate
 set $photo_editor gtk-launch ~/.local/share/applications/photopea.desktop
 set $translator com.github.gi_lom.dialect
+set $settings gnome-control-center
 
 # Scripts
-set $config_editor ~/.config/sway/config_editor.sh
-set $debug_window ~/.config/sway/debug_window.sh
-set $settings gnome-control-center
-set $toggle_layout ~/.config/sway/toggle_layout.sh
-set $create_floating ~/.config/sway/create_floating.sh
-set $toggle_gaps ~/.config/sway/toggle_gaps.sh
-set $toggle_bar ~/.config/sway/toggle_bar.sh
-set $web_search $wofi_scripts/web-search.sh
-set $select_window ~/.config/sway/select_window.sh
-set $lock_screen ~/.config/sway/lock_screen.sh
-set $select_emoji $wofi_scripts/wofi-emoji
+
+set $wofi_scripts ~/.config/wofi/scripts/
+set $sway_scripts ~/.config/sway/scripts/
+
+set $debug_window $sway_scripts/debug-window
+set $toggle_layout $sway_scripts/toggle-layout
+set $create_floating $sway_scripts/create-floating
+set $toggle_gaps $sway_scripts/toggle-gaps
+set $toggle_bar $sway_scripts/toggle-bar
+set $select_window $sway_scripts/select-window
+set $lock_screen $sway_scripts/lock-screen
+set $select_emoji $wofi_scripts/select-emoji
 set $open_localhost $wofi_scripts/open-localhost
+set $select_wifi $wofi_scripts/select-wifi
 
 # Input configuration
 input * {
@@ -76,7 +78,7 @@ output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 #
 # Example configuration:
 #
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+# output eDP-1 resolution 1920x1080
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -89,8 +91,7 @@ exec swayidle -w \
   timeout 600 'swaymsg "output * dpms off"' \
   timeout 660 'systemctl suspend' \
   resume 'swaymsg "output * dpms on"' \
-  before-sleep '~/.config/sway/lock_screen.sh'
-
+  before-sleep $lock_screen
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -118,12 +119,13 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+d exec $quickmenu
   bindsym $mod+t exec $translator
   bindsym $mod+q kill
-  bindsym $mod+Shift+q exec $wofi_scripts/wofi-power-menu.sh
+  bindsym $mod+Shift+q exec $wofi_scripts/power-menu
   bindsym $mod+Return exec $term
   bindsym $mod+Shift+Return exec $create_floating $term
   bindsym $mod+e exec $explorer
   bindsym $mod+Comma exec $settings
   bindsym $mod+b exec $browser
+  bindsym $mod+Shift+w exec $select_wifi
   bindsym $mod+Shift+b exec $bluetooth_mngr
   bindsym $mod+Shift+Comma exec $config_editor
   bindsym $mod+a exec $web_search
@@ -136,20 +138,20 @@ input "1739:24385:Synaptics_TM2438-005" {
   # Reload the configuration file
   bindsym $mod+Shift+c reload
 
-		# Multimedia Audio Keys
+  # Multimedia Audio Keys
   bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
   bindsym --locked XF86AudioNext exec playerctl next
   bindsym --locked XF86AudioPrev exec playerctl previous
   bindsym --locked XF86AudioPlay exec playerctl play-pause
-		bindsym --locked XF86AudioLowerVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ -10%"
-		bindsym --locked XF86AudioRaiseVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ +10%"
+  bindsym --locked XF86AudioLowerVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ -10%"
+  bindsym --locked XF86AudioRaiseVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ +10%"
 
-		#Increase brightness
-		bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +20
-		bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 20-
+  #Increase brightness
+  bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +20
+  bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 20-
 
-		# Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit your Wayland session?' -B 'Yes, exit sway' 'swaymsg exit'
+  # Exit sway (logs you out of your Wayland session)
+  bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit your Wayland session?' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -187,7 +189,6 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [title="Zoom Meeting.*"] inhibit_idle visible
   for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 1300 600, sticky enable, resize set 600 450
 
-
   set $ws1 "1:   Code"
     assign [app_id="Alacritty"] $ws1
     assign [app_id="Kitty"] $ws1
@@ -198,11 +199,11 @@ input "1739:24385:Synaptics_TM2438-005" {
     assign [app_id="google-chrome-beta"] $ws2
     assign [class="Google-chrome"] $ws2
     assign [app_id="google-chrome"] $ws2
-		set $ws3 "3:   Music"
-			 assign [class="Spotify"] $ws3
-			 assign [class="spotify"] $ws3
-			 assign [app_id="dev.alextren.Spot"] $ws3
-		set $ws4 "4:   Chat"
+  set $ws3 "3:   Music"
+    assign [class="Spotify"] $ws3
+    assign [class="spotify"] $ws3
+    assign [app_id="dev.alextren.Spot"] $ws3
+  set $ws4 "4:   Chat"
 
   # Switch to workspace
   bindsym $mod+1 workspace $ws1
@@ -258,8 +259,8 @@ input "1739:24385:Synaptics_TM2438-005" {
     # bindsym $mod+a focus parent
 
 		# Screenshots
-  # -- Entire Screen
-  bindsym $mod+s exec $screenshot
+    # -- Entire Screen
+    bindsym $mod+s exec $screenshot
 		# -- Area Screenshot
 		bindsym $mod+Shift+s exec $screenclip
 		# -- Select Window
@@ -268,9 +269,9 @@ input "1739:24385:Synaptics_TM2438-005" {
 		bindsym $mod+i exec $select_emoji 
 		bindsym $mod+Shift+i exec $debug_window
 		bindsym $mod+o exec $open_localhost
-  bindsym $mod+Control+l exec $lock_screen 
-  bindsym $mod+c exec $calculator
-		bindsym Alt+Tab exec $select_window 
+    bindsym $mod+Control+l exec $lock_screen 
+    bindsym $mod+c exec $calculator
+		bindsym $mod+Tab exec $select_window 
 		bindsym $mod+m exec $mail 
 #
 # Scratchpad:
@@ -315,8 +316,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Do we need that?
-
 # Handles notifications
 exec_always mako
 # Start Audio
@@ -331,13 +330,11 @@ exec wl-paste -t text --watch clipman store --no-persist
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
 bar {
-	swaybar_command waybar
- mode dock
- position top
+  swaybar_command waybar
+  mode dock
+  position top
 }
 
 
-include @sysconfdir@/sway/config.d/*
 exec "systemctl --user import-environment SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY";
