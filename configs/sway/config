@@ -130,7 +130,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+Shift+Comma exec $config_editor
   bindsym $mod+a exec $web_search
   bindsym $mod+p exec $password_mngr
-  bindsym $mod+Shift+p exec $photo_editor
+  bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 
   # Drag and resize floating windows with mouse right/left drag
   floating_modifier $mod normal
@@ -186,6 +186,8 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [app_id="gnome-calculator"] floating enable
   for_window [app_id="qalculate-gtk"] floating enable
   for_window [title="Zoom Meeting.*"] floating disable
+  for_window [title="Firefox Developer Edition — Sharing Indicator"] floating enable, sticky enable, move position 10 980
+  for_window [title="Property Browser"] floating enable
   for_window [title="Zoom Meeting.*"] inhibit_idle visible
   for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 1300 600, sticky enable, resize set 600 450
 
@@ -235,84 +237,84 @@ input "1739:24385:Synaptics_TM2438-005" {
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    # bindsym $mod+b splith
-    # bindsym $mod+v splitv
+  # You can "split" the current object of your focus with
+  # $mod+b or $mod+v, for horizontal and vertical splits
+  # respectively.
+  # bindsym $mod+b splith
+  # bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+w exec $toggle_layout
-    bindsym $mod+g exec $toggle_gaps
-    bindsym $mod+Shift+g exec $toggle_bar
+  # Switch the current container between different layout styles
+  bindsym $mod+w exec $toggle_layout
+  bindsym $mod+g exec $toggle_gaps
+  bindsym $mod+Shift+g exec $toggle_bar
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+  # Make the current focus fullscreen
+  bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+  # Toggle the current focus between tiling and floating mode
+  bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+  # Swap focus between the tiling area and the floating area
+  bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    # bindsym $mod+a focus parent
+  # Move focus to the parent container
+  # bindsym $mod+a focus parent
 
-		# Screenshots
-    # -- Entire Screen
-    bindsym $mod+s exec $screenshot
-		# -- Area Screenshot
-		bindsym $mod+Shift+s exec $screenclip
-		# -- Select Window
-		bindsym $mod+Control+s exec $windowshot
+  # Screenshots
+  # -- Entire Screen
+  bindsym $mod+s exec $screenshot
+  # -- Area Screenshot
+  bindsym $mod+Shift+s exec $screenclip
+  # -- Select Window
+  bindsym $mod+Control+s exec $windowshot
 
-		bindsym $mod+i exec $select_emoji 
-		bindsym $mod+Shift+i exec $debug_window
-		bindsym $mod+o exec $open_localhost
-    bindsym $mod+Control+l exec $lock_screen 
-    bindsym $mod+c exec $calculator
-		bindsym $mod+Tab exec $select_window 
-		bindsym $mod+m exec $mail 
+  bindsym $mod+i exec $select_emoji 
+  bindsym $mod+Shift+i exec $debug_window
+  bindsym $mod+o exec $open_localhost
+  bindsym $mod+Control+l exec $lock_screen 
+  bindsym $mod+c exec $calculator
+  bindsym $mod+Tab exec $select_window 
+  bindsym $mod+m exec $mail 
 #
 # Scratchpad:
 #
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+  # Sway has a "scratchpad", which is a bag of holding for windows.
+  # You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+  # Move the currently focused window to the scratchpad
+  bindsym $mod+Shift+minus move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+  # Show the next scratchpad window or hide the focused scratchpad window.
+  # If there are multiple scratchpad windows, this command cycles through them.
+  bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 100px
-    bindsym $down resize grow height 100px
-    bindsym $up resize shrink height 100px
-    bindsym $right resize grow width 100px
+  # left will shrink the containers width
+  # right will grow the containers width
+  # up will shrink the containers height
+  # down will grow the containers height
+  bindsym $left resize shrink width 100px
+  bindsym $down resize grow height 100px
+  bindsym $up resize shrink height 100px
+  bindsym $right resize grow width 100px
 
 
-    bindsym Shift+$left resize shrink width 20px
-    bindsym Shift+$down resize grow height 20px
-    bindsym Shift+$up resize shrink height 20px
-    bindsym Shift+$right resize grow width 20px
+  bindsym Shift+$left resize shrink width 20px
+  bindsym Shift+$down resize grow height 20px
+  bindsym Shift+$up resize shrink height 20px
+  bindsym Shift+$right resize grow width 20px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+  # Ditto, with arrow keys
+  bindsym Left resize shrink width 10px
+  bindsym Down resize grow height 10px
+  bindsym Up resize shrink height 10px
+  bindsym Right resize grow width 10px
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  # Return to default mode
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
