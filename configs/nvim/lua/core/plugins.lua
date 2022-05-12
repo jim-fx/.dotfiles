@@ -1,5 +1,21 @@
-return require("packer").startup(
-  function(use)
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap = false
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+  vim.cmd 'packadd packer.nvim'
+end
+
+local packer = require("packer")
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  }
+}
+
+return packer.startup(function(use)
   -- Let packer manage itself
   use "wbthomason/packer.nvim"
   use 'lewis6991/impatient.nvim'
@@ -22,13 +38,12 @@ return require("packer").startup(
   use "nvim-lua/popup.nvim"
   use 'goolord/alpha-nvim'
   use { "terrortylor/nvim-comment", config = function() require('nvim_comment').setup() end }
-  use "windwp/nvim-autopairs"
+  use { "windwp/nvim-autopairs", config = function() require('nvim-autopairs').setup() end }
+  use "gfeiyou/command-center.nvim"
 
   -- Code Navigation
   use "junegunn/fzf"
   use "nvim-telescope/telescope.nvim"
-  use "gfeiyou/command-center.nvim"
-
 
   -- Lsp Errors
   use "folke/lsp-colors.nvim"
@@ -54,10 +69,7 @@ return require("packer").startup(
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
   use "williamboman/nvim-lsp-installer"
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate"
-  }
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
   use {
     'rmagatti/session-lens',
@@ -66,8 +78,13 @@ return require("packer").startup(
       require('session-lens').setup({ path_display = { 'shorten' } })
     end
   }
+
   -- Database Feature
   use "tpope/vim-dadbod"
   use "kristijanhusak/vim-dadbod-ui"
-end
-)
+
+  if packer_bootstrap then
+    packer.sync()
+  end
+
+end)
