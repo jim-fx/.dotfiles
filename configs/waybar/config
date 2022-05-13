@@ -14,6 +14,7 @@
     "sway/mode"
   ],
   "modules-right": [
+    "custom/power-profile",
     "custom/dpi",
     "custom/theme",
     "pulseaudio",
@@ -28,12 +29,17 @@
   "custom/theme": {
     "exec": "~/.config/waybar/scripts/toggle-theme",
     "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
-    "restart-interval": 1
+    "restart-interval": 2
+  },
+  "custom/power-profile": {
+    "exec": "~/.config/waybar/scripts/power-profile",
+    "on-click": "~/.config/waybar/scripts/power-profile --toggle",
+    "restart-interval": 2
   },
   "custom/dpi": {
     "exec": "~/.config/waybar/scripts/toggle-hdpi",
     "on-click": "~/.config/waybar/scripts/toggle-hdpi --toggle",
-    "restart-interval": 1
+    "restart-interval": 2
   },
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
@@ -107,3 +113,4 @@
     "escape": true
   }
 }
+// vi: ft=jsonc

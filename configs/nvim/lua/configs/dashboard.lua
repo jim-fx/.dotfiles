@@ -15,7 +15,7 @@ local dashboard = require("alpha.themes.dashboard")
 vim.opt.fillchars:append { eob = " " }
 
 -- Disable Status Line so that alpha dashboard look nice
-vim.cmd [[ au User AlphaReady if winnr('$') == 1 | set laststatus=1 ]]
+-- vim.cmd [[ au User AlphaReady if winnr('$') == 1 | set laststatus=1 ]]
 
 -- Custom Footer
 dashboard.section.footer.val = {

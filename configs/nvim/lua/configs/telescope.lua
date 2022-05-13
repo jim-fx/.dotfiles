@@ -1,5 +1,11 @@
 local telescope = require("telescope")
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
 
+telescope.setup {
+  defaults = {
+  },
+}
 local default = {
   defaults = {
     vimgrep_arguments = {
@@ -37,6 +43,10 @@ local default = {
     path_display = { "truncate" },
     winblend = 0,
     border = {},
+    mappings = {
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
+    },
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     color_devicons = true,
     use_less = true,

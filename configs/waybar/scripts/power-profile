@@ -1,0 +1,25 @@
+#!/bin/bash
+CURRENT=$(powerprofilesctl get)
+
+LOW="🐢"
+BALANCED="☯️"
+HIGH="⚡"
+
+if [ "$CURRENT" = 'power-saver' ]; then
+  if [ "$1" = "--toggle" ]; then
+    powerprofilesctl set balanced
+  fi
+  echo $LOW
+elif [ "$CURRENT" = 'balanced' ]; then
+  if [ "$1" = "--toggle" ]; then
+    powerprofilesctl set performance
+  fi
+  echo $BALANCED
+elif [ "$CURRENT" = 'performance' ]; then
+  if [ "$1" = "--toggle" ]; then
+    powerprofilesctl set power-saver
+  fi
+  echo $HIGH
+fi
+
+

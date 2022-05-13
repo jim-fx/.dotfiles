@@ -1,4 +1,4 @@
-# vim: ft=swayconfig
+# vim: ft=config
 
 # Default config for sway
 #
@@ -319,11 +319,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Handles notifications
-exec_always mako
+exec_always dunst
 # Start Audio
 # exec_always pulseaudio --start
 # Handle Authentiction requests
-exec_always lxpolkit
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always clipman
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346
