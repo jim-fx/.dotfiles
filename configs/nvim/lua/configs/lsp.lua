@@ -8,7 +8,23 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+local function on_attach(client, bufnr)
+  local cap = client.server_capabilities
+
+  if (cap.documentFormattingProvider) then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format();
+      end
+    })
+  else
+    vim.notify("Lsp (" .. client.name .. ") doesnt support format")
+  end
+end
+
 lsp.sumneko_lua.setup {
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -39,6 +55,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lsp.jsonls.setup {
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     json = {
       schemas = {
@@ -62,20 +79,46 @@ lsp.jsonls.setup {
   }
 }
 
-lsp.svelte.setup {}
-lsp.tsserver.setup {}
-lsp.html.setup {}
-lsp.intelephense.setup {}
-lsp.cssls.setup {}
+lsp.svelte.setup {
+  on_attach = on_attach
+}
+lsp.tsserver.setup {
+  on_attach = on_attach
+}
+lsp.html.setup {
+  on_attach = on_attach
+}
+lsp.intelephense.setup {
+  on_attach = on_attach
+}
+lsp.cssls.setup {
+  on_attach = on_attach
+}
+
+lsp.bashls.setup {
+  filetypes = { "sh", "bash" },
+  on_attach = on_attach
+}
+
+-- lsp.remark_ls.setup {
+--   filetypes = { "markdown" },
+--   on_attach = on_attach
+-- }
 
 lsp.ltex.setup {
+  on_attach = on_attach,
   cmd = { os.getenv("HOME") .. '/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls' },
   settings = {
     ltex = {
       disabledRules = { ['en-US'] = { 'PROFANITY' } },
       dictionary = {
-        ['en-US'] = { 'perf', 'ci' },
+        ['en-US'] = { 'perf', 'ci', 'neovim' },
       },
+      hiddenFalsePositives = {
+        'neovim',
+        'Neovim',
+        'waybar'
+      }
     },
   },
 }

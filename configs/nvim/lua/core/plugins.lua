@@ -71,6 +71,7 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
+  -- More IDE like features
   use {
     'rmagatti/session-lens',
     requires = { 'rmagatti/auto-session', 'nvim-telescope/telescope.nvim' },
@@ -78,6 +79,7 @@ return packer.startup(function(use)
       require('session-lens').setup({ path_display = { 'shorten' } })
     end
   }
+  use { "rcarriga/vim-ultest", requires = { "vim-test/vim-test" }, run = ":UpdateRemotePlugins" }
 
   -- Database Feature
   use "tpope/vim-dadbod"

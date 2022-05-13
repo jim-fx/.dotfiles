@@ -31,6 +31,16 @@ map("n", "<C-j>", "<C-w>j", options)
 map("n", "<C-k>", "<C-w>k", options)
 map("n", "<C-l>", "<C-w>l", options)
 
+map("n", "<Leader>1", "1gt", options)
+map("n", "<Leader>2", "2gt", options)
+map("n", "<Leader>3", "3gt", options)
+map("n", "<Leader>4", "4gt", options)
+map("n", "<Leader>0", ":tablast<CR>", options)
+
+-- Handling Splits
+map("n", "<C-w>h", ":sp<CR>", remap) -- horizontal
+map("n", "<C-w>v", ":vs<CR>", remap) -- vertical
+
 -- Browser like next/previous
 map("n", "<A-Left>", ":bprevious<CR>", options);
 map("n", "<A-Right>", ":bnext<CR>", options);
@@ -43,8 +53,10 @@ map("v", "Y", '"+y', options)
 map("n", "<Leader>k", "{", options)
 map("n", "<Leader>j", "}", options)
 
--- Don't accidently create macros when trying to quit
-map('n', 'Q', 'q', {})
+-- I dont use macros at the moment, can disable this if i want to
+map('v', 'Q', 'q', {})
+map('v', 'Q', 'q', {})
+map('n', 'q', '<nop>', {})
 map('n', 'q', '<nop>', {})
 
 -- Move lines vscode style
@@ -79,6 +91,7 @@ map("n", "<Leader>r", "<cmd>lua require('rest-nvim').run()<CR>", options)
 
 -- Close on q
 map("n", "<Leader>q", "<Esc>:q<CR>", options)
+map("n", "<Leader><C-q>", "<Esc>:qall<CR>", options)
 
 -- Open Nerdtree
 map("n", "<C-n>", ":NvimTreeToggle<CR>", options)

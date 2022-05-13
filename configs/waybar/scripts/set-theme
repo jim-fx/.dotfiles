@@ -169,7 +169,7 @@ esac
 
         # these two appear to be completely equivalent:
         dconf write /org/gnome/desktop/interface/gtk-theme "'$new_gtk_theme'"
-        #gsettings set org.gnome.desktop.interface gtk-theme $new_gtk_theme
+        gsettings set org.gnome.desktop.interface gtk-theme $new_gtk_theme
 
         dconf write /org/gnome/desktop/interface/icon-theme "'$new_icon_theme'"
         dconf write /org/gnome/desktop/interface/cursor-theme "'$new_cursor_theme'"

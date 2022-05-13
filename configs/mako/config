@@ -5,7 +5,7 @@ width=300
 height=300
 border-color=#000000
 border-radius=2
-icons=0
+icons=1
 max-icon-size=64
 default-timeout=5000
 ignore-timeout=1
@@ -14,6 +14,8 @@ text-color=#000000
 margin=5
 padding=0,20,20,10
 border-size=5
+on-button-left=exec makoctl menu -n "$id" wofi --show dmenu 'Select action: '
+on-button-right=dismiss
 
 [urgency=low]
 border-size=0
@@ -32,3 +34,5 @@ default-timeout=0
 [category=mpd]
 default-timeout=2000
 group-by=category
+
+# vi: ft=config
