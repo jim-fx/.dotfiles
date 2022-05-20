@@ -15,7 +15,9 @@ local default = {
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case"
+      "--smart-case",
+      "--ignore-file",
+      "workerMain.js"
     },
     prompt_prefix = "   ",
     selection_caret = "  ",
