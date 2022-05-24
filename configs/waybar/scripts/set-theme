@@ -78,7 +78,7 @@ case "$CMD" in
         # new_emacs_modeline_theme="smart-mode-line-light"
 
         # new_gtk_theme='WhiteSur'
-        new_gtk_theme='Pop'
+        new_gtk_theme='adw-gtk3'
         #new_gtk_theme='Solarized-Light'
         #new_gtk_theme='Crux'
 
@@ -105,7 +105,7 @@ case "$CMD" in
         # new_emacs_theme="solarized-dark"
         # new_emacs_modeline_theme="smart-mode-line-dark"
 
-        new_gtk_theme='Pop-dark'
+        new_gtk_theme='adw-gtk3-dark'
         #new_gtk_theme='Solarized-Dark'
         #new_gtk_theme='Crux-dark'
 
@@ -170,6 +170,7 @@ esac
         # these two appear to be completely equivalent:
         dconf write /org/gnome/desktop/interface/gtk-theme "'$new_gtk_theme'"
         gsettings set org.gnome.desktop.interface gtk-theme $new_gtk_theme
+        gsettings set org.gnome.desktop.interface color-scheme "prefer-$TERM_BACKGROUND"
 
         dconf write /org/gnome/desktop/interface/icon-theme "'$new_icon_theme'"
         dconf write /org/gnome/desktop/interface/cursor-theme "'$new_cursor_theme'"

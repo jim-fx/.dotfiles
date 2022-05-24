@@ -1,1 +1,1 @@
-:imap <buffer> <Up> <Esc>:lua require'telescope.builtin'.resume{}<CR>
+:imap <buffer> <S-Up> <Esc>:lua require'telescope.builtin'.resume{}<CR>

@@ -14,6 +14,7 @@
     "sway/mode"
   ],
   "modules-right": [
+    "custom/power-consumption",
     "custom/power-profile",
     "custom/dpi",
     "custom/theme",
@@ -31,10 +32,14 @@
     "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
     "restart-interval": 2
   },
+  "custom/power-consumption": {
+    "exec": "~/.config/waybar/scripts/power-consumption",
+    "interval": 1
+  },
   "custom/power-profile": {
     "exec": "~/.config/waybar/scripts/power-profile",
     "on-click": "~/.config/waybar/scripts/power-profile --toggle",
-    "restart-interval": 2
+    "interval": 2
   },
   "custom/dpi": {
     "exec": "~/.config/waybar/scripts/toggle-hdpi",

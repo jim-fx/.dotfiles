@@ -94,7 +94,9 @@ lsp.intelephense.setup {
 lsp.cssls.setup {
   on_attach = on_attach
 }
-
+lsp.zls.setup {
+  on_attach = on_attach
+}
 lsp.bashls.setup {
   filetypes = { "sh", "bash" },
   on_attach = on_attach

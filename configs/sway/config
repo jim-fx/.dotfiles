@@ -52,6 +52,7 @@ set $toggle_layout $sway_scripts/toggle-layout
 set $create_floating $sway_scripts/create-floating
 set $toggle_gaps $sway_scripts/toggle-gaps
 set $toggle_bar $sway_scripts/toggle-bar
+set $open_project $wofi_scripts/open-project
 set $select_window $sway_scripts/select-window
 set $lock_screen $sway_scripts/lock-screen
 set $select_emoji $wofi_scripts/select-emoji
@@ -271,6 +272,8 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+i exec $select_emoji 
   bindsym $mod+Shift+i exec $debug_window
   bindsym $mod+o exec $open_localhost
+  bindsym $mod+Shift+o exec $open_project
+
   bindsym $mod+Control+l exec $lock_screen 
   bindsym $mod+c exec $calculator
   bindsym $mod+Tab exec $select_window 
