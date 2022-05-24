@@ -1,0 +1,13 @@
+#!/bin/bash
+PROJECTS="$(ls -t $HOME/.local/share/nvim/sessions)"
+
+NAME="$(echo "$PROJECTS" | sed 's/.*\%//' | sed 's/\.vim//g' | wofi --show dmenu -i)"
+
+PROJECT="$(echo "$PROJECTS" | grep "$NAME.vim" | sed 's/\%/\//g' | sed 's/\.vim$//')"
+
+VIM="$HOME/.asdf/shims/nvim";
+
+if [ "$PROJECT" != "" ]; then
+  cd $PROJECT
+  tmux new-window "$VIM . ; zsh"
+fi
