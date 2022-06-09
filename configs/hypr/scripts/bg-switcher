@@ -1,0 +1,13 @@
+#!/bin/zsh
+swaybg --image $(find $HOME/.customization/background/ -type f | shuf -n 1) -m fill&
+function handle {
+    if [[ ${1:0:9} == "workspace" ]]; then
+        echo $line
+        swpid=`ps axf | grep swaybg | grep -v grep | awk '{printf $1}'`
+        swaybg --image $(find $HOME/.customization/background | shuf -n 1) -m fill&
+        sleep .3
+        kill $swpid
+    fi
+}
+
+socat - UNIX-CONNECT:/tmp/hypr/_1654794872/.socket2.sock | while read line; do handle $line; done

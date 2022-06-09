@@ -10,8 +10,10 @@ map("n", "<C-o>", ":Telescope git_files<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
 map("n", "<C-p>", ":Telescope command_center<CR>", options)
 map("n", "<Shift>", "za", options)
-vim.notify("keys")
+
 -- LSP Functionality
+map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", options)
+map("n", "<Leader>p", ":lua vim.diagnostic.goto_prev()<CR>", options)
 map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)
 map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
@@ -20,9 +22,6 @@ map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
 map("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map("n", "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
--- map("n", "<Leader><C-f>", ":Neoformat<CR>", options)
-map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", options)
-map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", options)
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
 
 -- Navigate Buffers
@@ -54,10 +53,10 @@ map("n", "<Leader>k", "{", options)
 map("n", "<Leader>j", "}", options)
 
 -- I dont use macros at the moment, can disable this if i want to
-map('v', 'Q', 'q', {})
-map('v', 'Q', 'q', {})
-map('n', 'q', '<nop>', {})
-map('n', 'q', '<nop>', {})
+-- map('v', 'Q', 'q', {})
+-- map('v', 'Q', 'q', {})
+-- map('n', 'q', '<nop>', {})
+-- map('n', 'q', '<nop>', {})
 
 -- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", options)

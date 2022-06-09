@@ -87,12 +87,12 @@ output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 #
 # Example configuration:
 #
+
 exec swayidle -w \
-  timeout 300 '~/.config/sway/lock_screen.sh' \
-  timeout 600 'swaymsg "output * dpms off"' \
-  timeout 660 'systemctl suspend' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep $lock_screen
+    timeout 300 '~/.config/sway/scripts/lock_screen.sh' \
+    timeout 600 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+    before-sleep $lock_screen
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -148,8 +148,8 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym --locked XF86AudioRaiseVolume exec "pactl -- set-sink-volume @DEFAULT_SINK@ +10%"
 
   #Increase brightness
-  bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +20
-  bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 20-
+  bindsym XF86MonBrightnessUp exec brightnessctl set +20
+  bindsym XF86MonBrightnessDown exec brightnessctl set 20-
 
   # Exit sway (logs you out of your Wayland session)
   bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit your Wayland session?' -B 'Yes, exit sway' 'swaymsg exit'
