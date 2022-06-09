@@ -186,7 +186,7 @@ esac
     # requires this in ~/.config/kitty/kitty.conf:
     # allow_remote_control yes
     # listen_on unix:/tmp/kitty-socket
-    kitty +kitten themes --reload-in=all $new_kitty_theme
+    kitty +kitten themes --cache-age=-1 --reload-in=all $new_kitty_theme
     # for SOCK in /tmp/kitty-socket-*; do
     #     if [[ -r $new_kitty_theme ]]; then
     #     else

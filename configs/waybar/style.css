@@ -1,9 +1,9 @@
 * {
-		border:        none;
-		font-family:   Font Awesome, Hack Nerd Font Mono;
+  border:        none;
+  font-family:   Font Awesome, Hack Nerd Font Mono;
   font-weight: 600;
-		font-size:     13px;
-		/* opacity: 0.95; */
+  font-size:     13px;
+  /* opacity: 0.95; */
 }
 
 window#waybar {
@@ -11,39 +11,34 @@ window#waybar {
 }
 
 window > box {
-		margin: 6px;
-		margin-bottom: 0px;
+  margin: 6px;
+  margin-bottom: 0px;
   background: #2b303b;
-		background:	@theme_bg_color;
-		padding: 5px 8px;
+  background:	@theme_bg_color;
+  padding: 5px 8px;
   border-radius: 4px;
-		/*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
 }
 
 #workspaces button {
-        padding:    0px 7px;
-  padding-left: 4px;
-				color: @theme_fg_color;
-				background: transparent;
+  padding:0px 10px;
+  color: @theme_fg_color;
+  background: transparent;
   border-radius: 2px;
 }
 
 #workspaces button:hover{
-		background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-#workspaces button.focused {
-				background-color: @theme_fg_color;
-				color:  @theme_bg_color;
+#workspaces button.active {
+  background-color: @theme_fg_color;
+  color:  @theme_bg_color;
 }
 
-#battery, #network, #pulseaudio, #clock, #custom-power, #custom-qbitstats {
-        /*margin:     0px 3px 0px 1px;*/
-}
 
 #clock {
-        margin:     0px 16px 0px 10px;
-        min-width:  10px;
+    margin:     0px 16px 0px 10px;
+    min-width:  10px;
 }
 
 .custom-spotify {
@@ -54,9 +49,6 @@ window > box {
 
 #custom-power {
         color:         #cc241d; 
-}
-
-#custom-qbitstats {
 }
 
 #battery {

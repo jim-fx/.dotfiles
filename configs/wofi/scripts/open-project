@@ -5,9 +5,15 @@ NAME="$(echo "$PROJECTS" | sed 's/.*\%//' | sed 's/\.vim//g' | wofi --show dmenu
 
 PROJECT="$(echo "$PROJECTS" | grep "$NAME.vim" | sed 's/\%/\//g' | sed 's/\.vim$//')"
 
-VIM="$HOME/.asdf/shims/nvim";
+VIM="$HOME/.asdf/shims/nvim ; zsh";
 
 if [ "$PROJECT" != "" ]; then
-  cd $PROJECT
-  tmux new-window "$VIM . ; zsh"
+  if [ "$(pgrep kitty)" == "" ]; then 
+    kitty -d $PROJECT $VIM
+    exit
+  else
+    cd $PROJECT
+    tmux new-window "$VIM"
+    exit
+  fi
 fi

@@ -3,30 +3,24 @@
   "spacing": 4,
   "bar_id": "bar-0",
   "ipc": true,
-  "mode": "hide",
+  // "mode": "hide",
   "hidden_state": "show",
   "modules-left": [
     "clock",
     "custom/waybar-mpris"
   ],
   "modules-center": [
-    "sway/workspaces",
-    "sway/mode"
+    "wlr/workspaces"
   ],
   "modules-right": [
     "custom/power-consumption",
     "custom/power-profile",
-    "custom/dpi",
+    // "custom/dpi",
     "custom/theme",
     "pulseaudio",
     "network",
     "battery"
   ],
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": false,
-    "format": "{name}"
-  },
   "custom/theme": {
     "exec": "~/.config/waybar/scripts/toggle-theme",
     "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
@@ -36,19 +30,30 @@
     "exec": "~/.config/waybar/scripts/power-consumption",
     "interval": 1
   },
+  "wlr/workspaces": {
+    "format": "{icon} {name}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      // "active": "",
+      "default": ""
+    }
+  },
   "custom/power-profile": {
     "exec": "~/.config/waybar/scripts/power-profile",
     "on-click": "~/.config/waybar/scripts/power-profile --toggle",
     "interval": 2
   },
-  "custom/dpi": {
-    "exec": "~/.config/waybar/scripts/toggle-hdpi",
-    "on-click": "~/.config/waybar/scripts/toggle-hdpi --toggle",
-    "restart-interval": 2
-  },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
-  },
+  // "custom/dpi": {
+  //   "exec": "~/.config/waybar/scripts/toggle-hdpi",
+  //   "on-click": "~/.config/waybar/scripts/toggle-hdpi --toggle",
+  //   "restart-interval": 2
+  // },
   "clock": {
     "interval": 60,
     "format": "{:%H:%M}",
