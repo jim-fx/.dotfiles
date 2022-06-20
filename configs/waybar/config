@@ -10,7 +10,7 @@
     "custom/waybar-mpris"
   ],
   "modules-center": [
-    "wlr/workspaces"
+    "sway/workspaces"
   ],
   "modules-right": [
     "custom/power-consumption",
@@ -75,6 +75,9 @@
       "",
       ""
     ]
+  },
+  "sway/workspaces": {
+    "format": "{name}"
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface

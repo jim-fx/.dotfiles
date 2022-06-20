@@ -1,0 +1,2 @@
+#!/bin/bash
+dunstify --icon=music "$(echo $DUNST_BODY | sed 's/: Tippen.*//g')"

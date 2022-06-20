@@ -23,6 +23,11 @@ vim.cmd [[set complete+=kspell]] -- auto complete with spellcheck
 vim.cmd [[set completeopt=menuone,longest]] -- auto complete menu (It's pretty great)
 vim.cmd [[set nocompatible]] -- Disable compatibility to old-time vi
 set.mouse = 'a' -- Enable mouse support
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()" -- use treesitter for folding
+vim.wo.foldcolumn = '1'
+vim.wo.foldlevel = 99 -- feel free to decrease the value
+vim.wo.foldenable = true
 
 ---------------
 -- Neovim UI --
