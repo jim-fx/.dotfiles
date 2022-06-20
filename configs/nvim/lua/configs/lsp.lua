@@ -53,6 +53,11 @@ lsp.sumneko_lua.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+lsp.solargraph.setup {
+  filetypes = { "ruby" },
+  on_attach = on_attach,
+}
+
 lsp.jsonls.setup {
   capabilities = capabilities,
   on_attach = on_attach,

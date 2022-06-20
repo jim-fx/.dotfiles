@@ -9,7 +9,7 @@ g.mapleader = " "
 map("n", "<C-o>", ":Telescope git_files<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
 map("n", "<C-p>", ":Telescope command_center<CR>", options)
-map("n", "<Shift>", "za", options)
+map("n", "<Leader-Leader>", "za", remap)
 
 -- LSP Functionality
 map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", options)

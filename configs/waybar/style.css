@@ -30,7 +30,8 @@ window > box {
   background: rgba(255, 255, 255, 0.1);
 }
 
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.focused{
   background-color: @theme_fg_color;
   color:  @theme_bg_color;
 }
