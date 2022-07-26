@@ -1,0 +1,29 @@
+[2022-07-06 12:54:31.514] [info] Using configuration file /home/max/.config/waybar/config
+[2022-07-06 12:54:31.515] [info] Using CSS file /home/max/.config/waybar/style.css
+[2022-07-06 12:54:31.562] [info] config update for bar-0: id bar-0, mode dock, hidden_state hide
+[2022-07-06 12:54:31.565] [warning] As using a timezone, some format args may be missing as the date library haven't got a release since 2018.
+[2022-07-06 12:54:31.594] [warning] Waybar has been built without rfkill support.
+
+** (waybar:7369): WARNING **: 12:54:31.720: gtk-layer-shell v0.7.0 may not work on GTK v3.24.34. If you experience crashes, check https://github.com/wmww/gtk-layer-shell/blob/master/compatibility.md
+[2022-07-06 12:54:31.842] [warning] Requested height: 20 is less than the minimum height: 40 required by the modules
+[2022-07-06 12:54:31.842] [info] Bar configured (width: 1920, height: 40) for output: eDP-1
+Failed to communicate with power-profiles-daemon: g-dbus-error-quark: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: Not Authorized: net.hadess.PowerProfiles.switch-profile (9)
+🐢
+[2022-07-06 12:58:10.903] [info] Using configuration file /home/max/.config/waybar/config
+[2022-07-06 12:58:10.910] [info] Using CSS file /home/max/.config/waybar/style.css
+[2022-07-06 12:58:10.917] [info] config update for bar-0: id bar-0, mode dock, hidden_state hide
+[2022-07-06 12:58:10.918] [warning] As using a timezone, some format args may be missing as the date library haven't got a release since 2018.
+[2022-07-06 12:58:10.927] [warning] Waybar has been built without rfkill support.
+
+** (waybar:1557): WARNING **: 12:58:10.947: gtk-layer-shell v0.7.0 may not work on GTK v3.24.34. If you experience crashes, check https://github.com/wmww/gtk-layer-shell/blob/master/compatibility.md
+[2022-07-06 12:58:10.962] [warning] Requested height: 20 is less than the minimum height: 40 required by the modules
+[2022-07-06 12:58:10.962] [info] Bar configured (width: 1920, height: 40) for output: eDP-1
+[2022-07-26 01:09:41.209] [info] Using configuration file /home/max/.config/waybar/config
+[2022-07-26 01:09:41.221] [info] Using CSS file /home/max/.config/waybar/style.css
+[2022-07-26 01:09:41.246] [info] config update for bar-0: id bar-0, mode dock, hidden_state hide
+[2022-07-26 01:09:41.247] [warning] As using a timezone, some format args may be missing as the date library haven't got a release since 2018.
+[2022-07-26 01:09:41.278] [warning] Waybar has been built without rfkill support.
+
+** (waybar:491379): WARNING **: 01:09:41.375: gtk-layer-shell v0.7.0 may not work on GTK v3.24.34. If you experience crashes, check https://github.com/wmww/gtk-layer-shell/blob/master/compatibility.md
+[2022-07-26 01:09:41.388] [warning] Requested height: 20 is less than the minimum height: 40 required by the modules
+[2022-07-26 01:09:41.388] [info] Bar configured (width: 1920, height: 40) for output: eDP-1

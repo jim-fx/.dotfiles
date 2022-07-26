@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use "tpope/vim-surround"
   use "neovim/nvim-lspconfig"
   use "hrsh7th/nvim-cmp"
+  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-calc"
