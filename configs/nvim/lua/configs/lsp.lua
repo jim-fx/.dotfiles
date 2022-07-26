@@ -11,13 +11,11 @@ table.insert(runtime_path, "lua/?/init.lua")
 local function on_attach(client, bufnr)
   local cap = client.server_capabilities
 
-
-  vim.notify(client.name)
-
   if (cap.documentFormattingProvider) then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       callback = function()
+
         vim.lsp.buf.format();
 
         if client.name == 'tsserver' or client.name == "svelte" then

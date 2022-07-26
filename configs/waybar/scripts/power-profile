@@ -3,7 +3,7 @@ CURRENT=$(powerprofilesctl get)
 
 LOW="🐢"
 BALANCED="☯️"
-HIGH="⚡"
+HIGH="🐇"
 
 if [ "$CURRENT" = 'power-saver' ]; then
   if [ "$1" = "--toggle" ]; then
