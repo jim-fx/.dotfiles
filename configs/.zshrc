@@ -7,7 +7,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
 plugins=(
@@ -89,7 +89,7 @@ fi
 
 # Auto connect to tmux session of ssh
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-    tmux attach-session -t $USER || tmux new-session -s $USER
+    # tmux attach-session -t $USER || tmux new-session -s $USER
 fi
 
 export PNPM_HOME="$HOME/.local/share/pnpm"

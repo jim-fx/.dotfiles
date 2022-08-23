@@ -24,6 +24,9 @@ map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map("n", "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
 
+-- DAP Functionality
+map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()", options)
+
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
 map("n", "<C-j>", "<C-w>j", options)
@@ -41,11 +44,11 @@ map("n", "<C-w>h", ":sp<CR>", remap) -- horizontal
 map("n", "<C-w>v", ":vs<CR>", remap) -- vertical
 
 -- Browser like next/previous
-map("n", "<A-Left>", ":bprevious<CR>", options);
-map("n", "<A-Right>", ":bnext<CR>", options);
+map("n", "<A-Left>", ":bprevious<CR>", options)
+map("n", "<A-Right>", ":bnext<CR>", options)
 
 -- Backspace Delete like Browser
-map('i', '<C-H>', '<Esc>dbxi', options)
+map("i", "<C-H>", "<Esc>dbxi", options)
 
 -- Copy visual selection to keyboard
 map("v", "Y", '"+y', options)
@@ -76,8 +79,8 @@ map("n", "<Leader>gdh", ":diffget //2<CR>", options)
 -- Find file in NvimTree
 map("n", "<Leader>f", ":NvimTreeFindFile<CR><c-w>", options)
 
-map("n", "<C-->", ":vsplit<CR>", options);
-map("n", "<C-|>", ":split<CR>", options);
+map("n", "<C-->", ":vsplit<CR>", options)
+map("n", "<C-|>", ":split<CR>", options)
 
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", options)

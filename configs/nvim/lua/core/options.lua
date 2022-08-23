@@ -15,14 +15,14 @@ set.autoindent = true -- Good auto indent
 set.autochdir = false -- Your working directory will always be the same as your working directory
 set.incsearch = true -- sets incremental search
 set.shell = "/bin/zsh" -- Set your shell to bash or zsh
-set.shortmess:append "sI" -- Disable nvim intro
-vim.cmd [[set nobackup]] -- creates a backup file
-vim.cmd [[set nowritebackup]] -- creates a backup file i guess
-vim.cmd [[set formatoptions-=cro]] -- Stop newline continution of comments
-vim.cmd [[set complete+=kspell]] -- auto complete with spellcheck
-vim.cmd [[set completeopt=menuone,longest]] -- auto complete menu (It's pretty great)
-vim.cmd [[set nocompatible]] -- Disable compatibility to old-time vi
-set.mouse = 'a' -- Enable mouse support
+set.shortmess:append("sI") -- Disable nvim intro
+vim.cmd([[set nobackup]]) -- creates a backup file
+vim.cmd([[set nowritebackup]]) -- creates a backup file i guess
+vim.cmd([[set formatoptions-=cro]]) -- Stop newline continution of comments
+vim.cmd([[set complete+=kspell]]) -- auto complete with spellcheck
+vim.cmd([[set completeopt=menuone,longest]]) -- auto complete menu (It's pretty great)
+vim.cmd([[set nocompatible]]) -- Disable compatibility to old-time vi
+set.mouse = "a" -- Enable mouse support
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()" -- use treesitter for folding
 vim.wo.foldlevel = 99 -- feel free to decrease the value
@@ -50,11 +50,14 @@ set.cursorline = false -- Enable highlighting of the current line
 set.shiftwidth = 2 -- Change the number of space characters inserted for indentation
 set.showtabline = 1 -- Always show tabs
 set.cmdheight = 1 -- More space for displaying messages
-vim.cmd [[set nowrap]] -- Display long lines as just one line
-vim.cmd [[set noshowmode]] -- We don't need to see things like -- INSERT -- anymore
-vim.cmd [[syntax enable]] -- Enables syntax highlighing
-vim.cmd [[set t_Co=256]] -- Support 256 colors
+vim.cmd([[set nowrap]]) -- Display long lines as just one line
+vim.cmd([[set noshowmode]]) -- We don't need to see things like -- INSERT -- anymore
+vim.cmd([[syntax enable]]) -- Enables syntax highlighing
+vim.cmd([[set t_Co=256]]) -- Support 256 colors
 -- vim.cmd "set whichwrap+=<,>,[,],h,l"         -- Breaks Space-Time Continuum
+vim.diagnostic.config({
+  virtual_text = false,
+})
 
 -----------------
 -- Memory, CPU --
