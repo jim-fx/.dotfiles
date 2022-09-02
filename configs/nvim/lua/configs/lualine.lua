@@ -7,7 +7,7 @@
 -- Credit: glepnir
 -- Credit: Elai
 
-local lualine = require "lualine"
+local lualine = require("lualine")
 
 -- Color table for highlights
 -- stylua: ignore
@@ -27,14 +27,14 @@ local colors = {
 
 local conditions = {
   buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
   end,
   hide_in_width = function()
     return vim.fn.winwidth(0) > 80
   end,
   check_git_workspace = function()
-    local filepath = vim.fn.expand('%:p:h')
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
+    local filepath = vim.fn.expand("%:p:h")
+    local gitdir = vim.fn.finddir(".git", filepath .. ";")
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end,
 }
@@ -43,8 +43,8 @@ local conditions = {
 local config = {
   options = {
     -- Disable sections and component separators
-    component_separators = '',
-    section_separators = '',
+    component_separators = "",
+    section_separators = "",
     theme = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
@@ -95,25 +95,24 @@ end
 -- }
 
 -- Icon Of Diffrent Mode: -- normal -- | -- insert -- | -- visual --
-ins_left {
+ins_left({
   -- mode component
   function()
-    return ''
+    return ""
   end,
   color = function()
-
     -- auto change color according to neovims mode
     local mode_color = {
       n = colors.green,
       i = colors.blue,
       v = colors.magenta,
-      [''] = colors.blue,
+      [""] = colors.blue,
       V = colors.blue,
       c = colors.red,
       no = colors.red,
       s = colors.orange,
       S = colors.orange,
-      [''] = colors.orange,
+      [""] = colors.orange,
       ic = colors.yellow,
       R = colors.violet,
       Rv = colors.violet,
@@ -121,18 +120,18 @@ ins_left {
       ce = colors.red,
       r = colors.cyan,
       rm = colors.cyan,
-      ['r?'] = colors.cyan,
-      ['!'] = colors.red,
+      ["r?"] = colors.cyan,
+      ["!"] = colors.red,
       t = colors.red,
     }
     return { fg = mode_color[vim.fn.mode()] }
   end,
   padding = { right = 1 },
-}
+})
 
 -- File Name
-ins_left {
-  'filename',
+ins_left({
+  "filename",
   file_status = true, -- Displays file status (readonly status, modified status)
   path = 2, -- 0: Just the filename
   -- 1: Relative path
@@ -140,11 +139,11 @@ ins_left {
   shorting_target = 100, -- Shortens path to leave 40 spaces in the window
   -- for other components. (terrible name, any suggestions?)
   symbols = {
-    modified = '  ', -- Text to show when the file is modified.
-    readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
-    unnamed = '[No Name]', -- Text to show for unnamed buffers.
-  }
-}
+    modified = "  ", -- Text to show when the file is modified.
+    readonly = " ", -- Text to show when the file is non-modifiable or readonly.
+    unnamed = "[No Name]", -- Text to show for unnamed buffers.
+  },
+})
 
 -- Git Diff
 local function diff_source()
@@ -153,39 +152,39 @@ local function diff_source()
     return {
       added = gitsigns.added,
       modified = gitsigns.changed,
-      removed = gitsigns.removed
+      removed = gitsigns.removed,
     }
   end
 end
 
-ins_right { 'diff', source = diff_source }
+ins_right({ "diff", source = diff_source })
 
 -- Git Branch
-ins_right {
-  'branch',
-  icon = '',
+ins_right({
+  "branch",
+  icon = "",
   -- icon = '',
   -- color = { fg = colors.green },
   -- padding = { right = 1 },
   -- padding = { left = 1 },
-}
+})
 
 -- File Type
-ins_right {
-  'filetype',
+ins_right({
+  "filetype",
   icon_only = true,
-  padding = { right = 2, left = 1 }
-}
+  padding = { right = 2, left = 1 },
+})
 
 -- File Encoding
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
+ins_right({
+  "o:encoding", -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
   cond = conditions.hide_in_width,
   padding = { right = 2 },
   -- color = { fg = colors.green, gui = 'bold' },
   -- Add components to right sections
-}
+})
 
 -- File Format
 -- ins_right {
@@ -198,33 +197,33 @@ ins_right {
 -- }
 
 -- File Size
-ins_right {
+ins_right({
   -- filesize component
-  'filesize',
+  "filesize",
   padding = { right = 2 },
   cond = conditions.buffer_not_empty,
-}
+})
 
 -- Text Progress
-ins_right {
-  'progress',
+ins_right({
+  "progress",
   padding = { right = 1 },
   -- padding = { left = 1 },
-}
+})
 
 -- File Location
-ins_right {
-  'location',
+ins_right({
+  "location",
   padding = { right = 0 },
-}
+})
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
-ins_left {
+ins_left({
   function()
-    return '%='
+    return "%="
   end,
-}
+})
 
 -- End Of The Status Bar
 -- ins_right {

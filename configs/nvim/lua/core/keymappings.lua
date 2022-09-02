@@ -9,7 +9,7 @@ g.mapleader = " "
 map("n", "<C-o>", ":Telescope git_files<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
 map("n", "<C-p>", ":Telescope command_center<CR>", options)
-map("n", "<Leader-Leader>", "za", remap)
+map("n", "<Leader><Leader>", "za", remap)
 
 -- LSP Functionality
 map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", options)
@@ -38,6 +38,10 @@ map("n", "<Leader>2", "2gt", options)
 map("n", "<Leader>3", "3gt", options)
 map("n", "<Leader>4", "4gt", options)
 map("n", "<Leader>0", ":tablast<CR>", options)
+
+map("n", "<C-t>", ":lua require('harpoon.mark').add_file()<CR>", options)
+-- Navigate Files
+map("n", "<S-t>", ":Telescope harpoon marks<CR>", options)
 
 -- Handling Splits
 map("n", "<C-w>h", ":sp<CR>", remap) -- horizontal
@@ -101,6 +105,3 @@ map("n", "<C-n>", ":NvimTreeToggle<CR>", options)
 -- Make ctrl+s work
 map("n", "<C-s>", "<Esc>:w<CR>", options)
 map("i", "<C-s>", "<Esc>:w<CR>i", options)
-
--- Update vim config
-map("n", "<C-u>", "<Esc>:source $MYVIMRC<CR>", options)

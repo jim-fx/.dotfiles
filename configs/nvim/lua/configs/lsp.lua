@@ -159,6 +159,7 @@ lsp.ltex.setup({
   cmd = { os.getenv("HOME") .. "/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls" },
   settings = {
     ltex = {
+      language = "de",
       disabledRules = { ["en-US"] = { "PROFANITY" } },
       dictionary = {
         ["en-US"] = { "perf", "ci", "neovim" },

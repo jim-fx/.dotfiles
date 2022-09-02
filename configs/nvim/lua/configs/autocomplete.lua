@@ -3,8 +3,6 @@ local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-local compare = require("cmp.config.compare")
-local cmp_buffer = require("cmp_buffer")
 local tabnine = require("cmp_tabnine.config")
 
 local source_mapping = {
@@ -29,19 +27,14 @@ tabnine:setup({
 })
 
 cmp.setup({
-  sorting = {
-    comparators = {
-      compare.score,
-      compare.recently_used,
-      compare.kind,
-      compare.offset,
-    },
+  window = {
+    documentation = cmp.config.window.bordered(),
   },
   experimental = {
     ghost_text = true,
   },
   completion = {
-    completeopt = "menu,menuone",
+    completeopt = "menu,menuone,noselect",
   },
   snippet = {
     expand = function(args)
