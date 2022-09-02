@@ -1,4 +1,4 @@
-require("impatient")
+pcall(require, "impatient")
 
 require("core.plugins")
 
