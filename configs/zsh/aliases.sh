@@ -26,3 +26,5 @@ alias p="git pull"
 alias lt="tree -L 2 --filelimit 150 --dirsfirst"
 
 alias dc="docker-compose"
+
+alias t="tmux"

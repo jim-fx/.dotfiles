@@ -1,26 +1,13 @@
-local has_impatient, impatient = pcall(require, "impatient")
-if has_impatient then
-	impatient.enable_profile()
-end
+require("impatient")
 
 require("core.plugins")
-
-local status_ok = pcall(require, "nightfox")
-if not status_ok then
-	return
-end
-
-require("hologram").setup({
-	auto_display = true, -- WIP automatic markdown image display, may be prone to breaking
-})
-
--- Require and call setup function somewhere in your init.lua
 
 require("core.options")
 require("core.autocommands")
 require("core.theme")
 require("core.keymappings")
 
+require("configs.autocomplete")
 require("configs.dashboard")
 require("configs.dap")
 require("configs.command-center")

@@ -30,7 +30,7 @@ set $screenshot wl-copy < "$($grimshot --notify save screen $screenshot_dir/scrn
 set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 
 # Default Programs
-set $term kitty -e "tmux"
+set $term wezterm
 set $explorer nautilus
 set $mail org.gnome.Geary
 set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
