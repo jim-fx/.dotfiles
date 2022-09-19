@@ -6,7 +6,7 @@ require("null-ls").setup({
   sources = {
     require("null-ls").builtins.formatting.stylua,
     require("null-ls").builtins.diagnostics.eslint,
-    require("null-ls").builtins.completion.spell,
+    -- require("null-ls").builtins.completion.spell,
   },
 })
 
@@ -134,18 +134,43 @@ lsp.intelephense.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
+
 lsp.cssls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
+
 lsp.zls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
+
 lsp.bashls.setup({
   capabilities = capabilities,
   filetypes = { "sh", "bash" },
   on_attach = on_attach,
+})
+
+lsp.rust_analyzer.setup({
+  on_attach = on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
 })
 
 -- lsp.remark_ls.setup {

@@ -17,6 +17,7 @@ require("configs.telescope")
 require("configs.tree")
 require("configs.treesitter")
 require("configs.autocomplete")
+require("configs.neotest")
 require("configs.snippets")
 
 require("overlays")
