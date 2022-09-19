@@ -1,12 +1,16 @@
-local map = vim.api.nvim_set_keymap
+-- local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local g = vim.g
+
+local saga = require("lspsaga")
+saga.init_lsp_saga()
 
 local options = { noremap = true, silent = true }
 local remap = { noremap = false }
 
 g.mapleader = " "
 
-map("n", "<C-o>", ":Telescope git_files<CR>", options)
+map("n", "<C-o>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
 map("n", "<C-p>", ":Telescope command_center<CR>", options)
 map("n", "<Leader><Leader>", "za", remap)
@@ -16,16 +20,23 @@ map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", options)
 map("n", "<Leader>p", ":lua vim.diagnostic.goto_prev()<CR>", options)
 map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)
 map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
-map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
-map("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
-map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
-map("n", "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", options)
+
+map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", { silent = true })
+map("n", "<leader>e", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
+map("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", options)
+map({ "n", "v" }, "<leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
+map({ "n", "v" }, "gr", "Lspsaga lsp_finder<CR>", options)
+
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
 
 -- DAP Functionality
 map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()", options)
+
+-- Test Functionality
+map("n", "tt", ":lua require('neotest').run.run()<CR>", options)
+map("n", "to", ":lua require('neotest').summary.open()<CR>", options)
 
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
@@ -39,7 +50,7 @@ map("n", "<Leader>3", "3gt", options)
 map("n", "<Leader>4", "4gt", options)
 map("n", "<Leader>0", ":tablast<CR>", options)
 
-map("n", "<C-t>", ":lua require('harpoon.mark').add_file()<CR>", options)
+map("n", "m", ":lua require('harpoon.mark').add_file()<CR>", options)
 -- Navigate Files
 map("n", "<S-t>", ":Telescope harpoon marks<CR>", options)
 

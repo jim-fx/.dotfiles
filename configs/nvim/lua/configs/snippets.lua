@@ -43,23 +43,33 @@ ls.add_snippets("all", {
 
 ls.add_snippets("svelte", {
   s("slt", {
-    t('<script lang="ts">', "\t"),
+    t({ '<script lang="ts">', "" }),
     i(0),
-    t("</script>"),
+    t({ "", "</script>" }),
   }),
   s("sc", {
-    t('<script context="module" lang="ts">', "\t"),
+    t({ '<script context="module" lang="ts">', "" }),
     i(0),
-    t("</script>"),
+    t({ "", "</script>" }),
   }),
 })
 
 ls.add_snippets("typescript", {
   s("sget", {
-    t("export async function get({"),
+    t('export const GET: import("./$types").RequestHandler = async function get({'),
     i(1, "params"),
     t("}) {"),
     i(2),
     t("}"),
+  }),
+  s("spost", {
+    t('export const POST: import("./$types").RequestHandler = async function get({'),
+    i(1, "params"),
+    t("}) {"),
+    i(2),
+    t("}"),
+  }),
+  s("ssess", {
+    t({ "const {userId} = locals.session.data", "if(!userId) throw redirect(307, '/login')" }),
   }),
 })

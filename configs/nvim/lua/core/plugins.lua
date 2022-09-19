@@ -50,13 +50,8 @@ return packer.startup(function(use)
       require("nvim_comment").setup()
     end,
   })
-  use({
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-    end,
-  })
   use("gfeiyou/command-center.nvim")
+  use("glepnir/lspsaga.nvim")
 
   -- Code Navigation
   use("junegunn/fzf")
@@ -84,8 +79,12 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig")
   use("hrsh7th/nvim-cmp")
   use("onsails/lspkind.nvim")
-  use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
-  -- use({ "hrsh7th/cmp-copilot", requires = "github/copilot.vim" })
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup()
+    end,
+  })
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-path")
   use("hrsh7th/cmp-calc")
@@ -125,6 +124,8 @@ return packer.startup(function(use)
   use({
     "nvim-neotest/neotest",
     requires = {
+      "haydenmeade/neotest-jest",
+      "KaiSpencer/neotest-vitest",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",

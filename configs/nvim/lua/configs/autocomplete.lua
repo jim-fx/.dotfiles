@@ -3,7 +3,7 @@ local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-local tabnine = require("cmp_tabnine.config")
+-- local tabnine = require("cmp_tabnine.config")
 
 local source_mapping = {
   buffer = "[Buffer]",
@@ -13,18 +13,18 @@ local source_mapping = {
   path = "[Path]",
 }
 
-tabnine:setup({
-  max_lines = 1000,
-  max_num_results = 20,
-  sort = true,
-  run_on_every_keystroke = true,
-  snippet_placeholder = "..",
-  ignored_file_types = { -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-  },
-  show_prediction_strength = false,
-})
+-- tabnine:setup({
+--   max_lines = 1000,
+--   max_num_results = 20,
+--   sort = true,
+--   run_on_every_keystroke = true,
+--   snippet_placeholder = "..",
+--   ignored_file_types = { -- default is not to ignore
+--     -- uncomment to ignore in lua:
+--     -- lua = true
+--   },
+--   show_prediction_strength = false,
+-- })
 
 cmp.setup({
   window = {
@@ -79,7 +79,7 @@ cmp.setup({
   sources = {
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
-    { name = "cmp_tabnine", max_item_count = 3 },
+    -- { name = "cmp_tabnine", max_item_count = 3 },
     { name = "luasnip" },
     { name = "path" },
     { name = "buffer", max_item_count = 3 },

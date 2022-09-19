@@ -4,6 +4,9 @@ function conf(){
 
   if [ "$1" = "u" ]; then
     source ~/.zshrc
+  elif [ "$1" = "ssh" ]; then
+    cd $HOME/.ssh/
+    nvim config
   else
     cd ~/.dotfiles/
 
