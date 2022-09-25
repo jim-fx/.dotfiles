@@ -26,24 +26,20 @@ return packer.startup(function(use)
 
   -- Theming Section
   use("rktjmp/fwatch.nvim") -- Used to check dark/light theme
-  use("EdenEast/nightfox.nvim")
-  use({ "catppuccin/nvim", as = "catppuccin" })
+  -- use("EdenEast/nightfox.nvim")
+  -- use({ "catppuccin/nvim", as = "catppuccin" })
   use("nvim-lualine/lualine.nvim")
+  use("sam4llis/nvim-tundra")
 
   -- Layout Plugins
   use("dstein64/nvim-scrollview") -- ScrollBars
   use("akinsho/nvim-toggleterm.lua")
-  use({
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({})
-    end,
-  })
   use("rcarriga/nvim-notify")
   use("kyazdani42/nvim-web-devicons")
   use("kyazdani42/nvim-tree.lua")
   use("nvim-lua/popup.nvim")
-  use("goolord/alpha-nvim")
+  use("goolord/alpha-nvim") -- startup screen
+  use("Pocco81/true-zen.nvim")
   use({
     "terrortylor/nvim-comment",
     config = function()
@@ -67,6 +63,7 @@ return packer.startup(function(use)
       require("trouble").setup({})
     end,
   })
+  use("onsails/lspkind.nvim")
   use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
@@ -78,7 +75,6 @@ return packer.startup(function(use)
   use("tpope/vim-surround")
   use("neovim/nvim-lspconfig")
   use("hrsh7th/nvim-cmp")
-  use("onsails/lspkind.nvim")
   use({
     "windwp/nvim-autopairs",
     config = function()
@@ -87,7 +83,7 @@ return packer.startup(function(use)
   })
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-calc")
+  -- use("hrsh7th/cmp-calc")
   use("hrsh7th/cmp-buffer")
   use("hrsh7th/cmp-cmdline")
   use("rafamadriz/friendly-snippets")
@@ -100,26 +96,14 @@ return packer.startup(function(use)
   use("MunifTanjim/prettier.nvim")
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
-  -- Dap Debugger
-  use({ "mfussenegger/nvim-dap" })
-  use({ "rcarriga/nvim-dap-ui" })
+  -- Dap Debugger -- Have not yet been able to set this up
+  -- use({ "mfussenegger/nvim-dap" })
+  -- use({ "rcarriga/nvim-dap-ui" })
 
   -- FIle Navigation
   use({ "ThePrimeagen/harpoon" })
 
   -- More IDE like features
-  use({
-    "rmagatti/session-lens",
-    requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("session-lens").setup({ path_display = { "shorten" } })
-    end,
-  })
-
-  use({
-    "edluffy/hologram.nvim",
-    config = function() end,
-  })
 
   use({
     "nvim-neotest/neotest",

@@ -3,6 +3,13 @@ local map = vim.keymap.set
 local g = vim.g
 
 local saga = require("lspsaga")
+local truezen = require("true-zen")
+truezen.setup({
+  integrations = {
+    tmux = true, -- hide tmux status bar in (minimalist, ataraxis)
+    lualine = true, -- hide nvim-lualine (ataraxis)
+  },
+})
 saga.init_lsp_saga()
 
 local options = { noremap = true, silent = true }
@@ -85,6 +92,7 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", options)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", options)
 map("n", "<A-S-k>", "YP", options)
 map("n", "<A-S-j>", "Yp", options)
+map({ "v", "n" }, "z", truezen.ataraxis, options)
 
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", options)
