@@ -97,8 +97,6 @@ if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
     # tmux attach-session -t $USER || tmux new-session -s $USER
 fi
 
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
