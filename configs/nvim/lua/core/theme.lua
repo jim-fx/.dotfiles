@@ -1,48 +1,43 @@
--- Enable Theming / Syntax
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-
-local cat = require("catppuccin")
-cat.setup({
+require("nvim-tundra").setup({
   transparent_background = true,
-  compile = {
-    enabled = true,
-    path = vim.fn.stdpath("cache") .. "/catppuccin",
+  editor = {
+    search = {},
+    substitute = {},
   },
-  styles = {
-    comments = { "italic" },
-    strings = { "italic" },
+  syntax = {
+    booleans = { bold = true, italic = true },
+    comments = { bold = true, italic = true },
+    conditionals = {},
+    constants = { bold = true },
+    functions = {},
+    keywords = {},
+    loops = {},
+    numbers = { bold = true },
+    operators = { bold = true },
+    punctuation = {},
+    strings = {},
+    types = { italic = true },
   },
-  integrations = {
-    gitsigns = true,
-    telescope = true,
+  diagnostics = {
+    errors = {},
+    warnings = {},
+    information = {},
+    hints = {},
+  },
+  plugins = {
+    lsp = true,
     treesitter = true,
     cmp = true,
-    nvimtree = {
-      enabled = true,
-      show_root = false,
-    },
-    dap = {
-      enabled = true,
-      enable_ui = true,
-    },
-    native_lsp = {
-      enabled = true,
-    },
-    ts_rainbow = true,
-    indent_blankline = {
-      enabled = true,
-      colored_indent_levels = false,
-    },
+    context = true,
+    dbui = true,
+    gitsigns = true,
+    telescope = true,
+  },
+  overwrite = {
+    colors = {},
+    highlights = {},
   },
 })
 
-require("nightfox").setup({
-  options = {
-    transparent = true,
-  },
-})
-
-vim.cmd("colorscheme catppuccin")
-
-require("utils.theme-reloader")
-require("configs.lualine")
+vim.opt.background = "dark"
+vim.cmd("colorscheme tundra")

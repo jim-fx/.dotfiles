@@ -5,12 +5,7 @@ command_center.add({
   {
     description = "Show Sessions",
     cmd = ":lua require('session-lens').search_session()<CR>",
-    keybindings = { "n", "<leader><C-o>", noremap }
-  },
-  {
-    description = "ZenMode",
-    cmd = "<CMD>ZenMode<CR>",
-    keybindings = { "n", "z", noremap }
+    keybindings = { "n", "<leader><C-o>", noremap },
   },
   {
     description = "Search inside current buffer",
@@ -27,6 +22,6 @@ command_center.add({
   },
   {
     description = "(TS) Organize Imports",
-    cmd = "<CMD>OrganizeImports<CR>"
+    cmd = "<CMD>OrganizeImports<CR>",
   },
 })

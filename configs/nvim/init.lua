@@ -9,7 +9,7 @@ require("core.keymappings")
 
 require("configs.autocomplete")
 require("configs.dashboard")
-require("configs.dap")
+-- require("configs.dap")
 require("configs.command-center")
 require("configs.notify")
 require("configs.lsp")
