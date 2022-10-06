@@ -1,5 +1,5 @@
 -- Configure nvim-tree
-require("nvim-tree").setup {
+require("nvim-tree").setup({
   hijack_cursor = true,
   update_cwd = false,
   trash = {
@@ -12,23 +12,28 @@ require("nvim-tree").setup {
       hint = "",
       info = "",
       warning = "",
-      error = ""
-    }
+      error = "",
+    },
   },
   view = {
     hide_root_folder = true,
-    signcolumn = "no"
+    signcolumn = "no",
   },
   renderer = {
     group_empty = true,
     highlight_opened_files = "all",
     icons = {
+      glyphs = {
+        git = {
+          untracked = "*",
+        },
+      },
       show = {
         folder_arrow = false,
         folder = true,
         file = true,
-        git = true
-      }
-    }
-  }
-}
+        git = true,
+      },
+    },
+  },
+})

@@ -28,10 +28,11 @@ local function updateTheme()
   if line then
     local light = string.find(line, "light")
     if light then
-      -- vim.cmd("colorscheme dayfox")
+      vim.g.catppuccin_flavour = "latte"
     else
-      -- vim.cmd("colorscheme nightfox")
+      vim.g.catppuccin_flavour = "mocha"
     end
+    vim.cmd("colorscheme catppuccin")
   end
 end
 
