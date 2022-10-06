@@ -27,9 +27,9 @@ return packer.startup(function(use)
   -- Theming Section
   use("rktjmp/fwatch.nvim") -- Used to check dark/light theme
   -- use("EdenEast/nightfox.nvim")
-  -- use({ "catppuccin/nvim", as = "catppuccin" })
+  use({ "catppuccin/nvim", as = "catppuccin" })
   use("nvim-lualine/lualine.nvim")
-  use("sam4llis/nvim-tundra")
+  -- use("sam4llis/nvim-tundra")
 
   -- Layout Plugins
   use("dstein64/nvim-scrollview") -- ScrollBars
@@ -104,7 +104,13 @@ return packer.startup(function(use)
   use({ "ThePrimeagen/harpoon" })
 
   -- More IDE like features
-
+  use("editorconfig/editorconfig-vim")
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  })
   use({
     "nvim-neotest/neotest",
     requires = {

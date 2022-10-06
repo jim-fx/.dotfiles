@@ -28,3 +28,5 @@ alias lt="tree -L 2 --filelimit 150 --dirsfirst"
 alias dc="docker-compose"
 
 alias t="tmux"
+
+alias nx="pnpm exec nx"
