@@ -3,23 +3,6 @@ local map = vim.keymap.set
 local g = vim.g
 
 local saga = require("lspsaga")
-local truezen = require("true-zen")
-truezen.setup({
-  ataraxis = {
-    minimum_writing_area = { -- minimum size of main window
-      width = 250,
-      height = 100,
-    },
-    padding = {
-      left = 10,
-      right = 10,
-    }
-  },
-  integrations = {
-    tmux = true, -- hide tmux status bar in (minimalist, ataraxis)
-    lualine = true, -- hide nvim-lualine (ataraxis)
-  },
-})
 saga.init_lsp_saga()
 
 local options = { noremap = true, silent = true }
@@ -29,7 +12,7 @@ g.mapleader = " "
 
 map("n", "<C-o>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
-map("n", "<C-p>", ":Telescope command_center<CR>", options)
+-- map("n", "<C-p>", ":Telescope command_center<CR>", options)
 map("n", "<Leader><Leader>", "za", remap)
 
 -- LSP Functionality
@@ -54,6 +37,9 @@ map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()", options)
 -- Test Functionality
 map("n", "tt", ":lua require('neotest').run.run()<CR>", options)
 map("n", "to", ":lua require('neotest').summary.open()<CR>", options)
+
+map({ "n", "v" }, "+", "<cmd>:Boole increment<CR>", options)
+map({ "n", "v" }, "-", "<cmd>:Boole decrement<CR>", options)
 
 -- Navigate Buffers
 map("n", "<C-h>", "<C-w>h", options)
@@ -102,7 +88,6 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", options)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", options)
 map("n", "<A-S-k>", "YP", options)
 map("n", "<A-S-j>", "Yp", options)
-map({ "v", "n" }, "z", truezen.ataraxis, options)
 
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", options)
@@ -123,6 +108,7 @@ map("n", "<Down>", ":echo 'No Down for you'<CR><dw>", options)
 
 -- Run Requests
 map("n", "<Leader>r", ":SnipRun<CR>", options)
+map("v", "<Leader>r", ":'<,'>SnipRun<CR>", options)
 
 -- Close on q
 map("n", "<Leader>q", "<Esc>:q<CR>", options)

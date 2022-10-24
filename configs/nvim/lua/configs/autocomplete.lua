@@ -1,17 +1,13 @@
 -- luasnip setup
 local luasnip = require("luasnip")
+
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
--- local tabnine = require("cmp_tabnine.config")
 
-local source_mapping = {
-  buffer = "[Buffer]",
-  nvim_lsp = "[LSP]",
-  nvim_lua = "[Lua]",
-  cmp_tabnine = "[TN]",
-  path = "[Path]",
-}
+require("nvim-autopairs").setup()
+require("copilot").setup()
+require("copilot_cmp").setup()
 
 cmp.setup({
   window = {
@@ -50,28 +46,21 @@ cmp.setup({
     }),
   },
   formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind = lspkind.presets.default[vim_item.kind]
-      local menu = source_mapping[entry.source.name]
-      if entry.source.name == "cmp_tabnine" then
-        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-          menu = entry.completion_item.data.detail .. " " .. menu
-        end
-        vim_item.kind = ""
-      end
-      vim_item.menu = menu
-      return vim_item
-    end,
+    format = lspkind.cmp_format({
+      mode = "symbol",
+      max_width = 50,
+      symbol_map = { Copilot = "" },
+    }),
   },
   sources = {
+    { name = "copilot" },
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     -- { name = "cmp_tabnine", max_item_count = 3 },
     { name = "luasnip" },
     { name = "path" },
-    { name = "buffer", max_item_count = 3 },
+    { name = "buffer" },
     { name = "calc" },
-    -- { name = 'copilot' }
   },
 })
 
@@ -89,13 +78,6 @@ cmp.setup.cmdline(":", {
   }, {
     { name = "cmdline" },
   }),
-})
-
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
--- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig").html.setup({
-  capabilities = capabilities,
 })
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))

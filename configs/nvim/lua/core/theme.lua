@@ -15,7 +15,7 @@ cat.setup({
   integrations = {
     gitsigns = true,
     telescope = true,
-    treesitter = true,
+    -- treesitter = true,
     cmp = true,
     lsp_saga = true,
     notify = true,

@@ -22,7 +22,7 @@ function fx(){
   fi
 
   if [ "$1" = "v" ]; then
-    nvim .
+    nvim
   fi
 
   if [ "$1" = "o" ]; then
