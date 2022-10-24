@@ -6,6 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [ -d "$HOME/.asdf" ] ; then
+   . "$HOME/.asdf/asdf.sh"
+fi
+
+# Enable vim mode in zsh
+bindkey -v
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
@@ -13,8 +20,9 @@ ZSH_TMUX_AUTOCONNECT=false
 plugins=(
   git
   docker
-  tmux
   asdf
+  tmux
+  nx-completion
   zsh-autosuggestions
 )
 
@@ -60,9 +68,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/.asdf" ] ; then
-   . "$HOME/.asdf/asdf.sh"
-fi
 
 if type go &> /dev/null ; then
   export PATH="$PATH:$(go env GOPATH)/bin"

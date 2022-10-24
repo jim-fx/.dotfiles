@@ -12,7 +12,7 @@ end
 local dashboard = require("alpha.themes.dashboard")
 
 -- Remove These ~ ~ ~
-vim.opt.fillchars:append { eob = " " }
+vim.opt.fillchars:append({ eob = " " })
 
 -- Disable Status Line so that alpha dashboard look nice
 -- vim.cmd [[ au User AlphaReady if winnr('$') == 1 | set laststatus=1 ]]

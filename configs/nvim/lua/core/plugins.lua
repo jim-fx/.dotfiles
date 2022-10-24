@@ -2,7 +2,7 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local packer_bootstrap = false
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap =
+  packer_bootstrap = true
   fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
   vim.cmd("packadd packer.nvim")
 end
@@ -16,48 +16,87 @@ packer.init({
   },
 })
 
+print("eeey")
+
 return packer.startup(function(use)
   -- Let packer manage itself
   use("wbthomason/packer.nvim")
-  use("lewis6991/impatient.nvim")
 
   -- General Helper Functions
+  use("lewis6991/impatient.nvim")
   use("nvim-lua/plenary.nvim")
 
-  -- Theming Section
+  ---------------------
+  -- Theming Section --
+  ---------------------
+
   use("rktjmp/fwatch.nvim") -- Used to check dark/light theme
-  -- use("EdenEast/nightfox.nvim")
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("nvim-lualine/lualine.nvim")
-  -- use("sam4llis/nvim-tundra")
 
-  -- Layout Plugins
+  --------------------
+  -- Layout Plugins --
+  --------------------
+
   use("dstein64/nvim-scrollview") -- ScrollBars
   use("akinsho/nvim-toggleterm.lua")
-  use("rcarriga/nvim-notify")
-  use("kyazdani42/nvim-web-devicons")
-  use("kyazdani42/nvim-tree.lua")
-  use("nvim-lua/popup.nvim")
-  use("goolord/alpha-nvim") -- startup screen
-  use("Pocco81/true-zen.nvim")
+
   use({
-    "terrortylor/nvim-comment",
+    "rcarriga/nvim-notify",
     config = function()
-      require("nvim_comment").setup()
+      require("configs.notify")
+    end,
+    event = "VimEnter",
+  })
+
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = { "kyazdani42/nvim-web-devicons" },
+    cmd = "NvimTreeToggle",
+    config = function()
+      require("configs.tree")
     end,
   })
-  use("gfeiyou/command-center.nvim")
-  use("glepnir/lspsaga.nvim")
+  use("nvim-lua/popup.nvim")
+  use("goolord/alpha-nvim") -- startup screen
+  -- use("Pocco81/true-zen.nvim")
+  use({
+    "numToStr/Comment.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
+  -- use("gfeiyou/command-center.nvim")
+  use("glepnir/lspsaga.nvim") -- better windows for lsp replace, goto definition etc...
 
-  -- Code Navigation
+  ---------------------
+  -- Code Navigation --
+  ---------------------
+
   use("junegunn/fzf")
-  use("nvim-telescope/telescope.nvim")
+  use({
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    config = function()
+      require("configs.telescope")
+    end,
+  })
+  use("ThePrimeagen/harpoon")
 
-  -- Lsp Errors
+  ---------------
+  -- Lsp Setup --
+  ---------------
+
+  use("neovim/nvim-lspconfig")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+  use("jose-elias-alvarez/null-ls.nvim")
   use("folke/lsp-colors.nvim")
   use("kosayoda/nvim-lightbulb")
   use({
     "folke/trouble.nvim",
+    event = "BufRead",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup({})
@@ -66,64 +105,119 @@ return packer.startup(function(use)
   use("onsails/lspkind.nvim")
   use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    event = "BufReadPre",
     config = function()
       require("lsp_lines").setup()
     end,
   })
 
-  -- Syntax / Autocomplete
+  -------------------
+  --  Autocomplete --
+  -------------------
+
   use("tpope/vim-surround")
-  use("neovim/nvim-lspconfig")
-  use("hrsh7th/nvim-cmp")
   use({
-    "windwp/nvim-autopairs",
+    "hrsh7th/nvim-cmp",
+    requires = {
+
+      "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+      "windwp/nvim-autopairs",
+
+      "zbirenbaum/copilot.lua",
+      "zbirenbaum/copilot-cmp",
+    },
+    event = { "BufReadPre", "CmdlineChanged" },
     config = function()
-      require("nvim-autopairs").setup()
+      require("configs.autocomplete")
+      require("configs.snippets")
     end,
   })
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-path")
-  -- use("hrsh7th/cmp-calc")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-cmdline")
-  use("rafamadriz/friendly-snippets")
-  use("L3MON4D3/LuaSnip")
-  use("saadparwaiz1/cmp_luasnip")
 
-  use({ "williamboman/mason.nvim" })
-  use({ "williamboman/mason-lspconfig.nvim" })
-  use({ "jose-elias-alvarez/null-ls.nvim" })
-  use("MunifTanjim/prettier.nvim")
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+  use({
+    "hrsh7th/cmp-nvim-lsp",
+    after = "nvim-cmp",
+    config = function()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      require("lspconfig").html.setup({
+        capabilities = capabilities,
+      })
+    end,
+  })
+  use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
+  use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
+  use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
+  use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
+  use({ "hrsh7th/cmp-emoji", after = "nvim-cmp" })
+
+  use({
+    "https://github.com/nat-418/boole.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("boole").setup()
+    end,
+  })
+  use({
+    "gaoDean/autolist.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("autolist").setup({})
+    end,
+  })
+
+  -------------------------
+  -- Syntax Highlighting --
+  -------------------------
+
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    event = "BufReadPost",
+    requires = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    config = function()
+      require("configs.treesitter")
+    end,
+    run = ":TSUpdate",
+  })
+
+  --------------------
+  -- IDE Type Stuff --
+  --------------------
 
   -- Dap Debugger -- Have not yet been able to set this up
   -- use({ "mfussenegger/nvim-dap" })
-  -- use({ "rcarriga/nvim-dap-ui" })
-  use { 'michaelb/sniprun', run = 'bash ./install.sh' }
-
-  -- FIle Navigation
-  use({ "ThePrimeagen/harpoon" })
-
-  -- More IDE like features
+  -- use({ "rcarriga/nvim-dap-ui" free
   use("editorconfig/editorconfig-vim")
   use({
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
+    "michaelb/sniprun",
+    event = "BufReadPost",
+    config = function()
+      require("configs.sniprun")
+    end,
+    run = "bash ./install.sh",
+  })
+  use({
+    "uga-rosa/translate.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("translate").setup({ default = { command = "deepl_free", output = "replace" } })
     end,
   })
   use({
     "nvim-neotest/neotest",
+    cmd = "NeoTest",
+    config = function()
+      require("configs.neotest")
+    end,
     requires = {
       "haydenmeade/neotest-jest",
       "KaiSpencer/neotest-vitest",
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
     },
   })
 
-  -- Database Feature
   use("tpope/vim-dadbod")
   use("kristijanhusak/vim-dadbod-ui")
 

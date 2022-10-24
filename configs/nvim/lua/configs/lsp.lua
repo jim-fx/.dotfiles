@@ -74,7 +74,7 @@ lsp.sumneko_lua.setup({
   },
 })
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities();
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -173,10 +173,10 @@ lsp.rust_analyzer.setup({
   },
 })
 
--- lsp.remark_ls.setup {
---   filetypes = { "markdown" },
---   on_attach = on_attach
--- }
+lsp.gopls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach
+}
 
 lsp.ltex.setup({
   capabilities = capabilities,
