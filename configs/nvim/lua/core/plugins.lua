@@ -99,6 +99,7 @@ return packer.startup(function(use)
   -- Dap Debugger -- Have not yet been able to set this up
   -- use({ "mfussenegger/nvim-dap" })
   -- use({ "rcarriga/nvim-dap-ui" })
+  use { 'michaelb/sniprun', run = 'bash ./install.sh' }
 
   -- FIle Navigation
   use({ "ThePrimeagen/harpoon" })
