@@ -5,6 +5,16 @@ local g = vim.g
 local saga = require("lspsaga")
 local truezen = require("true-zen")
 truezen.setup({
+  ataraxis = {
+    minimum_writing_area = { -- minimum size of main window
+      width = 250,
+      height = 100,
+    },
+    padding = {
+      left = 10,
+      right = 10,
+    }
+  },
   integrations = {
     tmux = true, -- hide tmux status bar in (minimalist, ataraxis)
     lualine = true, -- hide nvim-lualine (ataraxis)
@@ -112,7 +122,7 @@ map("n", "<Up>", ":echo 'No Up for you'<CR><dw>", options)
 map("n", "<Down>", ":echo 'No Down for you'<CR><dw>", options)
 
 -- Run Requests
-map("n", "<Leader>r", "<cmd>lua require('rest-nvim').run()<CR>", options)
+map("n", "<Leader>r", ":SnipRun<CR>", options)
 
 -- Close on q
 map("n", "<Leader>q", "<Esc>:q<CR>", options)

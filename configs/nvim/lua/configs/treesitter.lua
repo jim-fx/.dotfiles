@@ -12,24 +12,26 @@
 --     filetype = "vert",
 --     filetypes = {"vert", "frag"}
 -- }
+--
 
 require "nvim-treesitter.configs".setup {
-    indent = {
-        enable = true
-    },
-    ensure_installed = {
-        "bash",
-        "yaml",
-        "http",
-        "svelte",
-        "css",
-        "svelte",
-        "typescript",
-        "javascript",
-        "go",
-        "lua",
-        "yaml",
-        "prisma"
-    },
-    highlight = {enable = true}
+  indent = {
+    enable = true
+  },
+  ensure_installed = {
+    "bash",
+    "yaml",
+    "http",
+    "svelte",
+    "css",
+    "svelte",
+    "typescript",
+    "javascript",
+    "tsx",
+    "go",
+    "lua",
+    "yaml",
+    "prisma"
+  },
+  highlight = { enable = true, disable = { "tsx" } }
 }
