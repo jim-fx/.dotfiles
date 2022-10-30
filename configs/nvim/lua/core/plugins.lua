@@ -16,8 +16,6 @@ packer.init({
   },
 })
 
-print("eeey")
-
 return packer.startup(function(use)
   -- Let packer manage itself
   use("wbthomason/packer.nvim")
@@ -75,6 +73,12 @@ return packer.startup(function(use)
   ---------------------
 
   use("junegunn/fzf")
+  use({ "ggandor/leap.nvim",
+    config = function()
+      local leap = require("leap")
+      leap.add_default_mappings()
+      leap.setup({})
+    end })
   use({
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
@@ -93,7 +97,7 @@ return packer.startup(function(use)
   use("williamboman/mason-lspconfig.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
   use("folke/lsp-colors.nvim")
-  use("kosayoda/nvim-lightbulb")
+  -- use("kosayoda/nvim-lightbulb")
   use({
     "folke/trouble.nvim",
     event = "BufRead",
@@ -185,6 +189,7 @@ return packer.startup(function(use)
   --------------------
   -- IDE Type Stuff --
   --------------------
+  use("ThePrimeagen/vim-be-good")
 
   -- Dap Debugger -- Have not yet been able to set this up
   -- use({ "mfussenegger/nvim-dap" })
@@ -202,7 +207,7 @@ return packer.startup(function(use)
     "uga-rosa/translate.nvim",
     event = "InsertEnter",
     config = function()
-      require("translate").setup({ default = { command = "deepl_free", output = "replace" } })
+      require("translate").setup({ default = { output = "replace" } })
     end,
   })
   use({
