@@ -187,17 +187,17 @@ lsp.yamlls.setup({
         ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
         ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] = "rules.yml",
-        ["https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/traefik-v2.json"] = "traefik.yml"
+        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] = "traefik.yml"
       }
     }
   }
 })
 
+lsp.glslls.setup(require("configs.lsp-glsl"))
 
 lsp.ltex.setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  cmd = { os.getenv("HOME") .. "/.local/share/nvim/lsp_servers/ltex/ltex-ls/bin/ltex-ls" },
   settings = {
     ltex = {
       language = "de",
