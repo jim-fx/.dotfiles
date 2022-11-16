@@ -23,7 +23,7 @@ map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
 
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", { silent = true })
+-- map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", { silent = true })
 map("n", "<leader>e", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 map("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", options)
 map({ "n", "v" }, "<leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })

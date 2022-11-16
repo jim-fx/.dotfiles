@@ -73,15 +73,16 @@ return packer.startup(function(use)
   ---------------------
 
   use("junegunn/fzf")
-  use({ "ggandor/leap.nvim",
+  use({
+    "ggandor/leap.nvim",
     config = function()
       local leap = require("leap")
       leap.add_default_mappings()
       leap.setup({})
-    end })
+    end,
+  })
   use({
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
     config = function()
       require("configs.telescope")
     end,
@@ -97,7 +98,6 @@ return packer.startup(function(use)
   use("williamboman/mason-lspconfig.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
   use("folke/lsp-colors.nvim")
-  -- use("kosayoda/nvim-lightbulb")
   use({
     "folke/trouble.nvim",
     event = "BufRead",
@@ -189,7 +189,17 @@ return packer.startup(function(use)
   --------------------
   -- IDE Type Stuff --
   --------------------
-  use("ThePrimeagen/vim-be-good")
+  use({ "ThePrimeagen/git-worktree.nvim",
+    config = function()
+      require("git-worktree").setup()
+    end,
+  })
+  use({
+    "GnikDroy/projections.nvim",
+    config = function()
+      require("configs.sessions")
+    end,
+  })
 
   -- Dap Debugger -- Have not yet been able to set this up
   -- use({ "mfussenegger/nvim-dap" })

@@ -2,6 +2,7 @@
 -- General --
 -------------
 local set = vim.opt
+local g = vim.g;
 set.swapfile = false -- Don't use swapfile
 set.updatetime = 0 -- Faster completion
 set.encoding = "utf-8" -- The encoding displayed
@@ -40,6 +41,7 @@ set.ruler = true -- Show the cursor position all the time
 set.splitbelow = true -- Horizontal splits will automatically be below
 set.splitright = true -- Vertical splits will automatically be to the right
 set.conceallevel = 0 -- So that I can see `` in markdown files
+g.markdown_fenced_languages = { "javascript", "typescript", "bash", "lua", "go", "rust", "c", "cpp" }
 set.tabstop = 2 -- Insert 2 spaces for a tab
 set.number = true -- Line numbers
 set.background = "dark" -- tell vim what the background color looks like
