@@ -7,9 +7,12 @@ local saga = require("lspsaga")
 saga.init_lsp_saga()
 
 local options = { noremap = true, silent = true }
-local remap = { noremap = false }
+local remap = { noremap = true }
 
 g.mapleader = " "
+
+-- Allows to easily exit terminal mode
+map('t', '<Esc>', [[<C-\><C-n>]], remap)
 
 map("n", "<C-o>", ":Telescope find_files<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
