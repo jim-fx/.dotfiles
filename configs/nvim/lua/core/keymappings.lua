@@ -1,6 +1,7 @@
 -- local map = vim.api.nvim_set_keymap
 local map = vim.keymap.set
 local g = vim.g
+local translate = require("configs.translate")
 
 local saga = require("lspsaga")
 saga.init_lsp_saga()
@@ -30,6 +31,9 @@ map({ "n", "v" }, "<leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true }
 map({ "n", "v" }, "gr", "Lspsaga lsp_finder<CR>", options)
 
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
+
+map("n", "<leader>t", translate, remap)
+map("v", "<leader>t", translate, remap)
 
 -- DAP Functionality
 map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()", options)
