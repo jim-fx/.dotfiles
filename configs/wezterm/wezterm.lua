@@ -11,7 +11,10 @@ local function scheme_for_appearance(appearance)
 end
 
 return {
-  font = wezterm.font("FiraCodeNerdFont"),
+  font = wezterm.font_with_fallback {
+    "FiraCodeNerdFont",
+    "Noto Color Emoji"
+  },
   font_size = 13,
   -- You can specify some parameters to influence the font selection;
   -- for example, this selects a Bold, Italic font variant.

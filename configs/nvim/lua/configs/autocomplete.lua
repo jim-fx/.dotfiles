@@ -58,6 +58,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     -- { name = "cmp_tabnine", max_item_count = 3 },
     { name = "luasnip" },
+    { name = "emoji" },
     { name = "path" },
     { name = "buffer" },
     { name = "calc" },

@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   end,
 })
 
-local rememberFoldsGroup = vim.api.nvim_create_augroup('RememberFolds', { clear = true })
+-- local rememberFoldsGroup = vim.api.nvim_create_augroup('RememberFolds', { clear = true })
 --
 -- vim.api.nvim_create_autocmd({ 'BufWinLeave', 'BufLeave' }, {
 --   pattern = "*",
