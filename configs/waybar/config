@@ -57,6 +57,7 @@
   "clock": {
     "interval": 60,
     "format": "{:%H:%M}",
+    "on-click": "gnome-calendar",
     "max-length": 25
   },
   "battery": {
@@ -64,7 +65,7 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}% {icon}",
+    "format": "{capacity}%{icon}",
     "format-charging": "{capacity}% ",
     "format-plugged": "{capacity}% ",
     "format-alt": "{time} {icon}",
@@ -89,7 +90,7 @@
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
-    "format": "{volume}% {icon} {format_source}",
+    "format": "{volume}% {icon}    {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",

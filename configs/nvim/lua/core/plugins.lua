@@ -30,13 +30,25 @@ return packer.startup(function(use)
 
   use("rktjmp/fwatch.nvim") -- Used to check dark/light theme
   use({ "catppuccin/nvim", as = "catppuccin" })
+  -- use 'folke/tokyonight.nvim'
   use("nvim-lualine/lualine.nvim")
 
   --------------------
   -- Layout Plugins --
   --------------------
 
-  use("dstein64/nvim-scrollview") -- ScrollBars
+  use({
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("configs.scrollbar")
+    end
+  })
+  use({
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
+    end
+  })
   use("akinsho/nvim-toggleterm.lua")
 
   use({
@@ -50,14 +62,12 @@ return packer.startup(function(use)
   use({
     "kyazdani42/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
-    cmd = "NvimTreeToggle",
     config = function()
       require("configs.tree")
     end,
   })
   use("nvim-lua/popup.nvim")
   use("goolord/alpha-nvim") -- startup screen
-  -- use("Pocco81/true-zen.nvim")
   use({
     "numToStr/Comment.nvim",
     event = "BufReadPre",
@@ -65,7 +75,6 @@ return packer.startup(function(use)
       require("Comment").setup()
     end,
   })
-  -- use("gfeiyou/command-center.nvim")
   use("glepnir/lspsaga.nvim") -- better windows for lsp replace, goto definition etc...
 
   ---------------------
@@ -134,8 +143,10 @@ return packer.startup(function(use)
     },
     event = { "BufReadPre", "CmdlineChanged" },
     config = function()
-      require("configs.autocomplete")
-      require("configs.snippets")
+      vim.schedule(function()
+        require("configs.autocomplete")
+        require("configs.snippets")
+      end)
     end,
   })
 

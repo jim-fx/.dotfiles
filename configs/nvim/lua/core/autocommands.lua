@@ -1,7 +1,6 @@
-local cmd = vim.cmd
+local config_group = vim.api.nvim_create_augroup("Config", {})
 
-local config_group = vim.api.nvim_create_augroup('Config', {})
-vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = config_group,
   callback = function()
     vim.highlight.on_yank()
@@ -22,9 +21,9 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
 --   command = 'silent! loadview'
 -- })
 
-cmd [[
+vim.cmd([[
 augroup filetypedetect
   au BufNewFile,BufRead *.frag setl ft=glsl
   au BufNewFile,BufRead *.vert setl ft=glsl
 augroup END
-]]
+]])

@@ -188,7 +188,10 @@ input "1739:24385:Synaptics_TM2438-005" {
 #
 # Workspaces:
 #
+#
+  corner_radius 4
   for_window [class="zoom"] floating enable
+  for_window [class="wezterm"] corner_radius 20
   for_window [app_id="com.github.gi_lom.dialect"] floating enable, resize set 800 400, sticky enable
   for_window [app_id="gnome-calculator"] floating enable
   for_window [app_id="qalculate-gtk"] floating enable
