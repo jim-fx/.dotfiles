@@ -1,5 +1,5 @@
 -- Enable Theming / Syntax
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
 
 local cat = require("catppuccin")
 cat.setup({

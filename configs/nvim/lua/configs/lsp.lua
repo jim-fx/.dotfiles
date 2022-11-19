@@ -83,6 +83,11 @@ lsp.prismals.setup({
   on_attach = on_attach,
 })
 
+lsp.emmet_ls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
 lsp.solargraph.setup({
   filetypes = { "ruby" },
   on_attach = on_attach,
@@ -130,11 +135,30 @@ lsp.html.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
-lsp.intelephense.setup({
+lsp.phpactor.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
-
+lsp.intelephense.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    intelephense = {
+      stubs = {
+        "wordpress",
+        "woocommerce",
+        "wordpress-globals",
+        "wp-cli",
+      },
+      environment = {
+        includePaths = '/home/max/.composer/vendor/php-stubs/' -- this line forces the composer path for the stubs in case inteliphense don't find it...
+      },
+      files = {
+        maxSize = 5000000;
+      };
+    };
+  }
+})
 lsp.cssls.setup({
   capabilities = capabilities,
   on_attach = on_attach,

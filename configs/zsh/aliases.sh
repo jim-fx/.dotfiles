@@ -30,3 +30,11 @@ alias dc="docker-compose"
 alias t="tmux"
 
 alias nx="pnpm exec nx"
+
+if type lsd &> /dev/null; then
+  alias ls="lsd"
+fi
+
+if type bat &> /dev/null; then
+  alias cat="bat"
+fi

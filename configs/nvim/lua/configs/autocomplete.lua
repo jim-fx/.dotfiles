@@ -7,7 +7,9 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 require("nvim-autopairs").setup()
 require("copilot").setup()
-require("copilot_cmp").setup()
+require("copilot_cmp").setup({
+  clear_after_cursor = true
+})
 
 cmp.setup({
   window = {
