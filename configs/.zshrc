@@ -13,6 +13,17 @@ fi
 # Enable vim mode in zsh
 bindkey -v
 
+if [[ -z "$XDG_RUNTIME_DIR" ]]; then
+  export XDG_RUNTIME_DIR=/run/user/$UID
+  if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+    export XDG_RUNTIME_DIR=/tmp/$USER-runtime
+    if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+      mkdir -m 0700 "$XDG_RUNTIME_DIR"
+    fi
+  fi
+fi
+
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
@@ -23,6 +34,7 @@ plugins=(
   asdf
   tmux
   nx-completion
+  sudo
   zsh-autosuggestions
 )
 
