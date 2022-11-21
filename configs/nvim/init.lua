@@ -8,6 +8,7 @@ require("core.keymappings")
 
 require("configs.dashboard")
 require("configs.lsp")
+require("configs.dap")
 
 require("theme.catpuccin")
 

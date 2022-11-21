@@ -39,7 +39,7 @@ map("n", "<leader>t", translate, remap)
 map("v", "<leader>t", translate, remap)
 
 -- DAP Functionality
-map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()", options)
+map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()<CR>", options)
 
 -- Test Functionality
 map("n", "tt", ":lua require('neotest').run.run()<CR>", options)

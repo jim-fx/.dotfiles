@@ -58,7 +58,7 @@ vim.cmd("syntax sync minlines=256")
 set.mousescroll = "ver:1,hor:1"
 set.shiftwidth = 2 -- Change the number of space characters inserted for indentation
 set.showtabline = 1 -- Always show tabs
-set.cmdheight = 0 -- More space for displaying messages
+set.cmdheight = 1 -- More space for displaying messages
 vim.cmd([[set nowrap]]) -- Display long lines as just one line
 vim.cmd([[set noshowmode]]) -- We don't need to see things like -- INSERT -- anymore
 vim.cmd([[syntax enable]]) -- Enables syntax highlighing

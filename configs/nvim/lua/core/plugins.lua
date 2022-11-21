@@ -103,6 +103,11 @@ return packer.startup(function(use)
   ---------------
 
   use("neovim/nvim-lspconfig")
+  use({ 'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup()
+    end
+  })
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
@@ -213,8 +218,10 @@ return packer.startup(function(use)
   })
 
   -- Dap Debugger -- Have not yet been able to set this up
-  -- use({ "mfussenegger/nvim-dap" })
-  -- use({ "rcarriga/nvim-dap-ui" free
+  use({ "mfussenegger/nvim-dap" })
+  use({ "rcarriga/nvim-dap-ui" })
+  use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+
   use("editorconfig/editorconfig-vim")
   use({
     "michaelb/sniprun",
