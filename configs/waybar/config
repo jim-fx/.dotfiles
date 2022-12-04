@@ -13,7 +13,7 @@
     "sway/workspaces"
   ],
   "modules-right": [
-    "custom/power-consumption",
+    // "custom/power-consumption",
     "custom/power-profile",
     "custom/dpi",
     "custom/theme",
@@ -65,7 +65,7 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}%{icon}",
+    "format": "{capacity}%  {icon}",
     "format-charging": "{capacity}% ",
     "format-plugged": "{capacity}% ",
     "format-alt": "{time} {icon}",
