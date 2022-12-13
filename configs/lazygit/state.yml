@@ -1,11 +1,15 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/max/.dotfiles
+- /home/max/Projects/ruumio/feat-api
+- /home/max/Projects/nx-test
+- /home/max/Projects/ruumio/new-api-stack
+- /home/max/Projects/ruumio/nx-test
 - /home/max/Projects/silvester
 - /home/max/Projects/ruumio/main
 - /home/max/Projects/ruumio/feat-prejoin-avatar-soon
 - /home/max/Projects/ruumio/feat-wavy-bg
 - /home/max/Projects/ruumio/feat-3d-poi
-- /home/max/.dotfiles
 - /home/max/Projects/plantarium
 - /home/max/Projects/jim-fx.com
 - /home/max/Projects/ruumio

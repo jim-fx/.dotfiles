@@ -6,6 +6,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 if [ -d "$HOME/.asdf" ] ; then
    . "$HOME/.asdf/asdf.sh"
 fi
@@ -106,16 +109,21 @@ if type podman &> /dev/null; then
   source <(podman completion zsh)
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if type podman-compose &> /dev/null; then
+  alias pc=podman-compose
+fi
+
 
 # Auto connect to tmux session of ssh
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
     # tmux attach-session -t $USER || tmux new-session -s $USER
 fi
 
+
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+[ -n "$TMUX" ] && export TERM=screen-256color
 
 # tabtab source for packages
 # uninstall by removing these lines

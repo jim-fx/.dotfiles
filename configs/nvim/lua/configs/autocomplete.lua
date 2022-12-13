@@ -8,7 +8,7 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 require("nvim-autopairs").setup()
 require("copilot").setup()
 require("copilot_cmp").setup({
-  clear_after_cursor = true
+  clear_after_cursor = true,
 })
 
 cmp.setup({
@@ -58,11 +58,10 @@ cmp.setup({
     { name = "copilot" },
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
-    -- { name = "cmp_tabnine", max_item_count = 3 },
     { name = "luasnip" },
     { name = "emoji" },
     { name = "path" },
-    { name = "buffer" },
+    -- { name = "buffer" },
     { name = "calc" },
   },
 })
