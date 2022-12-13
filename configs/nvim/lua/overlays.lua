@@ -5,11 +5,11 @@ local lazygit = Terminal:new({
   direction = "float",
   float_opts = {
     winblend = 0,
-    border = "shadow"
+    border = "shadow",
   },
   on_close = function()
     Terminal:close()
-  end
+  end,
 })
 
 function _Lazygit_toggle()
@@ -22,7 +22,7 @@ local pnpm = Terminal:new({
   cmd = "pnpm dev",
   dir = "git_dir",
   size = 5,
-  direction = "vertical"
+  direction = "vertical",
 })
 
 function _Pnpm_toggle()
@@ -33,7 +33,7 @@ vim.api.nvim_set_keymap("n", "<Leader>d", "<cmd>lua _Pnpm_toggle()<CR>", { norem
 
 local chtConfig = Terminal:new({
   cmd = "cht",
-  direction = "float"
+  direction = "float",
 })
 
 function _ChtConfig_toggle()
@@ -42,6 +42,6 @@ end
 
 vim.api.nvim_set_keymap("n", "<Leader><C-l>", "<cmd>lua _ChtConfig_toggle()<CR>", { noremap = true, silent = true })
 
-require("toggleterm").setup {
-  shade_terminals = true
-}
+require("toggleterm").setup({
+  shade_terminals = true,
+})

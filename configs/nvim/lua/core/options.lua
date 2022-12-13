@@ -2,7 +2,7 @@
 -- General --
 -------------
 local set = vim.opt
-local g = vim.g;
+local g = vim.g
 set.swapfile = false -- Don't use swapfile
 set.updatetime = 0 -- Faster completion
 set.encoding = "utf-8" -- The encoding displayed
@@ -73,6 +73,6 @@ vim.diagnostic.config({
 -----------------
 set.hidden = true -- Required to keep multiple buffers open multiple buffers
 set.timeoutlen = 500 -- By default timeoutlen is 1000 ms
-set.lazyredraw = true -- Disable lazyredraw
+set.lazyredraw = false -- Disable lazyredraw
 set.synmaxcol = 240 -- Max column for syntax highlight
 set.updatetime = 700 -- ms to wait for trigger an event

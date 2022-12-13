@@ -41,15 +41,22 @@ return packer.startup(function(use)
     "petertriho/nvim-scrollbar",
     config = function()
       require("configs.scrollbar")
-    end
+    end,
   })
   use({
     "lewis6991/gitsigns.nvim",
     config = function()
-      require('gitsigns').setup()
-    end
+      require("gitsigns").setup()
+    end,
   })
   use("akinsho/nvim-toggleterm.lua")
+  use({
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+    config = function()
+      require("git-conflict").setup()
+    end,
+  })
 
   use({
     "rcarriga/nvim-notify",
@@ -102,12 +109,8 @@ return packer.startup(function(use)
   -- Lsp Setup --
   ---------------
 
+  use("arkav/lualine-lsp-progress")
   use("neovim/nvim-lspconfig")
-  use({ 'j-hui/fidget.nvim',
-    config = function()
-      require('fidget').setup()
-    end
-  })
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
@@ -137,7 +140,6 @@ return packer.startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     requires = {
-
       "rafamadriz/friendly-snippets",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
@@ -205,7 +207,8 @@ return packer.startup(function(use)
   --------------------
   -- IDE Type Stuff --
   --------------------
-  use({ "ThePrimeagen/git-worktree.nvim",
+  use({
+    "ThePrimeagen/git-worktree.nvim",
     config = function()
       require("git-worktree").setup()
     end,
@@ -220,7 +223,7 @@ return packer.startup(function(use)
   -- Dap Debugger -- Have not yet been able to set this up
   use({ "mfussenegger/nvim-dap" })
   use({ "rcarriga/nvim-dap-ui" })
-  use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+  use({ "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } })
 
   use("editorconfig/editorconfig-vim")
   use({

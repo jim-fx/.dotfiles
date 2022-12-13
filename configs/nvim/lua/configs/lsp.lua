@@ -74,7 +74,7 @@ lsp.sumneko_lua.setup({
   },
 })
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities();
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -101,6 +101,7 @@ lsp.jsonls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
+    provideFormatter = false,
     json = {
       schemas = {
         {
@@ -151,13 +152,13 @@ lsp.intelephense.setup({
         "wp-cli",
       },
       environment = {
-        includePaths = '/home/max/.composer/vendor/php-stubs/' -- this line forces the composer path for the stubs in case inteliphense don't find it...
+        includePaths = "/home/max/.composer/vendor/php-stubs/", -- this line forces the composer path for the stubs in case inteliphense don't find it...
       },
       files = {
-        maxSize = 5000000;
-      };
-    };
-  }
+        maxSize = 5000000,
+      },
+    },
+  },
 })
 lsp.cssls.setup({
   capabilities = capabilities,
@@ -197,10 +198,10 @@ lsp.rust_analyzer.setup({
   },
 })
 
-lsp.gopls.setup {
+lsp.gopls.setup({
   capabilities = capabilities,
-  on_attach = on_attach
-}
+  on_attach = on_attach,
+})
 
 lsp.yamlls.setup({
   capabilities = capabilities,
@@ -211,10 +212,10 @@ lsp.yamlls.setup({
         ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
         ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] = "rules.yml",
-        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] = "traefik.yml"
-      }
-    }
-  }
+        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] = "traefik.yml",
+      },
+    },
+  },
 })
 
 lsp.glslls.setup(require("configs.lsp-glsl"))

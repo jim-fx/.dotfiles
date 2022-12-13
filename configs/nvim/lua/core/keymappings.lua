@@ -14,7 +14,7 @@ g.mapleader = " "
 -- Allows to easily exit terminal mode
 -- map('t', '<Esc>', [[<C-\><C-n>]], remap)
 
-map("n", "<C-o>", ":Telescope find_files<CR>", options)
+map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", options)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", options)
 -- map("n", "<C-p>", ":Telescope command_center<CR>", options)
 map("n", "<Leader><Leader>", "za", remap)
@@ -28,15 +28,14 @@ map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
 
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 -- map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", { silent = true })
-map("n", "<leader>e", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
-map("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", options)
+map("n", "<leader>e", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
+map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map({ "n", "v" }, "<leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
-map({ "n", "v" }, "gr", "Lspsaga lsp_finder<CR>", options)
+map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", options)
 
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
 
-map("n", "<leader>t", translate, remap)
-map("v", "<leader>t", translate, remap)
+map({ "n", "v" }, "<leader>t", translate, remap)
 
 -- DAP Functionality
 map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()<CR>", options)
