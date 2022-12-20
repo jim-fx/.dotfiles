@@ -5,6 +5,11 @@ local lspkind = require("lspkind")
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("lspconfig").html.setup({
+  capabilities = capabilities,
+})
+
 require("nvim-autopairs").setup()
 require("copilot").setup()
 require("copilot_cmp").setup({
@@ -49,7 +54,7 @@ cmp.setup({
   },
   formatting = {
     format = lspkind.cmp_format({
-      mode = "symbol",
+      mode = "symbol_text",
       max_width = 50,
       symbol_map = { Copilot = "" },
     }),
@@ -61,7 +66,7 @@ cmp.setup({
     { name = "luasnip" },
     { name = "emoji" },
     { name = "path" },
-    -- { name = "buffer" },
+    { name = "buffer" },
     { name = "calc" },
   },
 })

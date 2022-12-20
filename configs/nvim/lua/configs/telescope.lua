@@ -63,7 +63,7 @@ local default = {
 telescope.setup(default)
 -- telescope.load_extension("themes");
 --
-telescope.load_extension("harpoon")
+-- telescope.load_extension("harpoon")
 telescope.load_extension("projections")
 telescope.load_extension("git_worktree")
 telescope.load_extension("notify")
