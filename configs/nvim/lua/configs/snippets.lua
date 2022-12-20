@@ -41,6 +41,12 @@ ls.add_snippets("all", {
   }),
 })
 
+local debugJSON = s("pcs", {
+  t("<pre><code>{JSON.stringify("),
+  i(0),
+  t("null, 2)}</code></pre>"),
+})
+
 ls.add_snippets("svelte", {
   s("slt", {
     t({ '<script lang="ts">', "" }),
@@ -52,9 +58,15 @@ ls.add_snippets("svelte", {
     i(0),
     t({ "", "</script>" }),
   }),
+  debugJSON,
+})
+
+ls.add_snippets("typescriptreact", {
+  debugJSON,
 })
 
 ls.add_snippets("typescript", {
+  debugJSON,
   s("sget", {
     t('export const GET: import("./$types").RequestHandler = async function get({'),
     i(1, "params"),

@@ -29,7 +29,7 @@ dashboard.section.buttons.val = {
   dashboard.button("v", "  Neovim Settings ", ":set laststatus=3 | e ~/.config/nvim/init.lua <CR>"),
   dashboard.button("b", "⟳  Recent Files", ":Telescope oldfiles<CR>"),
   dashboard.button("s", "  Shell Configuration", ":set laststatus=3 | e ~/.config/zsh/.zshrc <CR>"),
-  dashboard.button("u", "  Update Nvim Plugins", ":PackerUpdate <CR>"),
+  dashboard.button("u", "  Update Nvim Plugins", ":Lazy update <CR>"),
   dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
 
@@ -43,6 +43,30 @@ dashboard.section.header.val = {
   [[╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═══╝      ╚═══╝  ╚═╝╚═╝     ╚═╝]],
 }
 
+dashboard.section.header.val = {
+  [[   __    ]],
+  [[  /\ \   ]],
+  [[ / /\ \  ]],
+  [[/ /__\ \ ]],
+  [[\/____\/ ]],
+}
+
+dashboard.section.header.val = {
+  [[           ____]],
+  [[          /\   \]],
+  [[         /  \   \]],
+  [[        /    \   \]],
+  [[       /      \   \]],
+  [[      /   /\   \   \]],
+  [[     /   /  \   \   \]],
+  [[    /   /    \   \   \]],
+  [[   /   /    / \   \   \]],
+  [[  /   /    /   \   \   \]],
+  [[ /   /    /---------'   \]],
+  [[/   /    /_______________\]],
+  [[\  /                     /]],
+  [[ \/_____________________/   ]],
+}
 -- Layout For Luavim ascii art
 dashboard.config.layout = {
   { type = "padding", val = 5 },
