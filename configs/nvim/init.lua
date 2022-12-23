@@ -1,8 +1,4 @@
--- pcall(require, "impatient")
---
---
 require("core.bootstrap")
-
 require("core.plugins")
 
 require("core.options")

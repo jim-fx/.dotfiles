@@ -15,6 +15,8 @@ set.expandtab = true -- Converts tabs to spaces
 set.autoindent = true -- Good auto indent
 set.autochdir = false -- Your working directory will always be the same as your working directory
 set.incsearch = true -- sets incremental search
+set.undofile = true;
+set.undodir = vim.fn.stdpath('data') .. '/undo'
 set.shell = "/bin/zsh" -- Set your shell to bash or zsh
 set.shortmess:append("sI") -- Disable nvim intro
 vim.cmd([[set nobackup]]) -- creates a backup file

@@ -24,6 +24,13 @@ return {
   alternate_buffer_wheel_scroll_speed = 1,
   color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
   window_close_confirmation = "AlwaysPrompt",
+  keys = {
+    {
+      key = 'U',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.Nop,
+    },
+  },
   window_padding = {
     left = padding,
     right = padding,
