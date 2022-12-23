@@ -26,9 +26,10 @@ dashboard.section.footer.val = {
 dashboard.section.buttons.val = {
   dashboard.button("n", "  Create New file", ":set laststatus=3 | :ene <BAR> startinsert <CR>"),
   dashboard.button("e", "  Open File Manager", ":set laststatus=3 | :NvimTreeOpen <CR>"),
+  dashboard.button("s", "Δ  Search Sessions", ":Telescope persisted<CR>"),
   dashboard.button("v", "  Neovim Settings ", ":set laststatus=3 | e ~/.config/nvim/init.lua <CR>"),
   dashboard.button("b", "⟳  Recent Files", ":Telescope oldfiles<CR>"),
-  dashboard.button("s", "  Shell Configuration", ":set laststatus=3 | e ~/.config/zsh/.zshrc <CR>"),
+  -- dashboard.button("s", "  Shell Configuration", ":set laststatus=3 | e ~/.config/zsh/.zshrc <CR>"),
   dashboard.button("u", "  Update Nvim Plugins", ":Lazy update <CR>"),
   dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
@@ -51,22 +52,24 @@ dashboard.section.header.val = {
   [[\/____\/ ]],
 }
 
-dashboard.section.header.val = {
-  [[           ____]],
-  [[          /\   \]],
-  [[         /  \   \]],
-  [[        /    \   \]],
-  [[       /      \   \]],
-  [[      /   /\   \   \]],
-  [[     /   /  \   \   \]],
-  [[    /   /    \   \   \]],
-  [[   /   /    / \   \   \]],
-  [[  /   /    /   \   \   \]],
-  [[ /   /    /---------'   \]],
-  [[/   /    /_______________\]],
-  [[\  /                     /]],
-  [[ \/_____________________/   ]],
-}
+-- dashboard.section.header.val = {
+--   [[           ____]],
+--   [[          /\   \]],
+--   [[         /  \   \]],
+--   [[        /    \   \]],
+--   [[       /      \   \]],
+--   [[      /   /\   \   \]],
+--   [[     /   /  \   \   \]],
+--   [[    /   /    \   \   \]],
+--   [[   /   /    / \   \   \]],
+--   [[  /   /    /   \   \   \]],
+--   [[ /   /    /---------'   \]],
+--   [[/   /    /_______________\]],
+--   [[\  /                     /]],
+--   [[ \/_____________________/   ]],
+-- }
+
+
 -- Layout For Luavim ascii art
 dashboard.config.layout = {
   { type = "padding", val = 5 },

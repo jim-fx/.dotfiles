@@ -8,6 +8,11 @@ local function open_with_trouble()
 end
 
 local default = {
+  extensions = {
+    sessions_picker = {
+      sessions_dir = vim.fn.stdpath('data') .. '/sessions/',
+    }
+  },
   defaults = {
     vimgrep_arguments = {
       "rg",
@@ -61,9 +66,5 @@ local default = {
 }
 
 telescope.setup(default)
--- telescope.load_extension("themes");
---
--- telescope.load_extension("harpoon")
-telescope.load_extension("projections")
 telescope.load_extension("git_worktree")
 telescope.load_extension("notify")

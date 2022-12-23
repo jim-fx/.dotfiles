@@ -32,6 +32,7 @@ map("n", "<leader>e", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)
 map({ "n", "v" }, "<leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
 map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", options)
+map("n", "<S-U>", ":UndotreeToggle<CR>", options)
 
 map("n", "<leader>t", ":TroubleToggle<CR>", remap)
 

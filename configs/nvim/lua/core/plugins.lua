@@ -13,11 +13,17 @@ local plugins = {
   --------------------
   -- Layout Plugins --
   --------------------
-
+  { "mbbill/undotree", lazy = false },
   {
     "petertriho/nvim-scrollbar",
     config = function()
       require("configs.scrollbar")
+    end,
+  },
+  {
+    "stevearc/dressing.nvim",
+    config = function()
+      require("dressing")
     end,
   },
   {
@@ -163,15 +169,29 @@ local plugins = {
   -- IDE Type Stuff --
   --------------------
   {
+    "jackMort/ChatGPT.nvim",
+    command = "ChatGPT",
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    }
+  },
+  {
     "ThePrimeagen/git-worktree.nvim",
     config = function()
       require("git-worktree").setup()
     end,
   },
   {
-    "GnikDroy/projections.nvim",
+    "olimorris/persisted.nvim",
+    lazy = false,
     config = function()
-      require("configs.sessions")
+      require("persisted").setup()
+      require("telescope").load_extension("persisted") -- To load the telescope extension
     end,
   },
   -- Dap Debugger -- Have not yet been able to set this up
@@ -211,6 +231,6 @@ local plugins = {
   "kristijanhusak/vim-dadbod-ui",
 }
 
-local opts = { defaults = { lazy = true } }
+local opts = { defaults = { lazy = true }, install = { colorscheme = { "catppuccin" } } }
 
 require("lazy").setup(plugins, opts)
