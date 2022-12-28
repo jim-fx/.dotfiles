@@ -27,3 +27,9 @@ Failed to communicate with power-profiles-daemon: g-dbus-error-quark: GDBus.Erro
 ** (waybar:491379): WARNING **: 01:09:41.375: gtk-layer-shell v0.7.0 may not work on GTK v3.24.34. If you experience crashes, check https://github.com/wmww/gtk-layer-shell/blob/master/compatibility.md
 [2022-07-26 01:09:41.388] [warning] Requested height: 20 is less than the minimum height: 40 required by the modules
 [2022-07-26 01:09:41.388] [info] Bar configured (width: 1920, height: 40) for output: eDP-1
+[2022-12-28 14:08:55.894] [info] Using configuration file /home/max/.config/waybar/config
+[2022-12-28 14:08:55.894] [info] Using CSS file /home/max/.config/waybar/style.css
+[2022-12-28 14:08:55.900] [info] config update for bar-0: id bar-0, mode dock, hidden_state hide
+[2022-12-28 14:08:55.900] [warning] As using a timezone, some format args may be missing as the date library haven't got a release since 2018.
+[2022-12-28 14:08:55.951] [warning] Requested height: 20 is less than the minimum height: 44 required by the modules
+[2022-12-28 14:08:55.951] [info] Bar configured (width: 1920, height: 44) for output: eDP-1
