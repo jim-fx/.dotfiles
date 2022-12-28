@@ -10,8 +10,8 @@ end
 local default = {
   extensions = {
     sessions_picker = {
-      sessions_dir = vim.fn.stdpath('data') .. '/sessions/',
-    }
+      sessions_dir = vim.fn.stdpath("data") .. "/sessions/",
+    },
   },
   defaults = {
     vimgrep_arguments = {
@@ -66,5 +66,5 @@ local default = {
 }
 
 telescope.setup(default)
-telescope.load_extension("git_worktree")
+-- telescope.load_extension("git_worktree")
 telescope.load_extension("notify")
