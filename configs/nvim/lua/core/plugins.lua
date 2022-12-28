@@ -21,12 +21,6 @@ local plugins = {
     end,
   },
   {
-    "stevearc/dressing.nvim",
-    config = function()
-      require("dressing")
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
@@ -179,13 +173,7 @@ local plugins = {
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
-    }
-  },
-  {
-    "ThePrimeagen/git-worktree.nvim",
-    config = function()
-      require("git-worktree").setup()
-    end,
+    },
   },
   {
     "olimorris/persisted.nvim",

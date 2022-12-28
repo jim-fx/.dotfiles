@@ -1,3 +1,5 @@
+vim.opt.termguicolors = true
+
 require("core.bootstrap")
 require("core.plugins")
 
