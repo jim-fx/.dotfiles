@@ -61,11 +61,13 @@ cmp.setup({
   },
   sources = {
     { name = "copilot" },
+    { name = "vim-dadbod-completion", filetype = "sql" },
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "emoji" },
     { name = "path" },
+    { name = "buffer" },
     { name = "buffer" },
     { name = "calc" },
   },

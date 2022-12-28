@@ -120,6 +120,7 @@ local plugins = {
       "L3MON4D3/LuaSnip",
       "windwp/nvim-autopairs",
 
+      "kristijanhusak/vim-dadbod-completion",
       "zbirenbaum/copilot.lua",
       "zbirenbaum/copilot-cmp",
       "hrsh7th/cmp-nvim-lsp",
@@ -226,9 +227,11 @@ local plugins = {
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-
-  "tpope/vim-dadbod",
-  "kristijanhusak/vim-dadbod-ui",
+  {
+    "tpope/vim-dadbod",
+    lazy = false,
+  },
+  { "kristijanhusak/vim-dadbod-ui", lazy = false },
 }
 
 local opts = { defaults = { lazy = true }, install = { colorscheme = { "catppuccin" } } }
