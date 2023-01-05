@@ -1,3 +1,6 @@
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 local config_group = vim.api.nvim_create_augroup("Config", {})
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
@@ -7,18 +10,29 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
-local rememberFoldsGroup = vim.api.nvim_create_augroup("RememberFolds", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufWinLeave", "BufLeave" }, {
-  pattern = "*",
-  group = rememberFoldsGroup,
-  command = "mkview",
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  group = config_group,
+  callback = function()
+    vim.cmd("filetype detect")
+  end,
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = "*",
-  group = rememberFoldsGroup,
-  command = "silent! loadview",
+
+local save_fold = augroup("Persistent Folds", { clear = true })
+autocmd("BufWinLeave", {
+  pattern = "*.*",
+  callback = function()
+    vim.cmd.mkview()
+  end,
+  group = save_fold,
+})
+autocmd("BufWinEnter", {
+  pattern = "*.*",
+  callback = function()
+    vim.cmd.loadview({ mods = { emsg_silent = true } })
+  end,
+  group = save_fold,
 })
 
 vim.cmd([[

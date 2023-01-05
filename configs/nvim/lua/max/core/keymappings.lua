@@ -13,8 +13,6 @@ map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", opts)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", opts)
 map("n", "<Leader><leader>", "za", opts)
 
-map("n", "<Leader>is", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
-map("n", "<Leader>io", "<cmd>LSoutlineToggle<CR>", opts)
 
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
@@ -31,8 +29,12 @@ map("n", "<Leader>e", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map({ "n", "v" }, "<Leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
 map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
-map("n", "<S-U>", ":UndotreeToggle<CR>", opts)
 
+map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
+
+-- This is my [i]nspect section, [i]nspect [s]ymbols, [
+map("n", "<Leader>is", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
+map("n", "<Leader>io", "<cmd>Lspsaga outline<CR>", opts)
 map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)
 map({ "n", "v" }, "<Leader>t", translate, opts)
 
@@ -79,11 +81,14 @@ map("n", "<Leader>j", "}", opts)
 -- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", opts)
 map("n", "<A-k>", "<cmd>move -2<CR>", opts)
+map("n", "<A-S-K>", "yyP", opts)
+map("n", "<A-S-J>", "yyp", opts)
 map("i", "<A-j>", "<cmd>move +1<CR>", opts)
 map("i", "<A-k>", "<cmd>move -2<CR>", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
+-- If i paste with p, the replaced content doesnt replace my clipboard
 map("v", "p", '"_dP', opts)
 
 -- Faster git merge
@@ -107,8 +112,8 @@ map("v", "<Leader>r", ":'<,'>SnipRun<CR>", opts)
 
 -- Close on q
 local function closeAll()
-    vim.cmd("SessionSave")
-    vim.cmd("qall")
+  vim.cmd("SessionSave")
+  vim.cmd("qall")
 end
 
 map("n", "<Leader>q", ":q<CR>", opts)

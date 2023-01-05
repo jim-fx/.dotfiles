@@ -113,9 +113,11 @@ local plugins = {
   -- Lsp Setup --
   ---------------
 
+  { "glepnir/lspsaga.nvim",
+    command = "Lspsaga"
+  }, -- better windows for lsp replace, goto definition etc...
   { "VonHeikemen/lsp-zero.nvim",
     dependencies = {
-      "glepnir/lspsaga.nvim", -- better windows for lsp replace, goto definition etc...
       "neovim/nvim-lspconfig",
       "arkav/lualine-lsp-progress",
       "williamboman/mason.nvim",
@@ -131,7 +133,7 @@ local plugins = {
       "rafamadriz/friendly-snippets",
       { "lukas-reineke/lsp-format.nvim", config = true },
     },
-    event = "InsertEnter",
+    lazy = false,
     config = function()
       local lsp = require("lsp-zero")
       lsp.preset("recommended")
@@ -145,7 +147,7 @@ local plugins = {
     end },
   {
     "folke/trouble.nvim",
-    event = "BufRead",
+    command = "TroubleToggle",
     dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup({})
