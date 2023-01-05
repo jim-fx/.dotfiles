@@ -64,9 +64,9 @@ vim.cmd([[set nowrap]]) -- Display long lines as just one line
 vim.cmd([[set noshowmode]]) -- We don't need to see things like -- INSERT -- anymore
 vim.cmd([[syntax enable]]) -- Enables syntax highlighing
 vim.cmd([[set t_Co=256]]) -- Support 256 colors
--- vim.cmd "set whichwrap+=<,>,[,],h,l"         -- Breaks Space-Time Continuum
+vim.cmd "set whichwrap+=<,>,[,],h,l"         -- Breaks Space-Time Continuum
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
 })
 
 -----------------
@@ -77,3 +77,4 @@ set.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 set.lazyredraw = false -- Disable lazyredraw
 set.synmaxcol = 240 -- Max column for syntax highlight
 set.updatetime = 700 -- ms to wait for trigger an event
+vim.o.fillchars = 'eob: '

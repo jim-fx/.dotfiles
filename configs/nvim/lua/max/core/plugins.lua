@@ -1,12 +1,13 @@
 local plugins = {
 
   "nvim-lua/plenary.nvim",
+
   ---------------------
   -- Theming Section --
   ---------------------
 
   "rktjmp/fwatch.nvim", -- d to check dark/light theme
-  { "catppuccin/nvim", name = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
 
   {
     "nvim-lualine/lualine.nvim",
@@ -18,6 +19,7 @@ local plugins = {
   --------------------
   -- Layout Plugins --
   --------------------
+
   {
     "folke/which-key.nvim",
     event = "VimEnter",
@@ -36,6 +38,7 @@ local plugins = {
       require("max.configs.litee")
     end,
   },
+  { "ethanholz/nvim-lastplace", event = "BufReadPre", config = true },
   { "mbbill/undotree", lazy = false },
   {
     "petertriho/nvim-scrollbar",
@@ -86,13 +89,13 @@ local plugins = {
       require("Comment").setup()
     end,
   },
-  "glepnir/lspsaga.nvim", -- better windows for lsp replace, goto definition etc...
   ---------------------
   -- Code Navigation --
   ---------------------
   "junegunn/fzf",
   {
     "ggandor/leap.nvim",
+
     config = function()
       local leap = require("leap")
       leap.add_default_mappings()
@@ -105,67 +108,58 @@ local plugins = {
       require("max.configs.telescope")
     end,
   },
-  -- "ThePrimeagen/harpoon",
+
   ---------------
   -- Lsp Setup --
   ---------------
-  "arkav/lualine-lsp-progress",
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
+
+  { "VonHeikemen/lsp-zero.nvim",
+    dependencies = {
+      "glepnir/lspsaga.nvim", -- better windows for lsp replace, goto definition etc...
+      "neovim/nvim-lspconfig",
+      "arkav/lualine-lsp-progress",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "L3MON4D3/LuaSnip",
+      "onsails/lspkind.nvim",
+      "rafamadriz/friendly-snippets",
+      { "lukas-reineke/lsp-format.nvim", config = true },
+    },
+    event = "InsertEnter",
     config = function()
-      require("max.configs.lsp")
-    end,
-  },
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "jose-elias-alvarez/null-ls.nvim",
+      local lsp = require("lsp-zero")
+      lsp.preset("recommended")
+      lsp.on_attach(function(client, bufnr)
+        require("lsp-format").on_attach(client, bufnr)
+      end)
+      lsp.nvim_workspace()
+      lsp.setup()
+      vim.diagnostic.config { virtual_text = true }
+
+    end },
   {
     "folke/trouble.nvim",
     event = "BufRead",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup({})
     end,
   },
-  "onsails/lspkind.nvim",
   {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     event = "BufReadPre",
-    config = function()
-      require("lsp_lines").setup()
-    end,
+    config = true
   },
   -------------------
   --  Autocomplete --
   -------------------
   { "tpope/vim-surround", event = "InsertEnter" },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip",
-      "L3MON4D3/LuaSnip",
-      "windwp/nvim-autopairs",
-
-      "kristijanhusak/vim-dadbod-completion",
-      "zbirenbaum/copilot.lua",
-      "zbirenbaum/copilot-cmp",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-emoji",
-    },
-    event = "InsertEnter",
-    config = function()
-      vim.schedule(function()
-        require("max.configs.autocomplete")
-        require("max.configs.snippets")
-      end)
-    end,
-  },
   {
     "nat-418/boole.nvim",
     event = "BufReadPre",
@@ -186,7 +180,7 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "BufReadPost",
-    requires = {
+    dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
@@ -200,11 +194,7 @@ local plugins = {
   {
     "jackMort/ChatGPT.nvim",
     command = "ChatGPT",
-    config = function()
-      require("chatgpt").setup({
-        -- optional configuration
-      })
-    end,
+    config = true,
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
@@ -249,7 +239,7 @@ local plugins = {
     config = function()
       require("max.configs.neotest")
     end,
-    requires = {
+    dependencies = {
       "haydenmeade/neotest-jest",
       "KaiSpencer/neotest-vitest",
       "antoinemadec/FixCursorHold.nvim",
