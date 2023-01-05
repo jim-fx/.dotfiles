@@ -39,3 +39,4 @@ require("nvim-tree").setup({
 })
 
 vim.cmd("NvimTreeOpen")
+vim.api.nvim_input("<C-l>")
