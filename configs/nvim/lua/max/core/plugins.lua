@@ -8,16 +8,39 @@ local plugins = {
   "rktjmp/fwatch.nvim", -- d to check dark/light theme
   { "catppuccin/nvim", name = "catppuccin" },
 
-  "nvim-lualine/lualine.nvim",
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("max.configs.lualine")
+    end,
+  },
 
   --------------------
   -- Layout Plugins --
   --------------------
+  {
+    "folke/which-key.nvim",
+    event = "VimEnter",
+    config = function()
+      require("which-key").setup({})
+    end,
+  },
+  {
+    "ldelossa/litee.nvim",
+    event = "BufRead",
+    dependencies = {
+      "ldelossa/litee-symboltree.nvim",
+      "ldelossa/litee-calltree.nvim",
+    },
+    config = function()
+      require("max.configs.litee")
+    end,
+  },
   { "mbbill/undotree", lazy = false },
   {
     "petertriho/nvim-scrollbar",
     config = function()
-      require("configs.scrollbar")
+      require("max.configs.scrollbar")
     end,
   },
   {
@@ -30,26 +53,32 @@ local plugins = {
   {
     "akinsho/git-conflict.nvim",
     config = function()
-      -- require("git-conflict").setup()
+      require("git-conflict").setup()
     end,
   },
   {
     "rcarriga/nvim-notify",
     config = function()
-      require("configs.notify")
+      require("max.configs.notify")
     end,
     event = "VimEnter",
   },
   {
     "kyazdani42/nvim-tree.lua",
-    cmd = "NvimTreeToggle",
+    event = "VimEnter",
+    -- lazy = false,
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
-      require("configs.tree")
+      require("max.configs.tree")
     end,
   },
   "nvim-lua/popup.nvim",
-  "goolord/alpha-nvim", -- startup screen
+  {
+    "goolord/alpha-nvim",
+    config = function()
+      require("max.configs.dashboard")
+    end,
+  }, -- startup screen
   {
     "numToStr/Comment.nvim",
     event = "BufReadPre",
@@ -73,7 +102,7 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     config = function()
-      require("configs.telescope")
+      require("max.configs.telescope")
     end,
   },
   -- "ThePrimeagen/harpoon",
@@ -81,11 +110,16 @@ local plugins = {
   -- Lsp Setup --
   ---------------
   "arkav/lualine-lsp-progress",
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    config = function()
+      require("max.configs.lsp")
+    end,
+  },
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "jose-elias-alvarez/null-ls.nvim",
-  -- "folke/lsp-colors.nvim",
   {
     "folke/trouble.nvim",
     event = "BufRead",
@@ -105,7 +139,7 @@ local plugins = {
   -------------------
   --  Autocomplete --
   -------------------
-  "tpope/vim-surround",
+  { "tpope/vim-surround", event = "InsertEnter" },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -127,8 +161,8 @@ local plugins = {
     event = "InsertEnter",
     config = function()
       vim.schedule(function()
-        require("configs.autocomplete")
-        require("configs.snippets")
+        require("max.configs.autocomplete")
+        require("max.configs.snippets")
       end)
     end,
   },
@@ -156,7 +190,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
-      require("configs.treesitter")
+      require("max.configs.treesitter")
     end,
     run = ":TSUpdate",
   },
@@ -179,20 +213,26 @@ local plugins = {
     "olimorris/persisted.nvim",
     lazy = false,
     config = function()
-      require("persisted").setup()
-      require("telescope").load_extension("persisted") -- To load the telescope extension
+      require("max.configs.session")
     end,
   },
   -- Dap Debugger -- Have not yet been able to set this up
-  "mfussenegger/nvim-dap",
-  "rcarriga/nvim-dap-ui",
-  { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "mxsdev/nvim-dap-vscode-js",
+    },
+    config = function()
+      require("max.configs.dap")
+    end,
+  },
   "editorconfig/editorconfig-vim",
   {
     "michaelb/sniprun",
-    event = "BufReadPost",
+    command = "SnipRun",
     config = function()
-      require("configs.sniprun")
+      require("max.configs.sniprun")
     end,
     run = "bash ./install.sh",
   },
@@ -207,7 +247,7 @@ local plugins = {
     "nvim-neotest/neotest",
     cmd = "NeoTest",
     config = function()
-      require("configs.neotest")
+      require("max.configs.neotest")
     end,
     requires = {
       "haydenmeade/neotest-jest",

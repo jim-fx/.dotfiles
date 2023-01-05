@@ -39,6 +39,3 @@ cat.setup({
 })
 
 vim.cmd("colorscheme catppuccin")
-
-require("utils.theme-reloader")
-require("configs.lualine")
