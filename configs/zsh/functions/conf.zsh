@@ -15,9 +15,7 @@ function conf(){
       cd $1
     fi
 
-    if [[ -f "init.lua" ]]; then
-      nvim init.lua
-    elif [[ -f ".zshrc" ]]; then
+    if [[ -f ".zshrc" ]]; then
       nvim .zshrc
       source ~/.zshrc
     elif [[ -f "config" ]]; then

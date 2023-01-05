@@ -1,23 +1,21 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-local config_group = vim.api.nvim_create_augroup("Config", {})
+local config_group = augroup("Config", {})
 
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+autocmd({ "TextYankPost" }, {
   group = config_group,
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
-
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+autocmd({ "BufReadPost" }, {
   group = config_group,
   callback = function()
     vim.cmd("filetype detect")
   end,
 })
-
 
 local save_fold = augroup("Persistent Folds", { clear = true })
 autocmd("BufWinLeave", {
@@ -39,10 +37,11 @@ vim.cmd([[
 augroup filetypedetect
   au BufNewFile,BufRead *.frag setl ft=glsl
   au BufNewFile,BufRead *.vert setl ft=glsl
+  au BufNewFile,BufRead tsconfig.json setl ft=jsonc
 augroup END
 ]])
 
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+autocmd({ "BufReadPost" }, {
   pattern = "*",
   group = config_group,
   command = "filetype detect",
