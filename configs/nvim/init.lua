@@ -1,16 +1,12 @@
 vim.opt.termguicolors = true
 
-require("core.bootstrap")
-require("core.plugins")
+require("max.core.bootstrap")
+require("max.core.plugins")
 
-require("core.options")
-require("core.autocommands")
-require("core.keymappings")
+require("max.core.options")
+require("max.core.autocommands")
+require("max.core.keymappings")
 
-require("configs.dashboard")
-require("configs.lsp")
-require("configs.dap")
+require("max.theme.catpuccin")
 
-require("theme.catpuccin")
-
-require("overlays")
+require("max.overlays")

@@ -1,0 +1,6 @@
+[2023-01-02 18:22:40.854] [info] Using configuration file /home/max/.config/waybar/config
+[2023-01-02 18:22:40.854] [info] Using CSS file /home/max/.config/waybar/style.css
+[2023-01-02 18:22:40.861] [info] config update for bar-0: id bar-0, mode hide, hidden_state hide
+[2023-01-02 18:22:40.862] [warning] As using a timezone, some format args may be missing as the date library haven't got a release since 2018.
+[2023-01-02 18:22:40.920] [warning] Requested height: 20 is less than the minimum height: 44 required by the modules
+[2023-01-02 18:22:40.920] [info] Bar configured (width: 1920, height: 44) for output: eDP-1
