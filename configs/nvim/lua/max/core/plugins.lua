@@ -29,7 +29,7 @@ local plugins = {
   },
   {
     "ldelossa/litee.nvim",
-    event = "BufRead",
+    command = "InsertEnter",
     dependencies = {
       "ldelossa/litee-symboltree.nvim",
       "ldelossa/litee-calltree.nvim",

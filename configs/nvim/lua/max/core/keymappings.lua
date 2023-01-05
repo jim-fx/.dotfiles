@@ -2,7 +2,6 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-local translate = require("max.configs.translate")
 local saga = require("lspsaga")
 saga.init_lsp_saga()
 
@@ -12,7 +11,6 @@ vim.g.mapleader = " "
 map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", opts)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", opts)
 map("n", "<Leader><leader>", "za", opts)
-
 
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
@@ -32,11 +30,11 @@ map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
 
 map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
 
--- This is my [i]nspect section, [i]nspect [s]ymbols, [
+-- This is my [i]nspect section, [i]nspect [s]ymbols
 map("n", "<Leader>is", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
 map("n", "<Leader>io", "<cmd>Lspsaga outline<CR>", opts)
 map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)
-map({ "n", "v" }, "<Leader>t", translate, opts)
+map({ "n", "v" }, "<Leader>t", require("max.configs.translate"), opts)
 
 -- DAP Functionality
 map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)
@@ -64,29 +62,20 @@ map("n", "<Leader>0", ":tablast<CR>", opts)
 map("n", "<A-Left>", ":bprevious<CR>", opts)
 map("n", "<A-Right>", ":bnext<CR>", opts)
 
--- Backspace Delete like Browser
--- map("i", "<C-H>", "<Esc>dbxi", opts)
-
 -- Copy visual selection to keyboard
 map("v", "Y", '"+y', opts)
 map("n", "<Leader>k", "{", opts)
 map("n", "<Leader>j", "}", opts)
 
--- I dont use macros at the moment, can disable this if i want to
--- map('v', 'Q', 'q', {})
--- map('v', 'Q', 'q', {})
--- map('n', 'q', '<nop>', {})
--- map('n', 'q', '<nop>', {})
-
 -- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", opts)
 map("n", "<A-k>", "<cmd>move -2<CR>", opts)
-map("n", "<A-S-K>", "yyP", opts)
-map("n", "<A-S-J>", "yyp", opts)
 map("i", "<A-j>", "<cmd>move +1<CR>", opts)
 map("i", "<A-k>", "<cmd>move -2<CR>", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+map("n", "<A-S-K>", "yyP", opts)
+map("n", "<A-S-J>", "yyp", opts)
 
 -- If i paste with p, the replaced content doesnt replace my clipboard
 map("v", "p", '"_dP', opts)
