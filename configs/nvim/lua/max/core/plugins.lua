@@ -2,6 +2,8 @@ local plugins = {
 
   "nvim-lua/plenary.nvim",
 
+
+
   ---------------------
   -- Theming Section --
   ---------------------
@@ -19,7 +21,11 @@ local plugins = {
   --------------------
   -- Layout Plugins --
   --------------------
-
+  { "shortcuts/no-neck-pain.nvim", cmd = "NoNeckPain", config = true },
+  {
+    "stevearc/dressing.nvim",
+    config = true
+  },
   {
     "folke/which-key.nvim",
     event = "VimEnter",
@@ -29,7 +35,7 @@ local plugins = {
   },
   {
     "ldelossa/litee.nvim",
-    command = "InsertEnter",
+    cmd = "InsertEnter",
     dependencies = {
       "ldelossa/litee-symboltree.nvim",
       "ldelossa/litee-calltree.nvim",
@@ -48,6 +54,7 @@ local plugins = {
   },
   {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     config = function()
       require("gitsigns").setup()
     end,
@@ -114,7 +121,7 @@ local plugins = {
   ---------------
 
   { "glepnir/lspsaga.nvim",
-    command = "Lspsaga"
+    cmd = "Lspsaga"
   }, -- better windows for lsp replace, goto definition etc...
   { "VonHeikemen/lsp-zero.nvim",
     dependencies = {
@@ -147,7 +154,7 @@ local plugins = {
     end },
   {
     "folke/trouble.nvim",
-    command = "TroubleToggle",
+    cmd = "TroubleToggle",
     dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup({})
@@ -161,7 +168,7 @@ local plugins = {
   -------------------
   --  Autocomplete --
   -------------------
-  { "tpope/vim-surround", event = "InsertEnter" },
+  { "tpope/vim-surround", lazy = false },
   {
     "nat-418/boole.nvim",
     event = "BufReadPre",
@@ -195,7 +202,7 @@ local plugins = {
   --------------------
   {
     "jackMort/ChatGPT.nvim",
-    command = "ChatGPT",
+    cmd = "ChatGPT",
     config = true,
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -222,7 +229,7 @@ local plugins = {
   "editorconfig/editorconfig-vim",
   {
     "michaelb/sniprun",
-    command = "SnipRun",
+    event = "BufRead",
     config = function()
       require("max.configs.sniprun")
     end,
