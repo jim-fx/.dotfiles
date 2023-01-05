@@ -15,6 +15,13 @@ map("n", "<Leader><leader>", "za", opts)
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
 
+local function zenMode()
+  vim.cmd("NvimTreeClose");
+  vim.cmd("NoNeckPain");
+end
+
+map("n", "zz", zenMode, opts);
+
 -- LSP Functionality
 map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", opts)
 map("n", "<Leader>p", ":lua vim.diagnostic.goto_prev()<CR>", opts)
@@ -23,7 +30,6 @@ map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-map("n", "<Leader>e", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map({ "n", "v" }, "<Leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
 map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
@@ -64,8 +70,8 @@ map("n", "<A-Right>", ":bnext<CR>", opts)
 
 -- Copy visual selection to keyboard
 map("v", "Y", '"+y', opts)
-map("n", "<Leader>k", "{", opts)
-map("n", "<Leader>j", "}", opts)
+map("n", "<Leader-k>", "{", opts)
+map("n", "<Leader-j>", "}", opts)
 
 -- Move lines vscode style
 map("n", "<A-j>", "<cmd>move +1<CR>", opts)
