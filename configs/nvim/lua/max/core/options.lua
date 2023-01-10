@@ -25,14 +25,11 @@ vim.cmd([[set complete+=kspell]]) -- auto complete with spellcheck
 vim.cmd([[set completeopt=menuone,noselect]]) -- auto complete menu (It's pretty great)
 vim.cmd([[set nocompatible]]) -- Disable compatibility to old-time vi
 set.mouse = "a" -- Enable mouse support
-set.foldmethod = "expr"
-set.foldexpr = "nvim_treesitter#foldexpr()" -- use treesitter for folding
-vim.wo.foldlevel = 99 -- feel free to decrease the value
-vim.wo.foldenable = true
 
+-- Configure Folds
 vim.cmd([[set wildmode=list:longest,full]]) -- Command-line completion mode
-vim.cmd([[let loaded_netrw = 1]]) -- Command-line completion mode
-vim.cmd([[let loaded_netrwPlugin = 1]]) -- Command-line completion mode
+g.loaded_netrw = 1;
+g.loaded_netrwPlugin = 1;
 
 ---------------
 -- Neovim UI --
@@ -64,9 +61,9 @@ vim.cmd([[set nowrap]]) -- Display long lines as just one line
 vim.cmd([[set noshowmode]]) -- We don't need to see things like -- INSERT -- anymore
 vim.cmd([[syntax enable]]) -- Enables syntax highlighing
 vim.cmd([[set t_Co=256]]) -- Support 256 colors
-vim.cmd "set whichwrap+=<,>,[,],h,l"         -- Breaks Space-Time Continuum
+vim.cmd "set whichwrap+=<,>,[,],h,l" -- Breaks Space-Time Continuum
 vim.diagnostic.config({
-    virtual_text = true,
+  virtual_text = true,
 })
 
 -----------------

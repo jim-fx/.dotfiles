@@ -11,6 +11,7 @@ vim.g.mapleader = " "
 map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", opts)
 map("n", "<C-f>", ":lua require'telescope.builtin'.live_grep{ cwd = vim.fn.getcwd() }<CR>", opts)
 map("n", "<Leader><leader>", "za", opts)
+map("n", "<leader>o", ":Telescope buffers<CR>", opts)
 
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
@@ -21,6 +22,7 @@ local function zenMode()
 end
 
 map("n", "zz", zenMode, opts);
+map("n", "<Leader>a", ":Alpha<CR>", opts);
 
 -- LSP Functionality
 map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", opts)
