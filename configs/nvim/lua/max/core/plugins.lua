@@ -74,8 +74,25 @@ local plugins = {
     event = "VimEnter",
   },
   {
+    "kevinhwang91/nvim-ufo",
+    event = "BufReadPost",
+    dependencies = 'kevinhwang91/promise-async',
+    config = function()
+      require('ufo').setup({
+        provider_selector = function()
+          return { 'treesitter', 'indent' }
+        end
+      })
+      vim.o.foldcolumn = '1'
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+    end,
+  },
+  {
     "kyazdani42/nvim-tree.lua",
-    event = "VimEnter",
+    event = "VeryLazy",
     -- lazy = false,
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
@@ -85,6 +102,7 @@ local plugins = {
   "nvim-lua/popup.nvim",
   {
     "goolord/alpha-nvim",
+    lazy = false,
     config = function()
       require("max.configs.dashboard")
     end,
@@ -140,7 +158,7 @@ local plugins = {
       "rafamadriz/friendly-snippets",
       { "lukas-reineke/lsp-format.nvim", config = true },
     },
-    lazy = false,
+    event = "InsertEnter",
     config = function()
       local lsp = require("lsp-zero")
       lsp.preset("recommended")
@@ -159,11 +177,6 @@ local plugins = {
     config = function()
       require("trouble").setup({})
     end,
-  },
-  {
-    url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    event = "BufReadPre",
-    config = true
   },
   -------------------
   --  Autocomplete --
