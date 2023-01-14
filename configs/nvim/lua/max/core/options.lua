@@ -25,6 +25,8 @@ vim.cmd([[set complete+=kspell]]) -- auto complete with spellcheck
 vim.cmd([[set completeopt=menuone,noselect]]) -- auto complete menu (It's pretty great)
 vim.cmd([[set nocompatible]]) -- Disable compatibility to old-time vi
 set.mouse = "a" -- Enable mouse support
+set.signcolumn = "yes"
+set.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
 -- Configure Folds
 vim.cmd([[set wildmode=list:longest,full]]) -- Command-line completion mode
@@ -50,7 +52,7 @@ set.termguicolors = true -- set term gui colors (most terminals support this)
 set.laststatus = 3 -- Always display the status line
 set.title = true -- Show current txt that you editing
 set.relativenumber = true -- Vim’s absolute, relative and hybrid line numbers
-set.cursorline = false -- Enable highlighting of the current line
+set.cursorline = true -- Enable highlighting of the current line
 set.synmaxcol = 128
 vim.cmd("syntax sync minlines=256")
 set.mousescroll = "ver:1,hor:1"
