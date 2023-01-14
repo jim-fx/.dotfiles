@@ -27,6 +27,7 @@ map("n", "<Leader>a", ":Alpha<CR>", opts);
 -- LSP Functionality
 map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", opts)
 map("n", "<Leader>p", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+map("n", "<Leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
 map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
@@ -39,7 +40,7 @@ map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
 map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
 
 -- This is my [i]nspect section, [i]nspect [s]ymbols
-map("n", "<Leader>is", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
+map("n", "<Leader>is", "<cmd>SymbolsOutline<cr>", opts)
 map("n", "<Leader>io", "<cmd>Lspsaga outline<CR>", opts)
 map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)
 map({ "n", "v" }, "<Leader>t", require("max.configs.translate"), opts)
@@ -88,13 +89,20 @@ map("n", "<A-S-J>", "yyp", opts)
 -- If i paste with p, the replaced content doesnt replace my clipboard
 map("v", "p", '"_dP', opts)
 
+-- clear highlights after search
+map("n", "<leader>cl", ":noh<CR>", opts);
+map("n", "<leader>m", ":Mason<CR>", opts);
+map("n", "<leader>l", ":Lazy<CR>", opts);
+map("n", "<leader>so", ":so %<CR>", opts);
+
+
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", opts)
 map("n", "<Leader>gdl", ":diffget //3<CR>", opts)
 map("n", "<Leader>gdh", ":diffget //2<CR>", opts)
 
 -- Find file in NvimTree
-map("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
+map("n", "<Leader>j", ":NvimTreeToggle<CR>", opts)
 map("n", "<Leader>f", ":NvimTreeFindFile<CR><c-w>", opts)
 
 -- I aint no weak boy

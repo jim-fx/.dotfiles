@@ -1,5 +1,5 @@
 # Update Repo
-source $HOME/.dotfiles/configs/zsh/update-repo.zsh
+# source $HOME/.dotfiles/configs/zsh/update-repo.zsh
 
 # p10k
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -37,6 +37,7 @@ plugins=(
   asdf
   tmux
   nx-completion
+  you-should-use
   sudo
   zsh-autosuggestions
 )

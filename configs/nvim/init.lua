@@ -4,6 +4,7 @@ require("max.core.bootstrap")
 
 require("max.core.plugins")
 
+
 require("max.core.autocommands")
 require("max.core.keymappings")
 

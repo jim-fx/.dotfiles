@@ -13,6 +13,7 @@ local plugins = {
 
   {
     "nvim-lualine/lualine.nvim",
+    lazy = false,
     config = function()
       require("max.configs.lualine")
     end,
@@ -21,9 +22,11 @@ local plugins = {
   --------------------
   -- Layout Plugins --
   --------------------
+  { 'akinsho/bufferline.nvim', lazy = false, config = true },
   { "shortcuts/no-neck-pain.nvim", cmd = "NoNeckPain", config = true },
   {
     "stevearc/dressing.nvim",
+    lazy = false,
     config = true
   },
   {
@@ -34,17 +37,10 @@ local plugins = {
     end,
   },
   {
-    "ldelossa/litee.nvim",
-    cmd = "InsertEnter",
-    dependencies = {
-      "ldelossa/litee-symboltree.nvim",
-      "ldelossa/litee-calltree.nvim",
-    },
-    config = function()
-      require("max.configs.litee")
-    end,
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    config = true,
   },
-  { "ethanholz/nvim-lastplace", event = "BufReadPre", config = true },
   { "mbbill/undotree", lazy = false },
   {
     "petertriho/nvim-scrollbar",
@@ -78,16 +74,15 @@ local plugins = {
     event = "BufReadPost",
     dependencies = 'kevinhwang91/promise-async',
     config = function()
-      require('ufo').setup({
-        provider_selector = function()
-          return { 'treesitter', 'indent' }
-        end
-      })
+      require("ufo").setup()
+
       vim.o.foldcolumn = '1'
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
-      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+      -- vim.o.statuscolumn = "%=%l%s%C"
+      vim.o.statuscolumn = '%=%l%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " }'
+      -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     end,
   },
   {
@@ -109,7 +104,7 @@ local plugins = {
   }, -- startup screen
   {
     "numToStr/Comment.nvim",
-    event = "BufReadPre",
+    event = "InsertEnter",
     config = function()
       require("Comment").setup()
     end,
@@ -119,13 +114,12 @@ local plugins = {
   ---------------------
   "junegunn/fzf",
   {
-    "ggandor/leap.nvim",
-
-    config = function()
-      local leap = require("leap")
-      leap.add_default_mappings()
-      leap.setup({})
-    end,
+    "ggandor/flit.nvim",
+    dependencies = {
+      "ggandor/leap.nvim",
+    },
+    event = "VimEnter",
+    config = true,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -133,42 +127,28 @@ local plugins = {
       require("max.configs.telescope")
     end,
   },
-
   ---------------
   -- Lsp Setup --
   ---------------
-
-  { "glepnir/lspsaga.nvim",
-    cmd = "Lspsaga"
-  }, -- better windows for lsp replace, goto definition etc...
-  { "VonHeikemen/lsp-zero.nvim",
+  {
+    "glepnir/lspsaga.nvim",
+    event = 'BufRead',
+    config = function()
+      require('lspsaga').setup({})
+    end
+  },
+  { "neovim/nvim-lspconfig",
     dependencies = {
-      "neovim/nvim-lspconfig",
       "arkav/lualine-lsp-progress",
       "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "L3MON4D3/LuaSnip",
       "onsails/lspkind.nvim",
-      "rafamadriz/friendly-snippets",
       { "lukas-reineke/lsp-format.nvim", config = true },
     },
     event = "InsertEnter",
     config = function()
-      local lsp = require("lsp-zero")
-      lsp.preset("recommended")
-      lsp.on_attach(function(client, bufnr)
-        require("lsp-format").on_attach(client, bufnr)
-      end)
-      lsp.nvim_workspace()
-      lsp.setup()
-      vim.diagnostic.config { virtual_text = true }
-
+      require("max.configs.lsp")
     end },
   {
     "folke/trouble.nvim",
@@ -183,15 +163,35 @@ local plugins = {
   -------------------
   { "tpope/vim-surround", lazy = false },
   {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "windwp/nvim-autopairs",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-emoji",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "zbirenbaum/copilot.lua",
+      "zbirenbaum/copilot-cmp",
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      require("max.configs.autocomplete")
+    end
+  },
+  {
     "nat-418/boole.nvim",
-    event = "BufReadPre",
+    event = "InsertEnter",
     config = function()
       require("boole").setup()
     end,
   },
   {
     "gaoDean/autolist.nvim",
-    event = "BufReadPre",
+    event = "InsertEnter",
     config = function()
       require("autolist").setup({})
     end,
@@ -204,6 +204,7 @@ local plugins = {
     event = "BufReadPost",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "JoosepAlviste/nvim-ts-context-commentstring"
     },
     config = function()
       require("max.configs.treesitter")
