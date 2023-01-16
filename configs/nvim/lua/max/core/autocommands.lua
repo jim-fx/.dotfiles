@@ -33,6 +33,20 @@ autocmd("BufWinEnter", {
   group = save_fold,
 })
 
+autocmd({ "BufWinEnter","BufAdd" }, {
+  desc = 'hide statuscolumn in nvimtree',
+  group = vim.api.nvim_create_augroup('hide_nvimtree_stc', { clear = true }),
+  callback = function(opts)
+    if vim.bo[opts.buf].filetype == 'NvimTree' then
+      vim.o.statuscolumn = ''
+    else
+      vim.o.statuscolumn = '%=%r%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " } %*'
+    end
+  end,
+})
+
+vim.cmd [[au BufWinEnter NvimTree setlocal statuscolumn=""]]
+
 vim.cmd([[
 augroup filetypedetect
   au BufNewFile,BufRead *.frag setl ft=glsl
@@ -40,12 +54,6 @@ augroup filetypedetect
   au BufNewFile,BufRead tsconfig.json setl ft=jsonc
 augroup END
 ]])
-
--- autocmd({ "BufReadPost" }, {
---   pattern = "*",
---   group = config_group,
---   command = "filetype detect",
--- })
 
 autocmd("BufReadPost", {
   callback = function()
