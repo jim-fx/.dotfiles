@@ -22,11 +22,10 @@ local plugins = {
   --------------------
   -- Layout Plugins --
   --------------------
-  { 'akinsho/bufferline.nvim', lazy = false, config = true },
   { "shortcuts/no-neck-pain.nvim", cmd = "NoNeckPain", config = true },
   {
     "stevearc/dressing.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = true
   },
   {
@@ -41,7 +40,7 @@ local plugins = {
     cmd = "SymbolsOutline",
     config = true,
   },
-  { "mbbill/undotree", lazy = false },
+  { "mbbill/undotree", event = "VeryLazy" },
   {
     "petertriho/nvim-scrollbar",
     config = function()
@@ -80,9 +79,6 @@ local plugins = {
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
-      -- vim.o.statuscolumn = "%=%l%s%C"
-      vim.o.statuscolumn = '%=%l%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " }'
-      -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     end,
   },
   {
@@ -131,13 +127,18 @@ local plugins = {
   -- Lsp Setup --
   ---------------
   {
-    "glepnir/lspsaga.nvim",
+    'glepnir/lspsaga.nvim',
     event = 'BufRead',
     config = function()
-      require('lspsaga').setup({})
+      require('lspsaga').setup({
+        symbol_in_winbar = {
+          enable = false,
+        },
+      })
     end
   },
-  { "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
     dependencies = {
       "arkav/lualine-lsp-progress",
       "williamboman/mason.nvim",
@@ -149,7 +150,8 @@ local plugins = {
     event = "InsertEnter",
     config = function()
       require("max.configs.lsp")
-    end },
+    end
+  },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
@@ -201,7 +203,7 @@ local plugins = {
   -------------------------
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufReadPost",
+    event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "JoosepAlviste/nvim-ts-context-commentstring"
@@ -210,6 +212,11 @@ local plugins = {
       require("max.configs.treesitter")
     end,
     run = ":TSUpdate",
+  },
+  {
+    'ckolkey/ts-node-action',
+    dependencies = { 'nvim-treesitter' },
+    opts = {},
   },
   --------------------
   -- IDE Type Stuff --

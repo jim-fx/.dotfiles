@@ -2,8 +2,6 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-local saga = require("lspsaga")
-saga.init_lsp_saga()
 
 -- Set Leader key
 vim.g.mapleader = " "
@@ -28,11 +26,13 @@ map("n", "<Leader>a", ":Alpha<CR>", opts);
 map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", opts)
 map("n", "<Leader>p", ":lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "<Leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
-map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
+map("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
 
-map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts)
+map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map({ "n", "v" }, "<Leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
 map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
