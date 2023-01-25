@@ -30,6 +30,7 @@ alias dc="docker-compose"
 alias t="tmux"
 
 alias nx="pnpm exec nx"
+alias pm="pnpm prisma"
 
 if type lsd &> /dev/null; then
   alias ls="lsd"

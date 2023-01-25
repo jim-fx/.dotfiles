@@ -33,14 +33,17 @@ autocmd("BufWinEnter", {
   group = save_fold,
 })
 
+require("max.theme.statuscolumn");
+
 autocmd({ "BufWinEnter","BufAdd" }, {
   desc = 'hide statuscolumn in nvimtree',
   group = vim.api.nvim_create_augroup('hide_nvimtree_stc', { clear = true }),
   callback = function(opts)
     if vim.bo[opts.buf].filetype == 'NvimTree' then
-      vim.o.statuscolumn = ''
+      vim.opt.statuscolumn = ''
     else
-      vim.o.statuscolumn = '%=%r%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " } %*'
+      -- vim.o.statuscolumn = '%=%r%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " } %*'
+      vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
     end
   end,
 })
