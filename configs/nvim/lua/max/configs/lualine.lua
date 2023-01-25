@@ -225,6 +225,7 @@ ins_right({
 })
 
 -- Text Progress
+
 ins_right({
   "progress",
   padding = { right = 1 },

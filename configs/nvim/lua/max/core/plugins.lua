@@ -2,15 +2,18 @@ local plugins = {
 
   "nvim-lua/plenary.nvim",
 
-
-
   ---------------------
   -- Theming Section --
   ---------------------
 
   "rktjmp/fwatch.nvim", -- d to check dark/light theme
   { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
-
+  -- local plugins need to be explicitly configured with dir
+  {
+    dir = "~/Projects/sudoku.nvim",
+    cmd = "Sudoku",
+    config = true,
+  },
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
@@ -26,7 +29,7 @@ local plugins = {
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
-    config = true
+    config = true,
   },
   {
     "folke/which-key.nvim",
@@ -69,17 +72,15 @@ local plugins = {
     event = "VimEnter",
   },
   {
+    "folke/neodev.nvim",
+    lazy = false,
+    config = true,
+  },
+  {
     "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
-    dependencies = 'kevinhwang91/promise-async',
-    config = function()
-      require("ufo").setup()
-
-      vim.o.foldcolumn = '1'
-      vim.o.foldlevel = 99
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-    end,
+    dependencies = "kevinhwang91/promise-async",
+    config = require("max.configs.ufo"),
   },
   {
     "kyazdani42/nvim-tree.lua",
@@ -98,6 +99,13 @@ local plugins = {
       require("max.configs.dashboard")
     end,
   }, -- startup screen
+  {
+    "notomo/gesture.nvim",
+    lazy = false,
+    config = function()
+      require("max.configs.gestures")
+    end,
+  },
   {
     "numToStr/Comment.nvim",
     event = "InsertEnter",
@@ -127,15 +135,15 @@ local plugins = {
   -- Lsp Setup --
   ---------------
   {
-    'glepnir/lspsaga.nvim',
-    event = 'BufRead',
+    "glepnir/lspsaga.nvim",
+    event = "BufRead",
     config = function()
-      require('lspsaga').setup({
+      require("lspsaga").setup({
         symbol_in_winbar = {
           enable = false,
         },
       })
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -150,7 +158,7 @@ local plugins = {
     event = "InsertEnter",
     config = function()
       require("max.configs.lsp")
-    end
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -182,7 +190,7 @@ local plugins = {
     },
     config = function()
       require("max.configs.autocomplete")
-    end
+    end,
   },
   {
     "nat-418/boole.nvim",
@@ -202,25 +210,45 @@ local plugins = {
   -- Syntax Highlighting --
   -------------------------
   {
+    "norcalli/nvim-colorizer.lua",
+    config = true,
+    event = "VeryLazy",
+  },
+  {
+    "folke/todo-comments.nvim",
+    config = true,
+    event = "VeryLazy",
+  },
+  {
+    "styled-components/vim-styled-components",
+    lazy = false,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring"
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      "windwp/nvim-ts-autotag",
     },
     config = function()
       require("max.configs.treesitter")
     end,
-    run = ":TSUpdate",
+    build = ":TSUpdate",
   },
   {
-    'ckolkey/ts-node-action',
-    dependencies = { 'nvim-treesitter' },
+    "ckolkey/ts-node-action",
+    dependencies = { "nvim-treesitter" },
     opts = {},
   },
   --------------------
   -- IDE Type Stuff --
   --------------------
+  {
+    "ThePrimeagen/git-worktree.nvim",
+    config = true,
+    event = "VeryLazy"
+  },
   {
     "jackMort/ChatGPT.nvim",
     cmd = "ChatGPT",
@@ -254,7 +282,7 @@ local plugins = {
     config = function()
       require("max.configs.sniprun")
     end,
-    run = "bash ./install.sh",
+    build = "bash ./install.sh",
   },
   {
     "uga-rosa/translate.nvim",

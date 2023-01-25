@@ -2,18 +2,17 @@ local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
 local lsp = require("lspconfig")
 
-
-require("null-ls").setup({
-  sources = {
-    require("null-ls").builtins.formatting.stylua,
-    require("null-ls").builtins.diagnostics.eslint,
-    -- require("null-ls").builtins.code_actions.eslint_d,
-    -- require("null-ls").builtins.completion.spell,
-  },
-})
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--   sources = {
+--     -- null_ls.builtins.formatting.stylua,
+--     -- null_ls.builtins.code_actions.eslint_d,
+--     -- null_ls.builtins.formatting.prettierd
+--     -- require("null-ls").builtins.completion.spell,
+--   },
+-- })
 
 mason.setup()
-
 mason_lsp.setup({
   ensure_installed = { "sumneko_lua", "jsonls", "tsserver", "svelte", "cssls" },
 })
@@ -23,6 +22,8 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 local function on_attach(client, bufnr)
+
+
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -44,28 +45,24 @@ local function on_attach(client, bufnr)
       end,
     })
   else
-    -- vim.notify("Lsp (" .. client.name .. ") doesnt support format")
+    print("Lsp (" .. client.name .. ") doesnt support format")
   end
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
-  lineFoldingOnly = true
+  lineFoldingOnly = true,
 }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_lsp = {};
+local custom_lsp = {}
 
 custom_lsp.tsserver = {
-  on_attach = on_attach,
-  capabilities = capabilities,
   root_dir = lsp.util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git"),
 }
 
 custom_lsp.sumneko_lua = {
-  on_attach = on_attach,
-  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -90,10 +87,7 @@ custom_lsp.sumneko_lua = {
   },
 }
 
-
 custom_lsp.jsonls = {
-  capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     provideFormatter = false,
     json = {
@@ -131,8 +125,6 @@ custom_lsp.jsonls = {
 }
 
 custom_lsp.intelephense = {
-  capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     intelephense = {
       stubs = {
@@ -152,7 +144,6 @@ custom_lsp.intelephense = {
 }
 
 custom_lsp.rust_analyzer = {
-  on_attach = on_attach,
   settings = {
     ["rust-analyzer"] = {
       imports = {
@@ -174,8 +165,6 @@ custom_lsp.rust_analyzer = {
 }
 
 custom_lsp.yamlls = {
-  capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     yaml = {
       schemas = {
@@ -188,11 +177,11 @@ custom_lsp.yamlls = {
   },
 }
 
-custom_lsp.glslls = require("max.configs.lsp-glsl")
+-- local glslls_config = require("max.configs.lsp-glsl")
+-- glslls_config.on_attach = on_attach;
+-- lsp.glslls.setup(glslls_config)
 
 custom_lsp.ltex = {
-  capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     ltex = {
       language = "de",
@@ -209,15 +198,19 @@ custom_lsp.ltex = {
   },
 }
 
-require('mason-lspconfig').setup_handlers({
+mason_lsp.setup_handlers({
   function(server_name)
+    local config = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+
     if custom_lsp[server_name] ~= nil then
-      lsp[server_name].setup(custom_lsp[server_name])
-    else
-      lsp[server_name].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
+      for k, v in pairs(custom_lsp[server_name]) do
+        config[k] = v
+      end
     end
+
+    lsp[server_name].setup(config)
   end,
 })

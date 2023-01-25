@@ -35,9 +35,12 @@ map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts)
 map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)
 map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map({ "n", "v" }, "<Leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
+map({ "n", "v" }, "<Leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
 map({ "n", "v" }, "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
 
 map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
+map("n", "<Leader>wq", ":wqall!<CR>", opts)
+map("n", "<Leader>li", ":LspInfo<CR>", opts)
 
 -- This is my [i]nspect section, [i]nspect [s]ymbols
 map("n", "<Leader>is", "<cmd>SymbolsOutline<cr>", opts)
@@ -94,7 +97,6 @@ map("n", "<leader>cl", ":noh<CR>", opts);
 map("n", "<leader>m", ":Mason<CR>", opts);
 map("n", "<leader>l", ":Lazy<CR>", opts);
 map("n", "<leader>so", ":so %<CR>", opts);
-
 
 -- Faster git merge
 map("n", "<Leader>gd", ":Gvdiffsplit!<CR>", opts)
