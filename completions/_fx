@@ -10,7 +10,7 @@ _fx(){
 
     case $state in 
         (action) _arguments '1:profiles:(s i o)' ;;
-                (*) compadd "$@" $(echo $(ls ~/Projects) | tr \\n ' ')
+                (*) compadd "$@" $(echo $(find ~/Projects -type d -maxdepth 2 | sed 's/\/home\/max\/Projects\///g') | tr \\n ' ')
 
     esac
 

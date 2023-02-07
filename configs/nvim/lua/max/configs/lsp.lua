@@ -22,7 +22,8 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 local function on_attach(client, bufnr)
-
+  -- disable semantic tokens
+  -- client.server_capabilities.semanticTokensProvider = nil
 
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -78,6 +79,7 @@ custom_lsp.sumneko_lua = {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {

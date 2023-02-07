@@ -124,7 +124,7 @@ fi
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-[ -n "$TMUX" ] && export TERM=screen-256color
+[ -n "$TMUX" ] && export TERM=tmux-256color
 
 # tabtab source for packages
 # uninstall by removing these lines

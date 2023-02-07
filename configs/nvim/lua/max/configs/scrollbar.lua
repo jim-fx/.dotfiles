@@ -11,5 +11,6 @@ require("scrollbar").setup({
     "TelescopePrompt",
     "noice",
     "NvimTree",
+    "neo-tree"
   },
 })

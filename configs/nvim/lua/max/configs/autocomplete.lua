@@ -4,14 +4,12 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 local lspkind = require("lspkind")
 local cmp = require("cmp")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig").html.setup({
   capabilities = capabilities,
 })
 
-require("nvim-autopairs").setup()
 require("copilot").setup({
   suggestion = { enabled = false },
   panel = { enabled = false },
@@ -24,7 +22,6 @@ local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
-
 
 cmp.setup({
   window = {
@@ -97,6 +94,7 @@ cmp.setup({
   },
 })
 
+
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
   sources = {
@@ -112,5 +110,3 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   }),
 })
-
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))

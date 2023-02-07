@@ -1,14 +1,12 @@
-vim.opt.termguicolors = true
-
 require("max.core.bootstrap")
+
+require("max.theme.statuscolumn");
 
 require("max.core.plugins")
 
-
 require("max.core.autocommands")
-require("max.core.keymappings")
 
-require("max.theme.catpuccin")
+require("max.core.keymappings")
 
 require("max.overlays")
 

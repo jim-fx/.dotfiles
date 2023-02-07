@@ -18,14 +18,16 @@ autocmd({ "BufReadPost" }, {
 })
 
 local save_fold = augroup("Persistent Folds", { clear = true })
-autocmd("BufWinLeave", {
+autocmd({ "BufWinLeave" }, {
   pattern = "*.*",
   callback = function()
     vim.cmd.mkview()
+    vim.cmd("SessionSave")
   end,
   group = save_fold,
 })
-autocmd("BufWinEnter", {
+
+autocmd({ "BufWinEnter" }, {
   pattern = "*.*",
   callback = function()
     vim.cmd.loadview({ mods = { emsg_silent = true } })
@@ -33,13 +35,11 @@ autocmd("BufWinEnter", {
   group = save_fold,
 })
 
-require("max.theme.statuscolumn");
-
-autocmd({ "BufWinEnter","BufAdd" }, {
-  desc = 'hide statuscolumn in nvimtree',
+autocmd({ "BufWinEnter", "BufAdd" }, {
+  desc = 'hide statuscolumn in neotree',
   group = vim.api.nvim_create_augroup('hide_nvimtree_stc', { clear = true }),
   callback = function(opts)
-    if vim.bo[opts.buf].filetype == 'NvimTree' then
+    if vim.bo[opts.buf].filetype == 'NvimTree' or vim.bo[opts.buf].filetype == "neo-tree" then
       vim.opt.statuscolumn = ''
     else
       -- vim.o.statuscolumn = '%=%r%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " } %*'
@@ -47,8 +47,6 @@ autocmd({ "BufWinEnter","BufAdd" }, {
     end
   end,
 })
-
-vim.cmd [[au BufWinEnter NvimTree setlocal statuscolumn=""]]
 
 vim.cmd([[
 augroup filetypedetect
@@ -67,3 +65,5 @@ autocmd("BufReadPost", {
     end
   end,
 })
+
+
