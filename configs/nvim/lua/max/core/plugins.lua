@@ -1,19 +1,22 @@
 local plugins = {
 
+  {
+    dir = "~/Projects/sudoku.nvim",
+    cmd = "Sudoku",
+    config = true
+  },
+
   "nvim-lua/plenary.nvim",
 
   ---------------------
   -- Theming Section --
   ---------------------
+  require("max.theme"),
 
-  "rktjmp/fwatch.nvim", -- d to check dark/light theme
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
-  -- local plugins need to be explicitly configured with dir
-  {
-    dir = "~/Projects/sudoku.nvim",
-    cmd = "Sudoku",
-    config = true,
-  },
+  --------------------
+  -- Layout Plugins --
+  --------------------
+  "nvim-lua/popup.nvim",
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
@@ -21,19 +24,68 @@ local plugins = {
       require("max.configs.lualine")
     end,
   },
+  {
+    'echasnovski/mini.nvim',
+    version = false,
+    event = "VeryLazy",
+    config = function()
+      require("mini.pairs").setup({
+      })
 
-  --------------------
-  -- Layout Plugins --
-  --------------------
+      require("mini.surround").setup({
+      })
+
+      require("mini.animate").setup({
+        cursor = {
+          enable = false,
+        }
+      })
+    end
+  },
   { "shortcuts/no-neck-pain.nvim", cmd = "NoNeckPain", config = true },
   {
-    "stevearc/dressing.nvim",
+    "folke/noice.nvim",
     event = "VeryLazy",
-    config = true,
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        lsp_doc_border = true
+      },
+    },
+    keys = {
+      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
+      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
+    },
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = true,
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
   },
   {
     "folke/which-key.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     config = function()
       require("which-key").setup({})
     end,
@@ -43,23 +95,28 @@ local plugins = {
     cmd = "SymbolsOutline",
     config = true,
   },
-  { "mbbill/undotree", event = "VeryLazy" },
+  { "mbbill/undotree", cmd = { "Undotree", "UndotreeToggle" } },
   {
     "petertriho/nvim-scrollbar",
+    event = "VeryLazy",
     config = function()
       require("max.configs.scrollbar")
     end,
   },
   {
     "lewis6991/gitsigns.nvim",
-    lazy = false,
+    event = "BufReadPost",
     config = function()
       require("gitsigns").setup()
     end,
   },
-  "akinsho/nvim-toggleterm.lua",
   {
     "akinsho/git-conflict.nvim",
+    version = "*",
+    dependencies = {
+      "akinsho/nvim-toggleterm.lua",
+    },
+    event = "BufReadPost",
     config = function()
       require("git-conflict").setup()
     end,
@@ -72,26 +129,27 @@ local plugins = {
     event = "VimEnter",
   },
   {
-    "folke/neodev.nvim",
-    lazy = false,
-    config = true,
-  },
-  {
     "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
     dependencies = "kevinhwang91/promise-async",
     config = require("max.configs.ufo"),
   },
   {
-    "kyazdani42/nvim-tree.lua",
-    event = "VeryLazy",
-    -- lazy = false,
-    dependencies = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("max.configs.tree")
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim"
+    },
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+      require("neo-tree").setup({
+        hide_root_node = true,
+        highlight_background = "Normal",
+      })
     end,
   },
-  "nvim-lua/popup.nvim",
   {
     "goolord/alpha-nvim",
     lazy = false,
@@ -99,13 +157,6 @@ local plugins = {
       require("max.configs.dashboard")
     end,
   }, -- startup screen
-  {
-    "notomo/gesture.nvim",
-    lazy = false,
-    config = function()
-      require("max.configs.gestures")
-    end,
-  },
   {
     "numToStr/Comment.nvim",
     event = "InsertEnter",
@@ -116,17 +167,22 @@ local plugins = {
   ---------------------
   -- Code Navigation --
   ---------------------
-  "junegunn/fzf",
   {
     "ggandor/flit.nvim",
     dependencies = {
       "ggandor/leap.nvim",
     },
-    event = "VimEnter",
+    event = "VeryLazy",
     config = true,
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
+    },
+    event = "VeryLazy",
     config = function()
       require("max.configs.telescope")
     end,
@@ -163,7 +219,7 @@ local plugins = {
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup({})
     end,
@@ -171,13 +227,11 @@ local plugins = {
   -------------------
   --  Autocomplete --
   -------------------
-  { "tpope/vim-surround", lazy = false },
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
-      "windwp/nvim-autopairs",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-emoji",
       "saadparwaiz1/cmp_luasnip",
@@ -196,15 +250,21 @@ local plugins = {
     "nat-418/boole.nvim",
     event = "InsertEnter",
     config = function()
-      require("boole").setup()
+      require("boole").setup({
+        mappings = {
+          increment = '-',
+          decrement = '+'
+        },
+        additions = {
+          { "const", "let", "var" }
+        }
+      })
     end,
   },
   {
     "gaoDean/autolist.nvim",
     event = "InsertEnter",
-    config = function()
-      require("autolist").setup({})
-    end,
+    config = true,
   },
   -------------------------
   -- Syntax Highlighting --
@@ -212,16 +272,12 @@ local plugins = {
   {
     "norcalli/nvim-colorizer.lua",
     config = true,
-    event = "VeryLazy",
+    event = "BufReadPost",
   },
   {
     "folke/todo-comments.nvim",
     config = true,
     event = "VeryLazy",
-  },
-  {
-    "styled-components/vim-styled-components",
-    lazy = false,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -236,19 +292,9 @@ local plugins = {
     end,
     build = ":TSUpdate",
   },
-  {
-    "ckolkey/ts-node-action",
-    dependencies = { "nvim-treesitter" },
-    opts = {},
-  },
   --------------------
   -- IDE Type Stuff --
   --------------------
-  {
-    "ThePrimeagen/git-worktree.nvim",
-    config = true,
-    event = "VeryLazy"
-  },
   {
     "jackMort/ChatGPT.nvim",
     cmd = "ChatGPT",
@@ -275,7 +321,6 @@ local plugins = {
       require("max.configs.dap")
     end,
   },
-  "editorconfig/editorconfig-vim",
   {
     "michaelb/sniprun",
     event = "BufRead",
@@ -305,11 +350,14 @@ local plugins = {
   },
   {
     "tpope/vim-dadbod",
-    lazy = false,
+    dependencies = {
+      "kristijanhusak/vim-dadbod-completion",
+      "kristijanhusak/vim-dadbod-ui",
+    },
+    cmd = "DBUI"
   },
-  { "kristijanhusak/vim-dadbod-ui", lazy = false },
 }
 
-local opts = { defaults = { lazy = true }, install = { colorscheme = { "catppuccin" } } }
+local opts = { defaults = { lazy = true }, install = { colorscheme = { require("max.theme").name } } }
 
 require("lazy").setup(plugins, opts)

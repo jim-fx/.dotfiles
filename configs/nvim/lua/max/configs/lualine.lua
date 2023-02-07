@@ -45,7 +45,7 @@ local config = {
     -- Disable sections and component separators
     component_separators = "",
     section_separators = "",
-    theme = "catppuccin",
+    theme = require("max.theme").name,
   },
 
   -- These are to remove the defaults
@@ -78,15 +78,6 @@ end
 local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
-
--- Begining Of The StatusLine
--- ins_left {
---   function()
---     return '|'
---   end,
---   color = { fg = colors.blue }, -- Sets highlighting of component
---   padding = { left = 0, right = 1 }, -- We don't need space before this
--- }
 
 -- Icon Of Diffrent Mode: -- normal -- | -- insert -- | -- visual --
 ins_left({
@@ -139,31 +130,33 @@ ins_left({
   },
 })
 
-ins_left({
-  "lsp_progress",
-  -- With spinner
-  colors = {
-    percentage = colors.cyan,
-    title = colors.cyan,
-    message = colors.cyan,
-    spinner = colors.cyan,
-    lsp_client_name = colors.magenta,
-    use = true,
-  },
-  separators = {
-    component = " ",
-    progress = " | ",
-    -- message = { pre = "(", post = ")" },
-    percentage = { pre = "", post = "%% " },
-    title = { pre = "", post = ": " },
-    lsp_client_name = { pre = "[", post = "]" },
-    spinner = { pre = "", post = "" },
-    message = { commenced = "In Progress", completed = "Completed" },
-  },
-  display_components = { "lsp_client_name", "spinner", "percentage" },
-  timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
-  spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
-})
+ins_left {
+	'lsp_progress',
+	display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }},
+	-- With spinner
+	-- display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' }},
+	colors = {
+	  percentage  = colors.cyan,
+	  title  = colors.cyan,
+	  message  = colors.cyan,
+	  spinner = colors.cyan,
+	  lsp_client_name = colors.magenta,
+	  use = true,
+	},
+	separators = {
+		component = ' ',
+		progress = ' | ',
+		message = { pre = '(', post = ')'},
+		percentage = { pre = '', post = '%% ' },
+		title = { pre = '', post = ': ' },
+		lsp_client_name = { pre = '[', post = ']' },
+		spinner = { pre = '', post = '' },
+		message = { commenced = 'In Progress', completed = 'Completed' },
+	},
+	display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' } },
+	timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
+	spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+}
 
 -- Git Diff
 local function diff_source()
@@ -206,30 +199,12 @@ ins_right({
   -- Add components to right sections
 })
 
--- File Format
--- ins_right {
---   'fileformat',
---   -- fmt = string.upper,
---   -- icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
---   padding = { right = 2 },
---   symbols = { unix = 'NIX '},
---   -- color = { fg = colors.green, gui = 'bold' },
--- }
-
 -- File Size
 ins_right({
   -- filesize component
   "filesize",
   padding = { right = 2 },
   cond = conditions.buffer_not_empty,
-})
-
--- Text Progress
-
-ins_right({
-  "progress",
-  padding = { right = 1 },
-  -- padding = { left = 1 },
 })
 
 -- File Location
@@ -247,13 +222,13 @@ ins_left({
 })
 
 -- End Of The Status Bar
--- ins_right {
---   function()
---     return ''
---   end,
---   color = { fg = colors.blue }, -- Sets highlighting of component
---   padding = { left = 1, right = 0 }, -- We don't need space before this
--- }
+ins_right {
+  function()
+    return ''
+  end,
+  color = { fg = colors.blue }, -- Sets highlighting of component
+  padding = { left = 1, right = 0 }, -- We don't need space before this
+}
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)

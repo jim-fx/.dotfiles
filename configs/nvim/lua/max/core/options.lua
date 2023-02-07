@@ -1,79 +1,54 @@
--------------
--- General --
--------------
-local set = vim.opt
-local g = vim.g
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-set.swapfile = false -- Don't use swapfile
-set.updatetime = 0 -- Faster completion
-set.smartindent = true -- Makes indenting smart
-set.iskeyword:append("-") -- treat dash separated words as a word text object"
-set.clipboard = "unnamedplus" -- Copy paste between vim and everything else
-set.smarttab = true -- Makes tabbing smarter will realize you have 2 vs 4
-set.expandtab = true -- Converts tabs to spaces
-set.autoindent = true -- Good auto indent
-set.autochdir = false -- Your working directory will always be the same as your working directory
-set.incsearch = true -- sets incremental search
-set.undofile = true
-set.undodir = vim.fn.stdpath("data") .. "/undo"
-set.shell = "/bin/zsh" -- Set your shell to bash or zsh
-set.shortmess:append("sI") -- Disable nvim intro
-vim.cmd([[set nobackup]]) -- creates a backup file
-vim.cmd([[set nowritebackup]]) -- creates a backup file i guess
-vim.cmd([[set formatoptions-=cro]]) -- Stop newline continution of comments
-vim.cmd([[set complete+=kspell]]) -- auto complete with spellcheck
-vim.cmd([[set completeopt=menuone,noselect]]) -- auto complete menu (It's pretty great)
-vim.cmd([[set nocompatible]]) -- Disable compatibility to old-time vi
-set.mouse = "a" -- Enable mouse support
-set.signcolumn = "yes"
-set.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+local opt = vim.opt
 
--- Configure Folds
-vim.cmd([[set wildmode=list:longest,full]]) -- Command-line completion mode
-g.loaded_netrw = 1;
-g.loaded_netrwPlugin = 1;
+opt.autowrite = true -- Enable auto write
+opt.clipboard = "unnamedplus" -- Sync with system clipboard
+opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 3 -- Hide * markup for bold and italic
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
+opt.cursorline = true -- Enable highlighting of the current line
+opt.expandtab = true -- Use spaces instead of tabs
+opt.formatoptions = "jcroqlnt" -- tcqj
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true -- Ignore case
+opt.inccommand = "nosplit" -- preview incremental substitute
+opt.laststatus = 3 -- laststatus=3 enables global statusline
+opt.list = false -- Show some invisible characters (tabs...
+opt.mouse = "a" -- Enable mouse mode
+opt.number = true -- Print line number
+opt.pumblend = 10 -- Popup blend
+opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.relativenumber = true -- Relative line numbers
+opt.scrolloff = 4 -- Lines of context
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+opt.shiftround = true -- Round indent
+opt.shiftwidth = 2 -- Size of an indent
+opt.shortmess:append { W = true, I = true, c = true }
+opt.showmode = false -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8 -- Columns of context
+opt.signcolumn = "no" -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true -- Don't ignore case with capitals
+opt.smartindent = true -- Insert indents automatically
+opt.spelllang = { "en" }
+opt.splitbelow = true -- Put new windows below current
+opt.splitright = true -- Put new windows right of current
+opt.tabstop = 2 -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
+opt.timeoutlen = 300
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.winminwidth = 5 -- Minimum window width
+opt.wrap = false -- Disable line wrap
 
----------------
--- Neovim UI --
----------------
-set.pumheight = 15 -- Makes popup menu smaller
-set.ruler = true -- Show the cursor position all the time
-set.splitbelow = true -- Horizontal splits will automatically be below
-set.splitright = true -- Vertical splits will automatically be to the right
-set.conceallevel = 0 -- So that I can see `` in markdown files
-g.markdown_fenced_languages = { "javascript", "typescript", "bash", "lua", "go", "rust", "c", "cpp" }
-set.tabstop = 2 -- Insert 2 spaces for a tab
-set.number = true -- Line numbers
-set.background = "dark" -- tell vim what the background color looks like
-set.virtualedit = "onemore" -- With This option you can move the cursor one character over the end
-set.ignorecase = true -- ignores case when searching
-set.smartcase = true -- turns on case sensitive search when letters are capitalized
-set.termguicolors = true -- set term gui colors (most terminals support this)
-set.laststatus = 3 -- Always display the status line
-set.title = true -- Show current txt that you editing
-set.relativenumber = true -- Vim’s absolute, relative and hybrid line numbers
-set.cursorline = true -- Enable highlighting of the current line
-set.synmaxcol = 128
-vim.cmd("syntax sync minlines=256")
-set.mousescroll = "ver:1,hor:1"
-set.shiftwidth = 2 -- Change the number of space characters inserted for indentation
-set.showtabline = 1 -- Always show tabs
-set.cmdheight = 1 -- More space for displaying messages
-vim.cmd([[set nowrap]]) -- Display long lines as just one line
-vim.cmd([[set noshowmode]]) -- We don't need to see things like -- INSERT -- anymore
-vim.cmd([[syntax enable]]) -- Enables syntax highlighing
-vim.cmd([[set t_Co=256]]) -- Support 256 colors
-vim.cmd "set whichwrap+=<,>,[,],h,l" -- Breaks Space-Time Continuum
-vim.diagnostic.config({
-  virtual_text = true,
-})
+if vim.fn.has("nvim-0.9.0") == 1 then
+  opt.splitkeep = "screen"
+  opt.shortmess:append { C = true }
+end
 
------------------
--- Memory, CPU --
------------------
-set.hidden = true -- Required to keep multiple buffers open multiple buffers
-set.timeoutlen = 500 -- By default timeoutlen is 1000 ms
-set.lazyredraw = false -- Disable lazyredraw
-set.synmaxcol = 240 -- Max column for syntax highlight
-set.updatetime = 700 -- ms to wait for trigger an event
-vim.o.fillchars = 'eob: '
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
