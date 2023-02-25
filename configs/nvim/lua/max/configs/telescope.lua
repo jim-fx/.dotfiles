@@ -67,4 +67,4 @@ local default = {
 
 telescope.setup(default)
 telescope.load_extension("notify")
-telescope.load_extension("persisted") -- To load the telescope extension
+-- telescope.load_extension("persisted") -- To load the telescope extension
