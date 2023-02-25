@@ -5,6 +5,7 @@ return {
   opts = {
     -- transparent_background = true,
     flavour = "mocha", -- latte, frappe, macchiato, mocha
+    term_colors = true,
     compile = {
       enabled = true,
       path = vim.fn.stdpath("cache") .. "/catppuccin",
@@ -21,7 +22,7 @@ return {
       lsp_saga = true,
       notify = true,
       neotree = {
-        enabled = true,
+        enabled = false,
         show_root = false,
       },
       dap = {

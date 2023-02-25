@@ -31,6 +31,16 @@ local plugins = {
     version = false,
     event = "VeryLazy",
     config = function()
+      -- require("mini.sessions").setup({
+      --   autoread = true,
+      --   directory = "session",
+      --   file = "",
+      --   verbose = { read = true, write = true, delete = true },
+      -- })
+
+      require("mini.comment").setup({
+      })
+
       require("mini.pairs").setup({
       })
 
@@ -143,13 +153,6 @@ local plugins = {
       require("max.configs.dashboard")
     end,
   }, -- startup screen
-  {
-    "numToStr/Comment.nvim",
-    event = "BufReadPost",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
   ---------------------
   -- Code Navigation --
   ---------------------
@@ -314,7 +317,7 @@ local plugins = {
       require("max.configs.session")
     end,
   },
-  -- Dap Debugger -- Have not yet been able to set this up
+  --Dap Debugger -- Have not yet been able to set this up
   {
     "mfussenegger/nvim-dap",
     dependencies = {

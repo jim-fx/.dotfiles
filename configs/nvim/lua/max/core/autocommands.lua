@@ -22,7 +22,6 @@ autocmd({ "BufWinLeave" }, {
   pattern = "*.*",
   callback = function()
     vim.cmd.mkview()
-    vim.cmd("SessionSave")
   end,
   group = save_fold,
 })
@@ -42,7 +41,6 @@ autocmd({ "BufWinEnter", "BufAdd" }, {
     if vim.bo[opts.buf].filetype == 'NvimTree' or vim.bo[opts.buf].filetype == "neo-tree" then
       vim.opt.statuscolumn = ''
     else
-      -- vim.o.statuscolumn = '%=%r%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "" : "") : " " } %*'
       vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
     end
   end,
@@ -65,5 +63,3 @@ autocmd("BufReadPost", {
     end
   end,
 })
-
-
