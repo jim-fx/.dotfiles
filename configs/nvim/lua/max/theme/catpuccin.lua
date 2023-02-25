@@ -2,45 +2,40 @@ return {
   "catppuccin/nvim",
   name = "catppuccin",
   lazy = false,
-  config = function()
-    vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
-
-    require("catppuccin").setup({
-      transparent_background = true,
-      compile = {
+  opts = {
+    -- transparent_background = true,
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    compile = {
+      enabled = true,
+      path = vim.fn.stdpath("cache") .. "/catppuccin",
+    },
+    styles = {
+      comments = { "italic" },
+      strings = { "italic" },
+    },
+    integrations = {
+      gitsigns = true,
+      telescope = true,
+      -- treesitter = true,
+      cmp = true,
+      lsp_saga = true,
+      notify = true,
+      neotree = {
         enabled = true,
-        path = vim.fn.stdpath("cache") .. "/catppuccin",
+        show_root = false,
       },
-      styles = {
-        comments = { "italic" },
-        strings = { "italic" },
+      dap = {
+        enabled = true,
+        enable_ui = true,
       },
-      integrations = {
-        gitsigns = true,
-        telescope = true,
-        -- treesitter = true,
-        cmp = true,
-        lsp_saga = true,
-        notify = true,
-        neotree = {
-          enabled = true,
-          show_root = false,
-        },
-        dap = {
-          enabled = true,
-          enable_ui = true,
-        },
-        native_lsp = {
-          enabled = true,
-        },
-        ts_rainbow = true,
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = false,
-        },
+      native_lsp = {
+        enabled = true,
       },
-    })
-
-    vim.cmd("colorscheme catppuccin")
-  end
+      ts_rainbow = true,
+      indent_blankline = {
+        enabled = true,
+        colored_indent_levels = false,
+      },
+    },
+  }
 } -- Enable Theming / Syntax

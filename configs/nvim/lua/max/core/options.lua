@@ -1,7 +1,14 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+local g = vim.g
 local opt = vim.opt
+
+g.mapleader = " "
+g.maplocalleader = " "
+
+g.loaded_netrwPlugin = 1
+g.loaded_netrw = 1
+g.loaded_netrwSettings = 1
+g.loaded_netrwFileHandlers = 1
+g.loaded_netrw_gitignore = 1
 
 opt.autowrite = true -- Enable auto write
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
