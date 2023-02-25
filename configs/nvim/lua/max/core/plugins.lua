@@ -11,12 +11,14 @@ local plugins = {
   ---------------------
   -- Theming Section --
   ---------------------
+
   require("max.theme"),
 
   --------------------
   -- Layout Plugins --
   --------------------
   "nvim-lua/popup.nvim",
+  require("max.configs.neotree"),
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
@@ -42,12 +44,19 @@ local plugins = {
       })
     end
   },
-  { "shortcuts/no-neck-pain.nvim", cmd = "NoNeckPain", config = true },
+  {
+    "shortcuts/no-neck-pain.nvim",
+    cmd = "NoNeckPain",
+    config = true
+  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
       lsp = {
+        progress = {
+          enabled = false
+        },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
@@ -61,27 +70,16 @@ local plugins = {
       },
     },
     keys = {
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
+      { "<S-Enter>",   function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c",                 desc = "Redirect Cmdline" },
+      { "<leader>snl", function() require("noice").cmd("last") end,                   desc = "Noice Last Message" },
+      { "<leader>snh", function() require("noice").cmd("history") end,                desc = "Noice History" },
+      { "<leader>sna", function() require("noice").cmd("all") end,                    desc = "Noice All" },
     },
   },
   {
     "stevearc/dressing.nvim",
+    enabled = false,
     lazy = true,
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
   },
   {
     "folke/which-key.nvim",
@@ -111,11 +109,15 @@ local plugins = {
     end,
   },
   {
+    "akinsho/nvim-toggleterm.lua",
+    event = "VeryLazy",
+    config = function()
+      require("max.configs.toggleterm");
+    end,
+  },
+  {
     "akinsho/git-conflict.nvim",
     version = "*",
-    dependencies = {
-      "akinsho/nvim-toggleterm.lua",
-    },
     event = "BufReadPost",
     config = function()
       require("git-conflict").setup()
@@ -135,22 +137,6 @@ local plugins = {
     config = require("max.configs.ufo"),
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim"
-    },
-    init = function()
-      vim.g.neo_tree_remove_legacy_commands = 1
-      require("neo-tree").setup({
-        hide_root_node = true,
-        highlight_background = "Normal",
-      })
-    end,
-  },
-  {
     "goolord/alpha-nvim",
     lazy = false,
     config = function()
@@ -159,7 +145,7 @@ local plugins = {
   }, -- startup screen
   {
     "numToStr/Comment.nvim",
-    event = "InsertEnter",
+    event = "BufReadPost",
     config = function()
       require("Comment").setup()
     end,
@@ -211,7 +197,7 @@ local plugins = {
       "onsails/lspkind.nvim",
       { "lukas-reineke/lsp-format.nvim", config = true },
     },
-    event = "InsertEnter",
+    event = "BufReadPost",
     config = function()
       require("max.configs.lsp")
     end,
@@ -252,11 +238,12 @@ local plugins = {
     config = function()
       require("boole").setup({
         mappings = {
-          increment = '-',
-          decrement = '+'
+          increment = '+',
+          decrement = '-'
         },
         additions = {
-          { "const", "let", "var" }
+          { "const",    "let",      "var" },
+          { "absolute", "relative", "fixed", "sticky" }
         }
       })
     end,
@@ -295,6 +282,23 @@ local plugins = {
   --------------------
   -- IDE Type Stuff --
   --------------------
+  {
+    "rest-nvim/rest.nvim",
+    cmd = "RestNvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup({})
+    end
+  },
+  {
+    "chrisgrieser/nvim-recorder",
+    event = "VeryLazy",
+    config = function()
+      require("recorder").setup({
+        logLevel = vim.log.levels.OFF,
+      })
+    end,
+  },
   {
     "jackMort/ChatGPT.nvim",
     cmd = "ChatGPT",
@@ -358,6 +362,39 @@ local plugins = {
   },
 }
 
-local opts = { defaults = { lazy = true }, install = { colorscheme = { require("max.theme").name } } }
+local opts = {
+  defaults = { lazy = true },
+  install = { colorscheme = { require("max.theme").name } },
+  change_detection = {
+    enabled = true, -- automatically check for config file changes and reload the ui
+    notify = true, -- get a notification when changes are found
+  },
+  performance = {
+    rtp = {
+      reset = true,
+      disabled_plugins = {
+        "gzip",
+        "zip",
+        "zipPlugin",
+        "fzf",
+        "tar",
+        "tarPlugin",
+        "getscript",
+        "getscriptPlugin",
+        "vimball",
+        "vimballPlugin",
+        "2html_plugin",
+        "matchit",
+        "matchparen",
+        "logiPat",
+        "rrhelper",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+      },
+    },
+  }
+}
 
 require("lazy").setup(plugins, opts)

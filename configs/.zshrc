@@ -59,6 +59,9 @@ source $HOME/.dotfiles/configs/zsh/functions.zsh
 ## ALIASES ##
 source $HOME/.dotfiles/configs/zsh/aliases.sh
 
+## WEZTERM INTEGRATIONS ##
+source $HOME/.dotfiles/configs/zsh/wezterm.sh
+
 ## LOADING PROGRAMS
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/sbin"
@@ -120,6 +123,7 @@ if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
     # tmux attach-session -t $USER || tmux new-session -s $USER
 fi
 
+source "$HOME/."
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"

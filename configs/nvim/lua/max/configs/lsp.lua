@@ -2,29 +2,19 @@ local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
 local lsp = require("lspconfig")
 
--- local null_ls = require("null-ls")
--- null_ls.setup({
---   sources = {
---     -- null_ls.builtins.formatting.stylua,
---     -- null_ls.builtins.code_actions.eslint_d,
---     -- null_ls.builtins.formatting.prettierd
---     -- require("null-ls").builtins.completion.spell,
---   },
--- })
+local null_ls = require("null-ls")
+null_ls.setup({
+  sources = {
+    null_ls.builtins.diagnostics.eslint_d,
+  },
+})
 
 mason.setup()
 mason_lsp.setup({
-  ensure_installed = { "sumneko_lua", "jsonls", "tsserver", "svelte", "cssls" },
+  ensure_installed = { "lua_ls", "jsonls", "tsserver", "svelte", "cssls", "prismals" },
 })
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 local function on_attach(client, bufnr)
-  -- disable semantic tokens
-  -- client.server_capabilities.semanticTokensProvider = nil
-
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -63,7 +53,10 @@ custom_lsp.tsserver = {
   root_dir = lsp.util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git"),
 }
 
-custom_lsp.sumneko_lua = {
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+custom_lsp.lua_ls = {
   settings = {
     Lua = {
       runtime = {

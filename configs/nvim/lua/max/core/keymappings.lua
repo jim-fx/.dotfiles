@@ -30,12 +30,12 @@ map("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
 
 map("n", "<Leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
 map({ "n", "v" }, "<Leader>c", ":Lspsaga code_action<CR>", { silent = true })
-map({ "n", "v" }, "<Leader>c", ":lua vim.lsp.buf.code_action()<CR>", { silent = true })
 map({ "n", "v" }, "gr", ":Lspsaga lsp_finder<CR>", opts)
 
 map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
 map("n", "<Leader>wq", ":wqall!<CR>", opts)
 map("n", "<Leader>li", ":LspInfo<CR>", opts)
+map("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
 -- This is my [i]nspect section,
 map("n", "<Leader>is", ":SymbolsOutline<cr>", opts) -- [i]nspect [s]ymbols
@@ -92,6 +92,7 @@ map("v", "p", '"_dP', opts)
 
 -- clear highlights after search
 map("n", "<leader>cl", ":noh<CR>", opts);
+
 map("n", "<leader>m", ":Mason<CR>", opts);
 map("n", "<leader>l", ":Lazy<CR>", opts);
 

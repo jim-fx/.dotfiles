@@ -1,6 +1,5 @@
 local luasnip = require("luasnip")
-
-require("luasnip/loaders/from_vscode").lazy_load()
+require("max.configs.snippets")
 
 local lspkind = require("lspkind")
 local cmp = require("cmp")
@@ -60,8 +59,8 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif luasnip.jumpable( -1) then
+        luasnip.jump( -1)
       else
         fallback()
       end

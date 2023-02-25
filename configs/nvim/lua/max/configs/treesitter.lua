@@ -20,11 +20,11 @@ require("nvim-treesitter.configs").setup({
     "tsx",
     "go",
     "lua",
+    "json",
     "yaml",
     "prisma",
   },
-  highlight = { enable = true, disable = { "tsx" } },
-
+  highlight = { enable = true },
   textobjects = {
     select = {
       enable = true,
