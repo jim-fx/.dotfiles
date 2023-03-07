@@ -3,7 +3,7 @@ return {
   name = "catppuccin",
   lazy = false,
   opts = {
-    -- transparent_background = true,
+    transparent_background = true,
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     term_colors = true,
     compile = {
