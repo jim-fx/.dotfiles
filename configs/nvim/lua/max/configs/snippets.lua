@@ -19,7 +19,7 @@ ls.config.set_config({
   -- Update more often, :h events for more info.
   updateevents = "TextChanged,TextChangedI",
   ext_opts = {
-    [types.choiceNode] = {
+        [types.choiceNode] = {
       active = {
         virt_text = { { "choiceNode", "Comment" } },
       },
@@ -47,11 +47,35 @@ local debugJSON = s("pcs", {
   t("null, 2)}</code></pre>"),
 })
 
+local function simple_restore(args, _)
+  return sn(nil, { i(1, args[1]) })
+end
+
 ls.add_snippets("svelte", {
   s("slt", {
     t({ '<script lang="ts">', "" }),
     i(0),
     t({ "", "</script>" }),
+  }),
+  s("sch", {
+    t({
+      '<script lang="ts">',
+      ' import type { Hst } from "@histoire/plugin-svelte";',
+      ' export let Hst: Hst;',
+      ''
+    }),
+    t(" import "), i(1, "Component"), t(" from './"), d(2, simple_restore, 1), t({ ".svelte';", "" }),
+    t({
+      "</script>",
+      "",
+      "",
+      "<Hst.Story>",
+      ""
+    }),
+    t({ " <" }),
+    d(3, simple_restore, 1),
+    t({ " />", "" }),
+    t({ ' <svelte:fragment slot="controls">', " </svelte:fragment>", "</Hst.Story>" }),
   }),
   s("sc", {
     t({ '<script context="module" lang="ts">', "" }),
@@ -60,6 +84,7 @@ ls.add_snippets("svelte", {
   }),
   debugJSON,
 })
+
 
 ls.add_snippets("typescriptreact", {
   debugJSON,

@@ -36,10 +36,11 @@ plugins=(
   docker
   asdf
   tmux
+  sudo
   nx-completion
   you-should-use
-  sudo
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 eval `dircolors ~/.dircolors`
