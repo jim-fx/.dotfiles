@@ -2,6 +2,16 @@ local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
 local lsp = require("lspconfig")
 
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  { border = 'single' }
+)
+vim.diagnostic.config({
+  float = {
+    border = 'single',
+  },
+})
+
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
@@ -140,7 +150,7 @@ custom_lsp.intelephense = {
 
 custom_lsp.rust_analyzer = {
   settings = {
-    ["rust-analyzer"] = {
+        ["rust-analyzer"] = {
       imports = {
         granularity = {
           group = "module",
@@ -163,10 +173,10 @@ custom_lsp.yamlls = {
   settings = {
     yaml = {
       schemas = {
-        ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] = "rules.yml",
-        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] = "traefik.yml",
+            ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
+            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] = "rules.yml",
+            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] = "traefik.yml",
       },
     },
   },
@@ -182,7 +192,7 @@ custom_lsp.ltex = {
       language = "de",
       disabledRules = { ["en-US"] = { "PROFANITY" } },
       dictionary = {
-        ["en-US"] = { "perf", "ci", "neovim" },
+            ["en-US"] = { "perf", "ci", "neovim" },
       },
       hiddenFalsePositives = {
         "neovim",

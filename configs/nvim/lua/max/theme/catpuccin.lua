@@ -14,6 +14,11 @@ return {
       comments = { "italic" },
       strings = { "italic" },
     },
+    custom_highlights = function()
+      return {
+        Folded = { bg = "#1d1e27" }
+      }
+    end,
     integrations = {
       gitsigns = true,
       telescope = true,

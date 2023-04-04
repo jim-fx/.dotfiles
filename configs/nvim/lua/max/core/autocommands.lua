@@ -26,6 +26,14 @@ autocmd({ "BufWinLeave" }, {
   group = save_fold,
 })
 
+autocmd({ "BufReadPost" }, {
+  pattern = "*.http",
+  callback = function()
+    vim.bo.filetype = "http"
+  end,
+  group = save_fold,
+})
+
 autocmd({ "BufWinEnter" }, {
   pattern = "*.*",
   callback = function()

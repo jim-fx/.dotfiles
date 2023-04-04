@@ -38,12 +38,13 @@ map("n", "<Leader>li", ":LspInfo<CR>", opts)
 map("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
 -- This is my [i]nspect section,
-map("n", "<Leader>is", ":SymbolsOutline<cr>", opts) -- [i]nspect [s]ymbols
-map("n", "<Leader>io", ":Lspsaga outline<CR>", opts) -- [i]nspect [o]utline
-map("n", "<Leader>in", ":Telescope notify<CR>", opts) -- [i]nspect [n]otifications
-map("n", "<Leader>ip", ":TroubleToggle<CR>", opts) -- [i]nspect [p]roblems
-map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts) --[i]nspect [i]ncomming_calls
-map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts) --[i]nspect [o]utgoing_calls
+map("n", "<Leader>is", ":SymbolsOutline<cr>", opts)          -- [i]nspect [s]ymbols
+map("n", "<Leader>ic", ":ColorizerToggle<CR>", opts)         -- [i]nspect [c]olors
+map("n", "<Leader>io", ":Lspsaga outline<CR>", opts)         -- [i]nspect [o]utline
+map("n", "<Leader>in", ":Telescope notify<CR>", opts)        -- [i]nspect [n]otifications
+map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)           -- [i]nspect [p]roblems
+map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts) -- [i]nspect [i]ncomming_calls
+map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)  -- [i]nspect [o]utgoing_calls
 
 map({ "n", "v" }, "<Leader>t", require("max.configs.translate"), opts)
 
