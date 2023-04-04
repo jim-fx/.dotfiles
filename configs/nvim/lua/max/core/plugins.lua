@@ -3,7 +3,14 @@ local plugins = {
   {
     dir = "~/Projects/sudoku.nvim",
     cmd = "Sudoku",
-    config = true
+    config = function()
+      require("sudoku").setup({
+        custom_highlights = {
+          square = { fg = "red" }
+        }
+      })
+      vim.cmd("hi SudokuSquare guibg=red")
+    end
   },
 
   "nvim-lua/plenary.nvim",
@@ -62,14 +69,26 @@ local plugins = {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    enabled = true,
     opts = {
       lsp = {
         progress = {
           enabled = false
         },
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
+        hover = {
+          enabled = false
+        }
+      },
+      views = {
+        cmdline_popup = {
+          border = {
+            style = "single",
+            padding = { 0, 1 },
+          },
+          filter_options = {},
+          win_options = {
+            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+          },
         },
       },
       presets = {
@@ -79,17 +98,6 @@ local plugins = {
         lsp_doc_border = true
       },
     },
-    keys = {
-      { "<S-Enter>",   function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c",                 desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end,                   desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end,                desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end,                    desc = "Noice All" },
-    },
-  },
-  {
-    "stevearc/dressing.nvim",
-    enabled = false,
-    lazy = true,
   },
   {
     "folke/which-key.nvim",
@@ -139,12 +147,6 @@ local plugins = {
       require("max.configs.notify")
     end,
     event = "VimEnter",
-  },
-  {
-    "kevinhwang91/nvim-ufo",
-    event = "BufReadPost",
-    dependencies = "kevinhwang91/promise-async",
-    config = require("max.configs.ufo"),
   },
   {
     "goolord/alpha-nvim",
@@ -287,11 +289,11 @@ local plugins = {
   --------------------
   {
     "rest-nvim/rest.nvim",
-    cmd = "RestNvim",
+    lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("rest-nvim").setup({})
-    end
+    end,
   },
   {
     "chrisgrieser/nvim-recorder",
@@ -370,7 +372,7 @@ local opts = {
   install = { colorscheme = { require("max.theme").name } },
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
-    notify = true, -- get a notification when changes are found
+    notify = true,  -- get a notification when changes are found
   },
   performance = {
     rtp = {

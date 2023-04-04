@@ -24,7 +24,7 @@ local pnpm = Terminal:new({
   float_opts = {
     winblend = 0,
     padding = 10,
-    border = "shadow",
+    border = "single",
   },
   on_close = function()
     Terminal:close()
