@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Update Repo
 # source $HOME/.dotfiles/configs/zsh/update-repo.zsh
 
@@ -139,3 +141,6 @@ export PATH="$PNPM_HOME:$PATH"
 export PNPM_HOME="/home/max/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
