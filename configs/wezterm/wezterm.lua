@@ -153,7 +153,7 @@ return utils.merge({
   keys = {
     -- Keybindings similar to tmux
     { key = "-", mods = "LEADER", action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
-    { key = "\\", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
+    { key = "|", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
 
     --
     { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
