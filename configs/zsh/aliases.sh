@@ -56,7 +56,7 @@ alias p="git pull"
 alias lt="tree -L 2 --filelimit 150 --dirsfirst"
 
 alias dc="sudo docker-compose"
-alias do="sudo docker"
+alias d="sudo docker"
 
 alias t="tmux"
 
