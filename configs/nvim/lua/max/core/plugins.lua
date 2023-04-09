@@ -112,8 +112,9 @@ local plugins = {
     config = function()
       require("bufferline").setup({
         auto_hide = true,
-        icon_separator_active = '|',
-        icon_separator_inactive = '|',
+        icons = {
+          seperator = { left = "│", right = "" }
+        }
       })
     end,
   },
