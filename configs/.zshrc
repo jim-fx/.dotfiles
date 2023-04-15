@@ -1,7 +1,6 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Update Repo
 # source $HOME/.dotfiles/configs/zsh/update-repo.zsh
+
 
 # p10k
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -13,6 +12,19 @@ fi
 
 if [ -d "$HOME/.asdf" ] ; then
    . "$HOME/.asdf/asdf.sh"
+fi
+
+if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
+  source $HOME/.config/zsh/antigen.zsh
+  antigen use oh-my-zsh
+  antigen bundle git
+  antigen bundle docker
+  antigen bundle asdf
+  antigen bundle jeffreytse/zsh-vi-mode
+  antigen theme romkatv/powerlevel10k
+  antigen bundle zsh-users/zsh-autosuggestions
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen apply
 fi
 
 # Enable vim mode in zsh
@@ -29,21 +41,9 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
 fi
 
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-
-plugins=(
-  git
-  docker
-  asdf
-  tmux
-  sudo
-  nx-completion
-  you-should-use
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
+# ZSH_TMUX_AUTOCONNECT=false
 
 eval `dircolors ~/.dircolors`
 

@@ -30,7 +30,7 @@ set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn
 set $screenvideo wf-recorder -g "$(slurp)" -f "$screenshot_dir/scrn-$(date +'%Y-%m-%d-%H-%M-%S').mp4"
 
 # Default Programs
-set $term flatpak run org.wezfurlong.wezterm
+set $term wezterm
 set $explorer nautilus
 set $mail org.gnome.Geary
 set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
