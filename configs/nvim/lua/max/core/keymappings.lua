@@ -61,7 +61,7 @@ map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)           -- [i]nspect [p]rob
 map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts) -- [i]nspect [i]ncomming_calls
 map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)  -- [i]nspect [o]utgoing_calls
 
-map({ "n", "v" }, "<Leader>t", require("max.configs.translate"), opts)
+map({ "n", "v" }, "<Leader>t", require("max.functions.translate"), opts)
 
 -- DAP Functionality
 map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)

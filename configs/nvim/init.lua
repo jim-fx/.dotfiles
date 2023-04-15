@@ -8,4 +8,4 @@ require("max.core.autocommands")
 
 require("max.core.keymappings")
 
-vim.cmd("colorscheme " .. require("max.theme").name);
+vim.cmd("colorscheme " .. require("max.plugins.theme").name);
