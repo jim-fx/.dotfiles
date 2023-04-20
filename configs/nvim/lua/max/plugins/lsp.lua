@@ -29,6 +29,10 @@ return {
       sources = {
         null_ls.builtins.diagnostics.eslint_d,
       },
+      should_attach = function()
+        return lsp.util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.json")(
+        vim.fn.expand("%:p")) ~= nil;
+      end,
     })
 
     mason.setup()
@@ -37,6 +41,22 @@ return {
     })
 
     local function on_attach(client)
+      local active_clients = vim.lsp.get_active_clients()
+      if client.name == 'denols' then
+        for _, client_ in pairs(active_clients) do
+          -- stop tsserver if denols is already active
+          if client_.name == 'tsserver' then
+            client_.stop()
+          end
+        end
+      elseif client.name == 'tsserver' then
+        for _, client_ in pairs(active_clients) do
+          -- prevent tsserver from starting if denols is already active
+          if client_.name == 'denols' then
+            client.stop()
+          end
+        end
+      end
       require("lsp-format").on_attach(client)
     end
 
@@ -51,6 +71,10 @@ return {
 
     custom_lsp.tsserver = {
       root_dir = lsp.util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git"),
+    }
+
+    custom_lsp.denols = {
+      root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
     }
 
     local runtime_path = vim.split(package.path, ";")

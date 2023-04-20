@@ -15,6 +15,9 @@ return {
   },
   config = function()
     local luasnip = require("luasnip")
+    luasnip.config.set_config {
+      enable_autosnippets = true,
+    }
     require("max.plugins.autocomplete.snippets")
 
     local lspkind = require("lspkind")
