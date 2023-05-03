@@ -19,6 +19,7 @@ if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
   antigen use oh-my-zsh
   antigen bundle git
   antigen bundle docker
+  antigen bundle sudo
   antigen bundle asdf
   antigen bundle jeffreytse/zsh-vi-mode
   antigen theme romkatv/powerlevel10k
