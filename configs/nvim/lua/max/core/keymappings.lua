@@ -61,6 +61,9 @@ map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)           -- [i]nspect [p]rob
 map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts) -- [i]nspect [i]ncomming_calls
 map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)  -- [i]nspect [o]utgoing_calls
 
+map("v", "<Leader>ai", ":'<,'>NeoAIContext<CR>")
+map("n", "<Leader>ai", ":NeoAI<CR>")
+
 map({ "n", "v" }, "<Leader>t", require("max.functions.translate"), opts)
 
 -- DAP Functionality
