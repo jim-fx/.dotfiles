@@ -7,5 +7,5 @@ local preview = function()
   return run(true)
 end
 
-map("n", "<leader>r", run, { noremap = true });
-map("n", "<leader>p", preview, { noremap = true });
+-- map("n", "<leader>r", run, { noremap = true });
+-- map("n", "<leader>p", preview, { noremap = true });
