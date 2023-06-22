@@ -1,7 +1,6 @@
 # Update Repo
 # source $HOME/.dotfiles/configs/zsh/update-repo.zsh
 
-
 # p10k
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -13,6 +12,14 @@ fi
 if [ -d "$HOME/.asdf" ] ; then
    . "$HOME/.asdf/asdf.sh"
 fi
+
+# THis should fix up arrow autocompletion with the zsh-vi-mode plugin
+function zvm_before_init() {
+  zvm_bindkey viins '^[[A' history-beginning-search-backward
+  zvm_bindkey viins '^[[B' history-beginning-search-forward
+  zvm_bindkey vicmd '^[[A' history-beginning-search-backward
+  zvm_bindkey vicmd '^[[B' history-beginning-search-forward
+}
 
 if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
   source $HOME/.config/zsh/antigen.zsh
@@ -133,10 +140,6 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 [ -n "$TMUX" ] && export TERM=tmux-256color
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
 # pnpm
 export PNPM_HOME="/home/max/.local/share/pnpm"
