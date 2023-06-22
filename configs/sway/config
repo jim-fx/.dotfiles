@@ -63,7 +63,10 @@ set $select_wifi $wofi_scripts/select-wifi
 input * {
     xkb_layout de
     xkb_capslock disabled
+
 }
+
+input "type:keyboard" xkb_options caps:escape
 
 smart_gaps off
 gaps inner 3
@@ -213,6 +216,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   set $ws3 "3:   Music"
     assign [class="Spotify"] $ws3
     assign [class="spotify"] $ws3
+    assign [app_id="feishin"] $ws3
     assign [app_id="dev.alextren.Spot"] $ws3
   set $ws4 "4:   Chat"
 

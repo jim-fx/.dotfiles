@@ -31,7 +31,7 @@ return {
       },
       should_attach = function()
         return lsp.util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.json")(
-        vim.fn.expand("%:p")) ~= nil;
+          vim.fn.expand("%:p")) ~= nil;
       end,
     })
 
@@ -161,6 +161,16 @@ return {
         },
       },
     }
+
+    -- custom_lsp['arduino_language_server'] = {
+    --   on_new_config = require("arduino").on_new_config,
+    -- }
+
+    -- custom_lsp.clangd = {
+    --   cmd = { "clangd",
+    --     "--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2020r3-8.4.0/**/bin/xtensa-esp32-elf-*" },
+    --   root_dir = lsp.util.root_pattern('build/compile_commands.json', '.git'),
+    -- }
 
     custom_lsp.rust_analyzer = {
       settings = {

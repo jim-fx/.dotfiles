@@ -13,14 +13,23 @@
     "sway/workspaces"
   ],
   "modules-right": [
-    // "custom/power-consumption",
+    "tray",
     "custom/power-profile",
     "custom/dpi",
     "custom/theme",
     "pulseaudio",
     "network",
-    "battery"
+    "battery",
   ],
+  "custom/pacman": {
+    "format": "{} ",
+    "interval": 3600, // every hour
+    "exec": "(checkupdates;pacman -Qm | aur vercmp) | wc -l", // # of updates
+    "exec-if": "exit 0", // always run; consider advanced run conditions
+    "on-click": "wezterm start -- yay; echo Done - Press enter to exit; read; pkill -SIGRTMIN+8 waybar", // update system
+    "signal": 8,
+    "tooltip": false,
+  },
   "custom/theme": {
     "exec": "~/.config/waybar/scripts/toggle-theme",
     "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
@@ -114,7 +123,7 @@
   "custom/waybar-mpris": {
     "max-length": 30,
     "return-type": "json",
-    "exec": "waybar-mpris --position --autofocus",
+    "exec": "waybar-mpris --position --autofocus --order ARTIST:ALBUM:TITLE:POSITION:SYMBOL",
     "on-click": "waybar-mpris --send toggle",
     // This option will switch between players on right click.
     "on-click-right": "waybar-mpris --send player-next",
@@ -125,6 +134,10 @@
     // "on-scroll-up": "waybar-mpris --send next",
     // "on-scroll-down": "waybar-mpris --send prev",
     "escape": true
-  }
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 0
+  },
 }
 // vi: ft=jsonc

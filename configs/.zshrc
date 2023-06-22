@@ -143,5 +143,4 @@ export PNPM_HOME="/home/max/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
