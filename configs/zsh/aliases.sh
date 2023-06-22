@@ -55,6 +55,8 @@ alias p="git pull"
 
 alias lt="tree -L 2 --filelimit 150 --dirsfirst"
 
+alias captive="xdg-open http://$(ip --oneline route get 1.1.1.1 | awk '{print $3}')"
+
 if docker compose &> /dev/null
 then
   alias dc="sudo docker compose"

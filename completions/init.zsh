@@ -5,5 +5,6 @@ fi
 
 
 compdef _fx fx;
+compdef _arduino-cli arduino-cli;
 autoload -U compinit
 compinit

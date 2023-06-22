@@ -1,4 +1,5 @@
 return {
+  transparent = "none",
   rosewater = "#F4DBD6",
   flamingo = "#F0C6C6",
   pink = "#F5BDE6",

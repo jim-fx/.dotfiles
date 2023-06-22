@@ -72,12 +72,23 @@ window > box {
         color:          #fe8019; 
 }
 
+
+#tray > widget > * {
+  margin-right:8px;
+}
+
+#tray > widget:last-child > * {
+  margin-right:0px;
+}
+
 #custom-power-consumption,
 #custom-power-profile,
 #custom-dpi,
 #custom-theme,
 #pulseaudio,
 #battery,
+#tray,
+#custom-pacman,
 #network {
   /* margin: 0px 5px; */
   /* padding: 0px 5px; */

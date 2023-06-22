@@ -26,7 +26,9 @@ function getprop() {
    SELECT_ID=$(echo ".. | (.nodes? // empty)[] | select(.id == $window_id) | $CLEAR_OBJ ")
    selected="$(swaymsg -t get_tree | jq -r "$ALL_NODES" | jq -c ". | select(.id==$window_id)" | jq)"
    echo "$selected"
+   echo "$selected" > /tmp/sway_debug_window.json
    notify-send "Debug:" "$(echo $selected | jq -c "$CLEAR_OBJ" | jq)";
+   wezterm start -- nvim /tmp/sway_debug_window.json;
 	fi
 }
 

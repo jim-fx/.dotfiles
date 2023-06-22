@@ -32,7 +32,6 @@ end)
 local os_config = {}
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-
   local wsl_domains = wezterm.default_wsl_domains()
   for _, dom in ipairs(wsl_domains) do
     dom.default_cwd = "/home/max"
@@ -51,6 +50,71 @@ else
     },
   }
 end
+
+local _colors = {
+  split = colors.surface0,
+  foreground = colors.text,
+  background = colors.black,
+  cursor_bg = colors.rosewater,
+  cursor_border = colors.rosewater,
+  cursor_fg = colors.base,
+  selection_bg = colors.surface2,
+  selection_fg = colors.text,
+  visual_bell = colors.surface0,
+  indexed = {
+    [16] = colors.peach,
+    [17] = colors.rosewater,
+  },
+  scrollbar_thumb = colors.surface2,
+  compose_cursor = colors.flamingo,
+  ansi = {
+    colors.surface1,
+    colors.red,
+    colors.green,
+    colors.yellow,
+    colors.blue,
+    colors.pink,
+    colors.teal,
+    colors.subtext0,
+  },
+  brights = {
+    colors.subtext0,
+    colors.red,
+    colors.green,
+    colors.yellow,
+    colors.blue,
+    colors.pink,
+    colors.teal,
+    colors.surface1,
+  },
+  tab_bar = {
+    background = colors.crust,
+    active_tab = {
+      bg_color = "none",
+      fg_color = colors.subtext1,
+      intensity = "Bold",
+      underline = "None",
+      italic = false,
+      strikethrough = false,
+    },
+    inactive_tab = {
+      bg_color = colors.crust,
+      fg_color = colors.surface2,
+    },
+    inactive_tab_hover = {
+      bg_color = colors.mantle,
+      fg_color = colors.subtext0,
+    },
+    new_tab = {
+      bg_color = colors.crust,
+      fg_color = colors.subtext0,
+    },
+    new_tab_hover = {
+      bg_color = colors.crust,
+      fg_color = colors.subtext0,
+    },
+  },
+}
 
 return utils.merge({
   font = wezterm.font_with_fallback({
@@ -84,97 +148,34 @@ return utils.merge({
   tab_max_width = 50,
   hide_tab_bar_if_only_one_tab = true,
   disable_default_key_bindings = false,
-  colors = {
-    split = colors.surface0,
-    foreground = colors.text,
-    background = colors.base,
-    cursor_bg = colors.rosewater,
-    cursor_border = colors.rosewater,
-    cursor_fg = colors.base,
-    selection_bg = colors.surface2,
-    selection_fg = colors.text,
-    visual_bell = colors.surface0,
-    indexed = {
-      [16] = colors.peach,
-      [17] = colors.rosewater,
-    },
-    scrollbar_thumb = colors.surface2,
-    compose_cursor = colors.flamingo,
-    ansi = {
-      colors.surface1,
-      colors.red,
-      colors.green,
-      colors.yellow,
-      colors.blue,
-      colors.pink,
-      colors.teal,
-      colors.subtext0,
-    },
-    brights = {
-      colors.subtext0,
-      colors.red,
-      colors.green,
-      colors.yellow,
-      colors.blue,
-      colors.pink,
-      colors.teal,
-      colors.surface1,
-    },
-    tab_bar = {
-      background = colors.crust,
-      active_tab = {
-        bg_color = "none",
-        fg_color = colors.subtext1,
-        intensity = "Bold",
-        underline = "None",
-        italic = false,
-        strikethrough = false,
-      },
-      inactive_tab = {
-        bg_color = colors.crust,
-        fg_color = colors.surface2,
-      },
-      inactive_tab_hover = {
-        bg_color = colors.mantle,
-        fg_color = colors.subtext0,
-      },
-      new_tab = {
-        bg_color = colors.crust,
-        fg_color = colors.subtext0,
-      },
-      new_tab_hover = {
-        bg_color = colors.crust,
-        fg_color = colors.subtext0,
-      },
-    },
-  },
-  color_scheme = "3024 Night",
+  color_scheme = '3024 Night',
+  colors = _colors,
   leader = { key = "a", mods = "CTRL" },
   keys = {
     -- Keybindings similar to tmux
-    { key = "-", mods = "LEADER", action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
-    { key = "|", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
+    { key = "-",   mods = "LEADER",    action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
+    { key = "|",   mods = "LEADER",    action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
 
     --
-    { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
-    { key = "c", mods = "LEADER", action = wezterm.action { SpawnTab = "CurrentPaneDomain" } },
+    { key = "z",   mods = "LEADER",    action = "TogglePaneZoomState" },
+    { key = "c",   mods = "LEADER",    action = wezterm.action { SpawnTab = "CurrentPaneDomain" } },
     --
-    { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
-    { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+    { key = "n",   mods = "LEADER",    action = wezterm.action.ActivateTabRelative(1) },
+    { key = "p",   mods = "LEADER",    action = wezterm.action.ActivateTabRelative(-1) },
     --
-    { key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-    { key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
-    { key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-    { key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+    { key = "h",   mods = "LEADER",    action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+    { key = "l",   mods = "LEADER",    action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+    { key = "k",   mods = "LEADER",    action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+    { key = "j",   mods = "LEADER",    action = wezterm.action({ ActivatePaneDirection = "Down" }) },
     --
-    { key = "H", mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Left", 2 } }) },
-    { key = "L", mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Right", 2 } }) },
-    { key = "J", mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Down", 2 } }) },
-    { key = "K", mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Up", 2 } }) },
+    { key = "H",   mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Left", 2 } }) },
+    { key = "L",   mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Right", 2 } }) },
+    { key = "J",   mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Down", 2 } }) },
+    { key = "K",   mods = "SHIFT|ALT", action = wezterm.action({ AdjustPaneSize = { "Up", 2 } }) },
     ---
-    { key = 'P', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCommandPalette, },
-    { key = 'U', mods = 'CMD|SHIFT', action = wezterm.action.Nop, },
-    { key = 'F11', mods = '', action = wezterm.action.ToggleFullScreen, },
+    { key = 'P',   mods = 'CMD|SHIFT', action = wezterm.action.ActivateCommandPalette, },
+    { key = 'U',   mods = 'CMD|SHIFT', action = wezterm.action.Nop, },
+    { key = 'F11', mods = '',          action = wezterm.action.ToggleFullScreen, },
   },
   hyperlink_rules = {
     {
