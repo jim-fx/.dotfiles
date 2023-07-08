@@ -206,9 +206,9 @@ return {
       },
     }
 
-    -- local glslls_config = require("max.configs.lsp-glsl")
-    -- glslls_config.on_attach = on_attach;
-    -- lsp.glslls.setup(glslls_config)
+    -- custom_lsp.glslls = require("max.plugins.lsp.glsl");
+
+    lsp.glslls.setup {}
 
     custom_lsp.ltex = {
       settings = {
