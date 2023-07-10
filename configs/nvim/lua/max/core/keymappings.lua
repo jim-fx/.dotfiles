@@ -60,6 +60,7 @@ map("n", "<Leader>in", ":Telescope notify<CR>", opts)        -- [i]nspect [n]oti
 map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)           -- [i]nspect [p]roblems
 map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts) -- [i]nspect [i]ncomming_calls
 map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)  -- [i]nspect [o]utgoing_calls
+map("n", "<Leader>ic", ":Copilot panel<CR>", opts)           -- [i]nspect [c]opilot suggestions
 
 map("v", "<Leader>ai", ":'<,'>NeoAIContext<CR>")
 map("n", "<Leader>ai", ":NeoAI<CR>")
@@ -105,6 +106,13 @@ map("n", "<A-S-K>", "yyP", opts)
 map("n", "<A-S-J>", "yyp", opts)
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
+
+-- resize
+map("n", "<C-Up>", ":resize -4<CR>", opts)
+map("n", "<C-Down>", ":resize +4<CR>", opts)
+map("n", "<C-Left>", ":vertical resize -4<CR>", opts)
+map("n", "<C-Right>", ":vertical resize +4<CR>", opts)
+
 
 -- If i paste with p, the replaced content doesnt replace my clipboard
 map("v", "p", '"_dP', opts)
