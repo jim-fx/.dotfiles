@@ -63,6 +63,8 @@ then
 else
   alias dc="sudo docker-compose"
 fi
+
+
 alias d="sudo docker"
 
 alias t="tmux"
