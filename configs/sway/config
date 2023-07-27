@@ -5,7 +5,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=GNOME
 
 ### Variables
 #
@@ -40,7 +40,7 @@ set $bluetooth_mngr blueman-manager
 set $calculator flatpak run io.github.Qalculate
 set $photo_editor gtk-launch ~/.local/share/applications/photopea.desktop
 set $translator com.github.gi_lom.dialect
-set $settings gnome-control-center
+set $settings XDG_CURRENT_DESKTOP=GNOME gnome-control-center
 
 # Scripts
 

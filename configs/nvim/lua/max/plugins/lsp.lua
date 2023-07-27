@@ -37,7 +37,7 @@ return {
 
     mason.setup()
     mason_lsp.setup({
-      ensure_installed = { "lua_ls", "jsonls", "tsserver", "svelte", "cssls", "prismals" },
+      ensure_installed = { "lua_ls", "jsonls", "svelte", "cssls", "prismals" },
     })
 
     local function on_attach(client)
