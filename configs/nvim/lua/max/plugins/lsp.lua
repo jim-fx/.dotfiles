@@ -45,11 +45,11 @@ return {
       if client.name == 'denols' then
         for _, client_ in pairs(active_clients) do
           -- stop tsserver if denols is already active
-          if client_.name == 'tsserver' then
+          if client_.name == 'tsserver' or client_.name == "typescript-tools" then
             client_.stop()
           end
         end
-      elseif client.name == 'tsserver' then
+      elseif client.name == 'tsserver' or client.name == "typescript-tools" then
         for _, client_ in pairs(active_clients) do
           -- prevent tsserver from starting if denols is already active
           if client_.name == 'denols' then
