@@ -75,6 +75,7 @@ source $HOME/.dotfiles/configs/zsh/wezterm.sh
 
 ## LOADING PROGRAMS
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/sbin"
 
 ## Setup VIM

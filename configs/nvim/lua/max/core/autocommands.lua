@@ -79,7 +79,7 @@ autocmd({ "BufWinEnter", "BufAdd" }, {
     if vim.bo[opts.buf].filetype == 'NvimTree' or vim.bo[opts.buf].filetype == "neo-tree" then
       vim.opt.statuscolumn = ''
     else
-      vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
+      -- vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
     end
   end,
 })
