@@ -52,17 +52,9 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5                -- Minimum window width
 opt.wrap = false                   -- Disable line wrap
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append { C = true }
-end
-
-function _G.CustomFoldText()
-  return vim.fn.getline(vim.v.foldstart) .. ' …'
-end
-
-opt.fillchars = "fold: "
-opt.foldtext = 'v:lua.CustomFoldText()'
+opt.foldenable = false;
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

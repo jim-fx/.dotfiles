@@ -1,6 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   event = "VeryLazy",
+  enable = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -11,11 +12,24 @@ return {
       context_commentstring = {
         enable = true
       },
+      ignore_install = {},
+      sync_install = false,
+      auto_install = true,
+      modules = {},
       autotag = {
         enable = true,
       },
       indent = {
         enable = true,
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<CR>',
+          scope_incremental = '<CR>',
+          node_incremental = '<TAB>',
+          node_decremental = '<S-TAB>',
+        },
       },
       ensure_installed = {
         "bash",
@@ -33,7 +47,10 @@ return {
         "yaml",
         "prisma",
       },
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
       textobjects = {
         select = {
           enable = true,
@@ -70,6 +87,9 @@ return {
         },
       },
     })
+    vim.opt.foldenable = false;
+    vim.opt.foldmethod = "expr";
+    vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
   end,
   build = ":TSUpdate",
 }

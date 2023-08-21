@@ -72,18 +72,6 @@ autocmd({ "BufWinEnter" }, {
   group = save_fold,
 })
 
-autocmd({ "BufWinEnter", "BufAdd" }, {
-  desc = 'hide statuscolumn in neotree',
-  group = vim.api.nvim_create_augroup('hide_nvimtree_stc', { clear = true }),
-  callback = function(opts)
-    if vim.bo[opts.buf].filetype == 'NvimTree' or vim.bo[opts.buf].filetype == "neo-tree" then
-      vim.opt.statuscolumn = ''
-    else
-      -- vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
-    end
-  end,
-})
-
 vim.cmd([[
 augroup filetypedetect
   au BufNewFile,BufRead *.frag setl ft=glsl
