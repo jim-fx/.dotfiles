@@ -61,10 +61,10 @@ return {
     end
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    capabilities.textDocument.foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    }
+    -- capabilities.textDocument.foldingRange = {
+    --   dynamicRegistration = false,
+    --   lineFoldingOnly = true,
+    -- }
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local custom_lsp = {}

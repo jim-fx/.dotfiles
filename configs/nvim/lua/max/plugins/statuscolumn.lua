@@ -7,7 +7,7 @@ return {
       --configuration goes here, for example:
       relculright = false,
       segments = {
-        { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+        -- { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
         {
           sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
           click = "v:lua.ScSa"

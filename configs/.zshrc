@@ -6,19 +6,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if [ -d "$HOME/.asdf" ] ; then
-   . "$HOME/.asdf/asdf.sh"
-fi
-
-# THis should fix up arrow autocompletion with the zsh-vi-mode plugin
+# This should fix up arrow autocompletion with the zsh-vi-mode plugin
 function zvm_before_init() {
   zvm_bindkey viins '^[[A' history-beginning-search-backward
   zvm_bindkey viins '^[[B' history-beginning-search-forward
   zvm_bindkey vicmd '^[[A' history-beginning-search-backward
   zvm_bindkey vicmd '^[[B' history-beginning-search-forward
+  export ZVM_VI_EDITOR=nvim
+  export ZVM_INIT_MODE=sourcing
 }
 
 if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
@@ -28,7 +24,7 @@ if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
   antigen bundle docker
   antigen bundle sudo
   antigen bundle asdf
-  antigen bundle jeffreytse/zsh-vi-mode
+  # antigen bundle jeffreytse/zsh-vi-mode
   antigen theme romkatv/powerlevel10k
   antigen bundle zsh-users/zsh-autosuggestions
   antigen bundle zsh-users/zsh-syntax-highlighting
@@ -36,7 +32,14 @@ if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
 fi
 
 # Enable vim mode in zsh
-bindkey -v
+# bindkey -v
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [ -d "$HOME/.asdf" ] ; then
+   . "$HOME/.asdf/asdf.sh"
+fi
 
 if [[ -z "$XDG_RUNTIME_DIR" ]]; then
   export XDG_RUNTIME_DIR=/run/user/$UID
@@ -147,4 +150,4 @@ export PNPM_HOME="/home/max/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
+ zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
