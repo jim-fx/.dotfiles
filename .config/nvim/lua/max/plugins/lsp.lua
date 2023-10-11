@@ -65,6 +65,7 @@ return {
     --   dynamicRegistration = false,
     --   lineFoldingOnly = true,
     -- }
+    --
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local custom_lsp = {}

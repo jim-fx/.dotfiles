@@ -53,7 +53,7 @@ return {
         component_separators = "",
         section_separators = "",
         globalstatus = true,
-        theme = require("max.plugins.theme").name,
+        -- theme = require("max.plugins.theme").name,
       },
       -- These are to remove the defaults
       sections = {
@@ -131,8 +131,8 @@ return {
       shorting_target = 100, -- Shortens path to leave 40 spaces in the window
       -- for other components. (terrible name, any suggestions?)
       symbols = {
-        modified = "  ",    -- Text to show when the file is modified.
-        readonly = " ",     -- Text to show when the file is non-modifiable or readonly.
+        modified = "  ", -- Text to show when the file is modified.
+        readonly = " ", -- Text to show when the file is non-modifiable or readonly.
         unnamed = "[No Name]", -- Text to show for unnamed buffers.
       },
     })
