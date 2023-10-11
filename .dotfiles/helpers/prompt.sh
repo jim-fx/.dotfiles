@@ -7,5 +7,3 @@ prompt() {
     *) echo "invalid" ;;
     esac
 }
-
-[[ "${1}" != "--source-only" ]] && prompt "${@}"
