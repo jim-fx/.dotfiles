@@ -1,6 +1,8 @@
 # Update Repo
 # source $HOME/.dotfiles/configs/zsh/update-repo.zsh
 
+export SHELL=zsh
+
 # p10k
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -56,7 +58,6 @@ fi
 # ZSH_TMUX_AUTOSTART=true
 # ZSH_TMUX_AUTOCONNECT=false
 
-eval `dircolors ~/.dircolors`
 
 export FPATH=$FPATH:~/.dotfiles/completions
 export NVIM_HOME=$HOME/.config/nvim
@@ -147,4 +148,6 @@ export PNPM_HOME="/home/max/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
- zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
+zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
+
+eval `dircolors ~/.dircolors`
