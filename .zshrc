@@ -68,10 +68,10 @@ export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 ## FUNCTIONS ##
-source $HOME/.configs/zsh/functions.zsh
+source $HOME/.config/zsh/functions.zsh
 
 ## WEZTERM INTEGRATIONS ##
-source $HOME/.dotfiles/configs/zsh/wezterm.sh
+source $HOME/.config/zsh/wezterm.sh
 
 ## LOADING PROGRAMS
 export PATH="$PATH:$HOME/bin"
