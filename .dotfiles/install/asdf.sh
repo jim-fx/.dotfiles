@@ -1,5 +1,6 @@
 if [ -d ~/.asdf ] ; then
     echo " ✓ asdf already installed"
+    source $HOME/.asdf/asdf.sh
 else
     git clone --quiet https://github.com/asdf-vm/asdf.git ~/.asdf > /dev/null
     cd ~/.asdf
