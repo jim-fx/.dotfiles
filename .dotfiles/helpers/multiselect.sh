@@ -18,8 +18,11 @@ function multiselect() {
   key_input() {
     local key
     IFS= read -rsn1 key 2>/dev/null >&2
+    echo $key >> /tmp/test.log
     if [[ $key = "" ]]; then echo enter; fi
     if [[ $key = $'\x20' ]]; then echo space; fi
+    if [[ $key = "j" ]] ; then echo down; fi
+    if [[ $key = "k" ]] ; then echo up; fi
     if [[ $key = $'\x1b' ]]; then
       read -rsn2 key
       if [[ $key = [A ]]; then echo up; fi
