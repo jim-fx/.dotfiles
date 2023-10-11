@@ -68,10 +68,7 @@ export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 ## FUNCTIONS ##
-source $HOME/.dotfiles/configs/zsh/functions.zsh
-
-## ALIASES ##
-source $HOME/.dotfiles/configs/zsh/aliases.sh
+source $HOME/.configs/zsh/functions.zsh
 
 ## WEZTERM INTEGRATIONS ##
 source $HOME/.dotfiles/configs/zsh/wezterm.sh

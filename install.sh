@@ -8,7 +8,10 @@ fi
 
 # - Cloning Repo -
 echo "-- Cloning repo --"
-git clone https://github.com/jim-fx/.dotfiles.git ~/.dotfiles
+cd $HOME
+git init
+git remote add origin https://github.com/jim-fx/.dotfiles.git
+git checkout -f main
 
 # - Executing the script -
 echo "-- starting script --"
