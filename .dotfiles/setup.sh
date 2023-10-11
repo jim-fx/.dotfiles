@@ -1,17 +1,15 @@
 #!/bin/bash
-cd "$(dirname "$0")"
 
-INTERACTIVE="false"
-if [ $- == *i* ]; then
-	INTERACTIVE="true"
-fi
+INTERACTIVE=false
+ if [ -t 0 ] ; then
+    INTERACTIVE=true
+ fi
 
 
 #Loading all the helper scripts
-. ./helpers/installer.sh --source-only
-. ./helpers/prompt.sh --source-only
-. ./helpers/linker.sh --source-only
-. ./helpers/multiselect.sh --source-only
+source ./helpers/installer.sh
+source ./helpers/prompt.sh
+source ./helpers/multiselect.sh
 
 echo "-- welcome to my setup script --"
 
@@ -19,20 +17,15 @@ if [ "$(which git)" = "" ] && ["$(which curl)" = ""]; then
 
   echo "-- installing prerequesits (git, curl) --"
 
-  if [ $INTERACTIVE = "true" ]; then
+  if [ $INTERACTIVE = true ]; then
     if [ "$(prompt " - do you want to continue")" != "yes" ]; then
       echo "   alllrighty then, byyye"
       exit
     fi
   fi
 
-  echo ""
-
-  #Prerequesits
-  echo "-- installing prerequisites --"
-
-  install git
-  install curl
+  install_package git
+  install_package curl
 
   echo "-----------------------------------"
 
@@ -59,7 +52,7 @@ for i in "${!OPTIONS_VALUES[@]}"; do
   OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"
 done
 
-if [ $INTERACTIVE = "true" ]; then
+if [ $INTERACTIVE = true ]; then
   multiselect SELECTED "$OPTIONS_STRING":
 fi
 
@@ -75,50 +68,40 @@ INST_DENO=${SELECTED[7]}
 INST_HUGO=${SELECTED[8]}
 INST_RUST=${SELECTED[9]}
 
-if [ $INTERACTIVE = "false" ]; then
+if [ $INTERACTIVE = false ]; then
   INST_ZSH=true
   INST_ASDF=true
   INST_NVIM=true
 fi
 
-echo "-----------------------------------"
-
 echo -e "-- installing programs --"
-[[ "$INST_DRNV" = true ]] && install direnv
+
+[[ "$INST_DRNV" = true ]] && install_package direnv
 if [ "$INST_ASDF" = true ]; then
 
     # Requirements for ASDF
-    install gnupg2
-    install unzip
-    ./install/install-asdf.sh
+    install_package gnupg2
+    install_package unzip
+    $HOME/.dotfiles/install/asdf.sh
 
     if [ "$INST_NVIM" = true ]; then
-      asdfInstall neovim
-      ./install/install-nvim.sh
+      asdf_install neovim
     fi
 
-    [[ "$INST_NODE" = true ]] && asdfInstall nodejs
-    [[ "$INST_GO" = true ]] && asdfInstall golang
-    [[ "$INST_PYTH" = true ]] && asdfInstall python
-    [[ "$INST_DENO" = true ]] && asdfInstall deno
-    [[ "$INST_HUGO" = true ]] && asdfInstall hugo
-    [[ "$INST_RUST" = true ]] && asdfInstall rust
+    [[ "$INST_NODE" = true ]] && asdf_install nodejs
+    [[ "$INST_GO" = true ]] && asdf_install golang
+    [[ "$INST_PYTH" = true ]] && asdf_install python
+    [[ "$INST_DENO" = true ]] && asdf_install deno
+    [[ "$INST_HUGO" = true ]] && asdf_install hugo
+    [[ "$INST_RUST" = true ]] && asdf_install rust
 fi
-
-echo "-- linking .dotfiles --"
-
-linkFile .p10k.zsh
-linkFile .dircolors
-linkFile .tmux.conf
 
 if [ "$INST_ZSH" = true ]; then
   echo "-- installing oh-my-zsh --"
-  linkFile .zshrc
-  install zsh
+  install_package zsh
 
-  zsh $(pwd)/install/oh-my-zsh.sh
-  zsh $(pwd)/install/zsh-autosuggestions.sh
-  zsh $(pwd)/install/p10k.sh
+  zsh $HOME/.dotfiles/install/oh-my-zsh.sh
+  zsh $HOME/.dotfiles/install/p10k.sh
 
   echo "-----------------------------------"
 fi

@@ -1,35 +1,40 @@
-isInstalled() {
-  if [ "$(which $1)" != "" ]; then
-    return 0
-  fi
-  return 1
+#!/bin/bash
+
+# Function to check if a command exists
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
 }
 
-installOptional() {
-  echo "install optional '$*'"
 
-  # Check if any of the listed programs are installed
-  # if not install the first one;
-  for prog in "$@"; do
-    if isInstalled $prog; then
-      echo "$prog is installed"
-      break
-    fi
-  done
+package_manager=$1
+# Detect the package manager
+if command_exists apt-get; then
+  package_manager="apt"
+elif command_exists yum; then
+  package_manager="yum"
+elif command_exists pacman; then
+  package_manager="pacman"
+else
+  echo "Unsupported package manager. Exiting."
+  exit 1
+fi
 
-  install $1
+# Function to install packages based on the package manager
+install_package() {
 
+  case $package_manager in
+    apt)
+      sudo apt-get install -y $1
+      ;;
+    yum)
+      sudo yum install -y $1
+      ;;
+    pacman)
+      sudo pacman -S --noconfirm $1
+      ;;
+    *)
+      echo "Unsupported package manager: $package_manager"
+      exit 1
+      ;;
+  esac
 }
-
-install() {
-  # Check if program is already installed
-  if isInstalled $1; then
-    echo " ✓ $1 is already installed"
-  else
-    echo " - installing $1 ..."
-    sudo apt-get install $1 -y >/dev/null
-    echo " ✓ finished"
-  fi
-}
-
-[[ "${1}" != "--source-only" ]] && install "${@}"

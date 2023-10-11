@@ -104,5 +104,3 @@ function multiselect() {
 
   eval $retval='("${selected[@]}")'
 }
-
-[[ "${1}" != "--source-only" ]] && multiselect "${@}"

@@ -1,4 +1,4 @@
-asdfInstall(){
+asdf_install(){
     . "$HOME/.asdf/asdf.sh"
     if [ "$(which asdf)" = "" ]; then
         echo "Asdf not installed"
@@ -11,6 +11,3 @@ asdfInstall(){
         echo "----------------------------------------------"
     fi
 }
-
-
-[[ "${1}" != "--source-only" ]] && asdfInstall "${@}"
