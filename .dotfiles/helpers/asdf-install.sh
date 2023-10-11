@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 asdf_install(){
     . "$HOME/.asdf/asdf.sh"
     if [ "$(which asdf)" = "" ]; then

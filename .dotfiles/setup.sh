@@ -7,6 +7,7 @@ INTERACTIVE=false
 
 
 #Loading all the helper scripts
+source $HOME/.dotfiles/helpers/asdf-install.sh
 source $HOME/.dotfiles/helpers/installer.sh
 source $HOME/.dotfiles/helpers/prompt.sh
 source $HOME/.dotfiles/helpers/multiselect.sh
@@ -82,7 +83,7 @@ if [ "$INST_ASDF" = true ]; then
     # Requirements for ASDF
     install_package gnupg2
     install_package unzip
-    $HOME/.dotfiles/install/asdf.sh
+    . $HOME/.dotfiles/install/asdf.sh
 
     if [ "$INST_NVIM" = true ]; then
       asdf_install neovim

@@ -2,8 +2,8 @@
 
 # - Prerequesits -
 if [ "$(which git)" = "" ]; then
-    echo "-- Installing git --"
-    apt-get install git -y >/dev/null
+    echo "Please install git before proceeding"
+    exit
 fi
 
 # - Cloning Repo -
