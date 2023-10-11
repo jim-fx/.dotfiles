@@ -7,9 +7,9 @@ INTERACTIVE=false
 
 
 #Loading all the helper scripts
-source ./helpers/installer.sh
-source ./helpers/prompt.sh
-source ./helpers/multiselect.sh
+source $HOME/.dotfiles/helpers/installer.sh
+source $HOME/.dotfiles/helpers/prompt.sh
+source $HOME/.dotfiles/helpers/multiselect.sh
 
 echo "-- welcome to my setup script --"
 
