@@ -8,18 +8,15 @@ function conf(){
     cd $HOME/.ssh/
     nvim config
   else
-    cd ~/.dotfiles/
+    cd ~/.config/
 
     if [ "$1" != "" ]; then
-      cd configs
       cd $1
     fi
 
     if [[ -f ".zshrc" ]]; then
-      nvim .zshrc
+      nvim ~/.zshrc
       source ~/.zshrc
-    elif [[ -f "config" ]]; then
-      nvim config
     else
       nvim .
     fi

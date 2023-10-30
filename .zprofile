@@ -68,10 +68,8 @@ alias pls='sudo -E env "PATH=$PATH"'
 
 alias online="ping 1.1.1.1"
 
-alias vim="_run_prog nvim"
-alias v="_run_prog nvim"
+alias v="nvim"
 
-alias gcm="git commit -m "
 
 alias D="run dev"
 alias B="run build"
@@ -91,6 +89,10 @@ else
   alias dc="sudo docker-compose"
 fi
 
+if podman-compose &> /dev/null; then
+  alias pc="podman-compose"
+fi
+
 
 alias d="sudo docker"
 
@@ -106,3 +108,5 @@ fi
 if type bat &> /dev/null; then
   alias cat="bat"
 fi
+
+alias gcm="git commit -m "

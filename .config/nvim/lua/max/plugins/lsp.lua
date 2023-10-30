@@ -6,7 +6,9 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason-lspconfig.nvim",
     "onsails/lspkind.nvim",
-    "lukas-reineke/lsp-format.nvim"
+    "lukas-reineke/lsp-format.nvim",
+
+    "pmizio/typescript-tools.nvim",
   },
   event = "BufReadPost",
   config = function()
@@ -41,7 +43,7 @@ return {
     })
 
     local function on_attach(client)
-      local active_clients = vim.lsp.get_active_clients()
+      local active_clients = vim.lsp.buf_get_clients()
       if client.name == 'denols' then
         for _, client_ in pairs(active_clients) do
           -- stop tsserver if denols is already active
@@ -207,9 +209,9 @@ return {
       },
     }
 
-    -- custom_lsp.glslls = require("max.plugins.lsp.glsl");
-
-    lsp.glslls.setup {}
+    require("typescript-tools").setup({
+      on_attach = on_attach
+    })
 
     custom_lsp.ltex = {
       settings = {
