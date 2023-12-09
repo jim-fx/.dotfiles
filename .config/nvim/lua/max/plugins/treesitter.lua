@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = "VeryLazy",
+  event = "BufReadPre",
   enable = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -8,10 +8,11 @@ return {
     "windwp/nvim-ts-autotag",
   },
   config = function()
+    vim.g.skip_ts_context_commentstring_module = true
+    require("ts_context_commentstring").setup {
+      enable_autocmd = false
+    };
     require("nvim-treesitter.configs").setup({
-      context_commentstring = {
-        enable = true
-      },
       ignore_install = {},
       sync_install = false,
       auto_install = true,
