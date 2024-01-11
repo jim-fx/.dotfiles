@@ -9,6 +9,10 @@ map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", opts)
 map("n", "<C-f>", ":Telescope live_grep<CR>", opts)
 map("n", "<leader>o", ":Telescope buffers<CR>", opts)
 
+
+map('n', '<A-t>', ':term<CR>:setlocal nonumber norelativenumber<CR>i', { noremap = false, silent = true })
+map('t', '<Esc>', "<C-\\><C-n><C-w>h", { silent = true })
+
 map("n", "<Leader><leader>", "za", opts)
 
 local function zenMode()
@@ -38,19 +42,15 @@ map("n", "<Leader>li", ":LspInfo<CR>", opts)
 map("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
 -- barbar.nvim
-map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
-map('n', '<A-w>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
+
+local bufferline = require("bufferline");
+for i = 1, 81 do
+  map('n', '<A-' .. i .. '>', function() bufferline.go_to(i, true) end, opts)
+end
+
+map('n', '<A-w>', '<Cmd>bdelete<CR>', opts)
 
 -- This is my [i]nspect section,
 map("n", "<Leader>is", ":SymbolsOutline<cr>", opts)          -- [i]nspect [s]ymbols

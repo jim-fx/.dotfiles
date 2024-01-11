@@ -25,25 +25,34 @@ opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3         -- laststatus=3 enables global statusline
 opt.list = false           -- Show some invisible characters (tabs...
 opt.mouse = "a"            -- Enable mouse mode
-opt.number = true          -- Print line number
 opt.pumblend = 10          -- Popup blend
 opt.pumheight = 10         -- Maximum number of entries in a popup
+vim.cmd [[ set nonu ]]     -- Right align active number
+opt.number = true          -- Print line number
 opt.relativenumber = true  -- Relative line numbers
-opt.scrolloff = 4          -- Lines of context
+
+-- vim.api.nvim_set_option('number', true)
+-- vim.api.nvim_set_option('relativenumber', true)
+
+-- Set the current line number to be the actual one
+vim.cmd [[autocmd InsertEnter * set relativenumber]]
+vim.cmd [[autocmd InsertLeave * set norelativenumber]]
+
+opt.scrolloff = 4        -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
-opt.shiftround = true      -- Round indent
-opt.shiftwidth = 2         -- Size of an indent
+opt.shiftround = true    -- Round indent
+opt.shiftwidth = 2       -- Size of an indent
 opt.shortmess:append { W = true, I = true, c = true }
-opt.showmode = false       -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8      -- Columns of context
-opt.signcolumn = "no"      -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true       -- Don't ignore case with capitals
-opt.smartindent = true     -- Insert indents automatically
+opt.showmode = false     -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8    -- Columns of context
+opt.signcolumn = "no"    -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true     -- Don't ignore case with capitals
+opt.smartindent = true   -- Insert indents automatically
 opt.spelllang = { "en" }
-opt.splitbelow = true      -- Put new windows below current
-opt.splitright = true      -- Put new windows right of current
-opt.tabstop = 2            -- Number of spaces tabs count for
-opt.termguicolors = true   -- True color support
+opt.splitbelow = true    -- Put new windows below current
+opt.splitright = true    -- Put new windows right of current
+opt.tabstop = 2          -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000

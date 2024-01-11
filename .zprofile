@@ -109,4 +109,9 @@ if type bat &> /dev/null; then
   alias cat="bat"
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "/usr/local/texlive/2023" ] ; then
+    PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
+fi
+
 alias gcm="git commit -m "

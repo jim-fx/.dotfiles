@@ -7,7 +7,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "onsails/lspkind.nvim",
     "lukas-reineke/lsp-format.nvim",
-
+    "barreiroleo/ltex_extra.nvim",
     "pmizio/typescript-tools.nvim",
   },
   event = "BufReadPost",
@@ -58,6 +58,10 @@ return {
             client.stop()
           end
         end
+      elseif client.name == "ltex" then
+        require("ltex_extra").setup {
+          load_langs = { "en-US", "de" }
+        }
       end
       require("lsp-format").on_attach(client)
     end
@@ -200,10 +204,13 @@ return {
       settings = {
         yaml = {
           schemas = {
-            ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] = "conf/**/*catalog*",
+            ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] =
+            "conf/**/*catalog*",
             ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] = "rules.yml",
-            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] = "traefik.yml",
+            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] =
+            "rules.yml",
+            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] =
+            "traefik.yml",
           },
         },
       },
@@ -214,6 +221,8 @@ return {
     })
 
     custom_lsp.ltex = {
+      capabilities = capabilities,
+      on_attach = on_attach,
       settings = {
         ltex = {
           language = "de",
@@ -226,8 +235,8 @@ return {
             "Neovim",
             "waybar",
           },
-        },
-      },
+        }
+      }
     }
 
     mason_lsp.setup_handlers({
