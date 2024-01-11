@@ -15,3 +15,7 @@
 	required = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[alias]
+	latexdiff = difftool -t latexdiff
+[difftool "latexdiff"]
+	cmd = git-latexdiff-helper \"$LOCAL\" \"$REMOTE\"

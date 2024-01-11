@@ -12,7 +12,7 @@ return {
     },
     styles = {
       comments = { "italic" },
-      strings = { "italic" },
+      -- strings = { "italic" },
     },
     custom_highlights = function()
       return {
@@ -22,12 +22,12 @@ return {
     integrations = {
       gitsigns = true,
       telescope = true,
-      -- treesitter = true,
+      bufferline = true,
+      treesitter = true,
       cmp = true,
-      lsp_saga = true,
       notify = true,
       neotree = {
-        enabled = false,
+        enabled = true,
         show_root = false,
       },
       dap = {

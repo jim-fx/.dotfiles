@@ -10,6 +10,11 @@ return {
     vim.g.neo_tree_remove_legacy_commands = 1
     require("neo-tree").setup({
       hide_root_node = true,
+      window = {
+        mappings = {
+          ["g"] = "git_add_file",
+        }
+      }
     })
   end,
 }
