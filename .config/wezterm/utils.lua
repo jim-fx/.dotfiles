@@ -52,7 +52,7 @@ M.get_process = function(tab)
     },
     ["node"] = {
       { Foreground = { Color = colors.green } },
-      { Text = wezterm.nerdfonts.mdi_hexagon },
+      { Text = wezterm.nerdfonts.md_hexagon },
     },
     ["zsh"] = {
       { Foreground = { Color = colors.peach } },
@@ -106,8 +106,10 @@ M.get_process = function(tab)
 
   local process_name = M.get_process_name(tab)
 
+  local d = process_icons[process_name]
+
   return wezterm.format(
-    process_icons[process_name]
+    d
     or { { Foreground = { Color = colors.sky } }, { Text = string.format("%s", process_name) } }
   )
 end

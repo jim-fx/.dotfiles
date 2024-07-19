@@ -1,3 +1,22 @@
 #!/usr/bin/sh
 
-swaylock -c 000000
+swaylock \
+  --image $HOME/.customization/background/bw_mountain.jpg \
+  --indicator \
+  --indicator-radius 50 \
+  --clock \
+  --indicator-thickness 8 \
+  --effect-blur 5x5 \
+  --ring-color 000000 \
+  --key-hl-color ffffff \
+  --line-color ffffff \
+  --inside-color ffffff \
+  --separator-color 00000000 \
+  --ring-ver-color 000000 \
+  --line-ver-color 000000 \
+  --inside-ver-color 000000 \
+  --text-ver-color ffffff \
+  --inside-clear-color ffffff \
+  --ring-clear-color 000000 \
+  --line-clear-color ffffff
+# swaylock -c 000000

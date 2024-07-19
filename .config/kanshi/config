@@ -1,0 +1,9 @@
+profile {
+    output eDP-1 enable scale 1.5
+}
+
+profile {
+    output "AU Optronics 0x2036 Unknown"   disable
+    output "Dell Inc. DELL U2722D CWB17P3" enable   mode 2560x1440  position 0,0
+    output "Dell Inc. DELL U2722D 5XB17P3" enable   mode 2560x1440  position 2560,0
+}

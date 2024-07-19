@@ -98,6 +98,10 @@ alias d="sudo docker"
 
 alias t="tmux"
 
+function need(){
+  asdf plugin add $1 && asdf install $1 latest && asdf global $1 latest && asdf shell $1 latest
+}
+
 alias nx="pnpm exec nx"
 alias pm="pnpm prisma"
 

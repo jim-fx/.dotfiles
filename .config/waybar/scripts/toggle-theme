@@ -3,14 +3,16 @@
 DARK_MODE_STATUS_FILE=~/.cache/dark-mode
 CURRENT_DARK_MODE=$( cat $DARK_MODE_STATUS_FILE )
 
-LIGHT="盛"
-DARK=""
+LIGHT=""
+DARK=""
 
 if [ "$1" == "--toggle" ]; then
   if [ $CURRENT_DARK_MODE == "light" ]; then
     ~/.config/waybar/scripts/set-theme dark
+    swaymsg output "*" bg $HOME/.customization/background/bw_fern.jpg fill
   else
     ~/.config/waybar/scripts/set-theme light
+    swaymsg output "*" bg $HOME/.customization/background/bw_mountain.jpg fill
   fi
 fi
 

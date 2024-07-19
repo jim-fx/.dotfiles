@@ -1,13 +1,16 @@
 local wezterm = require("wezterm")
 local utils = require("utils")
-local colors = require("colors")
+local theme = require("theme")
 
 local function get_current_working_dir(tab)
-  local current_dir = tab.active_pane.current_working_dir
-  local HOME_DIR = string.format("file://%s", os.getenv("HOME"))
-
-  return current_dir == HOME_DIR and "  ~"
-      or string.format(" %s", string.gsub(current_dir, "(.*[/\\])(.*)", "%2"))
+  local HOME_DIR = string.format("%s", os.getenv("HOME"))
+  local cur = tab.active_pane.current_working_dir.path:gsub("[/\\]$", "")
+  local CURRENT_DIR =
+      string.find(cur, HOME_DIR) ~= nil
+      and string.gsub(cur, HOME_DIR, "~"):gsub("^[/\\]+", "")
+      or string.gsub(cur, HOME_DIR, "")
+  return CURRENT_DIR == "" and "~"
+      or string.format("%s", CURRENT_DIR)
 end
 
 wezterm.on("format-tab-title", function(tab)
@@ -18,7 +21,7 @@ wezterm.on("format-tab-title", function(tab)
     { Text = "  " },
     { Text = get_current_working_dir(tab) },
     { Text = tab.is_active and "] " or "  " },
-    { Foreground = { Color = colors.base } },
+    { Foreground = { Color = theme.get_colors().base } },
   })
 end)
 
@@ -51,70 +54,7 @@ else
   }
 end
 
-local _colors = {
-  split = colors.surface0,
-  foreground = colors.text,
-  background = colors.black,
-  cursor_bg = colors.rosewater,
-  cursor_border = colors.rosewater,
-  cursor_fg = colors.base,
-  selection_bg = colors.surface2,
-  selection_fg = colors.text,
-  visual_bell = colors.surface0,
-  indexed = {
-    [16] = colors.peach,
-    [17] = colors.rosewater,
-  },
-  scrollbar_thumb = colors.surface2,
-  compose_cursor = colors.flamingo,
-  ansi = {
-    colors.surface1,
-    colors.red,
-    colors.green,
-    colors.yellow,
-    colors.blue,
-    colors.pink,
-    colors.teal,
-    colors.subtext0,
-  },
-  brights = {
-    colors.subtext0,
-    colors.red,
-    colors.green,
-    colors.yellow,
-    colors.blue,
-    colors.pink,
-    colors.teal,
-    colors.surface1,
-  },
-  tab_bar = {
-    background = colors.crust,
-    active_tab = {
-      bg_color = "none",
-      fg_color = colors.subtext1,
-      intensity = "Bold",
-      underline = "None",
-      italic = false,
-      strikethrough = false,
-    },
-    inactive_tab = {
-      bg_color = colors.crust,
-      fg_color = colors.surface2,
-    },
-    inactive_tab_hover = {
-      bg_color = colors.mantle,
-      fg_color = colors.subtext0,
-    },
-    new_tab = {
-      bg_color = colors.crust,
-      fg_color = colors.subtext0,
-    },
-    new_tab_hover = {
-      bg_color = colors.crust,
-      fg_color = colors.subtext0,
-    },
-  },
-}
+
 
 return utils.merge({
   font = wezterm.font_with_fallback({
@@ -148,8 +88,8 @@ return utils.merge({
   tab_max_width = 50,
   hide_tab_bar_if_only_one_tab = true,
   disable_default_key_bindings = false,
-  color_scheme = '3024 Night',
-  colors = _colors,
+  color_scheme = theme.get_theme_name(),
+  colors = theme.get_colors(),
   leader = { key = "a", mods = "CTRL" },
   keys = {
     -- Keybindings similar to tmux

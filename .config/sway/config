@@ -30,7 +30,7 @@ set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn
 set $screenvideo wf-recorder -g "$(slurp)" -f "$screenshot_dir/scrn-$(date +'%Y-%m-%d-%H-%M-%S').mp4"
 
 # Default Programs
-set $term flatpak run org.wezfurlong.wezterm
+set $term wezterm
 set $explorer nautilus
 set $mail org.gnome.Geary
 set $browser google-chrome-beta --enable-features=UseOzonePlatform --ozone-platform=wayland 
@@ -202,6 +202,10 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [title="Picture in Picture"] floating enable
   for_window [title="Zoom Meeting.*"] inhibit_idle visible
   for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 1300 600, sticky enable, resize set 600 450
+  for_window [app_id="org.twosheds.iwgtk"] floating enable
+  for_window [app_id="iwgtk"] floating enable
+  for_window [app_id="blueman-manager"] floating enable
+  for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 
   set $ws1 "1:   Code"
     assign [app_id="Alacritty"] $ws1
@@ -343,6 +347,8 @@ exec_always dunst
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always clipman
 exec_always /usr/lib/kdeconnectd
+exec_always kanshi
+exec_always iwgtk -i
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346
 exec wl-paste -t text --watch clipman store --no-persist
@@ -357,4 +363,4 @@ bar {
 }
 
 
-exec "systemctl --user import-environment SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY";
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
