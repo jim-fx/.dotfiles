@@ -1,6 +1,6 @@
 # jim-fx's Dotfiles
 
-![background](https://private-user-images.githubusercontent.com/29272343/350690681-dee6cb9a-86f5-4fab-94e2-9cb5f36cd9aa.png)
+![screenshot](https://github.com/user-attachments/assets/157b4ac0-33ac-42d7-8771-942d6b0b66e4)
 
 ## Configurations
 - [ZSH](https://www.zsh.org/) + [oh-my-zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
