@@ -9,10 +9,10 @@ DARK=""
 if [ "$1" == "--toggle" ]; then
   if [ $CURRENT_DARK_MODE == "light" ]; then
     ~/.config/waybar/scripts/set-theme dark
-    swaymsg output "*" bg $HOME/.customization/background/bw_fern.jpg fill
+    swaymsg output "*" bg $HOME/.customization/wallpapers/bw_fern.jpg fill
   else
     ~/.config/waybar/scripts/set-theme light
-    swaymsg output "*" bg $HOME/.customization/background/bw_mountain.jpg fill
+    swaymsg output "*" bg $HOME/.customization/wallpapers/bw_mountain.jpg fill
   fi
 fi
 

@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 swaylock \
-  --image $HOME/.customization/background/bw_mountain.jpg \
+  --image $HOME/.customization/wallpapers/bw_mountain.jpg \
   --indicator \
   --indicator-radius 50 \
   --clock \

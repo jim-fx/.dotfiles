@@ -78,7 +78,7 @@ default_border none
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-set $wallpapers_path $HOME/.customization/background
+set $wallpapers_path $HOME/.customization/wallpapers
 output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 #
 # Example configuration:
