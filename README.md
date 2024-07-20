@@ -1,35 +1,17 @@
 # jim-fx's Dotfiles
 
-## Features
+## Configurations
 - [ZSH](https://www.zsh.org/) + [oh-my-zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
-- [asdf version manager](https://asdf-vm.com/#/)
-- [pre-configured](./configs/nvim/init.lua) [neovim](https://neovim.io/)
-- [tmux](https://github.com/tmux/tmux)
-- [sway](https://i3wm.org)
-- 1 line installation
+- [neovim](https://neovim.io/)
+- [sway](https://swaywm.org/) + [waybar](https://github.com/Alexays/Waybar)
+- many more...
 
 ## Installation
-
-*Unsupervised*
-
 ```bash
-sh -c "$(curl -L setup.jim-fx.com)"
-```
-
-*Manual*
-
-```bash
-git clone git@github.com:jim-fx/.dotfiles.git ~/.dotfiles
-chmod +x ~/.dotfiles/setup.sh
-~/.dotfiles/setup.sh
-```
-
-## Testing
-If you want to test this setup, you can use the provided docker image.
-
-```bash
-docker build . -t jim-fx/dotfiles
-docker run -it jim-fx/dotfiles
+alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+echo ".dotfiles" >> .gitignore
+git clone --bare git@github.com:jim-fx/.dotfiles $HOME/.dotfiles
+dots checkout
 ```
 
 ## Opinionated Stuff

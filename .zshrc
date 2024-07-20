@@ -59,7 +59,7 @@ fi
 # ZSH_TMUX_AUTOCONNECT=false
 
 
-export FPATH=$FPATH:~/.dotfiles/completions
+export FPATH=$FPATH:~/.config/zsh/completions
 export NVIM_HOME=$HOME/.config/nvim
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export NVR_CMD=""

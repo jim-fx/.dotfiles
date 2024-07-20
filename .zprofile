@@ -118,4 +118,6 @@ if [ -d "/usr/local/texlive/2023" ] ; then
     PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 fi
 
+alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 alias gcm="git commit -m "
