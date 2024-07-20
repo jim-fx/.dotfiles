@@ -1,5 +1,7 @@
 # jim-fx's Dotfiles
 
+![background](https://private-user-images.githubusercontent.com/29272343/350690681-dee6cb9a-86f5-4fab-94e2-9cb5f36cd9aa.png)
+
 ## Configurations
 - [ZSH](https://www.zsh.org/) + [oh-my-zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
 - [neovim](https://neovim.io/)
