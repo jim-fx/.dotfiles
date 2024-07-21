@@ -9,9 +9,11 @@ DARK=""
 if [ "$1" == "--toggle" ]; then
   if [ $CURRENT_DARK_MODE == "light" ]; then
     ~/.config/waybar/scripts/set-theme dark
+    sed -i 's/dark=false/dark=true/' ~/.config/iwgtk.conf
     swaymsg output "*" bg $HOME/.customization/wallpapers/bw_fern.jpg fill
   else
     ~/.config/waybar/scripts/set-theme light
+    sed -i 's/dark=true/dark=false/' ~/.config/iwgtk.conf
     swaymsg output "*" bg $HOME/.customization/wallpapers/bw_mountain.jpg fill
   fi
 fi
