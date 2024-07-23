@@ -106,10 +106,8 @@ M.get_process = function(tab)
 
   local process_name = M.get_process_name(tab)
 
-  local d = process_icons[process_name]
-
   return wezterm.format(
-    d
+    process_icons[process_name]
     or { { Foreground = { Color = colors.sky } }, { Text = string.format("%s", process_name) } }
   )
 end

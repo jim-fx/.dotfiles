@@ -27,7 +27,7 @@ set $grimshot $sway_scripts/grimshot
 set $screenclip wl-copy < "$($grimshot --notify save area   $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 set $screenshot wl-copy < "$($grimshot --notify save screen $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
 set $windowshot wl-copy < "$($grimshot --notify save window $screenshot_dir/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png)"
-set $screenvideo wf-recorder -g "$(slurp)" -f "$screenshot_dir/scrn-$(date +'%Y-%m-%d-%H-%M-%S').mp4"
+set $screenvideo $sway_scripts/screenvideo
 
 # Default Programs
 set $term wezterm
@@ -282,7 +282,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+s exec $screenshot
   # -- Area Screenshot
   bindsym $mod+Shift+s exec $screenclip
-  bindsym $mod+Alt+s exec $screenvideo
+  bindsym $mod+r exec $screenvideo
   # -- Select Window
   bindsym $mod+Control+s exec $windowshot
 
@@ -337,7 +337,6 @@ mode "resize" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 
 # Handles notifications
 exec_always dunst

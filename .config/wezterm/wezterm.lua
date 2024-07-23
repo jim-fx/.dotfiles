@@ -21,7 +21,7 @@ wezterm.on("format-tab-title", function(tab)
     { Text = "  " },
     { Text = get_current_working_dir(tab) },
     { Text = tab.is_active and "] " or "  " },
-    { Foreground = { Color = theme.get_colors().base } },
+    { Foreground = { Color = theme.get_colors().cursor_fg } },
   })
 end)
 

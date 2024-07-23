@@ -89,6 +89,8 @@ else
   alias dc="sudo docker-compose"
 fi
 
+alias app="dc --profile app"
+
 if podman-compose &> /dev/null; then
   alias pc="podman-compose"
 fi
