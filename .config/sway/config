@@ -41,6 +41,7 @@ set $calculator flatpak run io.github.Qalculate
 set $photo_editor gtk-launch ~/.local/share/applications/photopea.desktop
 set $translator com.github.gi_lom.dialect
 set $settings XDG_CURRENT_DESKTOP=GNOME gnome-control-center
+set $quick_notes wezterm start --cwd ~/Notes --class wezterm.floating.notes nvim
 
 # Scripts
 
@@ -129,6 +130,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+e exec $explorer
   bindsym $mod+Comma exec $settings
   bindsym $mod+b exec $browser
+  bindsym $mod+n exec $quick_notes
   bindsym $mod+Shift+w exec $select_wifi
   bindsym $mod+Shift+b exec $bluetooth_mngr
   bindsym $mod+Shift+Comma exec $config_editor
@@ -193,6 +195,7 @@ input "1739:24385:Synaptics_TM2438-005" {
 #
   corner_radius 4
   for_window [class="zoom"] floating enable
+  for_window [app_id="wezterm.floating.notes"] floating enable, move position center, resize set 50ppt 50ppt, border pixel 1, border color #ffffff
   for_window [app_id="com.github.gi_lom.dialect"] floating enable, resize set 800 400, sticky enable
   for_window [app_id="gnome-calculator"] floating enable
   for_window [app_id="qalculate-gtk"] floating enable

@@ -7,13 +7,15 @@
   "hidden_state": "show",
   "modules-left": [
     "clock",
-    "custom/waybar-mpris"
+    "custom/waybar-mpris",
+    "custom/updates"
   ],
   "modules-center": [
     "sway/workspaces"
   ],
   "modules-right": [
     "tray",
+    "custom/pacman",
     "custom/power-profile",
     "custom/dpi",
     "custom/theme",
@@ -21,15 +23,6 @@
     "network",
     "battery",
   ],
-  "custom/pacman": {
-    "format": "{} ",
-    "interval": 3600, // every hour
-    "exec": "(checkupdates;pacman -Qm | aur vercmp) | wc -l", // # of updates
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "wezterm start -- yay; echo Done - Press enter to exit; read; pkill -SIGRTMIN+8 waybar", // update system
-    "signal": 8,
-    "tooltip": false,
-  },
   "custom/theme": {
     "exec": "~/.config/waybar/scripts/toggle-theme",
     "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
@@ -119,6 +112,13 @@
       ]
     },
     "on-click": "pavucontrol"
+  },
+  "custom/updates": {
+    "exec": "~/.config/waybar/scripts/check-updates",
+    "interval": 3600, // 3600 seconds = 1 hour
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "~/.config/waybar/scripts/check-updates update"
   },
   "custom/waybar-mpris": {
     "max-length": 30,

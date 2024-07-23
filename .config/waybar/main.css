@@ -61,7 +61,9 @@ window>box {
 
 
 
-#clock {
+#clock,
+#custom-updates,
+#custom-waybar-mpris {
   margin: 0px 10px 0px 10px;
   color: @fg;
 }
