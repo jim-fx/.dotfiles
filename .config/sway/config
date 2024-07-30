@@ -79,7 +79,7 @@ default_border none
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 set $wallpapers_path $HOME/.customization/wallpapers
-output * bg `find $wallpapers_path -type f | shuf -n 1` fill
+output * bg `find $HOME/.customization/wallpapers/ -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | shuf -n 1)` fill
 #
 # Example configuration:
 #
@@ -93,7 +93,7 @@ output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 #
 
 exec swayidle -w \
-    timeout 300 '~/.config/sway/scripts/lock_screen.sh' \
+    timeout 300 $lock_screen \
     timeout 600 'swaymsg "output * dpms off"' \
          resume 'swaymsg "output * dpms on"' \
     before-sleep $lock_screen

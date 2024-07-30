@@ -16,7 +16,7 @@ if [ "$1" == "--toggle" ]; then
     sed -i 's/dark=true/dark=false/' ~/.config/iwgtk.conf
   fi
 
-  swaymsg output "*" bg "$(find $HOME/.customization/wallpapers/ -type f | shuf -n 1)" fill
+  swaymsg output "*" bg "$(find $HOME/.customization/wallpapers/ -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | shuf -n 1)" fill
 
 fi
 

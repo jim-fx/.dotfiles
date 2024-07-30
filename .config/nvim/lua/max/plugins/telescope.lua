@@ -76,6 +76,7 @@ return {
 
     telescope.setup(default)
     telescope.load_extension("notify")
+    telescope.load_extension("git_worktree")
     -- telescope.load_extension("persisted") -- To load the telescope extension
     --
   end,

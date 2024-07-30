@@ -3,10 +3,9 @@ return {
   dependencies = {
     "arkav/lualine-lsp-progress",
     "williamboman/mason.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     "williamboman/mason-lspconfig.nvim",
     "onsails/lspkind.nvim",
-    "lukas-reineke/lsp-format.nvim",
     "barreiroleo/ltex_extra.nvim",
     "pmizio/typescript-tools.nvim",
   },
@@ -26,21 +25,30 @@ return {
       },
     })
 
+    local lsp_formatting = function(bufnr)
+      vim.lsp.buf.format({
+        timeout_ms = 2000,
+        filter = function(client)
+          -- apply whatever logic you want (in this example, we'll only use null-ls)
+          return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+      })
+    end
+
+
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.formatting.prettier,
       },
-      should_attach = function()
-        return lsp.util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.json")(
-          vim.fn.expand("%:p")) ~= nil;
-      end,
     })
 
     mason.setup()
     mason_lsp.setup({
       ensure_installed = { "lua_ls", "jsonls", "svelte", "cssls", "prismals" },
     })
+
 
     local function on_attach(client)
       local active_clients = vim.lsp.buf_get_clients()
@@ -63,7 +71,17 @@ return {
           load_langs = { "en-US", "de" }
         }
       end
-      require("lsp-format").on_attach(client)
+
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            lsp_formatting(bufnr)
+          end,
+        })
+      end
     end
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
