@@ -34,6 +34,13 @@ autocmd({ "BufReadPost" }, {
   group = save_fold,
 })
 
+autocmd({ "BufWritePre" }, {
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.format()
+  end
+})
+
 autocmd({ "BufWinEnter" }, {
   pattern = "*.*",
   callback = function()

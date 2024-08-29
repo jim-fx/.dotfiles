@@ -79,7 +79,7 @@ default_border none
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 set $wallpapers_path $HOME/.customization/wallpapers
-output * bg `find $HOME/.customization/wallpapers/ -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | shuf -n 1)` fill
+output * bg `find $HOME/.customization/wallpapers/ -type f -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" | shuf -n 1` fill
 #
 # Example configuration:
 #

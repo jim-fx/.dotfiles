@@ -1,9 +1,41 @@
 #!/bin/bash
-xdg-open "http://localhost:$(sed '1,/^### DATA ###$/d' $0 | wofi --show dmenu -i | cut -d ' ' -f 1 | tr -d '\n')"
+
+function focus_browser(){
+  browser_window_id=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.pid) | select(.app_id|contains("firefox") or contains("chrome")) | .id')
+  if [ browser_window_id != "" ]; then
+    swaymsg [con_id="$browser_window_id"] focus
+  fi
+}
+
+result=$(sed '1,/^### DATA ###$/d' $0 | wofi --show dmenu -i | cut -d ' ' -f 1 | tr -d '\n')
+
+url=""
+
+echo "$result"
+
+# [g]ithub  [d]ynabase [m]andelbaum
+if [ $result = "gdm" ]; then
+  focus_browser;
+  xdg-open "https://github.com/dynabase/mandelbaum.ai"
+# [g]ithub  [m]ax [d]otfiles
+elif [ $result = "gmd" ]; then
+  focus_browser;
+  xdg-open "https://github.com/jimfx/.dotfiles"
+elif [ $result != "" ]; then
+  focus_browser;
+  xdg-open "http://localhost:$result"
+else 
+  focus_browser;
+  xdg-open "http://localhost:$result"
+fi
+
 exit
 ### DATA ###
 8000
 8080
 3000
 3001
+3002
 80
+gdm 
+gmd 
