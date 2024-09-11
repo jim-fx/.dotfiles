@@ -5,9 +5,16 @@ swaylock \
   --indicator \
   --indicator-radius 50 \
   --clock \
+  --grace 10 \
+  --fade-in 10 \
   --indicator-thickness 8 \
   --effect-blur 5x5 \
+  --bs-hl-color ffffff \
   --ring-color 000000 \
+  --line-wrong-color ffffff \
+  --ring-wrong-color ffffff \
+  --inside-wrong-color ffffff \
+  --text-wrong-color 000000 \
   --key-hl-color ffffff \
   --line-color ffffff \
   --inside-color ffffff \
@@ -15,6 +22,7 @@ swaylock \
   --ring-ver-color 000000 \
   --line-ver-color 000000 \
   --inside-ver-color 000000 \
+  --text-color 000000 \
   --text-ver-color ffffff \
   --inside-clear-color ffffff \
   --ring-clear-color 000000 \
