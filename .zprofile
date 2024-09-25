@@ -123,3 +123,6 @@ fi
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias gcm="git commit -m "
+
+export ENCORE_INSTALL="/home/max/.encore"
+export PATH="$ENCORE_INSTALL/bin:$PATH"
