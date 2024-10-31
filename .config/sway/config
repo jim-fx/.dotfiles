@@ -62,12 +62,12 @@ set $select_wifi $wofi_scripts/select-wifi
 
 # Input configuration
 input * {
-    xkb_layout de
+    xkb_layout de(nodeadkeys)
     xkb_capslock disabled
-
 }
 
 input "type:keyboard" xkb_options caps:escape
+# input "type:keyboard" xkb_layout us-german-umlaut 
 
 smart_gaps off
 gaps inner 3
@@ -346,12 +346,16 @@ exec_always dunst
 # exec_always pulseaudio --start
 # Handle Authentiction requests
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always clipman
 exec_always /usr/lib/kdeconnectd
 exec_always kanshi
+exec_always aw-qt # activitywatch
 exec_always iwgtk -i
+
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346
+
+# Clipboard
+exec_always clipman
 exec wl-paste -t text --watch clipman store --no-persist
 
 #

@@ -8,7 +8,8 @@ return {
     },
     additions = {
       { "const",    "let",      "var" },
-      { "absolute", "relative", "fixed", "sticky" }
+      { "absolute", "relative", "fixed", "sticky" },
+      { "undefined", "null"}
     }
   }
 }

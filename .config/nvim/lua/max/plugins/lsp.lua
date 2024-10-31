@@ -14,6 +14,7 @@ return {
     local mason = require("mason")
     local mason_lsp = require("mason-lspconfig")
     local lsp = require("lspconfig")
+    local augroup = vim.api.nvim_create_augroup
 
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
       vim.lsp.handlers.hover,
@@ -25,22 +26,11 @@ return {
       },
     })
 
-    local lsp_formatting = function(bufnr)
-      vim.lsp.buf.format({
-        timeout_ms = 2000,
-        filter = function(client)
-          -- apply whatever logic you want (in this example, we'll only use null-ls)
-          return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-      })
-    end
-
 
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.phpcsfixer,
       },
     })
@@ -51,7 +41,8 @@ return {
     })
 
 
-    local function on_attach(client)
+    local autofmt_group = augroup("autofmt_group", {})
+    local function on_attach(client, bufnr)
       local active_clients = vim.lsp.buf_get_clients()
       if client.name == 'denols' then
         for _, client_ in pairs(active_clients) do
@@ -74,12 +65,17 @@ return {
       end
 
       if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_clear_autocmds({ group = autofmt_group, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
-          group = augroup,
+          group = autofmt_group,
           buffer = bufnr,
           callback = function()
-            lsp_formatting(bufnr)
+            vim.cmd 'TSToolsOrganizeImports sync'
+            vim.cmd 'TSToolsAddMissingImports sync'
+            vim.lsp.buf.format({
+              timeout_ms = 2000,
+              bufnr = bufnr,
+            })
           end,
         })
       end
@@ -134,7 +130,7 @@ return {
 
     custom_lsp.jsonls = {
       settings = {
-        provideFormatter = false,
+        provideFormatter = true,
         json = {
           schemas = {
             {
@@ -236,7 +232,10 @@ return {
     }
 
     require("typescript-tools").setup({
-      on_attach = on_attach
+      on_attach = on_attach,
+      settings = {
+        expose_as_code_action = "all"
+      }
     })
 
     custom_lsp.ltex = {
