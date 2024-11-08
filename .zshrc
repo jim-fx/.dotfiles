@@ -23,13 +23,14 @@ if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
   source $HOME/.config/zsh/antigen.zsh
   antigen use oh-my-zsh
   antigen bundle git
-  antigen bundle docker
+  # antigen bundle docker
   antigen bundle sudo
   antigen bundle asdf
   # antigen bundle jeffreytse/zsh-vi-mode
   antigen theme romkatv/powerlevel10k
   antigen bundle zsh-users/zsh-autosuggestions
   antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle command-not-found
   antigen apply
 fi
 
@@ -65,8 +66,8 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export NVR_CMD=""
 
 # Load oh my zsh
-export ZSH=~/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# export ZSH=~/.oh-my-zsh
+# source $ZSH/oh-my-zsh.sh
 
 ## FUNCTIONS ##
 source $HOME/.config/zsh/functions.zsh

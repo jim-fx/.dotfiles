@@ -3,23 +3,19 @@ profile {
 }
 
 profile WorkSetup {
-    output eDP-1                           enable  mode 2560x1440  position 2560,1440 scale 1.5
-    output "Dell Inc. DELL U2722D CWB17P3" enable  mode 2560x1440  position 0,0
-    output "Dell Inc. DELL U2722D 5XB17P3" enable  mode 2560x1440  position 2560,0
-    exec swaymsg workspace "1:   Code", move workspace to output '"Dell Inc. DELL U2722D 5XB17P3"'
-    exec swaymsg workspace "2:   Browser", move workspace to output '"Dell Inc. DELL U2722D 5XB17P3"'
-    exec swaymsg workspace "3:   Music", move workspace to output eDP-1
-    exec swaymsg workspace "4:   Chat", move workspace to output '"Dell Inc. DELL U2722D CWB17P3"'
-}
-
-profile WorkSetup2 {
-    output eDP-1                           enable  mode 2560x1440            position 450,1440  scale 1.5
-    output "Dell Inc. DELL U2722D 5S0X7H3" enable  mode 2560x1440            position 0,0       scale 1
-    output "Dell Inc. DELL U2722D CS0X7H3" enable  mode 2560x1440@59.951Hz  position 2560,0    scale 1
+    output eDP-1                           enable  mode 2560x1440             position 0,1440    scale 1.5
+    output "Dell Inc. DELL U2722D 5S0X7H3" enable  mode 2560x1440             position 1706,282  scale 1
+    output "Dell Inc. DELL U2722D CS0X7H3" enable  mode 2560x1440@59.951Hz    position 4266,282  scale 1
 }
 
 profile HomeOffice {
     output 'LG Electronics IPS226        SerialNumber'    enable mode 1920x1080 position 0,0        scale 1
     output 'Acer Technologies Acer G226HQL LWUEE0054340'  enable mode 1920x1080 position 1920,0     scale 1
     output 'AU Optronics 0x2036 Unknown'                  enable mode 2560x1440 position 3840,562   scale 1.5
+}
+
+profile WorkSetup2 {
+  output 'AU Optronics 0x2036 Unknown'    enable mode 2560x1440 position 6400,945 scale 1.5
+  output 'Dell Inc. DELL U2719D CCLQC23'  enable mode 2560x1440 position 1280,0
+  output 'Dell Inc. DELL U2719D GHMQC23'  enable mode 2560x1440 position 3840,0
 }

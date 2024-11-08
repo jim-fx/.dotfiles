@@ -20,7 +20,6 @@ return {
     }
     require("max.plugins.autocomplete.snippets")
 
-    local lspkind = require("lspkind")
     local cmp = require("cmp")
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -90,13 +89,6 @@ return {
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
-        }),
-      },
-      formatting = {
-        format = lspkind.cmp_format({
-          mode = "symbol_text",
-          max_width = 50,
-          symbol_map = { Copilot = "" },
         }),
       },
       sources = {

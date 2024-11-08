@@ -3,9 +3,7 @@ return {
   dependencies = {
     "arkav/lualine-lsp-progress",
     "williamboman/mason.nvim",
-    "nvimtools/none-ls.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "onsails/lspkind.nvim",
     "barreiroleo/ltex_extra.nvim",
     "pmizio/typescript-tools.nvim",
   },
@@ -23,15 +21,6 @@ return {
     vim.diagnostic.config({
       float = {
         border = 'single',
-      },
-    })
-
-
-    local null_ls = require("null-ls")
-    null_ls.setup({
-      sources = {
-        null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.formatting.phpcsfixer,
       },
     })
 
@@ -71,11 +60,13 @@ return {
           buffer = bufnr,
           callback = function()
             vim.cmd 'TSToolsOrganizeImports sync'
-            vim.cmd 'TSToolsAddMissingImports sync'
             vim.lsp.buf.format({
               timeout_ms = 2000,
               bufnr = bufnr,
             })
+            if client.name == "eslint" then
+              vim.cmd("EslintFixAll")
+            end
           end,
         })
       end
@@ -97,6 +88,14 @@ return {
 
     custom_lsp.denols = {
       root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
+    }
+
+    custom_lsp.gopls = {
+      settings = {
+        gopls = {
+          staticcheck = true,
+        },
+      },
     }
 
     local runtime_path = vim.split(package.path, ";")
