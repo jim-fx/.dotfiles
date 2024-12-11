@@ -153,7 +153,10 @@ zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' dow
 
 eval `dircolors ~/.dircolors`
 
-. "$HOME/.cargo/env"
+if type cargo &> /dev/null; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+  . "$HOME/.cargo/env"
+fi
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/max/.rd/bin:$PATH"
