@@ -1,5 +1,4 @@
 @import url("./hide_tabs_with_one_tab.css");
-@import url("./hide_reload_button.css");
 
 /*================== Preto for Firefox ==================
 Author: dpcdpc11.gumroad.com, alfarexguy.deviantart.com
@@ -45,6 +44,7 @@ ENJOY!
 :root:-moz-lwtheme-brighttext,
 .sidebar-panel[lwt-sidebar-brighttext],
 body[lwt-sidebar-brighttext] {
+
   --main-bgcolor: var(--dark-color);
   --transparent-bgcolor: var(--accent-color);
 }
@@ -53,21 +53,34 @@ body[lwt-sidebar-brighttext] {
 /*================== MAIN HEADER ==================*/
 
 toolbox#navigator-toolbox {
-  /* border: 0 !important; */
+  border: 0 !important;
 }
 
 
 /*================== TABS BAR ==================*/
 
-#titlebar #TabsToolbar {
+#TabsToolbar {
   padding: 6px 0px 2px 6px !important;
   padding: 0px !important;
   background: rgba(var(--dark-color), 1) !important;
+  height: 40px !important;
 }
 
 .titlebar-spacer[type="pre-tabs"] {
-  /* border: 0 !important;  */
-  /* display: none; */
+  border: 0 !important;
+  display: none;
+}
+
+#tabbrowser-tabs {
+  max-height: 40px;
+}
+
+.tabbrowser-tab {
+  max-height: 40px;
+}
+
+.tabbrowser-tab .tab-background {
+  margin: 0px !important;
 }
 
 #tabbrowser-tabs:not([movingtab])>.tabbrowser-tab[beforeselected-visible]::after,
@@ -105,8 +118,8 @@ tab[selected="true"] .tab-background {
 
 .tabbrowser-tab::after,
 .tabbrowser-tab::before {
-  /* border-left: 0 !important; */
-  /* opacity: 0 !important; */
+  border-left: 0 !important;
+  opacity: 0 !important;
 }
 
 .tab-close-button {
@@ -136,7 +149,7 @@ tab[selected="true"] .tab-background {
 #PersonalToolbar {
   background: rgba(var(--dark-color), 1) !important;
   color: rgba(var(--secondary-accent-color), 1) !important;
-  padding-bottom: 6px !important;
+  padding-bottom: 2px !important;
   padding-top: 1px !important;
 }
 
@@ -234,13 +247,25 @@ toolbar #tabs-newtab-button:not([disabled="true"]):not([checked]):not([open]):no
 toolbar#nav-bar {
   background: rgba(var(--dark-color), 1) !important;
   box-shadow: none !important;
-  padding-bottom: 4px !important;
+  /* padding-bottom: 4px !important; */
+  border-top: 1px var(--tabs-navbar-separator-style) var(--tabs-navbar-separator-color);
+  border-bottom: 1px var(--tabs-navbar-separator-style) var(--tabs-navbar-separator-color);
+  margin-bottom: 1px;
 }
 
 toolbar#nav-bar toolbarbutton .toolbarbutton-icon,
 toolbar#nav-bar toolbarbutton #fxa-avatar-image {
   transition: all 0.3s ease !important;
   fill: rgba(var(--secondary-accent-color), 1) !important;
+}
+
+/* hide search icon in searchbar */
+#urlbar #identity-box {
+  display: none;
+}
+
+#urlbar .urlbar-input-box {
+  padding-left: 10px;
 }
 
 #urlbar>#urlbar-background {

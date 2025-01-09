@@ -35,8 +35,8 @@ opt.relativenumber = true  -- Relative line numbers
 -- vim.api.nvim_set_option('relativenumber', true)
 
 -- Set the current line number to be the actual one
-vim.cmd [[autocmd InsertEnter * set relativenumber]]
-vim.cmd [[autocmd InsertLeave * set norelativenumber]]
+-- vim.cmd [[autocmd InsertEnter * set relativenumber]]
+-- vim.cmd [[autocmd InsertLeave * set norelativenumber]]
 
 opt.scrolloff = 4        -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
@@ -45,7 +45,7 @@ opt.shiftwidth = 2       -- Size of an indent
 opt.shortmess:append { W = true, I = true, c = true }
 opt.showmode = false     -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8    -- Columns of context
-opt.signcolumn = "no"    -- Always show the signcolumn, otherwise it would shift the text each time
+opt.signcolumn = "yes"   -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true     -- Don't ignore case with capitals
 opt.smartindent = true   -- Insert indents automatically
 opt.spelllang = { "en" }
@@ -61,9 +61,21 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5                -- Minimum window width
 opt.wrap = false                   -- Disable line wrap
 
-opt.foldenable = false;
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "expr"
+
+-- :h vim.treesitter.foldexpr()
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- ref: https://github.com/neovim/neovim/pull/20750
+vim.opt.foldtext = ""
+vim.opt.fillchars:append("fold: ")
+
+-- Open all folds by default, zm is not available
+vim.opt.foldlevelstart = 99
+
+-- opt.foldenable = false;
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-dap.nvim",
     "nvim-telescope/telescope-fzf-native.nvim",
   },
   event = "VeryLazy",
@@ -75,6 +76,7 @@ return {
     }
 
     telescope.setup(default)
+
     telescope.load_extension("notify")
     telescope.load_extension("git_worktree")
     -- telescope.load_extension("persisted") -- To load the telescope extension

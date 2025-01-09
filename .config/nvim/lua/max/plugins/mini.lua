@@ -7,6 +7,9 @@ return {
     })
 
     require("mini.pairs").setup({
+      mappings = {
+        ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+      }
     })
 
     require("mini.surround").setup({
@@ -14,7 +17,10 @@ return {
 
     require("mini.animate").setup({
       cursor = {
-        enable = false,
+        enable = true,
+      },
+      resize = {
+        enable = false
       }
     })
   end

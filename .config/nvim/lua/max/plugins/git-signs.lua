@@ -1,5 +1,8 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufReadPost",
-  config = true,
+  opts = {
+    numhl = true,
+    signcolumn = false,
+  }
 }

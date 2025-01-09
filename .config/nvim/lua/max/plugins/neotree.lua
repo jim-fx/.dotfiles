@@ -1,9 +1,13 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "Neotree",
+  keys = {
+    { "<leader>j", "<cmd>Neotree toggle<cr>",                   desc = "NeoTree" },
+    { "<leader>f", "<cmd>Neotree action=focus reveal=true<CR>", desc = "NeoTree" },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim"
   },
   init = function()

@@ -1,6 +1,7 @@
 return {
   "petertriho/nvim-scrollbar",
   event = "VeryLazy",
+  enabled = false,
   config = function()
     require("scrollbar").setup({
       handlers = {
@@ -8,7 +9,7 @@ return {
         diagnostic = true,
         gitsigns = true, -- Requires gitsigns
         handle = true,
-        search = false, -- Requires hlslens
+        search = false,  -- Requires hlslens
       },
       excluded_filetypes = {
         "prompt",

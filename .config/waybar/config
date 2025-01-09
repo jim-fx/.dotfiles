@@ -3,7 +3,6 @@
   "spacing": 4,
   "bar_id": "bar-0",
   "ipc": true,
-  // "mode": "hide",
   "hidden_state": "show",
   "modules-left": [
     "clock",
@@ -21,7 +20,7 @@
     "custom/theme",
     "pulseaudio",
     "network",
-    "battery",
+    "battery"
   ],
   "custom/theme": {
     "exec": "~/.config/waybar/scripts/toggle-theme",
@@ -30,7 +29,6 @@
   },
   "custom/power-consumption": {
     "exec": "~/.config/waybar/scripts/power-consumption",
-    "interval": 1
   },
   "wlr/workspaces": {
     "format": "{icon} {name}",
@@ -42,7 +40,6 @@
       "4": "",
       "5": "",
       "urgent": "",
-      // "active": "",
       "default": ""
     }
   },
@@ -93,7 +90,7 @@
   },
   "pulseaudio": {
     "format": "{volume}% {icon}    {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetototh": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
     "format-source": "{volume}% ",
@@ -111,6 +108,7 @@
         ""
       ]
     },
+    "on-right-click": "~/.config/waybar/scripts/mic-toggle --toggle",
     "on-click": "pavucontrol"
   },
   "custom/updates": {
@@ -125,14 +123,7 @@
     "return-type": "json",
     "exec": "waybar-mpris --position --autofocus --order ARTIST:ALBUM:TITLE:POSITION:SYMBOL",
     "on-click": "waybar-mpris --send toggle",
-    // This option will switch between players on right click.
     "on-click-right": "waybar-mpris --send player-next",
-    // The options below will switch the selected player on scroll
-    // "on-scroll-up": "waybar-mpris --send player-next",
-    // "on-scroll-down": "waybar-mpris --send player-prev",
-    // The options below will go to next/previous track on scroll
-    // "on-scroll-up": "waybar-mpris --send next",
-    // "on-scroll-down": "waybar-mpris --send prev",
     "escape": true
   },
   "tray": {

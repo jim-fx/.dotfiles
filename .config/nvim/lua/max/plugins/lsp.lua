@@ -59,7 +59,7 @@ return {
           group = autofmt_group,
           buffer = bufnr,
           callback = function()
-            vim.cmd 'TSToolsOrganizeImports sync'
+            -- vim.cmd 'TSToolsOrganizeImports sync'
             vim.lsp.buf.format({
               timeout_ms = 2000,
               bufnr = bufnr,
@@ -93,6 +93,9 @@ return {
     custom_lsp.gopls = {
       settings = {
         gopls = {
+          analyses = {
+            unusedparams = true,
+          },
           staticcheck = true,
         },
       },
@@ -218,11 +221,10 @@ return {
       settings = {
         yaml = {
           schemas = {
-            ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"] =
-            "conf/**/*catalog*",
             ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
             ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2-file-provider.json"] =
             "rules.yml",
+            ["https://json.schemastore.org/kustomization.json"] = "*.patch.yaml",
             ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/traefik-v2.json"] =
             "traefik.yml",
           },

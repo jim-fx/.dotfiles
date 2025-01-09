@@ -33,8 +33,6 @@ map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
 map("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
 
 map("n", "<Leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
-map({ "n", "v" }, "<Leader>c", ":Lspsaga code_action<CR>", { silent = true })
-map({ "n", "v" }, "gr", ":Lspsaga lsp_finder<CR>", opts)
 
 map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
 map("n", "<Leader>wq", ":wqall!<CR>", opts)
@@ -51,16 +49,14 @@ for i = 1, 81 do
 end
 
 map('n', '<A-w>', '<Cmd>bdelete<CR>', opts)
+map('n', '<S-A-w>', '<Cmd>BufferLineCloseOthers<CR>', opts)
 
 -- This is my [i]nspect section,
-map("n", "<Leader>is", ":SymbolsOutline<cr>", opts)          -- [i]nspect [s]ymbols
-map("n", "<Leader>ic", ":ColorizerToggle<CR>", opts)         -- [i]nspect [c]olors
-map("n", "<Leader>io", ":Lspsaga outline<CR>", opts)         -- [i]nspect [o]utline
-map("n", "<Leader>in", ":Telescope notify<CR>", opts)        -- [i]nspect [n]otifications
-map("n", "<Leader>ip", ":TroubleToggle<CR>", opts)           -- [i]nspect [p]roblems
-map("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", opts) -- [i]nspect [i]ncomming_calls
-map("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", opts)  -- [i]nspect [o]utgoing_calls
-map("n", "<Leader>ic", ":Copilot panel<CR>", opts)           -- [i]nspect [c]opilot suggestions
+map("n", "<Leader>is", ":SymbolsOutline<cr>", opts)      -- [i]nspect [s]ymbols
+map("n", "<Leader>ic", ":ColorizerToggle<CR>", opts)     -- [i]nspect [c]olors
+map("n", "<Leader>ic", ":Copilot panel<CR>", opts)       -- [i]nspect [c]opilot suggestions
+map("n", "<Leader>in", ":Telescope notify<CR>", opts)    -- [i]nspect [n]otifications
+map("n", "<Leader>ip", ":Trouble diagnostics<CR>", opts) -- [i]nspect [p]roblems
 
 map("v", "<Leader>ai", ":'<,'>NeoAIContext<CR>")
 map("n", "<Leader>ai", ":NeoAI<CR>")
@@ -123,10 +119,6 @@ map("n", "<leader>cl", ":noh<CR>", opts);
 map("n", "<leader>m", ":Mason<CR>", opts);
 map("n", "<leader>l", ":Lazy<CR>", opts);
 
--- Find file in NeoTree
-map("n", "<Leader>j", ":Neotree toggle<CR>", opts)
-map("n", "<Leader>f", ":Neotree action=focus reveal=true<CR>", opts)
-
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", opts)
 map("n", "<Right>", ":echo 'No Right for you'<CR><dw>", opts)
@@ -134,8 +126,8 @@ map("n", "<Up>", ":echo 'No Up for you'<CR><dw>", opts)
 map("n", "<Down>", ":echo 'No Down for you'<CR><dw>", opts)
 
 -- Run Scripts
-map("n", "<Leader>r", ":SnipRun<CR>", opts)
-map("v", "<Leader>r", ":'<,'>SnipRun<CR>", opts)
+map("n", "<Leader>r", "<cmd>Neotest run<CR>", opts)
+map("v", "<Leader>r", "<cmd>'<,'>SnipRun<CR>", opts)
 
 map("n", "<Leader>q", ":q<CR>", opts)
 map("n", "<Leader><C-q>", ":qall<CR>", opts)
