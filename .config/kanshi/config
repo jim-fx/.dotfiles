@@ -9,9 +9,12 @@ profile WorkSetup {
 }
 
 profile HomeOffice {
-    output 'LG Electronics IPS226        SerialNumber'    enable mode 1920x1080 position 0,0        scale 1
-    output 'Acer Technologies Acer G226HQL LWUEE0054340'  enable mode 1920x1080 position 1920,0     scale 1
-    output 'AU Optronics 0x2036 Unknown'                  enable mode 2560x1440 position 3840,562   scale 1.5
+    output 'Samsung Electric Company SMS24A450 HVMB900330'  enable mode 1920x1200 position 0,0        scale 1
+    output 'Samsung Electric Company SMS24A450 HVMB900053'  enable mode 1920x1200 position 1920,0     scale 1
+    output 'AU Optronics 0x2036 Unknown'                    enable mode 2560x1440 position 3840,562   scale 1.5
+    exec swaymsg workspace "1: Code",     move workspace to DP-4
+    exec swaymsg workspace "2: Browser",  move workspace to DP-4
+    exec swaymsg workspace "3: Chat",     move workspace to eDP-1
 }
 
 profile WorkSetup2 {

@@ -17,8 +17,23 @@ return {
       window = {
         mappings = {
           ["g"] = "git_add_file",
+          ["o"] = "custom_open",
         }
-      }
+      },
+      filesystem = {
+        commands = {
+          custom_open = function(state)
+            local path = state.tree:get_node().path
+            vim.system({ "xdg-open", vim.fn.fnameescape(path) }, { detach = true })
+          end,
+          -- Override delete to use trash instead of rm
+          delete = function(state)
+            local path = state.tree:get_node().path
+            vim.system({ "trash", vim.fn.fnameescape(path) })
+            require("neo-tree.sources.manager").refresh(state.name)
+          end,
+        },
+      },
     })
   end,
 }

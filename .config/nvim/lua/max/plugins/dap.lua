@@ -1,5 +1,6 @@
 return {
   'mfussenegger/nvim-dap',
+  event = "VeryLazy",
   keys = {
     { '<F5>',       ':DapContinue<CR>',      desc = 'Debug continue' },
     {
@@ -26,30 +27,27 @@ return {
   config = function()
     local dap = require('dap')
     local dapui = require('dapui')
-    --
-    -- Add listeners to automatically open and close dapui
-    vim.notify(8 / vim.api.nvim_win_get_width(0))
 
     dapui.setup({
-      -- layouts = { {
-      --   elements = { {
-      --     id = "scopes",
-      --   }, {
-      --     id = "breakpoints",
-      --     size = 8 / vim.api.nvim_win_get_width(0)
-      --   },
-      --   },
-      --   position = "left",
-      --   size = 40
-      -- }, {
-      --   elements = { {
-      --     id = "repl",
-      --     size = 1
-      --   } },
-      --   position = "bottom",
-      --   size = 8
-      -- }
-      -- },
+      layouts = { {
+        elements = { {
+          id = "scopes",
+        }, {
+          id = "breakpoints",
+          size = 8 / vim.api.nvim_win_get_width(0)
+        },
+        },
+        position = "left",
+        size = 40
+      }, {
+        elements = { {
+          id = "repl",
+          size = 1
+        } },
+        position = "bottom",
+        size = 8
+      }
+      },
     })
 
     dap.listeners.after.event_initialized['dapui_config'] = function()
@@ -99,7 +97,7 @@ return {
       dap_configurations = {
         {
           type = "go",
-          name = "Attach remote",
+          name = "Attach to Docker :4040",
           mode = "remote",
           port = 4040,
           request = "attach",
@@ -109,6 +107,13 @@ return {
               to = '/app/backend'
             },
           },
+        },
+        {
+          type = "go",
+          name = "Attach to :4040",
+          mode = "remote",
+          port = 4040,
+          request = "attach",
         },
         {
           type = "go",

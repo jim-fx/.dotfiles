@@ -212,22 +212,27 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [app_id="blueman-manager"] floating enable
   for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 
-  set $ws1 "1:   Code"
+  set $ws1 "1: Code"
     assign [app_id="Alacritty"] $ws1
     assign [app_id="Kitty"] $ws1
-  set $ws2 "2:   Browser"
+    assign [app_id="wezterm"] $ws1
+    assign [app_id="org.wezfurlong.wezterm"] $ws1
+    
+  set $ws2 "2: Browser"
     assign [class="^Firefox"] $ws2
     assign [class="Chromium"] $ws2
     assign [class="Google-chrome-beta"] $ws2
     assign [app_id="google-chrome-beta"] $ws2
     assign [class="Google-chrome"] $ws2
     assign [app_id="google-chrome"] $ws2
-  set $ws3 "3:   Music"
-    assign [class="Spotify"] $ws3
-    assign [class="spotify"] $ws3
-    assign [app_id="feishin"] $ws3
-    assign [app_id="dev.alextren.Spot"] $ws3
-  set $ws4 "4:   Chat"
+
+  set $ws3 "3: Chat"
+
+  set $ws4 "4: Music"
+    assign [class="Spotify"] $ws4
+    assign [class="spotify"] $ws4
+    assign [app_id="feishin"] $ws4
+    assign [app_id="dev.alextren.Spot"] $ws4
 
   # Switch to workspace
   bindsym $mod+1 workspace $ws1
@@ -349,10 +354,10 @@ exec_always dunst
 # Handle Authentiction requests
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always /usr/lib/kdeconnectd
+exec_always nm-applet --indicator
 exec_always kanshi
 exec_always aw-qt # activitywatch
 exec_always aw-watcher-window-wayland
-exec_always iwgtk -i
 
 # Dimms the screen
 exec_always wlsunset -l 39.47 -L -0.3821346

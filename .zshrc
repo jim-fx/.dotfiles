@@ -25,7 +25,7 @@ if [ -f "$HOME/.config/zsh/antigen.zsh" ] ; then
   antigen bundle git
   # antigen bundle docker
   antigen bundle sudo
-  antigen bundle asdf
+  # antigen bundle asdf
   # antigen bundle jeffreytse/zsh-vi-mode
   antigen theme romkatv/powerlevel10k
   antigen bundle zsh-users/zsh-autosuggestions
@@ -93,6 +93,11 @@ export EDITOR="nvim"
 if [ type open &> /dev/null ]; then
 else
   alias open=xdg-open
+fi
+
+if [ type mise &> /dev/null ]; then
+else
+  eval "$(mise activate zsh)"
 fi
 
 # set PATH so it includes user's private bin if it exists
