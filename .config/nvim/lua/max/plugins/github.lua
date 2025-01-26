@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'pwntester/octo.nvim',
   event = "VeryLazy",
   dependencies = {

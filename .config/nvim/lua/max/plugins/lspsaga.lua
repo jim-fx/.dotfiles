@@ -10,6 +10,12 @@ return {
       symbol_in_winbar = {
         enable = false
       },
+      finder = {
+        keys = {
+          vsplit = "<C-v>",
+          split = "<C-x>",
+        }
+      },
       lightbulb = {
         enable = false
       },
@@ -17,7 +23,6 @@ return {
 
     vim.keymap.set({ "n", "v" }, "<Leader>c", ":Lspsaga code_action<CR>", { silent = true })
     vim.keymap.set({ "n", "v" }, "gr", ":Lspsaga finder<CR>", {})
-
     vim.keymap.set("n", "<Leader>io", ":Lspsaga outline<CR>", {})         -- [i]nspect [o]utline
     vim.keymap.set("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", {}) -- [i]nspect [i]ncomming_calls
     vim.keymap.set("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", {})  -- [i]nspect [o]utgoing_calls

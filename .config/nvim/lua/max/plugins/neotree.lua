@@ -18,6 +18,8 @@ return {
         mappings = {
           ["g"] = "git_add_file",
           ["o"] = "custom_open",
+          ["<C-v>"] = "open_vsplit",
+          ["<C-x>"] = "open_split"
         }
       },
       filesystem = {
