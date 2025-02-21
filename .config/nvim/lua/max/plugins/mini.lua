@@ -15,13 +15,14 @@ return {
     require("mini.surround").setup({
     })
 
-    require("mini.animate").setup({
-      cursor = {
-        enable = true,
-      },
-      resize = {
-        enable = false
-      }
-    })
+    -- require("mini.animate").setup({
+    --   cursor = {
+    --     enable = true,
+    --   },
+    --   resize = {
+    --     enable = false
+    --   }
+    -- })
+    --
   end
 }

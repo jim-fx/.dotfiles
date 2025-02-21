@@ -42,7 +42,7 @@ set $calculator flatpak run io.github.Qalculate
 set $photo_editor gtk-launch ~/.local/share/applications/photopea.desktop
 set $translator com.github.gi_lom.dialect
 set $settings XDG_CURRENT_DESKTOP=GNOME gnome-control-center
-set $quick_notes wezterm start --cwd ~/Notes --class wezterm.floating.notes nvim
+set $quick_notes "wezterm start --cwd ~/Notes --class wezterm.floating.notes -- zsh -i -c nvim"
 
 # Scripts
 
@@ -56,7 +56,9 @@ set $toggle_gaps $sway_scripts/toggle-gaps
 set $toggle_bar $sway_scripts/toggle-bar
 set $open_project $wofi_scripts/open-project
 set $select_window $sway_scripts/select-window
+set $focus_next_tab $sway_scripts/foxus-next-tab
 set $lock_screen swaylock
+set $turn_off_screens $sway_scripts/turn-off-screens
 set $select_emoji $wofi_scripts/select-emoji
 set $open_localhost $wofi_scripts/open-localhost
 set $select_wifi $wofi_scripts/select-wifi
@@ -94,7 +96,7 @@ output * bg `find $HOME/.customization/wallpapers/ -type f -iname \"*.jpg\" -o -
 
 exec swayidle -w \
     timeout 300 $lock_screen \
-    timeout 600 'swaymsg "output * dpms off"' \
+    timeout 600 $turn_off_screens \
          resume 'swaymsg "output * dpms on"' \
     before-sleep $lock_screen
 
@@ -304,7 +306,6 @@ input "1739:24385:Synaptics_TM2438-005" {
 
   bindsym $mod+Control+l exec $lock_screen 
   bindsym $mod+c exec $calculator
-  bindsym $mod+Tab exec $select_window 
 #
 # Scratchpad:
 #

@@ -1,6 +1,13 @@
+local function debug_nearest()
+  require("neotest").run.run({ strategy = "dap" })
+end
+
 return {
   "nvim-neotest/neotest",
   cmd = "Neotest",
+  keys = {
+    { '<leader>dr', debug_nearest, desc = 'Debug nearest test' },
+  },
   config = function()
     require("neotest").setup({
       adapters = {

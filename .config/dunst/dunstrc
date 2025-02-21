@@ -87,7 +87,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "#ffffff"
@@ -118,7 +118,8 @@
 
     ### Text ###
 
-    font = Hack Nerd Font Mono 14
+    # font = Hack Nerd Font Mono 14
+    font = Liga SFMono Nerd Font 14
 
     enable_recursive_icon_lookup = true
 

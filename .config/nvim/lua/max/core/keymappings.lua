@@ -9,7 +9,6 @@ map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", opts)
 map("n", "<C-f>", ":Telescope live_grep<CR>", opts)
 map("n", "<leader>o", ":Telescope buffers<CR>", opts)
 
-
 map('n', '<A-t>', ':term<CR>:setlocal nonumber norelativenumber<CR>i', { noremap = false, silent = true })
 map('t', '<Esc>', "<C-\\><C-n><C-w>h", { silent = true })
 
@@ -112,6 +111,7 @@ map("n", "<C-Right>", ":vertical resize +4<CR>", opts)
 
 -- If i paste with p, the replaced content doesnt replace my clipboard
 map("v", "p", '"_dP', opts)
+map("n", "x", '"_x', opts)
 
 -- clear highlights after search
 map("n", "<leader>cl", ":noh<CR>", opts);

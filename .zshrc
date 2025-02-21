@@ -95,10 +95,7 @@ else
   alias open=xdg-open
 fi
 
-if [ type mise &> /dev/null ]; then
-else
-  eval "$(mise activate zsh)"
-fi
+[[ -s $(which mise) ]] && eval "$(mise activate zsh)"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
@@ -127,10 +124,6 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    export MOZ_ENABLE_WAYLAND=1
-fi
-
 # If podman is installed load the autocompletion
 if type podman &> /dev/null; then
   source <(podman completion zsh)
@@ -139,14 +132,6 @@ fi
 if type podman-compose &> /dev/null; then
   alias pc=podman-compose
 fi
-
-
-# Auto connect to tmux session of ssh
-if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-    # tmux attach-session -t $USER || tmux new-session -s $USER
-fi
-
-source "$HOME/."
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -166,7 +151,3 @@ if type cargo &> /dev/null; then
   export PATH="$HOME/.cargo/bin:$PATH"
   . "$HOME/.cargo/env"
 fi
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/home/max/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
