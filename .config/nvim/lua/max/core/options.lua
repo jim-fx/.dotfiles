@@ -10,6 +10,7 @@ g.loaded_netrwSettings = 1
 g.loaded_netrwFileHandlers = 1
 g.loaded_netrw_gitignore = 1
 
+opt.winborder = "rounded"      -- globally set border to rounded (only since 0.11)
 opt.autowrite = true           -- Enable auto write
 opt.clipboard = "unnamedplus"  -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
@@ -24,7 +25,8 @@ opt.ignorecase = true      -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3         -- laststatus=3 enables global statusline
 opt.list = false           -- Show some invisible characters (tabs...
-opt.mouse = "a"            -- Enable mouse mode
+opt.mouse = ""             -- Enable mouse mode
+opt.ttyfast = true         -- Faster scrolling
 opt.pumblend = 10          -- Popup blend
 opt.pumheight = 10         -- Maximum number of entries in a popup
 vim.cmd [[ set nonu ]]     -- Right align active number

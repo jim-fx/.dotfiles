@@ -11,18 +11,18 @@ return {
         enabled = false
       }
     },
-    views = {
-      cmdline_popup = {
-        border = {
-          style = "single",
-          padding = { 0, 1 },
-        },
-        filter_options = {},
-        win_options = {
-          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-        },
-      },
-    },
+    -- views = {
+    --   cmdline_popup = {
+    --     border = {
+    --       style = "single",
+    --       padding = { 0, 1 },
+    --     },
+    --     filter_options = {},
+    --     win_options = {
+    --       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+    --     },
+    --   },
+    -- },
     presets = {
       bottom_search = true,
       command_palette = true,

@@ -93,8 +93,6 @@ map("n", "<Leader-j>", "}", opts)
 -- Move lines vscode style
 map("n", "<A-j>", ":move +1<CR>", opts)
 map("n", "<A-k>", ":move -2<CR>", opts)
-map("i", "<A-j>", ":move +1<CR>", opts)
-map("i", "<A-k>", ":move -2<CR>", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 map("n", "<A-S-K>", "yyP", opts)

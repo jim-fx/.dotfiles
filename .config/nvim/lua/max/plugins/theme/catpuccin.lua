@@ -12,11 +12,12 @@ return {
     },
     styles = {
       comments = { "italic" },
-      -- strings = { "italic" },
     },
     custom_highlights = function()
       return {
-        Folded = { bg = "#1d1e27" }
+        Folded = { bg = "#1d1e27" },
+        BlinkCmpMenu = { bg = "#000000" },
+        BlinkCmpMenuBorder = { bg = "#000000" }
       }
     end,
     integrations = {
@@ -24,7 +25,7 @@ return {
       telescope = true,
       bufferline = true,
       treesitter = true,
-      cmp = true,
+      blink_cmp = true,
       notify = true,
       neotree = {
         enabled = true,
@@ -44,4 +45,4 @@ return {
       },
     },
   }
-} -- Enable Theming / Syntax
+}

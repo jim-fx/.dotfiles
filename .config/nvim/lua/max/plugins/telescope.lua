@@ -60,12 +60,10 @@ return {
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "truncate" },
         winblend = 0,
-        border = {},
         mappings = {
           i = { ["<c-t>"] = open_with_trouble },
           n = { ["<c-t>"] = open_with_trouble },
         },
-        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
         use_less = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
@@ -79,7 +77,5 @@ return {
 
     telescope.load_extension("notify")
     telescope.load_extension("git_worktree")
-    -- telescope.load_extension("persisted") -- To load the telescope extension
-    --
   end,
 }
