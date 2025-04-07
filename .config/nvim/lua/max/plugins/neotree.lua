@@ -10,8 +10,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim"
   },
-  init = function()
-    vim.g.neo_tree_remove_legacy_commands = 1
+  config = function()
     require("neo-tree").setup({
       hide_root_node = true,
       window = {

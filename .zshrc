@@ -65,8 +65,6 @@ fi
 
 
 export FPATH=$FPATH:~/.config/zsh/completions
-export NVIM_HOME=$HOME/.config/nvim
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export NVR_CMD=""
 
 # Load oh my zsh
@@ -142,6 +140,16 @@ export PATH="$PNPM_HOME:$PATH"
 export PNPM_HOME="/home/max/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+#
+#
+export PATH="$HOME/.flutter/bin:$PATH"
+
+export ANDROID_HOME="$HOME/Android"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+
 
 zvm_after_init_commands+=("bindkey '^[[A' up-line-or-search" "bindkey '^[[B' down-line-or-search")
 

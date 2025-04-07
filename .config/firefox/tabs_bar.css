@@ -1,0 +1,106 @@
+/*================== TABS BAR ==================*/
+
+#TabsToolbar {
+  padding: 6px 0px 2px 6px !important;
+  padding: 0px !important;
+  background: rgba(var(--dark-color), 1) !important;
+  height: 40px !important;
+}
+
+#tabs-newtab-button{
+  display: none !important;
+}
+
+.titlebar-spacer[type="pre-tabs"] {
+  border: 0 !important;
+  display: none;
+}
+
+.tabbrowser-tab .tab-background {
+  margin: 0px !important;
+}
+
+#tabbrowser-tabs:not([movingtab])>.tabbrowser-tab[beforeselected-visible]::after,
+#tabbrowser-tabs[movingtab]>.tabbrowser-tab[visuallyselected]::before,
+.tabbrowser-tab[visuallyselected]::after {
+  opacity: 0 !important;
+}
+
+
+.tab-label::after {
+  content: " ";
+  display: inline-block;
+  width: 9.4px;
+}
+
+.tab-label::before {
+  content: " ";
+  display: inline-block;
+  width: 9.4px;
+}
+
+
+.tabbrowser-tab[visuallyselected] .tab-label::after {
+  content: "\  ]";
+  margin-left: 2px;
+}
+
+.tabbrowser-tab[visuallyselected] .tab-label::before {
+  content: "[ ";
+}
+
+.tab-line {
+  height: 0px !important;
+}
+
+.tabbrowser-tab {
+  border-left: 1px var(--tabs-navbar-separator-style) var(--tabs-navbar-separator-color) !important;
+  border-right: 1px var(--tabs-navbar-separator-style) var(--tabs-navbar-separator-color) !important;
+  margin-left: -1px !important;
+  max-height: 40px !important;
+}
+
+.tabbrowser-tab:not([visuallyselected="true"]),
+.tabbrowser-tab:-moz-lwtheme {
+  color: rgba(var(--secondary-accent-color), 1) !important;
+}
+
+.tabbrowser-tab[selected] {
+  background: rgba(var(--accent-color), 1) !important;
+}
+
+tab[selected="true"] .tab-content {
+  color: rgba(var(--secondary-accent-color), 1) !important;
+}
+
+tab[selected="true"] .tab-background {
+  background: rgba(var(--accent-color), 1) !important;
+  box-shadow: none !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border-left: 0 !important;
+  opacity: 0 !important;
+}
+
+.tab-close-button {
+  transition: all 0.3s ease !important;
+  border-radius: 4px !important;
+}
+
+.tab-close-button:hover {
+  fill-opacity: 1 !important;
+}
+
+.tabbrowser-tab>.tab-stack>.tab-background {
+  border-radius: 4px !important;
+}
+
+.tabbrowser-tab>.tab-stack>.tab-background:not([selected="true"]) {
+  transition: all 0.3s ease !important;
+}
+
+.tabbrowser-tab:hover>.tab-stack>.tab-background:not([selected="true"]) {
+  background-color: rgba(var(--transparent-bgcolor), 0.7) !important;
+}

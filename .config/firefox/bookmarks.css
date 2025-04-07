@@ -1,0 +1,30 @@
+/*================== BOOKMARKS TOOLBAR ==================*/
+
+#PersonalToolbar {
+  background: rgba(var(--dark-color), 1) !important;
+  color: rgba(var(--secondary-accent-color), 1) !important;
+  padding-bottom: 2px !important;
+  padding-top: 1px !important;
+}
+
+toolbarbutton.bookmark-item {
+  transition: all 0.3s ease !important;
+  /* padding: 3px 5px !important; */
+  border-radius: 4px !important;
+}
+
+toolbarbutton.bookmark-item:hover {
+  background: red !important;
+}
+
+toolbarbutton.bookmark-item .toolbarbutton-icon {
+  fill: rgba(var(--secondary-accent-color), 1) !important;
+}
+
+#PlacesToolbar toolbarseparator {
+  -moz-appearance: none !important;
+  width: 1px;
+  margin: 0 8px !important;
+  background-color: rgba(var(--secondary-accent-color), 0.5) !important;
+  padding-inline: 0px !important;
+}

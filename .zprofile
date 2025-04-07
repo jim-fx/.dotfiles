@@ -84,25 +84,16 @@ alias captive="xdg-open http://$(ip --oneline route get 1.1.1.1 | awk '{print $3
 
 if docker compose &> /dev/null
 then
-  alias dc="sudo docker compose"
+  alias dc="docker compose"
 else
   alias dc="sudo docker-compose"
 fi
-
-alias app="dc --profile app"
 
 if podman-compose &> /dev/null; then
   alias pc="podman-compose"
 fi
 
-
-alias d="sudo docker"
-
-alias t="tmux"
-
-function need(){
-  asdf plugin add $1 && asdf install $1 latest && asdf global $1 latest && asdf shell $1 latest
-}
+alias d="docker"
 
 alias nx="pnpm exec nx"
 alias pm="pnpm prisma"

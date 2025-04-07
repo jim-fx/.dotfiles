@@ -1,7 +1,12 @@
 return {
   'saghen/blink.cmp',
   event = "InsertEnter",
-  dependencies = { 'rafamadriz/friendly-snippets', "fang2hou/blink-copilot", "zbirenbaum/copilot.lua" },
+  dependencies = { 
+    'rafamadriz/friendly-snippets', 
+    "fang2hou/blink-copilot", 
+    "zbirenbaum/copilot.lua" 
+  },
+  version = '1.*',
   config = function()
     require("copilot").setup({
       suggestion = { enabled = false },

@@ -28,9 +28,14 @@ This will NOT work correctly if you have hidden tabs such as with tab groups ext
 
 .tabbrowser-tab:only-of-type,
 .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
-  visibility: collapse !important;
+  visibility: visible !important;
   min-height: 0 !important;
-  height: 0;
+  height: 10px;
+}
+
+.tabbrowser-tab:only-of-type,
+.tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"] .tab-content > *{
+  opacity: 0 !important;
 }
 
 /* Fix window controls not being clickable */

@@ -1,0 +1,23 @@
+:root {
+  --accent-color: 220, 220, 220;
+  --secondary-accent-color: 0, 0, 0;
+  --third-accent-color: 0, 0, 0;
+  --light-color: 0, 0, 0;
+  --dark-color: 255, 255, 255;
+  --caption-min-color: 215, 153, 33;
+  --caption-max-color: 69, 133, 136;
+  --caption-close-color: 177, 98, 134;
+}
+
+@media (prefers-color-scheme: Dark) {
+  :root {
+    --accent-color: 30, 30, 30;
+    --secondary-accent-color: 255, 255, 255;
+    --third-accent-color: 255, 255, 255;
+    --light-color: 255, 255, 255;
+    --dark-color: 0, 0, 0;
+    --caption-min-color: 215, 153, 33;
+    --caption-max-color: 69, 133, 136;
+    --caption-close-color: 177, 98, 134;
+  }
+}
