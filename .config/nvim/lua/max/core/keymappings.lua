@@ -5,21 +5,19 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 
 -- Telescope
-map("n", "<C-o>", ":Telescope find_files preview={timeout=1000}<CR>", opts)
+map('n', '<C-o>', function()
+  require "telescope.builtin".find_files({ hidden = vim.g.show_hidden })
+end, opts)
 map("n", "<C-f>", ":Telescope live_grep<CR>", opts)
 map("n", "<leader>o", ":Telescope buffers<CR>", opts)
+map({ "n", "v" }, "<Leader>tt", require("max.functions.translate"), opts)
+map({ "n", "v" }, "<Leader>ts", ":Telescope git_branches", opts)
 
 map('n', '<A-t>', ':term<CR>:setlocal nonumber norelativenumber<CR>i', { noremap = false, silent = true })
 map('t', '<Esc>', "<C-\\><C-n><C-w>h", { silent = true })
 
 map("n", "<Leader><leader>", "za", opts)
 
-local function zenMode()
-  vim.cmd("Neotree close");
-  vim.cmd("NoNeckPain");
-end
-
-map("n", "<Leader>z", zenMode, opts);
 map("n", "<Leader>a", ":Alpha<CR>", opts);
 
 -- LSP Functionality
@@ -57,11 +55,6 @@ map("n", "<Leader>ic", ":Copilot panel<CR>", opts)       -- [i]nspect [c]opilot 
 map("n", "<Leader>in", ":Telescope notify<CR>", opts)    -- [i]nspect [n]otifications
 map("n", "<Leader>ip", ":Trouble diagnostics<CR>", opts) -- [i]nspect [p]roblems
 
-map("v", "<Leader>ai", ":'<,'>NeoAIContext<CR>")
-map("n", "<Leader>ai", ":NeoAI<CR>")
-
-map({ "n", "v" }, "<Leader>t", require("max.functions.translate"), opts)
-
 -- DAP Functionality
 map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)
 
@@ -97,8 +90,11 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 map("n", "<A-S-K>", "yyP", opts)
 map("n", "<A-S-J>", "yyp", opts)
-map("v", ">", ">gv", opts)
-map("v", "<", "<gv", opts)
+
+map("n", "<S-Tab>", "<<", opts)
+map("v", "<S-Tab>", "<<", opts)
+map("n", "<Tab>", ">>", opts)
+map("v", "<Tab>", ">>", opts)
 
 -- resize
 map("n", "<C-Up>", ":resize -4<CR>", opts)

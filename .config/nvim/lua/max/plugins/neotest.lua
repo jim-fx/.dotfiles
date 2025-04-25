@@ -23,7 +23,7 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
 
-    "haydenmeade/neotest-jest",
+    -- Adapters
     "KaiSpencer/neotest-vitest",
     "fredrikaverpil/neotest-golang",
     "MarkEmmons/neotest-deno"

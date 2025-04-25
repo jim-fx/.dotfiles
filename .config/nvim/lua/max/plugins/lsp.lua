@@ -9,12 +9,13 @@ return {
   config = function()
     require("mason").setup()
 
-    vim.lsp.enable("lua-language-server")
     vim.lsp.enable("tsserver")
     vim.lsp.enable("denols")
     vim.lsp.enable("gopls")
     vim.lsp.enable("jsonls")
     vim.lsp.enable("dartls")
+    vim.lsp.enable("htmllsp")
+
 
     vim.diagnostic.config({
       virtual_text = { current_line = true },
