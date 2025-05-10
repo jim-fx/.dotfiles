@@ -1,6 +1,9 @@
 return {
   "goolord/alpha-nvim",
   lazy = false,
+  keys = {
+    { "<Leader>a", "<cmd>Alpha<CR>", desc = "Alpha" },
+  },
   config = function()
     -----------------------------------
     -- Welcome Screen Configuration --

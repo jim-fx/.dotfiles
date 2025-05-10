@@ -5,8 +5,38 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-dap.nvim",
     "nvim-telescope/telescope-fzf-native.nvim",
+    "debugloop/telescope-undo.nvim",
   },
   event = "VeryLazy",
+  keys = {
+    {
+      "<C-o>",
+      function()
+        require "telescope.builtin".find_files({ hidden = vim.g.show_hidden })
+      end,
+      desc = "Find files",
+    },
+    {
+      "<C-f>",
+      "<cmd>Telescope live_grep<CR>",
+      desc = "Live grep"
+    },
+    {
+      "<Leader-o>",
+      "<cmd>Telescope buffers<CR>",
+      desc = "Find buffers"
+    },
+    {
+      "<Leader>tt",
+      require("max.functions.translate"),
+      desc = "Translate"
+    },
+    {
+      "<Leader>ts",
+      "<cmd>Telescope git_branches<CR>",
+      desc = "Switch Git branches"
+    },
+  },
   config = function()
     local telescope = require("telescope")
     telescope.setup({
@@ -77,6 +107,7 @@ return {
 
 
     telescope.load_extension("notify")
+    telescope.load_extension("undo")
     telescope.load_extension("git_worktree")
   end,
 }

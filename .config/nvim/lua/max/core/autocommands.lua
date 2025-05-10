@@ -51,7 +51,7 @@ autocmd({ "BufWinEnter" }, {
 
 
 -- Set up the autocommand for quickfix windows
-autocmd("FileType", {
+autocmd({ "FileType" }, {
   pattern = "qf",
   callback = function()
     local function openInSplit()
@@ -65,14 +65,21 @@ autocmd("FileType", {
     end
 
     vim.api.nvim_buf_set_keymap(0, "n", "<C-v>", openInSplit, { noremap = true, silent = true })
-  end,
+  end
 })
 
-autocmd("LspAttach", {
+autocmd({ "LspAttach" }, {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if not client then return end
-    autocmd("BufWritePre", {
+
+    if client:supports_method('textDocument/documentColor') then
+      if vim.lsp.document_color ~= nil then
+        vim.lsp.document_color.enable(true, args.buf)
+      end
+    end
+
+    autocmd({ "BufWritePre" }, {
       buffer = args.buf,
       callback = function()
         local range = vim.lsp.util.make_range_params(0, client.offset_encoding)
@@ -81,7 +88,7 @@ autocmd("LspAttach", {
           range = range.range,
           context = { only = { 'source.organizeImports', 'source.fixAll' } }
         }
-        if client.supports_method('textDocument/codeAction', { bufnr = args.buf }) then
+        if client.supports_method("textDocument/codeAction", { bufnr = args.buf }) then
           vim.lsp.buf_request(args.buf, 'textDocument/codeAction', params, function(err, res)
             if res then
               for _, r in ipairs(res) do
@@ -91,9 +98,9 @@ autocmd("LspAttach", {
             end
           end)
         end
-      end,
+      end
     })
-  end,
+  end
 })
 
 autocmd({ "BufWinEnter" }, {

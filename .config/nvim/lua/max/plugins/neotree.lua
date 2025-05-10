@@ -1,8 +1,17 @@
+local function go_left()
+  local col = vim.fn.win_screenpos(0)[2]
+  if col == 1 then
+    vim.cmd("Neotree action=focus reveal=true")
+  else
+    vim.cmd("wincmd h")
+  end
+end
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "Neotree",
   keys = {
-    { "<leader>j", "<cmd>Neotree toggle<cr>",                   desc = "NeoTree" },
+    { "<c-h>",     go_left,                                     desc = "NeoTree" },
     { "<leader>f", "<cmd>Neotree action=focus reveal=true<CR>", desc = "NeoTree" },
   },
   dependencies = {

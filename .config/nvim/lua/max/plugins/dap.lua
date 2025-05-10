@@ -15,8 +15,8 @@ return {
   },
   dependencies = {
     {
-    'Nalum/nvim-dap-go',
-    branch = "fix-remote-debug"
+      'Nalum/nvim-dap-go',
+      branch = "fix-remote-debug"
     },
     'daic0r/dap-helper.nvim',
     'rcarriga/nvim-dap-ui',
@@ -32,28 +32,28 @@ return {
     local dapui = require('dapui')
 
     dapui.setup({
-      layouts = { 
+      layouts = {
         {
           position = "right",
           size = 40,
-          elements = { 
+          elements = {
             {
               id = "scopes",
-            }, 
+            },
             {
               id = "breakpoints",
               size = 0.2
             },
           },
-        }, 
-      --   {
-      --   elements = { {
-      --     id = "repl",
-      --     size = 1
-      --   } },
-      --   position = "bottom",
-      --   size = 8
-      -- }
+        },
+        --   {
+        --   elements = { {
+        --     id = "repl",
+        --     size = 1
+        --   } },
+        --   position = "bottom",
+        --   size = 8
+        -- }
       },
     })
 
@@ -73,10 +73,26 @@ return {
       port = "${port}",
       executable = {
         command = "node",
-        args = { "/home/max/.local/bin/js-debug/src/dapDebugServer.js", "${port}" },
+        args = { "/home/max/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js", "${port}" },
       }
     }
 
+    dap.adapters.dart = {
+      type = "executable",
+      command = "dart",
+      args = { "debug_adapter" }
+    }
+
+    dap.configurations.dart = {
+      {
+        type = "dart",
+        request = "launch",
+        name = "Launch Dart Program",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+        args = { "--help" }, -- Note for Dart apps this is args, for Flutter apps toolArgs
+      }
+    }
 
     dap.configurations.typescript = {
       {
@@ -85,11 +101,21 @@ return {
         name = "Deno: Launch debug task",
         runtimeExecutable = "deno",
         runtimeArgs = {
-          "task",
-          "debug",
+          "run",
+          "--inspect-wait",
+          "--allow-all",
+          "--env-file",
+          "main.ts",
         },
         cwd = "${workspaceFolder}",
         attachSimplePort = 9229,
+      },
+      {
+        type = "pwa-node",
+        name = "Deno: Attach to 9229",
+        mode = "remote",
+        port = 9229,
+        request = "attach",
       },
       {
         type = "pwa-node",

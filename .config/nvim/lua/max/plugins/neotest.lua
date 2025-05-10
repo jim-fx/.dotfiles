@@ -2,11 +2,21 @@ local function debug_nearest()
   require("neotest").run.run({ strategy = "dap" })
 end
 
+local function run_nearest()
+  require('neotest').run.run()
+end
+
+local function open_summary()
+  require('neotest').summary.open()
+end
+
 return {
   "nvim-neotest/neotest",
   cmd = "Neotest",
   keys = {
-    { '<leader>dr', debug_nearest, desc = 'Debug nearest test' },
+    { 'tr', debug_nearest, desc = 'Debug nearest test' },
+    { "tt", run_nearest,   desc = "Run nearest test" },
+    { "to", open_summary,  desc = "Open summary" },
   },
   config = function()
     require("neotest").setup({

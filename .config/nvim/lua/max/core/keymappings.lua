@@ -4,49 +4,24 @@ local opts = { noremap = true, silent = true }
 -- Set Leader key
 vim.g.mapleader = " "
 
--- Telescope
-map('n', '<C-o>', function()
-  require "telescope.builtin".find_files({ hidden = vim.g.show_hidden })
-end, opts)
-map("n", "<C-f>", ":Telescope live_grep<CR>", opts)
-map("n", "<leader>o", ":Telescope buffers<CR>", opts)
-map({ "n", "v" }, "<Leader>tt", require("max.functions.translate"), opts)
-map({ "n", "v" }, "<Leader>ts", ":Telescope git_branches", opts)
-
 map('n', '<A-t>', ':term<CR>:setlocal nonumber norelativenumber<CR>i', { noremap = false, silent = true })
 map('t', '<Esc>', "<C-\\><C-n><C-w>h", { silent = true })
 
 map("n", "<Leader><leader>", "za", opts)
 
-map("n", "<Leader>a", ":Alpha<CR>", opts);
-
 -- LSP Functionality
-map("n", "<Leader>n", ":lua vim.diagnostic.goto_next()<CR>", opts)
-map("n", "<Leader>p", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+map("n", "<Leader>k", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+map("n", "<Leader>j", ":lua vim.diagnostic.goto_next()<CR>", opts)
 map("n", "<Leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
 map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
 map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
 map("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
-
 map("n", "<Leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
 
-map("n", "<Leader>u", ":UndotreeToggle<CR>", opts)
-map("n", "<Leader>wq", ":wqall!<CR>", opts)
 map("n", "<Leader>li", ":LspInfo<CR>", opts)
 map("n", "<Leader>lr", ":LspRestart<CR>", opts)
 
--- barbar.nvim
-map('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
-
-local bufferline = require("bufferline");
-for i = 1, 81 do
-  map('n', '<A-' .. i .. '>', function() bufferline.go_to(i, true) end, opts)
-end
-
-map('n', '<A-w>', '<Cmd>bdelete<CR>', opts)
-map('n', '<S-A-w>', '<Cmd>BufferLineCloseOthers<CR>', opts)
 
 -- This is my [i]nspect section,
 map("n", "<Leader>is", ":SymbolsOutline<cr>", opts)      -- [i]nspect [s]ymbols
@@ -55,15 +30,8 @@ map("n", "<Leader>ic", ":Copilot panel<CR>", opts)       -- [i]nspect [c]opilot 
 map("n", "<Leader>in", ":Telescope notify<CR>", opts)    -- [i]nspect [n]otifications
 map("n", "<Leader>ip", ":Trouble diagnostics<CR>", opts) -- [i]nspect [p]roblems
 
--- DAP Functionality
-map("n", "<Leader>b", ":lua require('dap').toggle_breakpoint()<CR>", opts)
-
--- Test Functionality
-map("n", "tt", ":lua require('neotest').run.run()<CR>", opts)
-map("n", "to", ":lua require('neotest').summary.open()<CR>", opts)
-
 -- Navigate Buffers
-map("n", "<C-h>", "<C-w>h", opts)
+-- map("n", "<C-h>", "<C-w>h", opts) -- overwritten by neotree
 map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
@@ -91,6 +59,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 map("n", "<A-S-K>", "yyP", opts)
 map("n", "<A-S-J>", "yyp", opts)
 
+-- indent lines like a normal human being
 map("n", "<S-Tab>", "<<", opts)
 map("v", "<S-Tab>", "<<", opts)
 map("n", "<Tab>", ">>", opts)
@@ -102,16 +71,15 @@ map("n", "<C-Down>", ":resize +4<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -4<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +4<CR>", opts)
 
-
 -- If i paste with p, the replaced content doesnt replace my clipboard
 map("v", "p", '"_dP', opts)
 map("n", "x", '"_x', opts)
 
--- clear highlights after search
+-- [cl]ear highlights after search
 map("n", "<leader>cl", ":noh<CR>", opts);
 
-map("n", "<leader>m", ":Mason<CR>", opts);
-map("n", "<leader>l", ":Lazy<CR>", opts);
+map("n", "<leader>l", ":Mason<CR>", opts); -- l for [l]sp servers
+map("n", "<leader>p", ":Lazy<CR>", opts);  -- p for [p]lugins
 
 -- I aint no weak boy
 map("n", "<Left>", ":echo 'No Left for you'<CR><i><dw>", opts)
@@ -119,10 +87,8 @@ map("n", "<Right>", ":echo 'No Right for you'<CR><dw>", opts)
 map("n", "<Up>", ":echo 'No Up for you'<CR><dw>", opts)
 map("n", "<Down>", ":echo 'No Down for you'<CR><dw>", opts)
 
--- Run Scripts
-map("n", "<Leader>r", "<cmd>Neotest run<CR>", opts)
-map("v", "<Leader>r", "<cmd>'<,'>SnipRun<CR>", opts)
-
+-- Quit pro quo
+map("n", "<Leader>wq", ":wqall!<CR>", opts)
 map("n", "<Leader>q", ":q<CR>", opts)
 map("n", "<Leader><C-q>", ":qall<CR>", opts)
 
