@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$1" == "--toggle" ]; then
+  # Toggle mute state
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+fi
+
+# Check current mute state
+MUTE_STATE=$(pactl get-source-mute @DEFAULT_SOURCE@ | grep -oP '(?<=Mute: ).*')
+
+# Output the corresponding icon based on the mute state
+if [ "$MUTE_STATE" == "yes" ]; then
+    echo '{"text": "", "tooltip": "Microphone is muted", "class": "muted"}'
+else
+    echo '{"text": "", "tooltip": "Microphone is active", "class": "active"}'
+fi

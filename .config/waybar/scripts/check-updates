@@ -1,0 +1,44 @@
+#!/bin/bash
+
+ICON="󰚰"
+
+
+# Check for pacman updates
+pacman_updates=$(checkupdates 2>/dev/null | wc -l)
+
+# Check for yay updates
+yay_updates=$(yay -Qua 2>/dev/null | wc -l)
+
+# Check for flatpak updates
+flatpak_updates=$(flatpak update --appstream -y > /dev/null && flatpak remote-ls --updates 2>/dev/null | wc -l)
+
+# Sum all updates
+total_updates=$((pacman_updates + yay_updates + flatpak_updates))
+
+update_all() {
+
+    notify-send "Updating $total_updates Packages" -i $HOME/.local/share/icons/WhiteSur-dark/actions/symbolic/update-symbolic.svg;
+
+    # Redirect output to /dev/null to prevent displaying in the bar
+    sudo pacman -Syu --noconfirm > /dev/null 2>&1
+    yay -Syu --noconfirm > /dev/null 2>&1
+    flatpak update -y > /dev/null 2>&1
+
+    notify-send "Finished Updating" -i $HOME/.local/share/icons/WhiteSur-dark/actions/16/checkmark.svg;
+    
+    # After updating, sleep for a moment to let Waybar refresh
+    sleep 5
+}
+
+if [ "$1" == "update" ]; then
+    update_all
+    exit 0
+fi
+
+
+if [ $total_updates -gt 0 ]; then
+    echo "{\"text\": \"$total_updates $ICON\", \"tooltip\": \"Pacman: $pacman_updates, Yay: $yay_updates, Flatpak: $flatpak_updates\"}"
+else
+    echo ""
+fi
+
