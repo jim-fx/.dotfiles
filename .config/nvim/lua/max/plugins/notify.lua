@@ -3,7 +3,7 @@ return {
   config = function()
     local notify = require("notify")
     notify.setup({
-      level = vim.log.levels.WARN,
+      -- level = vim.log.levels.WARN,
       merge_duplicates = true,
       stages = "fade_in_slide_out",
       max_width = 50,

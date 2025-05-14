@@ -141,3 +141,15 @@ autocmd("User", {
     })
   end,
 })
+
+autocmd({ "BufWritePost" }, {
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+});
+
+autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+});
