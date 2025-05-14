@@ -8,7 +8,7 @@ profile WorkSetup {
     output "Dell Inc. DELL U2722D CS0X7H3" enable  mode 2560x1440@59.951Hz    position 4266,282  scale 1
 }
 
-profile HomeOffice {
+profile HomeOfficeLaptop {
     output 'Samsung Electric Company SMS24A450 HVMB900330'  enable mode 1920x1200 position 0,0        scale 1
     output 'Samsung Electric Company SMS24A450 HVMB900053'  enable mode 1920x1200 position 1920,0     scale 1
     output 'AU Optronics 0x2036 Unknown'                    enable mode 2560x1440 position 3840,562   scale 1.5
@@ -16,6 +16,15 @@ profile HomeOffice {
     exec swaymsg workspace "2: Browser",  move workspace to DP-4
     exec swaymsg workspace "3: Chat",     move workspace to eDP-1
 }
+
+profile HomeOffice {
+    output 'Samsung Electric Company SMS24A450 HVMB900330'  enable mode 1920x1200 position 0,0        scale 1
+    output 'Samsung Electric Company SMS24A450 HVMB900053'  enable mode 1920x1200 position 1920,0     scale 1
+    exec swaymsg workspace "1: Code",     move workspace to DP-4
+    exec swaymsg workspace "2: Browser",  move workspace to DP-4
+    exec swaymsg workspace "3: Chat",     move workspace to eDP-1
+}
+
 
 profile WorkSetup2 {
   output 'AU Optronics 0x2036 Unknown'    enable mode 2560x1440 position 6400,945 scale 1.5

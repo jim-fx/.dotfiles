@@ -353,15 +353,16 @@ exec_always dunst
 # Start Audio
 # exec_always pulseaudio --start
 # Handle Authentiction requests
-exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always /usr/lib/kdeconnectd
 exec_always nm-applet --indicator
+exec_always blueman-applet
 exec_always kanshi
-exec_always aw-qt # activitywatch
-exec_always aw-watcher-window-wayland
+# exec_always aw-qt # activitywatch
+# exec_always aw-watcher-window-wayland
 
 # Dimms the screen
-exec_always wlsunset -l 39.47 -L -0.3821346
+# exec_always wlsunset -l 39.47 -L -0.3821346
 
 # Clipboard
 exec_always clipman

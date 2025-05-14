@@ -54,8 +54,8 @@
 }
 
 .tabbrowser-tab {
-  border-left: 1px var(--tabs-navbar-separator-style) var(--tabs-navbar-separator-color) !important;
-  border-right: 1px var(--tabs-navbar-separator-style) var(--tabs-navbar-separator-color) !important;
+  border-left: 1px var(--tabs-navbar-separator-style) var(--separator) !important;
+  border-right: 1px var(--tabs-navbar-separator-style) var(--separator) !important;
   margin-left: -1px !important;
   max-height: 40px !important;
 }

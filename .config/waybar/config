@@ -19,7 +19,7 @@
     "custom/dpi",
     "custom/theme",
     "pulseaudio",
-    "network",
+    "custom/network",
     "battery"
   ],
   "custom/theme": {
@@ -89,14 +89,20 @@
       "default": ""
     }
   },
-  "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "󱚵",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  // "network": {
+  //   "family":"ipv4",
+  //   "exec": "~/.config/waybar/scripts/network",
+  //   "format-wifi": "{essid} ({signalStrength}%)",
+  //   "format-ethernet": "{ipaddr}/{cidr}",
+  //   "tooltip-format": "{ifname} via {gwaddr}",
+  //   "format-linked": "{ifname} (No IP) ",
+  //   "format-disconnected": "󱚵",
+  //   "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  // },
+  "custom/network": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/network",
+    "interval": 5
   },
   "pulseaudio": {
     "format": "{volume}% {icon}    {format_source}",
@@ -106,9 +112,9 @@
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "headphone": "󰋋",
+      "hands-free": "󰥰",
+      "headset": "󰋎",
       "phone": "",
       "portable": "",
       "car": "",

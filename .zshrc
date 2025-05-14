@@ -97,7 +97,7 @@ exists-dir "$HOME/.flutter" && {
   export PATH="$HOME/.flutter/bin:$PATH"
 }
 
-exists android-studio && {
+exists-dir "$HOME/Android" && {
   export ANDROID_HOME="$HOME/Android"
   export ANDROID_SDK_ROOT="$ANDROID_HOME"
   export PATH="$PATH:$ANDROID_HOME/platform-tools"

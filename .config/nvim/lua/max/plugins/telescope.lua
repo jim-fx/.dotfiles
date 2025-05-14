@@ -27,11 +27,6 @@ return {
       desc = "Find buffers"
     },
     {
-      "<Leader>tt",
-      require("max.functions.translate"),
-      desc = "Translate"
-    },
-    {
       "<Leader>ts",
       "<cmd>Telescope git_branches<CR>",
       desc = "Switch Git branches"
