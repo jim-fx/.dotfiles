@@ -12,7 +12,6 @@ return {
       automatic_enable = false
     }
 
-
     vim.lsp.config("denols", {
       root_markers = { "deno.json", "deno.jsonc", "deno.lock" },
       workspace_required = true,
@@ -32,10 +31,12 @@ return {
       "jsonls",
       "ltex",
       "ts_ls",
+      "svelte"
     })
 
 
     vim.diagnostic.config({
+      source = true,
       virtual_text = { current_line = true },
       virtual_lines = false,
     })

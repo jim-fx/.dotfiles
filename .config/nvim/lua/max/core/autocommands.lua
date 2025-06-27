@@ -17,22 +17,14 @@ autocmd({ "BufReadPost" }, {
   end,
 })
 
-local save_fold = augroup("Persistent Folds", { clear = true })
-autocmd({ "BufWinLeave" }, {
-  pattern = "*.*",
-  callback = function()
-    vim.cmd.mkview()
-  end,
-  group = save_fold,
-})
-
-autocmd({ "BufReadPost" }, {
-  pattern = "*.http",
-  callback = function()
-    vim.bo.filetype = "http"
-  end,
-  group = save_fold,
-})
+-- local save_fold = augroup("Persistent Folds", { clear = true })
+-- autocmd({ "BufWinLeave" }, {
+--   pattern = "*.*",
+--   callback = function()
+--     vim.cmd.mkview()
+--   end,
+--   group = save_fold,
+-- })
 
 autocmd({ "BufWritePre" }, {
   pattern = "*",

@@ -1,7 +1,12 @@
+-- Lua
 return {
-  "olimorris/persisted.nvim",
+  "folke/persistence.nvim",
   lazy = false,
-  opts = {
-    autoload = true,
-  },
+  config = function()
+    require("persistence").setup({
+      need = 1,
+      branch = true,
+    })
+    require("persistence").load()
+  end
 }

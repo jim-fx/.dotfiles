@@ -5,26 +5,26 @@ return {
     'nvim-treesitter/nvim-treesitter', -- optional
     'nvim-tree/nvim-web-devicons',     -- optional
   },
-  config = function()
-    require("lspsaga").setup({
-      symbol_in_winbar = {
-        enable = false
-      },
-      finder = {
-        keys = {
-          vsplit = "<C-v>",
-          split = "<C-x>",
-        }
-      },
-      lightbulb = {
-        enable = false
-      },
-    })
-
-    vim.keymap.set({ "n", "v" }, "<Leader>c", ":Lspsaga code_action<CR>", { silent = true })
-    vim.keymap.set({ "n", "v" }, "gr", ":Lspsaga finder<CR>", {})
-    vim.keymap.set("n", "<Leader>io", ":Lspsaga outline<CR>", {})         -- [i]nspect [o]utline
-    vim.keymap.set("n", "<Leader>ii", ":Lspsaga incomming_calls<CR>", {}) -- [i]nspect [i]ncomming_calls
-    vim.keymap.set("n", "<Leader>io", ":Lspsaga outgoing_calls<CR>", {})  -- [i]nspect [o]utgoing_calls
-  end
+  keys = {
+    { "<Leader>c", "<cmd>Lspsaga code_action<CR>",     desc = "Code Action" },
+    { "gr", "<cmd>Lspsaga finder<CR>",          desc = "Finder" },
+    { "<S-C-K>",    "<cmd>Lspsaga peek_definition<CR>", desc = "Definition" },
+    { "<Leader>io", "<cmd>Lspsaga outline<CR>",         desc = "Outline" },
+    { "<Leader>ii", "<cmd>Lspsaga incomming_calls<CR>", desc = "Incomming Calls" },
+    { "<Leader>io", "<cmd>Lspsaga outgoing_calls<CR>",  desc = "Outgoing Calls" },
+  },
+  opts = {
+    symbol_in_winbar = {
+      enable = false
+    },
+    lightbulb = {
+      enable = false,
+    },
+    finder = {
+      keys = {
+        vsplit = "<C-v>",
+        split = "<C-x>",
+      }
+    },
+  },
 }
