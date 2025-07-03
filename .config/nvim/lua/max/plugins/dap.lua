@@ -83,6 +83,11 @@ return {
       args = { "debug_adapter" }
     }
 
+    dap.adapters.php = {
+      type = "executable",
+      command = "node",
+    }
+
     dap.configurations.dart = {
       {
         type = "dart",

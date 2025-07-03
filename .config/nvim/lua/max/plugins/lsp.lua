@@ -31,7 +31,8 @@ return {
       "jsonls",
       "ltex",
       "ts_ls",
-      "svelte"
+      "svelte",
+      "phpactor"
     })
 
 

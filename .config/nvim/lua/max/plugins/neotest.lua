@@ -24,6 +24,11 @@ return {
         require("neotest-vitest")({}),
         require("neotest-golang")({}),
         require("neotest-deno")({}),
+        require("neotest-phpunit")({
+          phpunit_cmd = function()
+            return "bin/phpunit"
+          end
+        }),
       },
     })
   end,
@@ -34,6 +39,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
 
     -- Adapters
+    "olimorris/neotest-phpunit",
     "KaiSpencer/neotest-vitest",
     "fredrikaverpil/neotest-golang",
     "MarkEmmons/neotest-deno"
