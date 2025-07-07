@@ -95,7 +95,15 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
   # Blue current directory.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$white
+  if [[ -f /.dockerenv ]]; then
+    # Inside Docker - set blue
+    typeset -g POWERLEVEL9K_DIR_FOREGROUND=33  # blue
+    typeset -g POWERLEVEL9K_DIR_BACKGROUND=NONE
+  else
+    # Outside Docker - default color
+    typeset -g POWERLEVEL9K_DIR_FOREGROUND=$white
+    typeset -g POWERLEVEL9K_DIR_BACKGROUND=NONE
+  fi
 
   # Context format when root: user@host. The first part white, the rest grey.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$white}%n%f%F{$grey}@%m%f"
