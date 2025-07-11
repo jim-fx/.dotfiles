@@ -115,11 +115,45 @@ exists fdfind && {
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 }
 
+
+fzf-history-from-file() {
+  local histfile=${HISTFILE:-$HOME/.zsh_history}
+  local selected
+
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases noglob nobash_rematch 2> /dev/null
+
+  if [[ -r "$histfile" ]]; then
+    local history_lines
+
+    # Detect EXTENDED_HISTORY format (starts with ": timestamp:duration;")
+    if grep -qE '^: [0-9]+:' "$histfile"; then
+      history_lines=$(cut -d ';' -f2- < "$histfile")
+    else
+      history_lines=$(<"$histfile")
+    fi
+
+    # Deduplicate while preserving order (first seen wins)
+    selected=$(print -r -- "$history_lines" | tac | awk '!seen[$0]++' | \
+      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-r:toggle-sort --wrap-sign '\t↳ ' --highlight-line ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m") \
+      FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd))
+  fi
+
+  local ret=$?
+  if [[ -n "$selected" ]]; then
+    LBUFFER="$selected"
+  fi
+
+  zle reset-prompt
+  return $ret
+}
+zle -N fzf-history-from-file
+
 exists fzf && {
+  setopt INC_APPEND_HISTORY
   source <(fzf --zsh)
-  bindkey -M viins '^R' fzf-history-widget
-  bindkey -M vicmd '^R' fzf-history-widget
-  bindkey '^R' fzf-history-widget
+  bindkey -M viins '^R' fzf-history-from-file
+  bindkey -M vicmd '^R' fzf-history-from-file
+  bindkey '^R' fzf-history-from-file
 }
 
 exists pnpm && {

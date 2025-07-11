@@ -1,2 +1,5 @@
 *
 mise.toml
+mise.local.toml
+compose.local.override.yml
+compose.local.override.yaml

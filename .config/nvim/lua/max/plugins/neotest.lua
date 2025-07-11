@@ -25,6 +25,7 @@ return {
         require("neotest-golang")({}),
         require("neotest-deno")({}),
         require("neotest-phpunit")({
+          filter_dirs = { "vendor" },
           phpunit_cmd = function()
             return "bin/phpunit"
           end
