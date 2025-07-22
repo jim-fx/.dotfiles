@@ -205,6 +205,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [title="Zoom Meeting.*"] floating disable
   for_window [title="Firefox Developer Edition — Sharing Indicator"] floating enable, sticky enable, move position 10 980, resize set 75 50
   for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, move position 10 980, resize set 75 50
+  for_window [app_id="firefox" title="\bBitwarden\b"] floating enable, sticky enable, move position 10 980, resize set 75 50
   for_window [title="Property Browser"] floating enable
   for_window [title="Picture in Picture"] floating enable
   for_window [title="Zoom Meeting.*"] inhibit_idle visible
@@ -363,6 +364,8 @@ exec_always kanshi
 
 # Dimms the screen
 # exec_always wlsunset -l 39.47 -L -0.3821346
+xwayland enable
+
 
 # Clipboard
 exec_always clipman
