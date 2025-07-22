@@ -12,16 +12,6 @@ return {
       automatic_enable = true
     }
 
-    vim.lsp.config("denols", {
-      root_markers = { "deno.json", "deno.jsonc", "deno.lock" },
-      workspace_required = true,
-    })
-
-    vim.lsp.config("ts_ls", {
-      root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json' },
-      workspace_required = true,
-    })
-
     vim.lsp.enable({
       "dartls",
       "denols",
@@ -32,9 +22,9 @@ return {
       "ltex",
       "ts_ls",
       "svelte",
+      "lua_ls",
       "phpactor"
     })
-
 
     vim.diagnostic.config({
       source = true,
