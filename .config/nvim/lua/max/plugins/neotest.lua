@@ -13,6 +13,23 @@ end
 return {
   "nvim-neotest/neotest",
   cmd = "Neotest",
+  dependencies = {
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+
+    -- Adapters
+    "olimorris/neotest-phpunit",
+    "KaiSpencer/neotest-vitest",
+    "MarkEmmons/neotest-deno",
+    {
+      "fredrikaverpil/neotest-golang",
+      version = "*",
+      build = function()
+        vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait()
+      end,
+    },
+  },
   keys = {
     { 'tr', debug_nearest, desc = 'Debug nearest test' },
     { "tt", run_nearest,   desc = "Run nearest test" },
@@ -22,7 +39,9 @@ return {
     require("neotest").setup({
       adapters = {
         require("neotest-vitest")({}),
-        require("neotest-golang")({}),
+        require("neotest-golang")({
+          runner = "gotestsum",
+        }),
         require("neotest-deno")({}),
         require("neotest-phpunit")({
           filter_dirs = { "vendor" },
@@ -33,16 +52,4 @@ return {
       },
     })
   end,
-  dependencies = {
-    "nvim-neotest/nvim-nio",
-    "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
-
-    -- Adapters
-    "olimorris/neotest-phpunit",
-    "KaiSpencer/neotest-vitest",
-    "fredrikaverpil/neotest-golang",
-    "MarkEmmons/neotest-deno"
-  },
 }
