@@ -1,0 +1,9 @@
+#!/bin/bash
+
+OUTPUTS=$(swaymsg -t get_outputs --raw | jq '.[] | .name')
+for OUTPUT in $OUTPUTS; do
+  if [ "$OUTPUT" == "\"eDP-1\"" ]; then
+    continue
+  fi
+  swaymsg "output $OUTPUT dpms off"
+done

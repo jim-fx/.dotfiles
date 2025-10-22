@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_ID="webcam-overlay"
+TITLE="Webcam"
+DEV="${1:-/dev/video4}"        # override with first arg
+SIZE="${SIZE:-1280x720}"       # camera mode
+FPS="${FPS:-30}"
+WIN_W="${WIN_W:-320}"          # window size (pixels)
+WIN_H="${WIN_H:-240}"
+
+# Try to lock the camera to MJPEG @ desired mode (best for smoothness)
+if command -v v4l2-ctl >/dev/null 2>&1; then
+  v4l2-ctl -d "$DEV" \
+    --set-fmt-video=width="${SIZE%x*}",height="${SIZE#*x}",pixelformat=MJPG \
+    --set-parm="$FPS" >/dev/null 2>&1 || true
+fi
+
+# Toggle behavior: if already running, kill it.
+if pgrep -f "wayland-app-id=${APP_ID}" >/dev/null 2>&1; then
+  pkill -f "wayland-app-id=${APP_ID}"
+  exit 0
+fi
+
+exec mpv "av://v4l2:${DEV}" \
+  --demuxer-lavf-o="video_size=${SIZE},framerate=${FPS},input_format=mjpeg" \
+  --profile=low-latency --no-cache --untimed --vd-lavc-threads=1 \
+  --geometry="${WIN_W}x${WIN_H}" \
+  --title="${TITLE}" \
+  --wayland-app-id="${APP_ID}"

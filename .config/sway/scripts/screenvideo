@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Directories to save screenshots and recordings
+recording_dir=~/Videos/Recordings
+mkdir -p "$recording_dir"
+
+# Get the current date and time
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Path to save the screen recording PID
+recording_pid_file=/tmp/screenrecording_pid
+
+# Function to start a screen recording
+start_recording() {
+    recording_path="$recording_dir/recording_$timestamp.mp4"
+    case $1 in
+        "screen")
+            wf-recorder -f "$recording_path" &
+            ;;
+        "window")
+            GEOM=$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
+            wf-recorder -f "$recording_path" -g "$GEOM" &
+            ;;
+        "area")
+            wf-recorder --audio -f "$recording_path" -g "$(slurp)" &
+            ;;
+    esac
+    echo $! > "$recording_pid_file"
+    echo "$recording_path" >> "$recording_pid_file"
+}
+
+# Check if a recording is currently running
+if [ -f "$recording_pid_file" ]; then
+    recording_pid=$(sed -n '1p' "$recording_pid_file")
+    recording_path=$(sed -n '2p' "$recording_pid_file")
+    if kill -0 "$recording_pid" 2>/dev/null; then
+        kill "$recording_pid"
+        rm "$recording_pid_file"
+        open=$(notify-send -a "Screen Recording" -u low "Screen recording stopped" "Rightclick to open" --action 'open=Open File' -i "/home/max/.local/share/icons/WhiteSur/mimes@2x/scalable/video.svg")
+
+        if [ $open = "open" ]; then
+            nautilus --select "$recording_path" 
+        fi
+
+        exit 0
+    else
+        rm "$recording_pid_file"
+    fi
+fi
+
+# Show the menu using wofi
+choice=$(echo -e "record window\nrecord area\nrecord screen" | wofi --dmenu --prompt="Select an option")
+
+case $choice in
+    "record window")
+        start_recording "window"
+        ;;
+    "record area")
+        start_recording "area"
+        ;;
+    "record screen")
+        start_recording "screen"
+        ;;
+    *)
+        notify-send "Invalid selection"
+        ;;
+esac
