@@ -15,14 +15,14 @@ start_recording() {
     recording_path="$recording_dir/recording_$timestamp.mp4"
     case $1 in
         "screen")
-            wf-recorder -f "$recording_path" &
+            wf-recorder -a --audio=loopback.monitor -f "$recording_path" &
             ;;
         "window")
             GEOM=$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
-            wf-recorder -f "$recording_path" -g "$GEOM" &
+            wf-recorder -a --audio=loopback.monitor -f "$recording_path" -g "$GEOM" &
             ;;
         "area")
-            wf-recorder --audio -f "$recording_path" -g "$(slurp)" &
+            wf-recorder -a --audio=loopback.monitor -f "$recording_path" -g "$(slurp)" &
             ;;
     esac
     echo $! > "$recording_pid_file"

@@ -1,8 +1,7 @@
 * {
   border: none;
-  font-family: Font Awesome, Hack Nerd Font Mono;
+  font-family: SFMono Nerd Font, Font Awesome, Hack Nerd Font Mono;
   font-weight: 600;
-  font-size: 13px;
 }
 
 window#waybar {

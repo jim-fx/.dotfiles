@@ -1,4 +1,4 @@
+---@type vim.lsp.Config
 return {
-  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json' },
-  workspace_required = true,
+  root_markers = {'tsconfig.json', 'package.json', 'jsconfig.json'},
 }

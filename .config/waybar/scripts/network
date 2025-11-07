@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Icons
+ICON_ETHERNET="󰈀 "  # Ethernet plug
+ICON_WIFI=" "      # Wi-Fi
+ICON_NO_IP=""
+ICON_DISCONNECTED="󱚵 "
+
+# Detect first active non-loopback IPv4 interface
+IFACE=$(ip -4 -o addr show up | awk '!/ lo / {print $2; exit}')
+
+if [ -z "${IFACE:-}" ]; then
+  echo "$ICON_DISCONNECTED"
+  exit 0
+fi
+
+# Determine interface type by name
+if [[ "$IFACE" == wl* ]]; then
+  ICON="$ICON_WIFI"
+elif [[ "$IFACE" == en* || "$IFACE" == eth* ]]; then
+  ICON="$ICON_ETHERNET"
+else
+  ICON=""  # Unknown
+fi
+
+# Get IPv4 address
+ADDR_CIDR=$(ip -4 -o addr show "$IFACE" | awk '{print $4}')
+
+# Get gateway
+GW=$(ip route | awk -v iface="$IFACE" '$1 == "default" && $5 == iface { print $3; exit }')
+
+# Output
+if [ -n "$ADDR_CIDR" ]; then
+  echo "$ADDR_CIDR $ICON"
+  echo "$IFACE via ${GW:-n/a}" >&2
+else
+  echo "$IFACE has no IPv4 address" >&2
+  echo "$IFACE $ICON_NO_IP "
+fi
+

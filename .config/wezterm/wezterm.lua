@@ -58,7 +58,7 @@ end
 
 return utils.merge({
   font = wezterm.font_with_fallback({
-    "Liga SFMono Nerd Font",
+    "SFMono Nerd Font",
     "Apple Color Emoji",
   }),
   font_size = 12.1,

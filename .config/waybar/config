@@ -6,7 +6,7 @@
   "hidden_state": "show",
   "modules-left": [
     "clock",
-    "custom/waybar-mpris",
+    "mpris",
     "custom/updates"
   ],
   "modules-center": [
@@ -79,7 +79,7 @@
     "sort-by-number": true
   },
   "sway/workspaces": {
-    "format": "{icon}  {name}",
+    "format": "{icon}{name}",
     "format-icons": {
       "1: Code": "",
       "2: Browser": "󰖟",
@@ -105,9 +105,9 @@
     "interval": 5
   },
   "pulseaudio": {
-    "format": "{volume}% {icon}    {format_source}",
+    "format": "{volume}% {icon}  {format_source}",
     "format-bluetototh": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
     "format-source": "{volume}% ",
     "format-source-muted": "",
@@ -134,17 +134,23 @@
     "tooltip": true,
     "on-click": "~/.config/waybar/scripts/check-updates update"
   },
-  "custom/waybar-mpris": {
-    "max-length": 30,
-    "return-type": "json",
-    "exec": "waybar-mpris --position --autofocus --order ARTIST:ALBUM:TITLE:POSITION:SYMBOL",
-    "on-click": "waybar-mpris --send toggle",
-    "on-click-right": "waybar-mpris --send player-next",
-    "escape": true
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+     "title-len": 32,
+     "album-len": 0,
+     "artist-len": 0,
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    }
   },
   "tray": {
     "icon-size": 16,
     "spacing": 0
-  },
+  }
 }
 // vi: ft=jsonc
