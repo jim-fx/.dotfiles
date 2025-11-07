@@ -1,0 +1,41 @@
+#!/bin/bash
+
+PIDFILE="$HOME/.cache/keep-alive.pid"
+ACTIVE_ICON="☕"
+INACTIVE_ICON="😴"
+
+is_running() {
+    if [ -f "$PIDFILE" ]; then
+        local pid
+        pid=$(cat "$PIDFILE")
+        if [ -n "$pid" ] && ps -p "$pid" > /dev/null; then
+            return 0 # is running
+        else
+            # process is not running, cleanup pidfile
+            rm -f "$PIDFILE"
+            return 1
+        fi
+    fi
+    return 1 # is not running
+}
+
+toggle() {
+    if is_running; then
+        kill "$(cat "$PIDFILE")"
+        rm -f "$PIDFILE"
+    else
+        nohup systemd-inhibit --what=idle --who="waybar-keep-alive" --why="Manual toggle" sleep infinity >/dev/null 2>&1 &
+        echo $! > "$PIDFILE"
+    fi
+}
+
+if [ "$1" == "--toggle" ]; then
+    toggle
+    exit 0
+fi
+
+if is_running; then
+    echo "{\"text\": \"$ACTIVE_ICON\", \"tooltip\": \"Idle sleep is disabled\"}"
+else
+    echo "{\"text\": \"$INACTIVE_ICON\", \"tooltip\": \"Idle sleep is enabled\"}"
+fi

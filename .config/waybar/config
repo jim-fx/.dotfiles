@@ -17,11 +17,18 @@
     "custom/pacman",
     "custom/power-profile",
     "custom/dpi",
+    "custom/keep-alive",
     "custom/theme",
     "pulseaudio",
     "custom/network",
     "battery"
   ],
+  "custom/keep-alive": {
+    "exec": "~/.config/waybar/scripts/keep-alive",
+    "on-click": "~/.config/waybar/scripts/keep-alive --toggle",
+    "return-type": "json",
+    "interval": 2
+  },
   "custom/theme": {
     "exec": "~/.config/waybar/scripts/toggle-theme",
     "on-click": "~/.config/waybar/scripts/toggle-theme --toggle",
