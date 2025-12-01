@@ -44,14 +44,10 @@ return {
         wezterm = {
           module = "blink-cmp-wezterm",
           name = "wezterm",
-          -- default options
+          score_offset = -50,
           opts = {
             all_panes = false,
             capture_history = false,
-            -- only suggest completions from `wezterm` if the `trigger_chars` are
-            -- used
-            triggered_only = false,
-            trigger_chars = { "." }
           },
         },
       },

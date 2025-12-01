@@ -140,6 +140,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   bindsym $mod+p exec $password_mngr
   bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
   bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
+  bindsym $mod+v exec wtype "$(wl-paste --no-newline)"
 
   # Drag and resize floating windows with mouse right/left drag
   floating_modifier $mod normal

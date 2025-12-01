@@ -9,5 +9,5 @@ return {
     },
     provideFormatter = true
   },
-  root_markers = { "package.json", ".git" }
+  root_markers = { "package.json" }
 }

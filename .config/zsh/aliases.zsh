@@ -3,6 +3,7 @@ alias -s {yml,yaml,ts,json,js,vim,rc}=nvim
 alias pls='sudo -E env "PATH=$PATH"'
 
 alias v="nvim"
+alias lv="NVIM_APPNAME=lazyvim nvim"
 
 alias D="run dev"
 alias B="run build"

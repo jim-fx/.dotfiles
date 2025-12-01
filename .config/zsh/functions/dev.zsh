@@ -4,7 +4,7 @@ function dev() {
   case "$1" in
     start)
       shift
-      docker compose -f "$PROJECT_DIR/docker-compose.yml" --profile "$@" up -d
+      docker compose -f "$PROJECT_DIR/docker-compose.yml" --profile $@ up -d
       ;;
     restart)
       shift
