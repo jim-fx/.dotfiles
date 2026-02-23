@@ -1,3 +1,5 @@
+git:
+  overrideGpg: true
 customCommands:
   - key: "C"
     command: "git cz"

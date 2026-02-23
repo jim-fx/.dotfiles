@@ -31,3 +31,14 @@ profile WorkSetup2 {
   output 'Dell Inc. DELL U2719D CCLQC23'  enable mode 2560x1440 position 1280,0
   output 'Dell Inc. DELL U2719D GHMQC23'  enable mode 2560x1440 position 3840,0
 }
+
+profile work-next-daniele {
+  output "AU Optronics 0x2036 Unknown" enable mode 2560x1440@60.012Hz position 0,905 scale 2.0
+  output "Dell Inc. DELL U2719D BDB2RS2" enable mode 2560x1440@59.951Hz position 1280,0 scale 1.0
+  output "Dell Inc. DELL U2719D HXCWPS2" enable mode 2560x1440@59.951Hz position 3840,0 scale 1.0
+}
+
+profile danieles-old-place {
+  output "AU Optronics 0x2036 Unknown" enable mode 2560x1440@60.012Hz position 0,880 scale 2.0
+  output "Dell Inc. DELL U3014 P1V6N44O368L" enable mode 2560x1600@59.972Hz position 1280,0 scale 1.0
+}

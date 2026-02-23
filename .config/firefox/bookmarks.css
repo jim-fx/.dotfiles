@@ -5,6 +5,7 @@
   color: rgba(var(--secondary-accent-color), 1) !important;
   padding-bottom: 2px !important;
   padding-top: 1px !important;
+  border-bottom: solid 1px rgba(var(--accent-color), 1) !important;
 }
 
 toolbarbutton.bookmark-item {
