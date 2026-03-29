@@ -6,15 +6,11 @@ return {
   opts = function()
     local dashboard = require("alpha.themes.dashboard")
     local logo = [[
-                 ____
-                ╱╲   ╲  
-               ╱  ╲   ╲   
-              ╱   ╱╲   ╲ 
-             ╱   ╱  ╲   ╲
-            ╱   ╱ 🮲🮳 ╲   ╲
-           ╱   ╱______\___╲
-           ╲  ╱           ╱
-            ╲╱___________╱
+         __   
+        /\ \  
+       / /\ \ 
+      / /__\ \
+      \/____\/
     ]]
 
     dashboard.section.header.val = vim.split(logo, "\n")

@@ -1,6 +1,7 @@
 function conf(){
 
   OLD_PWD=$PWD;
+  export NVIM_APPNAME=lazyvim;
 
   if [ "$1" = "u" ]; then
     source ~/.zshrc
