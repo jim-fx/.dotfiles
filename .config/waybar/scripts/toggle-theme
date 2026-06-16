@@ -10,10 +10,10 @@ LIGHT=""
 if [ "$1" == "--toggle" ]; then
   if [ $CURRENT_DARK_MODE == "light" ]; then
     ~/.config/waybar/scripts/set-theme dark
-    sed -i 's/dark=false/dark=true/' ~/.config/iwgtk.conf
+    [ -f ~/.config/iwgtk.conf ] && sed -i 's/^dark=false/dark=true/' ~/.config/iwgtk.conf
   else
     ~/.config/waybar/scripts/set-theme light
-    sed -i 's/dark=true/dark=false/' ~/.config/iwgtk.conf
+    [ -f ~/.config/iwgtk.conf ] && sed -i 's/^dark=true/dark=false/' ~/.config/iwgtk.conf
   fi
 
   swaymsg output "*" bg "$(find $HOME/.customization/wallpapers/ -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | shuf -n 1)" fill

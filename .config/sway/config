@@ -5,8 +5,6 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -199,6 +197,7 @@ input "1739:24385:Synaptics_TM2438-005" {
 #
   corner_radius 4
   for_window [class="zoom"] floating enable
+  for_window [app_id="io.github.tasks"] floating enable, resize set 380 540
   for_window [app_id="wezterm.floating.notes"] floating enable, move position center, resize set 50ppt 50ppt, border pixel 1, border color #ffffff
   for_window [app_id="com.github.gi_lom.dialect"] floating enable, resize set 800 400, sticky enable
   for_window [app_id="gnome-calculator"] floating enable
@@ -206,7 +205,7 @@ input "1739:24385:Synaptics_TM2438-005" {
   for_window [title="Zoom Meeting.*"] floating disable
   for_window [title="Firefox Developer Edition — Sharing Indicator"] floating enable, sticky enable, move position 10 980, resize set 75 50
   for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, move position 10 980, resize set 75 50
-  for_window [app_id="firefox" title="\bBitwarden\b"] floating enable, sticky enable, move position 10 980, resize set 75 50
+  for_window [app_id="firefox" title="Bitwarden"] floating enable, move position 2000 50, resize set 400 600
   for_window [title="Property Browser"] floating enable
   for_window [title="Picture in Picture"] floating enable
   for_window [title="Zoom Meeting.*"] inhibit_idle visible
@@ -356,8 +355,9 @@ exec_always dunst
 # exec_always pulseaudio --start
 # Handle Authentiction requests
 # exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always /usr/lib/kdeconnectd
-exec_always nm-applet --indicator
+exec_always kdeconnectd
+# nm-applet removed: not installed and you use iwd, not NetworkManager
+# exec_always nm-applet --indicator
 exec_always blueman-applet
 exec_always kanshi
 # exec_always aw-qt # activitywatch
@@ -369,7 +369,7 @@ xwayland enable
 
 
 # Clipboard
-exec_always clipman
+# `clipman` with no subcommand just prints usage; the watcher below is the real daemon
 exec wl-paste -t text --watch clipman store --no-persist
 
 #
@@ -380,3 +380,6 @@ bar {
   mode dock
   position top
 }
+
+exec "systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target"
+exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target

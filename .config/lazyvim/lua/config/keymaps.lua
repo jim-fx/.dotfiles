@@ -7,7 +7,15 @@ vim.keymap.set("n", "<Leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 
 vim.keymap.set("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<A-w>", "<cmd>bdelete<CR>");
+vim.keymap.set("n", "<A-w>", function()
+  local cur = vim.api.nvim_get_current_buf()
+  vim.cmd("BufferLineCyclePrev")
+  if vim.api.nvim_get_current_buf() ~= cur then
+    vim.cmd("bdelete " .. cur)
+  else
+    vim.cmd("bdelete")
+  end
+end)
 vim.keymap.set("n", "<S-A-w>", "<cmd>BufferLineCloseOthers<CR>");
 
 -- Browser like next/previous for navigating the jumplist

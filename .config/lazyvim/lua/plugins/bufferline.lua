@@ -14,7 +14,15 @@ local keys = {
   },
   {
     "<A-w>",
-    "<Cmd>bdelete<CR>",
+    function()
+      local cur = vim.api.nvim_get_current_buf()
+      vim.cmd("BufferLineCyclePrev")
+      if vim.api.nvim_get_current_buf() ~= cur then
+        vim.cmd("bdelete " .. cur)
+      else
+        vim.cmd("bdelete")
+      end
+    end,
   },
   {
     "<S-A-w>",

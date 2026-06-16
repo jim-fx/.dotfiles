@@ -186,7 +186,9 @@ esac
     # requires this in ~/.config/kitty/kitty.conf:
     # allow_remote_control yes
     # listen_on unix:/tmp/kitty-socket
-    kitty +kitten themes --cache-age=-1 --reload-in=all $new_kitty_theme
+    # wezterm retheme is handled separately via get_appearance() in
+    # ~/.config/wezterm/theme.lua, so only run this if kitty is installed.
+    command -v kitty >/dev/null && kitty +kitten themes --cache-age=-1 --reload-in=all "$new_kitty_theme"
     # for SOCK in /tmp/kitty-socket-*; do
     #     if [[ -r $new_kitty_theme ]]; then
     #     else

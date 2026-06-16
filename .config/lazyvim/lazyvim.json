@@ -5,7 +5,7 @@
     "lazyvim.plugins.extras.coding.mini-comment",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.editor.fzf",
-    "lazyvim.plugins.extras.formatting.biome",
+    "lazyvim.plugins.extras.lang.typescript.biome",
     "lazyvim.plugins.extras.lang.astro",
     "lazyvim.plugins.extras.lang.dart",
     "lazyvim.plugins.extras.lang.docker",

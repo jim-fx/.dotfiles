@@ -10,19 +10,40 @@ timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 # Path to save the screen recording PID
 recording_pid_file=/tmp/screenrecording_pid
 
+# Ask which audio source to capture and set AUDIO_ARGS accordingly.
+# Aborts the script if the dialog is dismissed.
+AUDIO_ARGS=()
+select_audio() {
+  local choice
+  choice=$(echo -e "desktop audio\nmicrophone" | wofi --dmenu --prompt="Select audio source")
+  case "$choice" in
+  "desktop audio")
+    AUDIO_ARGS=(--audio="$(pactl get-default-sink).monitor")
+    ;;
+  "microphone")
+    AUDIO_ARGS=(--audio="$(pactl get-default-source)")
+    ;;
+  *)
+    exit 0
+    ;;
+  esac
+}
+
 # Function to start a screen recording
 start_recording() {
+  select_audio
   recording_path="$recording_dir/recording_$timestamp.mp4"
   case $1 in
   "screen")
-    wf-recorder -a --audio=loopback.monitor -f "$recording_path" &
+    output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused).name')
+    wf-recorder "${AUDIO_ARGS[@]}" -o "$output" -f "$recording_path" &
     ;;
   "window")
     GEOM=$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
-    wf-recorder -a --audio=loopback.monitor -f "$recording_path" -g "$GEOM" &
+    wf-recorder "${AUDIO_ARGS[@]}" -f "$recording_path" -g "$GEOM" &
     ;;
   "area")
-    wf-recorder -a --audio -f "$recording_path" -g "$(slurp)" &
+    wf-recorder "${AUDIO_ARGS[@]}" -f "$recording_path" -g "$(slurp)" &
     ;;
   esac
   echo $! >"$recording_pid_file"

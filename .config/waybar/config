@@ -1,5 +1,4 @@
 {
-  "height": 20,
   "spacing": 4,
   "bar_id": "bar-0",
   "ipc": true,
@@ -14,7 +13,6 @@
   ],
   "modules-right": [
     "tray",
-    "custom/pacman",
     "custom/power-profile",
     "custom/dpi",
     "custom/keep-alive",

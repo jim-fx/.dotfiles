@@ -67,11 +67,10 @@ return {
         -- Override delete to use trash instead of rm
         delete = function(state)
           local path = state.tree:get_node().path
-          vim.system({ "trash", vim.fn.fnameescape(path) })
+          vim.system({ "trash", path })
           require("neo-tree.sources.manager").refresh(state.name)
         end,
       },
     },
   }
 }
-
