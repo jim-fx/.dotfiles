@@ -4,6 +4,7 @@
   padding: 6px 0px 2px 6px !important;
   padding: 0px !important;
   background: rgba(var(--dark-color), 1) !important;
+  border-bottom: 1px solid var(--separator) !important;
   height: 40px !important;
 }
 
@@ -56,7 +57,7 @@
 .tabbrowser-tab {
   border-left: 1px var(--tabs-navbar-separator-style) var(--separator) !important;
   border-right: 1px var(--tabs-navbar-separator-style) var(--separator) !important;
-  margin-left: -1px !important;
+  margin-left: -2px !important;
   max-height: 40px !important;
 }
 
@@ -91,6 +92,10 @@ tab[selected="true"] .tab-background {
 
 .tab-close-button:hover {
   fill-opacity: 1 !important;
+}
+
+.tabbrowser-tab>.tab-stack {
+  border-right: solid 1px var(--separator) !important;
 }
 
 .tabbrowser-tab>.tab-stack>.tab-background {

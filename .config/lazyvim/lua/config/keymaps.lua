@@ -16,14 +16,14 @@ vim.keymap.set("n", "<A-w>", function()
     vim.cmd("bdelete")
   end
 end)
-vim.keymap.set("n", "<S-A-w>", "<cmd>BufferLineCloseOthers<CR>");
+vim.keymap.set("n", "<S-A-w>", "<cmd>BufferLineCloseOthers<CR>")
 
 -- Browser like next/previous for navigating the jumplist
 vim.keymap.set("n", "<A-Left>", "<C-O>")
 vim.keymap.set("n", "<A-Right>", "<C-I>")
 
 -- [cl]ear highlights after search
-vim.keymap.set("n", "<leader>cl", "<cmd>noh<CR>");
+vim.keymap.set("n", "<leader>cl", "<cmd>noh<CR>")
 
 -- If i paste with p, the replaced content doesnt replace my clipboard
 vim.keymap.set("v", "p", '"_dP')
@@ -31,3 +31,15 @@ vim.keymap.set("n", "x", '"_x')
 
 -- Resume last search
 vim.keymap.set("n", "<leader>sr", "<cmd>FzfLua resume<CR>")
+
+vim.keymap.set("n", "h", function()
+  local col = vim.fn.col(".")
+  local fold_closed = vim.fn.foldclosed(".") ~= -1
+
+  -- At first character and fold is open -> close it
+  if col == 1 and not fold_closed then
+    return "zc"
+  end
+
+  return "h"
+end, { expr = true, silent = true })
